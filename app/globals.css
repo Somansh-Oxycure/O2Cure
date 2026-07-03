@@ -1,0 +1,279 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Design tokens are the single source of truth for color, type, spacing,
+  radius, shadow and easing. Every feature/section must consume these
+  tokens rather than hardcoding raw values, so the visual language stays
+  consistent as new sections are added.
+*/
+@theme inline {
+  /* Base neutrals (shadcn) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Brand identity (derived from the O2Cure logo) */
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-light: var(--brand-blue-light);
+  --color-brand-blue-dark: var(--brand-blue-dark);
+  --color-brand-green: var(--brand-green);
+
+  /*
+    Hero "split world" palette, reserved for the Hero feature (Milestone 2).
+    Defined now so the token names are already part of the design system
+    and the Hero never needs to invent ad-hoc colors.
+  */
+  --color-world-pure: var(--world-pure);
+  --color-world-pure-accent: var(--world-pure-accent);
+  --color-world-polluted: var(--world-polluted);
+  --color-world-polluted-accent: var(--world-polluted-accent);
+
+  /* Fonts */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading:
+    var(--font-playfair), ui-serif, Georgia, "Times New Roman", serif;
+
+  --animate-hero-beam-pulse: hero-beam-pulse 4s ease-in-out infinite;
+
+  /*
+    Typography scale. Large, minimal headings; restrained body copy.
+    Fluid via clamp() so type scales naturally between mobile and desktop
+    instead of relying on breakpoint-specific overrides.
+  */
+  --text-display: clamp(2.75rem, 1.9rem + 4vw, 5.5rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 600;
+
+  --text-h1: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.015em;
+  --text-h1--font-weight: 600;
+
+  --text-h2: clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.01em;
+  --text-h2--font-weight: 600;
+
+  --text-h3: clamp(1.375rem, 1.2rem + 0.8vw, 1.875rem);
+  --text-h3--line-height: 1.25;
+  --text-h3--font-weight: 500;
+
+  --text-body-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --text-body-lg--line-height: 1.6;
+
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.4;
+  --text-eyebrow--letter-spacing: 0.14em;
+  --text-eyebrow--font-weight: 500;
+
+  /* Spacing rhythm — generous inside sections, tighter between them so
+     each chapter hands off before the page feels "finished". Section tops
+     stay small because a gradient story-bridge already leads the eye in. */
+  --spacing-section: clamp(3.5rem, 2rem + 4vw, 6.5rem);
+  --spacing-section-sm: clamp(1.75rem, 1rem + 2.5vw, 3.5rem);
+
+  /* Radius scale, derived from a single premium base radius */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Elevation — soft and premium, never harsh */
+  --shadow-soft:
+    0 1px 2px oklch(0 0 0 / 0.04), 0 12px 32px -12px oklch(0 0 0 / 0.1);
+  --shadow-elevated:
+    0 24px 64px -24px oklch(0 0 0 / 0.22), 0 6px 16px -6px oklch(0 0 0 / 0.1);
+  --shadow-glow-brand: 0 0 80px -10px oklch(0.55 0.12 248 / 0.35);
+
+  /* Motion — slow, cinematic easing only. Mirrored as JS constants in components/motion/easings.ts */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.16 0.004 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.16 0.004 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0.004 260);
+
+  /* Primary action color = brand blue (matches the logo + Hero "purified" world) */
+  --primary: oklch(0.55 0.12 248);
+  --primary-foreground: oklch(0.99 0.004 260);
+
+  --secondary: oklch(0.97 0.002 260);
+  --secondary-foreground: oklch(0.22 0.006 260);
+  --muted: oklch(0.97 0.002 260);
+  --muted-foreground: oklch(0.5 0.006 260);
+  --accent: oklch(0.96 0.015 248);
+  --accent-foreground: oklch(0.3 0.03 248);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.92 0.004 260);
+  --input: oklch(0.92 0.004 260);
+  --ring: oklch(0.55 0.12 248 / 0.5);
+
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+
+  /* Premium rounded base — soft, continuous-corner feel */
+  --radius: 1rem;
+
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.55 0.12 248);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Brand identity */
+  --brand-blue: oklch(0.55 0.12 248);
+  --brand-blue-light: oklch(0.75 0.08 244);
+  --brand-blue-dark: oklch(0.4 0.11 250);
+  --brand-green: oklch(0.58 0.13 142);
+
+  /* Hero split-world palette (reserved for Milestone 2) */
+  --world-pure: oklch(0.98 0.008 240);
+  --world-pure-accent: oklch(0.82 0.05 235);
+  --world-polluted: oklch(0.62 0.045 75);
+  --world-polluted-accent: oklch(0.78 0.035 80);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+
+  --primary: oklch(0.72 0.1 246);
+  --primary-foreground: oklch(0.145 0.01 250);
+
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.28 0.03 248);
+  --accent-foreground: oklch(0.9 0.02 248);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.72 0.1 246 / 0.5);
+
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.72 0.1 246);
+  --sidebar-primary-foreground: oklch(0.145 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+
+  --brand-blue: oklch(0.72 0.1 246);
+  --brand-blue-light: oklch(0.8 0.07 244);
+  --brand-blue-dark: oklch(0.5 0.11 250);
+  --brand-green: oklch(0.68 0.13 142);
+
+  --world-pure: oklch(0.22 0.015 240);
+  --world-pure-accent: oklch(0.4 0.06 235);
+  --world-polluted: oklch(0.32 0.03 70);
+  --world-polluted-accent: oklch(0.45 0.03 75);
+}
+
+@keyframes hero-beam-pulse {
+  0%,
+  100% {
+    opacity: 0.72;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.15);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans scroll-smooth;
+    /*
+      Lenis owns smooth-scroll physics via JS. This CSS fallback only
+      applies when JS hasn't hydrated yet or is disabled.
+    */
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  ::selection {
+    background: var(--brand-blue);
+    color: var(--primary-foreground);
+  }
+
+  /* Respect prefers-reduced-motion globally as a hard safety net,
+     in addition to the per-library handling in providers/hooks. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
