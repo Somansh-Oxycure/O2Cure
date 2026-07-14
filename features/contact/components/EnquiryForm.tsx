@@ -2,11 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import {
-  useCallback,
-  useState,
-  type FormEvent,
-} from "react";
+import { useCallback, useState, type FormEvent } from "react";
 
 import { Reveal } from "@/components/motion/Reveal";
 import { durations } from "@/components/motion/durations";
@@ -37,7 +33,6 @@ import type {
 import { cn } from "@/lib/utils";
 
 interface EnquiryFormProps {
-  /** Inject a real adapter when wiring CRM / API / email later. */
   submissionAdapter?: EnquirySubmissionAdapter;
   className?: string;
 }
@@ -51,9 +46,8 @@ export function EnquiryForm({
     ...emptyEnquiryForm,
   });
   const [errors, setErrors] = useState<EnquiryFormErrors>({});
-  const [touched, setTouched] = useState<Partial<Record<EnquiryFormField, boolean>>>(
-    {},
-  );
+  const [touched, setTouched] = useState<Partial<Record<EnquiryFormField, boolean>>>({});
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -94,6 +88,7 @@ export function EnquiryForm({
       email: true,
       phone: true,
       environment: true,
+      company: true,
     });
 
     if (hasEnquiryErrors(nextErrors)) {
@@ -113,7 +108,7 @@ export function EnquiryForm({
   };
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative w-full rounded-3xl border border-white/5 bg-black/40 p-6 shadow-2xl backdrop-blur-xl sm:p-10", className)}>
       <AnimatePresence mode="wait">
         {isSuccess ? (
           <FormSuccess
@@ -126,51 +121,28 @@ export function EnquiryForm({
             key="form"
             noValidate
             onSubmit={handleSubmit}
-            className="space-y-8 sm:space-y-9"
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -12 }}
+            className="flex flex-col"
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: durations.base, ease: easings.premium }}
           >
-            <Reveal delay={0.12} distance={18}>
+            <div className="mb-6">
+              <h3 className="text-xl font-semibold text-white">Let's start with your space</h3>
+              <p className="mt-2 text-sm text-muted-foreground">What kind of environment are you looking to protect?</p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
               <FloatingInput
                 name="name"
-                label="Name"
+                label="Full Name"
                 autoComplete="name"
                 value={formData.name}
                 error={touched.name ? errors.name : undefined}
                 onChange={(event) => updateField("name", event.target.value)}
                 onBlur={handleBlur("name")}
               />
-            </Reveal>
 
-            <Reveal delay={0.16} distance={18}>
-              <FloatingInput
-                name="company"
-                label="Company"
-                optional
-                autoComplete="organization"
-                value={formData.company}
-                onChange={(event) => updateField("company", event.target.value)}
-                onBlur={handleBlur("company")}
-              />
-            </Reveal>
-
-            <Reveal delay={0.2} distance={18}>
-              <FloatingInput
-                name="email"
-                type="email"
-                label="Email"
-                autoComplete="email"
-                inputMode="email"
-                value={formData.email}
-                error={touched.email ? errors.email : undefined}
-                onChange={(event) => updateField("email", event.target.value)}
-                onBlur={handleBlur("email")}
-              />
-            </Reveal>
-
-            <Reveal delay={0.24} distance={18}>
               <FloatingInput
                 name="phone"
                 type="tel"
@@ -182,9 +154,7 @@ export function EnquiryForm({
                 onChange={(event) => updateField("phone", event.target.value)}
                 onBlur={handleBlur("phone")}
               />
-            </Reveal>
 
-            <Reveal delay={0.28} distance={18}>
               <div className="relative">
                 <FloatingSelect
                   name="environment"
@@ -192,9 +162,7 @@ export function EnquiryForm({
                   value={formData.environment}
                   options={environmentOptions}
                   error={touched.environment ? errors.environment : undefined}
-                  onChange={(event) =>
-                    updateField("environment", event.target.value)
-                  }
+                  onChange={(event) => updateField("environment", event.target.value)}
                   onBlur={handleBlur("environment")}
                 />
                 <ChevronRight
@@ -202,45 +170,45 @@ export function EnquiryForm({
                   className="pointer-events-none absolute right-0 top-1/2 size-4 -translate-y-1/2 rotate-90 text-muted-foreground"
                 />
               </div>
-            </Reveal>
 
-            <Reveal delay={0.32} distance={18}>
-              <FloatingTextarea
-                name="message"
-                label="Message"
-                optional
-                value={formData.message}
-                onChange={(event) => updateField("message", event.target.value)}
-                onBlur={handleBlur("message")}
+              <FloatingInput
+                name="email"
+                type="email"
+                label="Work Email"
+                autoComplete="email"
+                inputMode="email"
+                value={formData.email}
+                error={touched.email ? errors.email : undefined}
+                onChange={(event) => updateField("email", event.target.value)}
+                onBlur={handleBlur("email")}
               />
-            </Reveal>
 
-            <Reveal delay={0.36} distance={14}>
+              <div className="sm:col-span-2">
+                <FloatingInput
+                  name="company"
+                  label="Company Name"
+                  optional
+                  autoComplete="organization"
+                  value={formData.company}
+                  onChange={(event) => updateField("company", event.target.value)}
+                  onBlur={handleBlur("company")}
+                />
+              </div>
+            </div>
+
+            <div className="pt-6">
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="group relative mt-2 inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-full bg-primary px-8 text-sm font-medium tracking-wide text-primary-foreground transition-colors duration-300 ease-premium disabled:opacity-60 sm:w-auto sm:min-w-[15rem]"
-                whileHover={
-                  prefersReducedMotion || isSubmitting
-                    ? undefined
-                    : { scale: 1.02 }
-                }
-                whileTap={
-                  prefersReducedMotion || isSubmitting
-                    ? undefined
-                    : { scale: 0.98 }
-                }
-                transition={{ duration: durations.fast, ease: easings.premium }}
+                className="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-full bg-white px-8 text-sm font-medium tracking-wide text-black transition-colors duration-300 ease-premium hover:bg-white/90 disabled:opacity-60"
+                whileHover={prefersReducedMotion || isSubmitting ? undefined : { scale: 1.02 }}
+                whileTap={prefersReducedMotion || isSubmitting ? undefined : { scale: 0.98 }}
               >
-                <span
-                  aria-hidden
-                  className="absolute inset-0 bg-[linear-gradient(120deg,transparent_0%,rgba(255,255,255,0.18)_50%,transparent_100%)] opacity-0 transition-opacity duration-500 ease-premium group-hover:opacity-100"
-                />
-                <span className="relative">
-                  {isSubmitting ? "Sending…" : contactContent.form.submitLabel}
+                <span className="relative flex items-center">
+                  {isSubmitting ? "Submitting..." : contactContent.form.submitLabel}
                 </span>
               </motion.button>
-            </Reveal>
+            </div>
           </motion.form>
         )}
       </AnimatePresence>

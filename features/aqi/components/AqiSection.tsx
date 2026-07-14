@@ -1,72 +1,36 @@
 "use client";
 
-import { useReducedMotion } from "framer-motion";
-
-import { Reveal } from "@/components/motion/Reveal";
-import { O2CureEffectExperience } from "@/features/aqi/components/O2CureEffectExperience";
-import { aqiContent } from "@/features/aqi/content";
+import { AqiScrollContainer } from "@/features/aqi/components/AqiScrollContainer";
 import { useAqiData } from "@/features/aqi/hooks/useAqiData";
-import { usePurificationSequence } from "@/features/aqi/hooks/usePurificationSequence";
 
+/**
+ * AQI section — Chapter 3 of the homepage.
+ *
+ * A scroll-driven purification experience: the user scrolls and the world
+ * transforms around them from polluted (amber/dark) to clean (ice-blue).
+ * AQI counts down live. Pollutant readings update in real-time.
+ * No interaction required. No button. No drag. Scroll is the only input.
+ *
+ * Works identically on mobile and desktop.
+ */
 export function AqiSection() {
-  const prefersReducedMotion = useReducedMotion();
-  const reduced = Boolean(prefersReducedMotion);
   const { city, isLocating } = useAqiData();
 
-  const {
-    phase,
-    reading,
-    pollutants,
-    lightingProgress,
-    timelineRef,
-    activate,
-    isComplete,
-  } = usePurificationSequence({ city, reducedMotion: reduced });
-
   return (
-    <>
-      <div
-        aria-hidden
-        className="h-[clamp(2.5rem,6vh,4rem)] bg-background"
-      />
-
-      <section
-        id="aqi-effect"
-        aria-labelledby="aqi-effect-heading"
-        className="relative bg-background pb-section"
+    <section
+      id="aqi-effect"
+      aria-labelledby="aqi-effect-heading"
+      className="relative w-full"
+    >
+      {/* Visually-hidden heading for screen readers & SEO */}
+      <h2
+        id="aqi-effect-heading"
+        className="sr-only"
       >
-        <div className="px-5 pt-section-sm sm:px-8 lg:px-[clamp(2rem,5vw,4rem)]">
-          <header className="mx-auto max-w-5xl text-center">
-            <Reveal delay={0.12} distance={24}>
-              <h2
-                id="aqi-effect-heading"
-                className="font-heading text-h2 text-foreground"
-              >
-                {aqiContent.heading}
-              </h2>
-            </Reveal>
-            <Reveal delay={0.26} distance={20}>
-              <p className="mx-auto mt-4 max-w-lg text-body-lg text-muted-foreground">
-                {aqiContent.supporting}
-              </p>
-            </Reveal>
-          </header>
-        </div>
+        Experience the O₂Cure Effect — Live Air Quality Purification
+      </h2>
 
-        {/* Interactive purification experience enters after a reading beat. */}
-        <Reveal className="mt-8 sm:mt-10" delay={0.44} distance={28} amount={0.2}>
-          <O2CureEffectExperience
-            phase={phase}
-            reading={reading}
-            pollutants={pollutants}
-            lightingProgress={lightingProgress}
-            timelineRef={timelineRef}
-            isLocating={isLocating}
-            isComplete={isComplete}
-            onActivate={activate}
-          />
-        </Reveal>
-      </section>
-    </>
+      <AqiScrollContainer city={city} isLocating={isLocating} />
+    </section>
   );
 }

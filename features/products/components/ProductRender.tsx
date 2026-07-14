@@ -59,44 +59,23 @@ export function ProductRender({
     <div
       data-slot="product-render"
       className={cn(
-        "relative aspect-[4/5] w-full overflow-hidden rounded-2xl",
-        "bg-gradient-to-b from-world-pure via-background to-accent/20",
-        "ring-1 ring-border/50",
+        "relative w-full overflow-hidden rounded-xl",
+        "aspect-[4/3]",
         className,
       )}
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 transition-opacity duration-700"
-        style={{
-          opacity: isActive ? 1 : 0.65,
-          background: isActive
-            ? "radial-gradient(ellipse 75% 65% at 50% 38%, rgba(120, 210, 185, 0.16) 0%, rgba(180, 230, 215, 0.06) 50%, transparent 72%)"
-            : "radial-gradient(ellipse 70% 60% at 50% 40%, oklch(0.55 0.12 248 / 0.06) 0%, transparent 70%)",
-        }}
-      />
-
       {src ? (
         <Image
           src={src}
           alt={alt}
           fill
-          sizes="(max-width: 768px) 85vw, 320px"
-          className="object-contain object-center p-6 sm:p-8"
+          sizes="(max-width: 768px) 80vw, 320px"
+          className="object-contain object-center p-3 sm:p-4"
           priority={isActive}
         />
       ) : (
         <PlaceholderSilhouette variant={variant} isActive={isActive} />
       )}
-
-      <div
-        aria-hidden
-        className={cn(
-          "pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/80 to-transparent",
-          "transition-opacity duration-700",
-          isActive ? "opacity-40" : "opacity-70",
-        )}
-      />
     </div>
   );
 }

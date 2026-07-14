@@ -23,22 +23,34 @@ interface Particle {
   spawnDelay?: number;
 }
 
+/**
+ * Clean side — soft blue-white/teal motes.
+ * Boosted opacity/color for visibility on the off-white background.
+ */
 const CLEAN_COLORS = [
-  "rgba(75, 190, 165, 0.88)",
-  "rgba(95, 205, 180, 0.78)",
-  "rgba(60, 170, 150, 0.82)",
-  "rgba(115, 215, 195, 0.72)",
-  "rgba(70, 180, 155, 0.8)",
+  "rgba(40, 160, 185, 0.88)",
+  "rgba(55, 175, 200, 0.82)",
+  "rgba(30, 140, 165, 0.85)",
+  "rgba(70, 185, 210, 0.78)",
+  "rgba(50, 165, 190, 0.82)",
 ];
 
+/**
+ * Polluted side — fine suspended dust motes.
+ * Warm amber and grey-brown tones, adjusted for clean visibility on the gradient/white background.
+ */
 const POLLUTION_COLORS = [
-  "rgba(210, 155, 90, 0.82)",
-  "rgba(195, 130, 75, 0.74)",
-  "rgba(225, 170, 105, 0.7)",
-  "rgba(175, 120, 70, 0.68)",
-  "rgba(200, 145, 85, 0.78)",
+  "rgba(180, 120, 50, 0.88)",
+  "rgba(160, 105, 40, 0.84)",
+  "rgba(195, 135, 60, 0.85)",
+  "rgba(150, 100, 35, 0.82)",
+  "rgba(130, 110, 80, 0.78)",  // grey-dust mote
+  "rgba(165, 115, 50, 0.86)",
 ];
 
+/**
+ * Spawn a clean particle — drifts gently upward from the purifier zone.
+ */
 function spawnClean(
   originX: number,
   originY: number,
@@ -46,13 +58,15 @@ function spawnClean(
   height: number,
   stagger = false,
 ): Particle {
-  const angle = Math.PI + (Math.random() - 0.5) * 1.1;
-  const speed = 0.85 + Math.random() * 0.55;
-  const mist = Math.random() > 0.55;
+  const angle = Math.PI + (Math.random() - 0.5) * 0.9;
+  const speed = 0.40 + Math.random() * 0.35; // slower, calmer
+  const mist = Math.random() > 0.50;
+
   const vx = Math.cos(angle) * speed;
-  const vy = Math.sin(angle) * speed - 0.08;
-  const spawnX = originX + (Math.random() - 0.5) * 36;
-  const spawnY = originY + (Math.random() - 0.5) * 28;
+  const vy = Math.sin(angle) * speed - 0.20; // gentle upward bias
+
+  const spawnX = originX + (Math.random() - 0.5) * 28;
+  const spawnY = originY + (Math.random() - 0.5) * 20;
 
   let x = spawnX;
   let y = spawnY;
@@ -68,17 +82,23 @@ function spawnClean(
   return {
     x,
     y,
-    radius: mist ? 2.5 + Math.random() * 5 : 0.8 + Math.random() * 2,
+    // Slightly larger to make them visible
+    radius: mist ? 2.5 + Math.random() * 3.0 : 1.0 + Math.random() * 1.5,
     vx,
     vy,
-    opacity: mist ? 0.14 + Math.random() * 0.24 : 0.38 + Math.random() * 0.42,
+    // Boosted opacity so they show up beautifully on off-white background
+    opacity: mist ? 0.20 + Math.random() * 0.15 : 0.40 + Math.random() * 0.25,
     color: CLEAN_COLORS[Math.floor(Math.random() * CLEAN_COLORS.length)]!,
     type: "clean",
     mist,
-    spawnDelay: stagger ? 0 : Math.floor(Math.random() * 100),
+    spawnDelay: stagger ? 0 : Math.floor(Math.random() * 80),
   };
 }
 
+/**
+ * Spawn a polluted particle — fine dust mote drifting inward.
+ * Slightly larger and brighter than previous iteration for balanced visibility.
+ */
 function spawnPolluted(
   originX: number,
   originY: number,
@@ -86,20 +106,22 @@ function spawnPolluted(
   height: number,
 ): Particle {
   const x = originX + 40 + Math.random() * (width - originX - 20);
-  const y = originY * 0.35 + Math.random() * height * 0.65;
+  const y = originY * 0.25 + Math.random() * height * 0.75;
   const dx = originX - x;
   const dy = originY - y;
   const dist = Math.hypot(dx, dy) || 1;
-  const speed = 0.18 + Math.random() * 0.42;
-  const mist = Math.random() > 0.5;
+  const speed = 0.16 + Math.random() * 0.36; // slow drift, not rushing
+  const mist = Math.random() > 0.48;
 
   return {
     x,
     y,
-    radius: mist ? 3 + Math.random() * 6 : 1 + Math.random() * 2.5,
+    // Slightly larger particles
+    radius: mist ? 2.8 + Math.random() * 3.5 : 1.2 + Math.random() * 2.0,
     vx: (dx / dist) * speed,
     vy: (dy / dist) * speed,
-    opacity: mist ? 0.16 + Math.random() * 0.26 : 0.34 + Math.random() * 0.44,
+    // Higher opacity for visibility on off-white and gradient areas
+    opacity: mist ? 0.22 + Math.random() * 0.18 : 0.45 + Math.random() * 0.20,
     color:
       POLLUTION_COLORS[Math.floor(Math.random() * POLLUTION_COLORS.length)]!,
     type: "polluted",
@@ -110,7 +132,9 @@ function spawnPolluted(
 const defaultAnchor = (): PurifierAnchor => ({ x: 0.5, y: 0.8 });
 
 /**
- * Dual mist field — clean blue-green flows out left; polluted gold-brown flows in.
+ * Dual subtle mist field:
+ * — Left (clean): barely-visible blue-white motes drifting gently upward.
+ * — Right (polluted): fine warm dust motes floating inward — PM2.5 in still air.
  */
 export function ParticleField({ active = true, anchor }: ParticleFieldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -135,8 +159,8 @@ export function ParticleField({ active = true, anchor }: ParticleFieldProps) {
       const originX = ax * width;
       const originY = ay * height;
       const isMobile = width < 768;
-      const cleanCount = isMobile ? 28 : 52;
-      const pollutedCount = isMobile ? 38 : 68;
+      const cleanCount = isMobile ? 20 : 38;
+      const pollutedCount = isMobile ? 32 : 60;
 
       particlesRef.current = [
         ...Array.from({ length: cleanCount }, () =>
@@ -217,11 +241,8 @@ export function ParticleField({ active = true, anchor }: ParticleFieldProps) {
         }
 
         ctx.save();
-        if (particle.mist) {
-          ctx.shadowBlur = particle.type === "clean" ? 14 : 18;
-          ctx.shadowColor = particle.color;
-        }
-
+        // No shadow glow on either side — both backgrounds are light.
+        // Shadow would create heavy blobs; fine dust motes have no glow.
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
         ctx.fillStyle = particle.color;

@@ -1,7 +1,10 @@
 import type {
+  ClientLogo,
   ConsultationHighlight,
   ContactDetail,
   EnvironmentOption,
+  ProcessStep,
+  TrustMetric,
 } from "@/features/contact/types";
 
 /**
@@ -12,11 +15,12 @@ export const contactContent = {
   eyebrow: "GET IN TOUCH",
   heading: "Let's Build a Healthier Space Together",
   supporting:
-    "Whether you're protecting a home, workplace or critical facility, our team is ready to help you choose the right solution.",
+    "Take the first step towards perfect air quality. No commitments, just expert guidance tailored to your specific environment.",
   form: {
     submitLabel: "Request Consultation",
-    successHeading: "Thank you.",
-    successMessage: "Our team will contact you shortly.",
+    nextLabel: "Continue",
+    successHeading: "We're on it.",
+    successMessage: "An engineer will contact you shortly to discuss your space.",
   },
 } as const;
 
@@ -32,16 +36,6 @@ export const contactDetails: ContactDetail[] = [
     label: "Email",
     value: "hello@o2cure.com",
     href: "mailto:hello@o2cure.com",
-  },
-  {
-    id: "contact-office",
-    label: "Office Location",
-    value: "New Delhi, India",
-  },
-  {
-    id: "contact-hours",
-    label: "Business Hours",
-    value: "Mon–Fri, 9:00 AM – 6:00 PM IST",
   },
 ];
 
@@ -69,3 +63,44 @@ export const emptyEnquiryForm = {
   environment: "",
   message: "",
 } as const;
+
+export const trustMetrics: TrustMetric[] = [
+  {
+    id: "metric-businesses",
+    value: "500+",
+    label: "Businesses Protected",
+  },
+  {
+    id: "metric-response",
+    value: "< 15m",
+    label: "Avg. Response Time",
+  },
+];
+
+export const processSteps: ProcessStep[] = [
+  {
+    id: "step-1",
+    stepNumber: 1,
+    title: "We analyze your space",
+    description: "Our experts review your requirements and identify potential air quality challenges.",
+  },
+  {
+    id: "step-2",
+    stepNumber: 2,
+    title: "Tailored strategy",
+    description: "You receive a customized solution plan with zero obligation to commit.",
+  },
+  {
+    id: "step-3",
+    stepNumber: 3,
+    title: "Seamless implementation",
+    description: "If you proceed, we handle everything from delivery to expert installation.",
+  }
+];
+
+// Placeholder for client logos; in a real scenario, use actual SVG/PNG paths.
+export const clientLogos: ClientLogo[] = [
+  { id: "logo-1", name: "TechCorp", src: "/logos/techcorp.svg" },
+  { id: "logo-2", name: "HealthPlus", src: "/logos/healthplus.svg" },
+  { id: "logo-3", name: "EduSpace", src: "/logos/eduspace.svg" },
+];

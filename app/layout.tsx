@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 
 import { Navbar } from "@/components/layout/Navbar";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import SplashCursor from "@/components/motion/SplashCursor";
 import { MotionConfigProvider } from "@/components/providers/MotionConfigProvider";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
@@ -10,20 +11,16 @@ import { defaultMetadata } from "@/lib/seo/metadata";
 
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = defaultMetadata;
@@ -38,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased`}
+        className={`${inter.variable} ${plusJakartaSans.variable} font-sans antialiased`}
       >
         <script
           type="application/ld+json"
@@ -61,6 +58,7 @@ export default function RootLayout({
             />
             <Navbar />
             {children}
+            <WhatsAppButton />
           </MotionConfigProvider>
         </SmoothScrollProvider>
       </body>

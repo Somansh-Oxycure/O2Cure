@@ -52,9 +52,10 @@ export function ProductCarousel() {
   }, [handleKeyDown, viewportRef]);
 
   return (
-    <div className="relative mx-auto mt-12 w-full max-w-[100rem] sm:mt-14 lg:mt-20">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-[12%] bg-gradient-to-r from-background to-transparent sm:block" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-[12%] bg-gradient-to-l from-background to-transparent sm:block" />
+    <div className="relative mx-auto mt-10 w-full max-w-[100rem] sm:mt-12 lg:mt-16">
+      {/* Edge fades */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-[10%] bg-gradient-to-r from-background to-transparent sm:block" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 hidden w-[10%] bg-gradient-to-l from-background to-transparent sm:block" />
 
       <div
         ref={viewportRef}
@@ -66,7 +67,7 @@ export function ProductCarousel() {
       >
         <motion.div
           ref={trackRef}
-          className="flex cursor-grab touch-pan-y gap-6 active:cursor-grabbing sm:gap-8 lg:gap-10"
+          className="flex cursor-grab touch-pan-y gap-4 active:cursor-grabbing sm:gap-6 lg:gap-8"
           style={{ x }}
           drag={isLayoutReady ? "x" : false}
           dragConstraints={dragConstraints}
@@ -88,8 +89,9 @@ export function ProductCarousel() {
         </motion.div>
       </div>
 
+      {/* Controls row */}
       <div
-        className="mt-8 flex items-center justify-center gap-4 sm:mt-10"
+        className="mt-6 flex items-center justify-center gap-3 sm:mt-8"
         aria-hidden={false}
       >
         <CarouselArrow
@@ -104,7 +106,7 @@ export function ProductCarousel() {
           {products.length}
         </p>
 
-        <div className="flex items-center gap-2" role="tablist" aria-label="Products">
+        <div className="flex items-center gap-1.5" role="tablist" aria-label="Products">
           {products.map((product, index) => (
             <button
               key={product.id}
@@ -114,10 +116,10 @@ export function ProductCarousel() {
               aria-label={`Go to ${product.name}`}
               onClick={() => goTo(index)}
               className={cn(
-                "h-2 rounded-full transition-all duration-500",
+                "h-1.5 rounded-full transition-all duration-500",
                 index === activeIndex
-                  ? "w-7 bg-brand-blue"
-                  : "w-2 bg-border hover:bg-muted-foreground/40",
+                  ? "w-6 bg-brand-blue"
+                  : "w-1.5 bg-border hover:bg-muted-foreground/40",
               )}
             />
           ))}
@@ -153,13 +155,13 @@ function CarouselArrow({
     <Button
       type="button"
       variant="outline"
-      size="icon-lg"
+      size="icon"
       disabled={disabled}
       aria-label={label}
       onClick={onClick}
-      className="rounded-full border-border/80 bg-background/80 shadow-soft backdrop-blur-sm"
+      className="size-9 rounded-full border-border/70 bg-background/90 shadow-sm backdrop-blur-sm hover:border-brand-blue/40 hover:bg-brand-blue/5 disabled:opacity-30"
     >
-      <Icon className="size-5" />
+      <Icon className="size-4" />
     </Button>
   );
 }

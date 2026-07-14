@@ -24,7 +24,10 @@ export function LogoItem({ logo, className }: LogoItemProps) {
       alt={logo.logo.alt}
       width={logo.logo.width ?? 160}
       height={logo.logo.height ?? 48}
-      className="h-auto max-h-10 w-auto max-w-[9rem] object-contain sm:max-h-11 sm:max-w-[10rem]"
+      className={cn(
+        "h-full w-full max-h-10 max-w-[9rem] object-contain sm:max-h-11 sm:max-w-[10rem]",
+        logo.className
+      )}
     />
   ) : (
     <span
@@ -38,7 +41,7 @@ export function LogoItem({ logo, className }: LogoItemProps) {
   const sharedClasses = cn(
     "group flex h-[clamp(3.5rem,8vw,5rem)] items-center justify-center px-2 transition-[filter,opacity] duration-500 ease-premium",
     hasImage
-      ? "grayscale brightness-[0.82] opacity-65 hover:grayscale-0 hover:brightness-110 hover:opacity-100"
+      ? "opacity-85 hover:opacity-100"
       : "opacity-80 hover:opacity-100",
     className,
   );

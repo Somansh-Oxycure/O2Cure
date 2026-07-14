@@ -57,7 +57,7 @@ function FooterNavColumn({
         <h3 className="text-eyebrow uppercase text-foreground/70">
           {group.title}
         </h3>
-        <ul className="mt-5 space-y-3.5">
+        <ul className="mt-3 space-y-2.5">
           {group.links.map((link) => (
             <li key={link.id}>
               <FooterNavLink link={link} />
@@ -86,7 +86,7 @@ function FooterNavAccordionItem({
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
-        className="flex w-full items-center justify-between py-5 text-left"
+        className="flex w-full items-center justify-between py-3.5 text-left"
       >
         <span className="text-eyebrow uppercase text-foreground/70">
           {group.title}
@@ -112,7 +112,7 @@ function FooterNavAccordionItem({
         }}
         className="overflow-hidden"
       >
-        <ul className="space-y-3.5 pb-5">
+        <ul className="space-y-2.5 pb-3.5">
           {group.links.map((link) => (
             <li key={link.id}>
               <FooterNavLink link={link} />
@@ -140,7 +140,7 @@ export function FooterNavigation({
 
   if (useDesktopLayout) {
     return (
-      <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 xl:gap-14">
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6 xl:gap-8">
         {groups.map((group, index) => (
           <FooterNavColumn
             key={group.id}

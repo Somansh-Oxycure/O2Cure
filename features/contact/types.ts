@@ -57,3 +57,23 @@ export interface ConsultationHighlight {
   id: string;
   label: string;
 }
+
+// New premium SaaS section types
+export interface TrustMetric {
+  id: string;
+  value: string;
+  label: string;
+}
+
+export interface ProcessStep {
+  id: string;
+  stepNumber: number;
+  title: string;
+  description: string;
+}
+
+export interface ClientLogo {
+  id: string;
+  name: string;
+  src: string;
+}

@@ -31,7 +31,7 @@ export function FooterSection({ content = footerContent }: FooterSectionProps) {
       {/* Story bridge — atmosphere brightens as CTA section recedes */}
       <div
         aria-hidden
-        className="pointer-events-none relative h-[clamp(4rem,9vh,6.5rem)] overflow-hidden bg-background"
+        className="pointer-events-none relative h-[clamp(2rem,5vh,3rem)] overflow-hidden bg-background"
       >
         <div
           className="absolute inset-0"
@@ -51,7 +51,7 @@ export function FooterSection({ content = footerContent }: FooterSectionProps) {
 
       <footer
         aria-labelledby="footer-hero-heading"
-        className="relative bg-background pb-section pt-section-sm"
+        className="relative bg-background pb-[clamp(2.5rem,5vw,4.5rem)] pt-[clamp(2rem,4vw,3.5rem)]"
       >
         <FooterParticles />
 
@@ -78,14 +78,14 @@ export function FooterSection({ content = footerContent }: FooterSectionProps) {
               </Reveal>
 
               <Reveal delay={0.18} distance={20} amount={0.25}>
-                <p className="mx-auto mt-6 max-w-2xl text-body-lg leading-relaxed text-muted-foreground sm:mt-8">
+                <p className="mx-auto mt-4 max-w-2xl text-body-lg leading-relaxed text-muted-foreground sm:mt-5">
                   {content.hero.supporting}
                 </p>
               </Reveal>
 
               <Reveal delay={0.34} distance={16} amount={0.25}>
                 <motion.div
-                  className="mt-10 sm:mt-12"
+                  className="mt-6 sm:mt-8"
                   whileHover={
                     prefersReducedMotion ? undefined : { scale: 1.02 }
                   }
@@ -110,19 +110,19 @@ export function FooterSection({ content = footerContent }: FooterSectionProps) {
               </Reveal>
             </div>
 
-            <AnimatedGradientDivider className="mx-auto mt-[clamp(4rem,8vw,7rem)] max-w-4xl" />
+            <AnimatedGradientDivider className="mx-auto mt-[clamp(2.5rem,5vw,4.5rem)] max-w-4xl" />
 
-            <div className="mt-[clamp(3.5rem,7vw,6rem)]">
+            <div className="mt-[clamp(2rem,4vw,3.5rem)]">
               <FooterNavigation groups={content.navigation} />
             </div>
 
-            <div className="mt-[clamp(4rem,8vw,7rem)]">
+            <div className="mt-[clamp(2.5rem,5vw,4.5rem)]">
               <NewsletterSignup content={content.newsletter} />
             </div>
 
-            <AnimatedGradientDivider className="mx-auto mt-[clamp(4rem,8vw,6rem)] max-w-5xl" />
+            <AnimatedGradientDivider className="mx-auto mt-[clamp(2.5rem,5vw,4rem)] max-w-5xl" />
 
-            <div className="mt-10 sm:mt-12">
+            <div className="mt-6 sm:mt-8">
               <FooterBottomBar
                 legal={content.legal}
                 socialLinks={content.socialLinks}

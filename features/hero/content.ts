@@ -3,20 +3,19 @@
  */
 export const heroContent = {
   left: {
-    eyebrow: "Clean air. Pure life.",
+    eyebrow: "Engineered for the air you live in.",
     headingLine1: "Inside",
     headingLine2: "O2Cure.",
     cta: "Explore Solutions",
   },
   right: {
-    eyebrow: "Pollution. Invisible. Real.",
+    eyebrow: "Pollution doesn't stop at your door.",
     heading: "Outside it.",
     description:
-      "Invisible pollutants. Real impact. The air beyond your door doesn't pause at the threshold.",
+      "PM2.5, VOCs, allergens — real, invisible, relentless. O2Cure intercepts every threat before it reaches you.",
     cta: "See the Difference",
   },
-  centerTagline:
-    "",
+  // centerTagline: "One device. Two worlds. Breathe the difference.",
   product: {
     src: "/Hulk_Front_Angle-removebg.png",
     alt: "O2Cure Hulk air purifier",

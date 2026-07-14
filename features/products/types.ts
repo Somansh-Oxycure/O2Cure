@@ -13,7 +13,7 @@ export interface Product {
   name: string;
   /** Single-line purpose — no specs, no pricing. */
   purpose: string;
-  environment: string;
+  environment: string[];
   /**
    * Premium render slot. Leave `src` empty to use the SVG placeholder for
    * `renderVariant`; set `src` later and the layout stays identical.

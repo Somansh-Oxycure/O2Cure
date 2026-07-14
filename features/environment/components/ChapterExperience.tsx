@@ -9,7 +9,6 @@ import {
 import type { ReactNode } from "react";
 import { useRef } from "react";
 
-import { HeroChapterTransition } from "@/features/environment/components/HeroChapterTransition";
 import { EnvironmentSection } from "@/features/environment/components/EnvironmentSection";
 
 interface ChapterExperienceProps {
@@ -17,9 +16,7 @@ interface ChapterExperienceProps {
 }
 
 /**
- * Orchestrates the Hero → Chapter 2 cinematic handoff and the environment
- * selector. Hero component files remain untouched — transition is applied
- * via scroll-linked wrappers and overlays in this layer only.
+ * Orchestrates a simple scroll transition from the Hero to Chapter 2.
  */
 export function ChapterExperience({ hero }: ChapterExperienceProps) {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -31,11 +28,13 @@ export function ChapterExperience({ hero }: ChapterExperienceProps) {
     offset: ["start start", "end start"],
   });
 
+  // Hero content lifts and fades as user scrolls down
   const headlineLift = useTransform(scrollYProgress, [0, 0.9], [0, -72]);
   const headlineFade = useTransform(scrollYProgress, [0.55, 0.98], [1, 0]);
 
   return (
     <main>
+      {/* ── HERO ──────────────────────────────────────────────────── */}
       <div ref={heroRef} className="relative">
         <motion.div
           style={
@@ -44,17 +43,16 @@ export function ChapterExperience({ hero }: ChapterExperienceProps) {
         >
           {hero}
         </motion.div>
-        <HeroChapterTransition progress={scrollYProgress} />
       </div>
 
-      {/* Brief clean-world pause before Chapter 2 — kept short so the
-          environment heading rises while the hero is still fading out. */}
+      {/* A simple spacer between sections */}
       <div
         aria-hidden
-        className="h-[clamp(3rem,8vh,6rem)] bg-gradient-to-b from-background to-background"
+        className="h-[clamp(3rem,8vh,6rem)] bg-[#F5F5F4]"
       />
 
-      <EnvironmentSection chapterProgress={scrollYProgress} />
+      {/* ── SECTION 2: WHERE DO YOU BREATHE? ─────────────────────── */}
+      <EnvironmentSection />
     </main>
   );
 }

@@ -22,7 +22,7 @@ function CertificationBadge({ certification }: { certification: Certification })
           alt={certification.badge.alt}
           width={certification.badge.width ?? 72}
           height={certification.badge.height ?? 72}
-          className="h-10 w-auto max-w-[4.5rem] object-contain grayscale opacity-70 transition-[filter,opacity] duration-500 ease-premium hover:grayscale-0 hover:opacity-100 sm:h-11"
+          className="h-16 w-auto max-w-[8rem] object-contain transition-transform duration-300 hover:scale-105 sm:h-20 sm:max-w-[10rem]"
         />
       ) : (
         <span

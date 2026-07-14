@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 import {
@@ -10,7 +10,6 @@ import {
   carouselTween,
 } from "@/features/products/animation/carouselMotion";
 import { ProductRender } from "@/features/products/components/ProductRender";
-import { productsContent } from "@/features/products/content";
 import type { Product } from "@/features/products/types";
 
 interface ProductCardProps {
@@ -33,67 +32,82 @@ export function ProductCard({
       layout={false}
       role="group"
       aria-roledescription="slide"
-      aria-label={`${product.name} — ${product.environment}`}
+      aria-label={`${product.name} — ${product.environment.join(", ")}`}
       aria-current={isActive ? "true" : undefined}
       animate={{
-        scale: isActive ? 1 : 0.88,
-        opacity: isActive ? 1 : 0.52,
-        y: isActive ? 0 : 12,
-        filter: isActive ? "blur(0px)" : "blur(2.5px)",
+        scale: isActive ? 1 : 0.9,
+        opacity: isActive ? 1 : 0.45,
+        y: isActive ? 0 : 8,
+        filter: isActive ? "blur(0px)" : "blur(3px)",
       }}
       transition={transition}
       className={cn(
-        "flex w-[min(85vw,20rem)] shrink-0 flex-col sm:w-[min(72vw,22rem)] lg:w-[min(28vw,24rem)]",
+        "flex w-[min(80vw,18rem)] shrink-0 flex-col sm:w-[min(68vw,20rem)] lg:w-[min(26vw,22rem)]",
         "cursor-grab active:cursor-grabbing",
       )}
       onClick={isActive ? undefined : onSelect}
     >
+      {/* Unified card — image + info in one container */}
       <motion.div
         animate={{
           boxShadow: isActive
-            ? "0 24px 64px -24px oklch(0 0 0 / 0.22), 0 6px 16px -6px oklch(0 0 0 / 0.1)"
-            : "0 1px 2px oklch(0 0 0 / 0.04), 0 12px 32px -12px oklch(0 0 0 / 0.08)",
+            ? "0 20px 60px -16px rgba(43,108,176,0.18), 0 4px 16px -4px rgba(0,0,0,0.10)"
+            : "0 2px 8px rgba(0,0,0,0.05)",
         }}
         transition={transition}
-        className="rounded-2xl"
-      >
-        <ProductRender
-          src={product.image.src || undefined}
-          alt={product.image.alt}
-          variant={product.renderVariant}
-          isActive={isActive}
-        />
-      </motion.div>
-
-      <div
         className={cn(
-          "mt-6 text-center transition-opacity duration-500 sm:mt-7",
-          isActive ? "opacity-100" : "opacity-70",
+          "flex flex-col overflow-hidden rounded-3xl",
+          "border border-border/60 bg-white",
+          isActive && "border-border/80",
         )}
       >
-        <h3 className="font-heading text-h3 text-foreground">{product.name}</h3>
-        <p className="mx-auto mt-2 max-w-[18rem] text-body-lg text-muted-foreground">
-          {product.purpose}
-        </p>
+        {/* Image area */}
+        <div className="relative bg-gradient-to-b from-slate-50 to-white px-4 pt-5 pb-2">
 
-        <p className="mt-4">
-          <span className="inline-flex items-center rounded-full border border-border/70 bg-secondary/60 px-3.5 py-1 text-eyebrow uppercase tracking-[0.12em] text-muted-foreground">
-            {product.environment}
-          </span>
-        </p>
+          <ProductRender
+            src={product.image.src || undefined}
+            alt={product.image.alt}
+            variant={product.renderVariant}
+            isActive={isActive}
+          />
+        </div>
 
-        <Button
-          type="button"
-          variant="outline"
-          size="lg"
-          disabled
-          aria-disabled="true"
-          tabIndex={isActive ? 0 : -1}
-          className="mt-6 min-w-[11rem] rounded-full border-border/80 bg-transparent px-7 sm:mt-7"
+        {/* Info area */}
+        <div
+          className={cn(
+            "flex flex-col gap-2 px-5 pb-5 pt-4",
+            "border-t border-border/40 bg-white",
+          )}
         >
-          {productsContent.cta}
-        </Button>
-      </div>
+          <h3 className="text-[0.95rem] font-semibold leading-snug tracking-tight text-foreground line-clamp-2">
+            {product.name}
+          </h3>
+          <p className="text-[0.78rem] leading-relaxed text-muted-foreground line-clamp-2">
+            {product.purpose}
+          </p>
+
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {product.environment.map((env) => (
+              <span
+                key={env}
+                className="inline-flex items-center rounded-full bg-brand-blue/8 border border-brand-blue/15 px-2 py-0.5 text-[9px] font-medium uppercase tracking-widest text-brand-blue/80"
+              >
+                {env}
+              </span>
+            ))}
+          </div>
+
+          <div
+            className={cn(
+              "mt-1 flex items-center gap-1.5 text-[0.78rem] font-medium text-brand-blue transition-opacity duration-300",
+              isActive ? "opacity-100" : "opacity-0",
+            )}
+          >
+            <span>Learn more</span>
+            <ArrowRight className="size-3.5" />
+          </div>
+        </div>
+      </motion.div>
     </motion.article>
   );
 }

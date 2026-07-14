@@ -6,6 +6,7 @@ export interface ClientLogo {
   name: string;
   logo: SanityImageLike;
   href?: string;
+  className?: string;
 }
 
 /** Single recognition metric for the horizontal strip. */
@@ -23,6 +24,8 @@ export interface Testimonial {
   quote: string;
   clientName: string;
   company: string;
+  role?: string;
+  rating?: number; // 1–5 stars
   avatar: SanityImageLike;
 }
 

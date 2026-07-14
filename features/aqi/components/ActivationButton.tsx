@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 
 import { easings } from "@/components/motion/easings";
-import { aqiContent } from "@/features/aqi/content";
 import type { PurificationPhase } from "@/features/aqi/types";
 import { cn } from "@/lib/utils";
 
@@ -67,7 +66,7 @@ export function ActivationButton({
 
       <motion.button
         type="button"
-        aria-label={aqiContent.buttonLabel}
+        aria-label="Activate O₂Cure Effect"
         disabled={disabled || isActivating || isComplete}
         onClick={onActivate}
         className={cn(
@@ -89,7 +88,7 @@ export function ActivationButton({
         whileTap={isIdle ? { scale: 0.96 } : undefined}
       >
         <span className="max-w-[6.5rem] px-2">
-          {isComplete ? aqiContent.purifiedLabel : aqiContent.buttonLabel}
+          {isComplete ? "Purified" : "O₂Cure Effect"}
         </span>
       </motion.button>
     </div>

@@ -3,12 +3,10 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { CertificationBadges } from "@/features/trust/components/CertificationBadges";
 import { LogoWall } from "@/features/trust/components/LogoWall";
-import { RecognitionStrip } from "@/features/trust/components/RecognitionStrip";
 import { TestimonialsPreview } from "@/features/trust/components/TestimonialsPreview";
 import {
   certifications,
   clientLogos,
-  recognitionMetrics,
   testimonials,
   trustContent,
 } from "@/features/trust/content";
@@ -55,6 +53,7 @@ export function TrustSection() {
         className="relative bg-background pb-section pt-section-sm"
       >
         <div className="px-5 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)]">
+          {/* ── Header ── */}
           <header className="mx-auto max-w-5xl text-center">
             <Reveal delay={0} distance={20}>
               <p className="text-eyebrow uppercase text-brand-blue">
@@ -78,20 +77,30 @@ export function TrustSection() {
             </Reveal>
           </header>
 
-          <div className="mt-12 sm:mt-16 lg:mt-20">
+          {/* ── Logo Marquee ── */}
+          <div className="mt-14 sm:mt-16 lg:mt-20">
             <LogoWall logos={clientLogos} />
           </div>
 
-          <div className="mt-12 sm:mt-16 lg:mt-20">
-            <RecognitionStrip metrics={recognitionMetrics} />
-          </div>
-
-          <div className="mt-12 sm:mt-16 lg:mt-20">
+          {/* ── Testimonials ── */}
+          <div className="mt-16 sm:mt-20 lg:mt-24">
             <TestimonialsPreview testimonials={testimonials} />
           </div>
 
-          <div className="mt-12 sm:mt-16 lg:mt-20">
-            <CertificationBadges certifications={certifications} />
+          {/* ── Certifications ── */}
+          <div className="mt-14 sm:mt-16 lg:mt-20">
+            <Reveal delay={0.06} distance={14} amount={0.3}>
+              <div className="mx-auto max-w-3xl">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent to-border/50" />
+                  <p className="text-eyebrow font-semibold uppercase tracking-widest text-muted-foreground text-xs">
+                    Certified &amp; Compliant
+                  </p>
+                  <div className="h-px flex-1 bg-gradient-to-l from-transparent to-border/50" />
+                </div>
+                <CertificationBadges certifications={certifications} />
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>

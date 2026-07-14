@@ -61,7 +61,7 @@ export function NewsletterSignup({
         <h3 className="font-heading text-h3 text-foreground">
           {content.heading}
         </h3>
-        <p className="mx-auto mt-4 max-w-lg text-body-lg text-muted-foreground">
+        <p className="mx-auto mt-3 max-w-lg text-body-lg text-muted-foreground">
           {content.supporting}
         </p>
 
@@ -71,7 +71,7 @@ export function NewsletterSignup({
               key="success"
               role="status"
               aria-live="polite"
-              className="mt-10"
+              className="mt-6"
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: durations.base, ease: easings.premium }}
@@ -87,7 +87,7 @@ export function NewsletterSignup({
             <motion.form
               key="form"
               onSubmit={handleSubmit}
-              className="mt-10"
+              className="mt-6"
               initial={{ opacity: 1 }}
               exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -8 }}
               transition={{ duration: durations.fast, ease: easings.premium }}

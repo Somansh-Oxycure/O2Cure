@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 
 import { Reveal } from "@/components/motion/Reveal";
 import { easings } from "@/components/motion/easings";
-import { cn } from "@/lib/utils";
 
 interface TriCureFlowProps {
   /** Index of the currently hovered/focused card, or null. */
@@ -15,45 +14,36 @@ interface TriCureFlowProps {
   reducedMotion: boolean;
 }
 
-const BLUE = "oklch(0.55 0.12 248 / 0.9)";
-const GREEN = "rgba(120, 210, 185, 0.85)";
+// ─── Color constants ────────────────────────────────────────────────────────
+const BLUE = "oklch(0.55 0.12 248)";
+const TEAL = "rgba(120,210,185,1)";
+const GREEN = "rgba(58,125,42,1)";
+const ACCENT_COLORS = [BLUE, TEAL, GREEN] as const;
 
-/** Small pulse that drops down a vertical stem toward the rail. */
-function StemPulse({ delay }: { delay: number }) {
+/**
+ * Stem pulse that cascades downward from a card into the rail.
+ * Each pulse uses the card's accent color.
+ */
+function StemPulse({
+  delay,
+  color,
+}: {
+  delay: number;
+  color: string;
+}) {
   return (
     <motion.span
       aria-hidden
-      className="absolute left-1/2 top-0 h-4 w-[3px] -translate-x-1/2 rounded-full blur-[0.5px]"
-      style={{ background: `linear-gradient(to bottom, transparent, ${BLUE}, transparent)` }}
-      initial={{ y: "-120%", opacity: 0 }}
-      animate={{ y: ["-120%", "320%"], opacity: [0, 1, 1, 0] }}
-      transition={{
-        duration: 2.6,
-        times: [0, 0.15, 0.8, 1],
-        repeat: Infinity,
-        ease: easings.idle,
-        delay,
+      className="absolute left-1/2 top-0 h-5 w-[2px] -translate-x-1/2 rounded-full"
+      style={{
+        background: `linear-gradient(to bottom, transparent, ${color}, transparent)`,
+        filter: "blur(0.5px)",
       }}
-    />
-  );
-}
-
-/** Pulse that travels along the horizontal rail toward the centre badge. */
-function RailPulse({ from, delay }: { from: "left" | "right"; delay: number }) {
-  const isLeft = from === "left";
-  return (
-    <motion.span
-      aria-hidden
-      className="absolute top-1/2 h-[3px] w-10 -translate-y-1/2 rounded-full blur-[0.5px]"
-      style={{ background: `linear-gradient(to right, transparent, ${GREEN}, transparent)` }}
-      initial={{ left: isLeft ? "0%" : "100%", opacity: 0 }}
-      animate={{
-        left: isLeft ? ["0%", "50%"] : ["100%", "50%"],
-        opacity: [0, 1, 1, 0],
-      }}
+      initial={{ y: "-100%", opacity: 0 }}
+      animate={{ y: ["-100%", "400%"], opacity: [0, 0.9, 0.9, 0] }}
       transition={{
-        duration: 2.8,
-        times: [0, 0.2, 0.75, 1],
+        duration: 2.4,
+        times: [0, 0.12, 0.78, 1],
         repeat: Infinity,
         ease: easings.idle,
         delay,
@@ -63,10 +53,63 @@ function RailPulse({ from, delay }: { from: "left" | "right"; delay: number }) {
 }
 
 /**
- * Circuit-style connector: three vertical stems (one per card) drop into a
- * horizontal rail that funnels into the central TriCure™ badge, which then
- * flows down into the "Cleaner Indoor Air" outcome. Pulses travel calmly and
- * continuously toward the badge; the stem matching the hovered card brightens.
+ * Horizontal rail pulse flowing from one edge toward the center badge.
+ * The flowing gradient is the "energy transfer" that visually links
+ * the three threat categories into the central neutralization badge.
+ */
+function RailPulse({
+  from,
+  delay,
+  color,
+}: {
+  from: "left" | "right";
+  delay: number;
+  color: string;
+}) {
+  const isLeft = from === "left";
+  const gradient = isLeft
+    ? `linear-gradient(to right, transparent, ${color}, transparent)`
+    : `linear-gradient(to left, transparent, ${color}, transparent)`;
+
+  return (
+    <motion.span
+      aria-hidden
+      className="absolute top-1/2 h-[2px] w-16 -translate-y-1/2 rounded-full"
+      style={{
+        background: gradient,
+        filter: "blur(0.5px)",
+        boxShadow: `0 0 8px 1px ${color}`,
+      }}
+      initial={{ left: isLeft ? "0%" : "100%", opacity: 0 }}
+      animate={{
+        left: isLeft ? ["0%", "50%"] : ["100%", "50%"],
+        opacity: [0, 1, 1, 0],
+      }}
+      transition={{
+        duration: 3.0,
+        times: [0, 0.18, 0.72, 1],
+        repeat: Infinity,
+        ease: easings.idle,
+        delay,
+      }}
+    />
+  );
+}
+
+/**
+ * The animated connector that links the three glass cards to the TriCure™ badge.
+ *
+ * Layout:
+ *  [Card 0]   [Card 1]   [Card 2]
+ *     │           │          │        ← vertical stems (3 px, per-card accent)
+ *  ───┴───────────┴──────────┴────    ← horizontal rail (gradient pulse flows inward)
+ *                 │                   ← center stem drops to badge
+ *          ┌─ TriCure™ ─┐
+ *                 │                   ← post-badge stem flows out
+ *       [ Cleaner Indoor Air ]
+ *
+ * The animated pulses create the "energy transfer" metaphor. On hover, the
+ * matching card stem brightens and its rail pulse accelerates.
  */
 export function TriCureFlow({
   activeIndex,
@@ -79,85 +122,223 @@ export function TriCureFlow({
 
   return (
     <Reveal
-      className="mx-auto mt-4 w-full max-w-6xl px-2 sm:mt-6"
-      delay={0.2}
-      distance={20}
-      amount={0.3}
+      className="mx-auto mt-2 w-full max-w-6xl px-2 sm:mt-4"
+      delay={0.25}
+      distance={24}
+      amount={0.25}
     >
-      {/* Vertical stems — aligned with the card columns on desktop */}
+      {/* ── Vertical stems — one per card column ── */}
       <div className="grid grid-cols-3 gap-6 md:gap-7 lg:gap-8">
         {stems.map((_, i) => {
           const active = activeIndex === i;
+          const color = ACCENT_COLORS[i];
           return (
             <div key={i} className="flex justify-center">
               <div
-                className={cn(
-                  "relative h-12 w-px overflow-hidden transition-colors duration-500",
-                  active ? "bg-brand-blue/50" : "bg-border",
-                )}
+                className="relative h-14 overflow-hidden"
+                style={{
+                  width: "2px",
+                  background: active
+                    ? `linear-gradient(to bottom, ${color}55, ${color}cc)`
+                    : "linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.04))",
+                  borderRadius: "1px",
+                  transition: "background 600ms cubic-bezier(0.16,1,0.3,1)",
+                  boxShadow: active ? `0 0 8px 1px ${color}55` : "none",
+                }}
               >
-                {!reducedMotion && <StemPulse delay={i * 0.5} />}
+                {!reducedMotion && (
+                  <StemPulse delay={i * 0.6} color={color} />
+                )}
               </div>
             </div>
           );
         })}
       </div>
 
-      {/* Horizontal rail funnelling toward the centre */}
-      <div className="relative h-px w-full overflow-hidden bg-gradient-to-r from-transparent via-border to-transparent">
+      {/* ── Horizontal rail ── */}
+      <div
+        className="relative h-[2px] w-full overflow-hidden"
+        style={{
+          background:
+            "linear-gradient(to right, transparent 2%, rgba(0,0,0,0.08) 20%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.08) 80%, transparent 98%)",
+          borderRadius: "1px",
+        }}
+      >
+        {/* Flowing gradient energy pulses from left (blue) and right (green) */}
         {!reducedMotion && (
           <>
-            <RailPulse from="left" delay={0.2} />
-            <RailPulse from="right" delay={1.6} />
+            <RailPulse from="left" delay={0.0} color={BLUE} />
+            <RailPulse from="right" delay={1.0} color={GREEN} />
+            <RailPulse from="left" delay={2.0} color={TEAL} />
+            <RailPulse from="right" delay={3.2} color={BLUE} />
           </>
         )}
       </div>
 
-      {/* Convergence into the badge, then out to the outcome */}
+      {/* ── Convergence stem + Badge + Outcome ── */}
       <div className="flex flex-col items-center">
-        <div className="relative h-6 w-px overflow-hidden bg-gradient-to-b from-border to-brand-blue/40">
-          {!reducedMotion && <StemPulse delay={1.1} />}
+        {/* Pre-badge stem */}
+        <div
+          className="relative overflow-hidden"
+          style={{
+            width: "2px",
+            height: "3rem",
+            background: `linear-gradient(to bottom, rgba(0,0,0,0.06), ${BLUE}88)`,
+            borderRadius: "1px",
+          }}
+        >
+          {!reducedMotion && (
+            <motion.span
+              aria-hidden
+              className="absolute left-1/2 top-0 h-5 -translate-x-1/2 rounded-full"
+              style={{
+                width: "2px",
+                background: `linear-gradient(to bottom, transparent, ${BLUE}, transparent)`,
+                filter: "blur(0.5px)",
+                boxShadow: `0 0 6px 1px ${BLUE}88`,
+              }}
+              initial={{ y: "-100%", opacity: 0 }}
+              animate={{ y: ["-100%", "400%"], opacity: [0, 1, 1, 0] }}
+              transition={{
+                duration: 2.2,
+                times: [0, 0.12, 0.78, 1],
+                repeat: Infinity,
+                ease: easings.idle,
+                delay: 1.2,
+              }}
+            />
+          )}
         </div>
 
+        {/* TriCure™ Central Badge */}
         <motion.div
-          className="relative inline-flex items-center gap-2.5 rounded-full border border-brand-blue/25 bg-background/85 px-6 py-3 shadow-soft backdrop-blur-sm"
-          animate={reducedMotion ? undefined : { opacity: [0.94, 1, 0.94] }}
+          className="relative"
+          animate={
+            reducedMotion
+              ? undefined
+              : { opacity: [0.92, 1, 0.92] }
+          }
           transition={
             reducedMotion
               ? undefined
-              : { duration: 4, repeat: Infinity, ease: easings.idle }
+              : { duration: 3.5, repeat: Infinity, ease: easings.idle }
           }
         >
-          <span
+          {/* Outer glow ring */}
+          <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 -z-10 rounded-full"
-            style={{ boxShadow: "0 0 40px -6px oklch(0.55 0.12 248 / 0.35)" }}
+            className="pointer-events-none absolute -inset-3 rounded-full"
+            style={{
+              background: `radial-gradient(ellipse 100% 100% at 50% 50%, ${BLUE}22 0%, transparent 70%)`,
+            }}
           />
-          <svg
-            aria-hidden
-            viewBox="0 0 24 24"
-            className="size-5 text-brand-blue"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={1.6}
-            strokeLinecap="round"
+
+          <div
+            className="relative inline-flex items-center gap-3 rounded-full border px-7 py-3.5 backdrop-blur-sm"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%)",
+              borderColor: `${BLUE}44`,
+              boxShadow: `0 0 0 1px ${BLUE}22, 0 8px 32px -8px ${BLUE}44, inset 0 1px 0 rgba(255,255,255,0.1)`,
+            }}
           >
-            <path d="M5 6l7 6-7 6M19 6l-7 6 7 6" opacity={0.85} />
-            <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none" />
-          </svg>
-          <span className="font-heading text-base font-medium tracking-tight text-foreground sm:text-lg">
-            {badge}
-          </span>
+            {/* TriCure™ icon — stylized double chevron merging to a point */}
+            <svg
+              aria-hidden
+              viewBox="0 0 24 24"
+              className="size-5 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={1.5}
+              strokeLinecap="round"
+              style={{ color: `oklch(0.55 0.12 248)` }}
+            >
+              <path d="M5 6l7 6-7 6M19 6l-7 6 7 6" opacity={0.8} />
+              <circle cx="12" cy="12" r="1.8" fill="currentColor" stroke="none" />
+            </svg>
+
+            <div className="flex flex-col items-start">
+              <span
+                className="text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground"
+                style={{ fontFamily: "var(--font-plus-jakarta)", fontSize: "9pt", letterSpacing: "0.08em" }}
+              >
+                Integrated Platform
+              </span>
+              <span
+                className="text-foreground"
+                style={{
+                  fontFamily: "var(--font-plus-jakarta)",
+                  fontWeight: 600,
+                  fontSize: "1.0625rem",
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.2,
+                }}
+              >
+                {badge}
+              </span>
+            </div>
+          </div>
         </motion.div>
 
-        <div className="relative h-6 w-px overflow-hidden bg-gradient-to-b from-brand-blue/40 to-brand-green/40">
-          {!reducedMotion && <StemPulse delay={2} />}
+        {/* Post-badge stem */}
+        <div
+          className="relative overflow-hidden"
+          style={{
+            width: "2px",
+            height: "2.5rem",
+            background: `linear-gradient(to bottom, ${BLUE}88, ${GREEN}88)`,
+            borderRadius: "1px",
+          }}
+        >
+          {!reducedMotion && (
+            <motion.span
+              aria-hidden
+              className="absolute left-1/2 top-0 h-4 -translate-x-1/2 rounded-full"
+              style={{
+                width: "2px",
+                background: `linear-gradient(to bottom, transparent, ${TEAL}, transparent)`,
+                filter: "blur(0.5px)",
+              }}
+              initial={{ y: "-100%", opacity: 0 }}
+              animate={{ y: ["-100%", "400%"], opacity: [0, 1, 1, 0] }}
+              transition={{
+                duration: 2.0,
+                times: [0, 0.1, 0.8, 1],
+                repeat: Infinity,
+                ease: easings.idle,
+                delay: 2.1,
+              }}
+            />
+          )}
         </div>
 
-        <span className="inline-flex items-center gap-2 rounded-full border border-brand-green/30 bg-brand-green/5 px-5 py-2.5 text-eyebrow uppercase tracking-[0.14em] text-brand-green">
-          <span aria-hidden className="size-1.5 rounded-full bg-brand-green" />
+        {/* Outcome chip */}
+        <div
+          className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5"
+          style={{
+            fontFamily: "var(--font-plus-jakarta)",
+            fontWeight: 600,
+            fontSize: "9pt",
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            borderColor: `${GREEN}44`,
+            background: `${GREEN}09`,
+            color: GREEN,
+          }}
+        >
+          <motion.span
+            aria-hidden
+            className="size-1.5 rounded-full"
+            style={{ background: GREEN }}
+            animate={reducedMotion ? undefined : { opacity: [1, 0.4, 1] }}
+            transition={
+              reducedMotion
+                ? undefined
+                : { duration: 2, repeat: Infinity, ease: easings.idle }
+            }
+          />
           {outcome}
-        </span>
+        </div>
       </div>
     </Reveal>
   );

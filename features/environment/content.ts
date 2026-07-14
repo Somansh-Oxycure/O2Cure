@@ -24,8 +24,11 @@ export type Environment = {
   description: string;
   icon: LucideIcon;
   image: {
+    /** Primary image shown when the panel is expanded */
     src: string;
     alt: string;
+    /** Optional alternate image displayed in the collapsed/peek state */
+    collapsedSrc?: string;
   };
 };
 
@@ -36,8 +39,9 @@ export const environments: Environment[] = [
     description: "Homes and living spaces where clean air feels personal.",
     icon: Home,
     image: {
-      src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=85&auto=format&fit=crop",
+      src: "/residential.png",
       alt: "Sunlit modern living room with clean architectural lines",
+      collapsedSrc: "/residential2.png",
     },
   },
   {
@@ -46,8 +50,9 @@ export const environments: Environment[] = [
     description: "Offices and workplaces built for focus and clarity.",
     icon: Building2,
     image: {
-      src: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=85&auto=format&fit=crop",
+      src: "/corporate.png",
       alt: "Premium open-plan office with natural light",
+      collapsedSrc: "/corporate2.png",
     },
   },
   {
@@ -56,7 +61,7 @@ export const environments: Environment[] = [
     description: "Production floors that demand controlled air at scale.",
     icon: Factory,
     image: {
-      src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&q=85&auto=format&fit=crop",
+      src: "/industrial.png",
       alt: "Modern industrial facility with controlled environment",
     },
   },
@@ -66,7 +71,7 @@ export const environments: Environment[] = [
     description: "Clinical environments where every breath carries weight.",
     icon: HeartPulse,
     image: {
-      src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1600&q=85&auto=format&fit=crop",
+      src: "/medical.png",
       alt: "Bright, minimal hospital corridor",
     },
   },
@@ -76,8 +81,9 @@ export const environments: Environment[] = [
     description: "Campuses and classrooms designed for clearer minds.",
     icon: GraduationCap,
     image: {
-      src: "https://images.unsplash.com/photo-1562774053-701939374585?w=1600&q=85&auto=format&fit=crop",
+      src: "/education.png",
       alt: "Contemporary university campus interior",
+      collapsedSrc: "/education2.png",
     },
   },
   {
@@ -86,7 +92,7 @@ export const environments: Environment[] = [
     description: "Public interiors trusted by the communities they serve.",
     icon: Landmark,
     image: {
-      src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=85&auto=format&fit=crop",
+      src: "/hospitality.png",
       alt: "Modern civic building with glass facade",
     },
   },
@@ -96,7 +102,7 @@ export const environments: Environment[] = [
     description: "Terminals and transit hubs moving millions through cleaner air.",
     icon: Plane,
     image: {
-      src: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1600&q=85&auto=format&fit=crop",
+      src: "/airport.png",
       alt: "Spacious airport terminal with natural light",
     },
   },

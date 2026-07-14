@@ -8,43 +8,77 @@ interface RecognitionStripProps {
   metrics: RecognitionMetric[];
 }
 
-function RecognitionMetricItem({ metric }: { metric: RecognitionMetric }) {
+function RecognitionMetricItem({ metric, index }: { metric: RecognitionMetric; index: number }) {
   const { ref, displayValue } = useAnimatedCounter({ value: metric.value });
 
+  const accentColors = [
+    "from-brand-green/20 to-brand-blue/10",
+    "from-brand-blue/20 to-brand-green/10",
+    "from-brand-green/20 to-brand-blue/10",
+    "from-brand-blue/20 to-brand-green/10",
+  ];
+
+  const numberColors = [
+    "text-brand-green",
+    "text-brand-blue",
+    "text-brand-green",
+    "text-brand-blue",
+  ];
+
   return (
-    <div className="flex flex-col items-center text-center">
-      <p className="font-heading text-[clamp(1.75rem,1.4rem+1.2vw,2.5rem)] font-semibold tracking-tight text-foreground">
+    <div
+      className={`group relative flex flex-1 flex-col items-center text-center overflow-hidden rounded-2xl border border-border/30 bg-white px-6 py-8 shadow-soft transition-shadow duration-500 ease-premium hover:shadow-elevated sm:px-8 sm:py-10 w-full h-full`}
+    >
+      {/* Background gradient glow */}
+      <div
+        aria-hidden
+        className={`absolute inset-0 bg-gradient-to-br ${accentColors[index % 4]} opacity-0 transition-opacity duration-700 group-hover:opacity-100 pointer-events-none`}
+      />
+
+      {/* Number */}
+      <p
+        className={`relative font-heading text-[clamp(2.25rem,1.8rem+1.5vw,3.25rem)] font-bold tracking-tight ${numberColors[index % 4]}`}
+      >
         <span ref={ref}>
           {metric.prefix}
           {displayValue.toLocaleString("en-IN")}
           {metric.suffix}
         </span>
       </p>
-      <p className="mt-2 text-sm text-muted-foreground sm:text-base">
+
+      {/* Label */}
+      <p className="relative mt-2 text-sm font-medium text-muted-foreground sm:text-base">
         {metric.label}
       </p>
+
+      {/* Bottom accent line */}
+      <div
+        aria-hidden
+        className={`absolute bottom-0 inset-x-0 h-[3px] bg-gradient-to-r ${accentColors[index % 4].replace("/20", "").replace("/10", "")} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
+      />
     </div>
   );
 }
 
 /**
- * Horizontal recognition strip — numbers animate once on viewport entry.
+ * Recognition metrics strip — used as a standalone section between
+ * Environment and Trust, giving the numbers prominent placement.
  */
 export function RecognitionStrip({ metrics }: RecognitionStripProps) {
   return (
-    <Reveal delay={0.08} distance={20} amount={0.25}>
-      <div
-        className="mx-auto max-w-5xl border-y border-border/50 py-12 sm:py-14"
-        aria-label="Recognition metrics"
-      >
-        <ul className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4 sm:gap-y-0">
-          {metrics.map((metric) => (
-            <li key={metric.id}>
-              <RecognitionMetricItem metric={metric} />
+    <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)]">
+      <Reveal delay={0.04} distance={20} amount={0.2}>
+        <ul
+          className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6 lg:gap-8"
+          aria-label="Recognition metrics"
+        >
+          {metrics.map((metric, index) => (
+            <li key={metric.id} className="flex flex-col h-full">
+              <RecognitionMetricItem metric={metric} index={index} />
             </li>
           ))}
         </ul>
-      </div>
-    </Reveal>
+      </Reveal>
+    </div>
   );
 }
