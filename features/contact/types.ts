@@ -26,6 +26,7 @@ export interface EnquiryFormData {
   phone: string;
   environment: EnvironmentType | "";
   message: string;
+  problemDescription: string;
 }
 
 export type EnquiryFormField = keyof EnquiryFormData;

@@ -9,6 +9,8 @@ export interface TriCureLayer {
   title: string;
   /** Single-line description — kept short and premium. */
   description: string;
+  /** Extra detail to show on hover. */
+  detail: string;
   /** Minimal line icon rendered with `currentColor`. */
   Icon: ComponentType<SVGProps<SVGSVGElement>>;
   /**

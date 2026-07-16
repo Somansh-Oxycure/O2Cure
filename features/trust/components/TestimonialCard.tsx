@@ -116,8 +116,8 @@ export function TestimonialCard({ testimonial, className }: TestimonialCardProps
       <StarRating rating={testimonial.rating} />
 
       {/* Quote */}
-      <blockquote className="mt-4 flex-1 text-[clamp(0.9375rem,0.875rem+0.3vw,1.0625rem)] leading-relaxed text-foreground/85 line-clamp-3 min-h-[4.5rem] sm:min-h-[5rem] lg:min-h-[5.25rem] overflow-hidden text-ellipsis">
-        {testimonial.quote}
+      <blockquote className="mt-4 flex-1 text-sm sm:text-[15px] leading-relaxed text-foreground/85 italic">
+        "{testimonial.quote}"
       </blockquote>
 
       {/* Attribution */}

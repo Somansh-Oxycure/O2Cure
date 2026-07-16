@@ -13,16 +13,17 @@ import type { TriCureLayer } from "@/features/technology/types";
  * enterprise buyers to verify claims without reading a whitepaper.
  */
 export const technologyContent = {
-  eyebrow: "Proprietary Science Platform",
+  eyebrow: "OUR TECHNOLOGY",
   heading: "Powered by TriCure™ Technology",
   supporting:
-    "Three threat categories. One integrated neutralization system. Zero compromises.",
+    "Indoor air pollution isn't one thing. It's three — each invisible, each harmful, each requiring a distinct scientific response. TriCure™ is the only integrated system engineered to address all three simultaneously.",
   layers: [
     {
       id: "particulate",
-      number: "01",
+      number: "",
       title: "Particulate Matter",
       description: "PM2.5, PM10, Dust & Pollen",
+      detail: "Advanced filtration matrix captures microscopic particles down to 0.3 microns with 99.97% efficiency.",
       Icon: ParticulateIcon,
       badges: ["PM2.5 ≤ 0.3 µm", "HEPA H13", "MERV-16", "99.97% CAPTURE"],
       spec: "ISO 29463-3 · EN 1822 · ASHRAE 52.2",
@@ -34,6 +35,7 @@ export const technologyContent = {
       number: "02",
       title: "Microbial Protection",
       description: "Bacteria, Viruses, Molds & Fungi",
+      detail: "Medical-grade sterilization technology eliminates airborne pathogens, preventing cross-contamination.",
       Icon: MicrobialIcon,
       badges: ["UV-C 254nm", "HINS LIGHT", "BIOFILM GUARD", "≥99.9% KILL"],
       spec: "ASTM E2406 · NSF/ANSI 55 · EPA GUIDE 350",
@@ -45,6 +47,7 @@ export const technologyContent = {
       number: "03",
       title: "Gas & Odor Control",
       description: "VOCs, Sulfur, Smoke & Chemical Odors",
+      detail: "High-density molecular adsorption media neutralizes volatile organic compounds and persistent odors.",
       Icon: GasOdorIcon,
       badges: ["VOC ≤ 50 ppb", "ACTIVATED CARBON", "PHOTOCATALYTIC", "TVOC SENSOR"],
       spec: "ISO 16000-9 · ANSI/ASHRAE 62.1 · CARB CERT.",

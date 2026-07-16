@@ -46,10 +46,10 @@ export function ChapterExperience({ hero }: ChapterExperienceProps) {
       </div>
 
       {/* A simple spacer between sections */}
-      <div
+      {/* <div
         aria-hidden
-        className="h-[clamp(3rem,8vh,6rem)] bg-[#F5F5F4]"
-      />
+        className="h-2 bg-[#F5F5F4]"
+      /> */}
 
       {/* ── SECTION 2: WHERE DO YOU BREATHE? ─────────────────────── */}
       <EnvironmentSection />

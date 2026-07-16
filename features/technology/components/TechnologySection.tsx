@@ -43,7 +43,7 @@ export function TechnologySection() {
       <section
         id="technology"
         aria-labelledby="technology-heading"
-        className="relative bg-background pb-section pt-section-sm"
+        className="relative bg-background py-4"
       >
         {/* Ambient radial */}
         <div
@@ -62,14 +62,14 @@ export function TechnologySection() {
 
         <div className="relative px-5 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)]">
           {/* ── Header ── */}
-          <header className="mx-auto max-w-3xl text-center">
+          <header className="mx-auto max-w-5xl text-left">
             <Reveal delay={0} distance={20}>
               <p
-                className="uppercase text-muted-foreground"
+                className="uppercase text-blue-600"
                 style={{
                   fontFamily: "var(--font-plus-jakarta)",
-                  fontWeight: 600,
-                  fontSize: "9pt",
+                  fontWeight: 700,
+                  fontSize: "10pt",
                   letterSpacing: "0.1em",
                 }}
               >
@@ -80,12 +80,7 @@ export function TechnologySection() {
             <Reveal delay={0.1} distance={28}>
               <h2
                 id="technology-heading"
-                style={{
-                  fontFamily: "var(--font-plus-jakarta)",
-                  fontWeight: 600,
-                  letterSpacing: "-0.02em",
-                }}
-                className="mt-4 text-h2 text-foreground sm:mt-5"
+                className="mt-3 font-serif text-3xl font-bold tracking-tight text-foreground sm:mt-4 sm:text-4xl lg:text-5xl"
               >
                 {heading}
               </h2>
@@ -93,7 +88,7 @@ export function TechnologySection() {
 
             <Reveal delay={0.18} distance={20}>
               <p
-                className="mx-auto mt-3 max-w-xl text-body-lg text-muted-foreground"
+                className="mt-4 max-w-3xl text-base text-muted-foreground sm:text-lg sm:leading-relaxed"
                 style={{ fontFamily: "var(--font-plus-jakarta)", fontWeight: 400 }}
               >
                 {supporting}
@@ -102,7 +97,7 @@ export function TechnologySection() {
           </header>
 
           {/* ── 3-column compact card grid ── */}
-          <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5">
+          <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 items-start gap-4 sm:grid-cols-3 sm:gap-5">
             {layers.map((layer, index) => (
               <CompactThreatCard
                 key={layer.id}

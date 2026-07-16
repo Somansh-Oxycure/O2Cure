@@ -13,14 +13,19 @@ import type {
  */
 export const contactContent = {
   eyebrow: "GET IN TOUCH",
-  heading: "Let's Build a Healthier Space Together",
+  eyebrowMagic: "Feel the magic in the air",
+  heading: "Get in touch",
   supporting:
-    "Take the first step towards perfect air quality. No commitments, just expert guidance tailored to your specific environment.",
+    "A home built today will breathe for 25 years. A hospital wing will run for 40. A factory floor doesn't get rebuilt every decade. Everywhere, air quality is worsening faster than most infrastructure plans account for. Our airvengers don't sell you a product for today's problem. They design a purification system calibrated to your space, your occupancy, and the pollution load your environment will carry for the next 10 to 20 years.",
+  highlights: [
+    "Full-environment assessment",
+    "One-to-one with a specialist",
+  ],
   form: {
-    submitLabel: "Request Consultation",
+    submitLabel: "Request Free Consultation",
     nextLabel: "Continue",
     successHeading: "We're on it.",
-    successMessage: "An engineer will contact you shortly to discuss your space.",
+    successMessage: "An engineer will contact you within 24 hours to discuss your space.",
   },
 } as const;
 
@@ -62,6 +67,7 @@ export const emptyEnquiryForm = {
   phone: "",
   environment: "",
   message: "",
+  problemDescription: "",
 } as const;
 
 export const trustMetrics: TrustMetric[] = [
@@ -72,8 +78,8 @@ export const trustMetrics: TrustMetric[] = [
   },
   {
     id: "metric-response",
-    value: "< 15m",
-    label: "Avg. Response Time",
+    value: "< 24h",
+    label: "Response Time",
   },
 ];
 

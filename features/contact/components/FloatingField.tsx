@@ -81,24 +81,22 @@ export function FloatingField({
 
         <motion.span
           aria-hidden
-          className="absolute inset-x-0 bottom-0 h-px bg-border"
+          className="absolute inset-x-0 bottom-0 h-[1px] bg-white/20 origin-left"
           initial={false}
           animate={{
-            scaleX: isFocused ? 1 : 0.65,
-            opacity: isFocused ? 1 : 0.55,
+            scaleX: 1,
+            opacity: isFocused ? 1 : 0.5,
           }}
-          style={{ originX: 0.5 }}
           transition={{ duration: durations.fast, ease: easings.premium }}
         />
         <motion.span
           aria-hidden
-          className="absolute inset-x-0 bottom-0 h-px bg-brand-blue"
+          className="absolute inset-x-0 bottom-0 h-[1px] bg-brand-green origin-left"
           initial={false}
           animate={{
             scaleX: isFocused ? 1 : 0,
             opacity: isFocused ? 1 : 0,
           }}
-          style={{ originX: 0.5 }}
           transition={{ duration: durations.fast, ease: easings.premium }}
         />
       </div>
@@ -113,7 +111,7 @@ export function FloatingField({
 }
 
 const fieldClassName =
-  "w-full border-0 bg-transparent pt-7 pb-3 text-base text-foreground outline-none transition-colors duration-300 ease-premium placeholder:text-transparent sm:pt-8 sm:text-[1.0625rem]";
+  "w-full border-0 bg-transparent pt-6 pb-2 text-base text-white outline-none transition-colors duration-300 ease-premium placeholder:text-transparent sm:pt-7 sm:text-[1.0625rem]";
 
 type FloatingInputProps = Omit<
   ComponentPropsWithoutRef<"input">,
@@ -184,7 +182,7 @@ export function FloatingTextarea({
           {...props}
           {...fieldProps}
           value={stringValue}
-          className={cn(fieldClassName, "min-h-[9rem] resize-y leading-relaxed")}
+          className={cn(fieldClassName, "min-h-[7rem] resize-y leading-relaxed")}
           onFocus={(event) => {
             fieldProps.onFocus();
             onFocus?.(event);

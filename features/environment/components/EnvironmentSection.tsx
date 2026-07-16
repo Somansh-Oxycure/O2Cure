@@ -25,7 +25,7 @@ export function EnvironmentSection() {
       ref={sectionRef}
       id="environments"
       aria-labelledby="environments-heading"
-      className="relative min-h-dvh bg-[#F5F5F4] pb-16 pt-20 sm:pb-20 sm:pt-24 lg:pt-28"
+      className="relative min-h-dvh bg-[#F5F5F4] py-4"
     >
       {/* Ambient section background */}
       <div
@@ -73,13 +73,13 @@ export function EnvironmentSection() {
               delay: reduced ? 0 : 0.1,
             }}
           >
-            Choose your space,
+            Every space needs its own solution
             <br />
-            <span className="text-brand-green">breathe better</span> within it.
+            <span className="text-brand-green">breathe</span> better with<span className="text-brand-green"> O2cure </span>.
           </motion.h2>
 
           {/* Supporting copy */}
-          <motion.p
+          {/* <motion.p
             className="mx-auto mt-5 max-w-lg text-[clamp(0.9375rem,0.88rem+0.3vw,1.0625rem)] leading-relaxed text-[#0A0A0A]/55"
             initial={reduced ? false : { opacity: 0, y: 18 }}
             animate={isVisible ? { opacity: 1, y: 0 } : undefined}
@@ -91,7 +91,7 @@ export function EnvironmentSection() {
           >
             Hover or tap any environment to see how O2Cure's intelligent air
             purification adapts to every space.
-          </motion.p>
+          </motion.p> */}
         </header>
 
         {/* Environment panel stack */}

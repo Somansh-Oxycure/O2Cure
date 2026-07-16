@@ -166,8 +166,8 @@ export function EnvironmentPanel({
             background: isExpanded
               ? "linear-gradient(135deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.32) 100%)"
               : isCompressed
-                ? "linear-gradient(135deg, rgba(245,245,244,0.65) 0%, rgba(238,238,236,0.6) 100%)"
-                : "linear-gradient(135deg, rgba(245,245,244,0.45) 0%, rgba(238,238,236,0.4) 100%)",
+                ? "linear-gradient(135deg, rgba(245,245,244,0.7) 0%, rgba(238,238,236,0.65) 100%)"
+                : "linear-gradient(135deg, rgba(245,245,244,0.55) 0%, rgba(238,238,236,0.5) 100%)",
             opacity: 1,
           }}
           transition={panelMotion.image}
@@ -254,7 +254,7 @@ export function EnvironmentPanel({
               backgroundColor: isExpanded
                 ? "rgba(255,255,255,0.12)"
                 : "rgba(255,255,255,0.82)",
-              color: isExpanded ? "rgba(255,255,255,1)" : "rgba(28,28,28,0.8)",
+              color: isExpanded ? "rgba(255,255,255,1)" : "rgba(10,10,10,0.95)",
               boxShadow: isExpanded
                 ? "0 0 0 0px transparent"
                 : "0 1px 3px rgba(0,0,0,0.08)",
@@ -268,7 +268,7 @@ export function EnvironmentPanel({
           <motion.h3
             className="font-heading text-[clamp(0.9375rem,0.88rem+0.3vw,1.0625rem)] font-semibold"
             animate={{
-              color: isExpanded ? "rgba(255,255,255,1)" : "rgba(28,28,28,0.92)",
+              color: isExpanded ? "rgba(255,255,255,1)" : "rgba(10,10,10,1)",
               textShadow: isExpanded
                 ? "0 1px 8px rgba(0,0,0,0.4)"
                 : "none",
@@ -286,7 +286,7 @@ export function EnvironmentPanel({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="ml-auto font-mono text-[0.65rem] font-medium tabular-nums text-[#0A0A0A]/25"
+                className="ml-auto font-mono text-[0.65rem] font-medium tabular-nums text-[#0A0A0A]/50"
               >
                 {String(index + 1).padStart(2, "0")}
               </motion.span>
@@ -356,7 +356,7 @@ export function EnvironmentPanel({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="px-5 pb-3 text-[0.75rem] leading-snug text-[#0A0A0A]/40 sm:px-6"
+              className="px-5 pb-3 text-[0.75rem] font-medium leading-snug text-[#0A0A0A]/70 sm:px-6"
             >
               {environment.description}
             </motion.p>

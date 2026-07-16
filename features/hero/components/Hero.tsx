@@ -16,6 +16,7 @@ import {
   type PurifierAnchor,
 } from "@/features/hero/components/HeroPurifier";
 import { ParticleField } from "@/features/hero/components/ParticleField";
+import { PollutantBubbles } from "@/features/hero/components/PollutantBubbles";
 import { SplitWorldBackground } from "@/features/hero/components/SplitWorldBackground";
 import { heroContent } from "@/features/hero/content";
 
@@ -58,13 +59,15 @@ export function Hero() {
 
       <ParticleField active anchor={anchor} />
 
+      <PollutantBubbles anchor={anchor} />
+
       <HeroPurifier onAnchorChange={handleAnchorChange} />
 
       {/* Copy — mobile stacks top, desktop splits 50/50 */}
       <div className="relative z-30 flex h-full w-full flex-col md:flex-row">
 
         {/* ── LEFT: Clean world copy — dark text on off-white ───────────── */}
-        <div className="flex w-full flex-col justify-end px-6 pb-2 pt-24 sm:px-8 md:w-1/2 md:justify-center md:pl-[8vw] md:pr-[6vw] md:pb-0 md:pt-0">
+        <div className="flex w-full flex-col justify-end px-6 pb-2 pt-[160px] sm:px-8 md:w-1/2 md:justify-center md:pl-[8vw] md:pr-[6vw] md:pb-0 md:pt-0">
           <motion.div
             className="max-w-xl"
             initial="hidden"
@@ -87,9 +90,9 @@ export function Hero() {
               variants={fadeUp(heroTimeline.headline, reduced)}
             >
               {heroContent.left.headingLine1}
-              <br />
-              {heroContent.left.headingLine2.slice(0, -1)}
               <span className="text-brand-green">.</span>
+              {/* <br /> */}
+              {/* {heroContent.left.headingLine2.slice(0, -1)} */}
             </motion.h1>
 
             {/* CTA — O2 Green, the single viewport anchor element */}
@@ -129,7 +132,7 @@ export function Hero() {
               variants={fadeUp(heroTimeline.headline, reduced)}
             >
               {heroContent.right.heading.slice(0, -1)}
-              <span className="text-brand-green">.</span>
+              <span className="text-[#AA4A44]">.</span>
             </motion.h2>
 
             {/* Supporting text — charcoal/60 on the soft light background */}
@@ -173,6 +176,25 @@ export function Hero() {
       >
         {heroContent.centerTagline}
       </motion.p>
+
+      {/* ── TOP CENTER TAGLINE ───────────────────────────────────────────── */}
+      <div className="absolute left-1/2 top-[112px] z-40 -translate-x-1/2 pointer-events-none text-center lg:top-[145px]">
+        <motion.div
+          className="flex flex-col items-center gap-1.5"
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: reduced ? 0 : msToSeconds(heroTimeline.eyebrow),
+            duration: reduced ? durations.fast : durations.slow,
+            ease: easings.premium,
+          }}
+        >
+          <span className="font-heading text-eyebrow font-semibold uppercase tracking-[0.2em] text-[#1C1C1C]/45">
+            India's Best Air Purification Brand
+          </span>
+          <div className="h-[1px] w-6 bg-[#1C1C1C]/15" />
+        </motion.div>
+      </div>
     </section>
   );
 }

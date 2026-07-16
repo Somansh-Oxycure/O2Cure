@@ -20,7 +20,7 @@ export function AqiSection() {
     <section
       id="aqi-effect"
       aria-labelledby="aqi-effect-heading"
-      className="relative w-full"
+      className="relative w-full mt-14"
     >
       {/* Visually-hidden heading for screen readers & SEO */}
       <h2

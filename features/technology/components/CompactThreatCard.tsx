@@ -153,66 +153,42 @@ export function CompactThreatCard({ layer, index, reducedMotion }: CompactCardPr
       </p>
 
       {/* ── Stat counter ── */}
-      <div className="relative mt-4 flex items-baseline gap-1.5">
+      <div className="relative mt-4 flex items-end gap-2">
         <span
-          className="tabular-nums leading-none"
+          className="tabular-nums leading-none tracking-tighter"
           style={{
             fontFamily: "var(--font-plus-jakarta)",
             fontWeight: 700,
-            fontSize: "clamp(1.9rem, 3.5vw, 2.4rem)",
-            letterSpacing: "-0.04em",
+            fontSize: "2.5rem",
             color: p.iconColor,
           }}
         >
           {statDisplay}
         </span>
         <span
-          className="max-w-[9rem] text-[10px] leading-tight text-muted-foreground"
-          style={{ fontFamily: "var(--font-plus-jakarta)" }}
+          className="pb-1 text-xs leading-tight text-muted-foreground"
+          style={{ fontFamily: "var(--font-plus-jakarta)", maxWidth: "140px" }}
         >
           {layer.stat.label}
         </span>
       </div>
 
-      {/* ── Separator ── */}
-      <div
-        className="relative mt-4 h-px w-full"
-        style={{
-          background: `linear-gradient(to right, ${p.border}, transparent)`,
-          opacity: 0.6,
+      <motion.div
+        initial={false}
+        animate={{ 
+          height: hovered ? "auto" : 0, 
+          opacity: hovered ? 1 : 0, 
+          marginTop: hovered ? 16 : 0 
         }}
-      />
-
-      {/* ── Badges ── */}
-      <div className="relative mt-3 flex flex-wrap gap-1">
-        {layer.badges.map((badge) => (
-          <span
-            key={badge}
-            className="inline-flex items-center rounded px-1.5 py-0.5"
-            style={{
-              fontFamily: "var(--font-plus-jakarta)",
-              fontWeight: 600,
-              fontSize: "8pt",
-              letterSpacing: "0.05em",
-              textTransform: "uppercase",
-              background: hovered ? p.badgeBg : "rgba(0,0,0,0.04)",
-              border: `1px solid ${hovered ? p.badgeBorder : "rgba(0,0,0,0.07)"}`,
-              color: hovered ? p.badgeText : "rgba(28,28,28,0.45)",
-              transition: "all 500ms cubic-bezier(0.16,1,0.3,1)",
-            }}
-          >
-            {badge}
-          </span>
-        ))}
-      </div>
-
-      {/* ── Spec line ── */}
-      <p
-        className="relative mt-2.5 text-[9px] tracking-wide text-muted-foreground/50"
-        style={{ fontFamily: "var(--font-plus-jakarta)", letterSpacing: "0.04em" }}
+        className="overflow-hidden"
       >
-        {layer.spec}
-      </p>
+        <p
+          className="text-sm text-muted-foreground leading-relaxed"
+          style={{ fontFamily: "var(--font-plus-jakarta)" }}
+        >
+          {layer.detail}
+        </p>
+      </motion.div>
 
       {/* Bottom accent line */}
       <div

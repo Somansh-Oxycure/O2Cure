@@ -12,7 +12,7 @@ export function ProductsSection() {
     <section
       id="products"
       aria-labelledby="products-heading"
-      className="relative bg-background py-16 sm:py-20 lg:py-24"
+      className="relative bg-background py-4"
     >
       {/* Subtle top separator line */}
       <div
