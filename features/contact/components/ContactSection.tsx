@@ -47,23 +47,29 @@ export function ContactSection() {
         </div>
 
         <div className="relative w-full px-5 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)]">
-          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.15fr_minmax(0,1fr)] lg:gap-[clamp(2rem,4vw,5rem)] xl:gap-16 items-start lg:items-center">
+          {/* Centered Section Header */}
+          <div className="text-center mb-8">
+            <Reveal delay={0} distance={20}>
+              <div className="mb-4 flex items-center justify-center gap-3">
+                <span className="h-px w-10 bg-[#22C55E]/35" />
+                <span className="text-eyebrow font-semibold tracking-[0.15em] text-[#22C55E]">
+                  {contactContent.eyebrow}
+                </span>
+                <span className="h-px w-10 bg-[#22C55E]/35" />
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.15fr_minmax(0,1fr)] lg:gap-[clamp(2rem,4vw,5rem)] xl:gap-16 items-start">
 
             {/* ── Left column ── */}
             <div className="flex flex-col z-10">
-
-              {/* Eyebrow */}
-              <Reveal delay={0} distance={20}>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-green/80">
-                  {contactContent.eyebrow}
-                </p>
-              </Reveal>
 
               {/* Main heading */}
               <Reveal delay={0.1} distance={28}>
                 <h2
                   id="contact-heading"
-                  className="mt-2 font-heading text-[clamp(2.5rem,5vw,3.75rem)] leading-[1.05] tracking-tight"
+                  className="mt-0 font-heading text-[clamp(2rem,5vw,3.75rem)] leading-[1.05] tracking-tight"
                 >
                   {contactContent.eyebrowMagic}
                 </h2>
@@ -81,7 +87,7 @@ export function ContactSection() {
                 <ul className="mt-5 flex flex-col gap-2.5">
                   {contactContent.highlights.map((item) => (
                     <li key={item} className="flex items-center gap-2.5">
-                      <CheckCircle2 className="size-4 shrink-0 text-brand-green" />
+                      <CheckCircle2 className="size-4 shrink-0 text-[#22C55E]" />
                       <span className="text-sm font-medium text-white/80">
                         {item}
                       </span>
@@ -93,7 +99,7 @@ export function ContactSection() {
               {/* 24-hour response badge */}
               <Reveal delay={0.46} distance={20}>
                 <div className="mt-6 inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-md">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-green/10 text-brand-green">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#22C55E]/10 text-[#22C55E]">
                     <Clock className="size-4" />
                   </div>
                   <div>

@@ -33,7 +33,7 @@ export function Navbar() {
       <motion.header
         className="pointer-events-none fixed inset-x-0 z-50"
         initial={false}
-        animate={{ top: isScrolled ? 0 : 32 }}
+        animate={{ top: 0 }}
         transition={transition}
       >
         <motion.div

@@ -54,7 +54,7 @@ function FooterNavColumn({
   return (
     <Reveal delay={delay} distance={18} amount={0.2}>
       <nav aria-label={group.title}>
-        <h3 className="text-eyebrow uppercase text-foreground/70">
+        <h3 className="text-eyebrow text-foreground/70">
           {group.title}
         </h3>
         <ul className="mt-3 space-y-2.5">
@@ -88,7 +88,7 @@ function FooterNavAccordionItem({
         aria-expanded={isOpen}
         className="flex w-full items-center justify-between py-3.5 text-left"
       >
-        <span className="text-eyebrow uppercase text-foreground/70">
+        <span className="text-eyebrow text-foreground/70">
           {group.title}
         </span>
         <ChevronDown

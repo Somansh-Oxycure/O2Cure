@@ -259,7 +259,7 @@ export function TriCureFlow({
 
             <div className="flex flex-col items-start">
               <span
-                className="text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground"
+                className="text-xs font-semibold tracking-[0.1em] text-muted-foreground"
                 style={{ fontFamily: "var(--font-plus-jakarta)", fontSize: "9pt", letterSpacing: "0.08em" }}
               >
                 Integrated Platform
@@ -320,7 +320,6 @@ export function TriCureFlow({
             fontWeight: 600,
             fontSize: "9pt",
             letterSpacing: "0.1em",
-            textTransform: "uppercase",
             borderColor: `${GREEN}44`,
             background: `${GREEN}09`,
             color: GREEN,

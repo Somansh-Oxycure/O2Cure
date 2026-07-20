@@ -68,7 +68,6 @@ export function AqiScoreDisplay({
           fontSize: "0.65rem",
           fontWeight: 600,
           letterSpacing: "0.18em",
-          textTransform: "uppercase",
           color: "oklch(0.38 0.08 50 / 0.72)",
           marginBottom: "6px",
           display: "flex",
@@ -87,7 +86,6 @@ export function AqiScoreDisplay({
           fontSize: "0.6rem",
           fontWeight: 500,
           letterSpacing: "0.24em",
-          textTransform: "uppercase",
           color: "oklch(0.40 0.02 50 / 0.48)",
           marginBottom: "4px",
         }}

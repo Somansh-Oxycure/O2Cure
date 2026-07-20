@@ -47,15 +47,19 @@ export function ClienteleSection() {
           {/* ── Header ── */}
           <header className="mx-auto max-w-5xl text-center">
             <Reveal delay={0} distance={20}>
-              <p className="text-eyebrow uppercase text-brand-blue">
-                {trustContent.eyebrow}
-              </p>
+              <div className="mb-4 flex items-center justify-center gap-3">
+                <span className="h-px w-10 bg-brand-green/35" />
+                <span className="text-eyebrow font-semibold tracking-[0.15em] text-brand-green">
+                  {trustContent.eyebrow}
+                </span>
+                <span className="h-px w-10 bg-brand-green/35" />
+              </div>
             </Reveal>
 
             <Reveal delay={0.12} distance={24}>
               <h2
                 id="clientele-heading"
-                className="mt-4 font-heading text-h2 text-foreground sm:mt-5"
+                className="font-heading text-[clamp(1.75rem,1.4rem+2vw,3rem)] font-bold leading-[1.1] tracking-[-0.022em] text-[#0A0A0A]"
               >
                 {trustContent.heading}
               </h2>
@@ -69,7 +73,7 @@ export function ClienteleSection() {
           </header>
 
           {/* ── Logo Marquee ── */}
-          <div className="mt-14 sm:mt-16 lg:mt-20">
+          <div className="mt-10 sm:mt-14 lg:mt-20">
             <LogoWall logos={clientLogos} />
           </div>
         </div>

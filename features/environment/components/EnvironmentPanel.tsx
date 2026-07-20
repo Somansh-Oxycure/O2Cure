@@ -82,8 +82,8 @@ export function EnvironmentPanel({
             opacity: isExpanded ? 1 : 0,
             scale: isExpanded ? 1 : 1.06,
             filter: isExpanded
-              ? "blur(0px) saturate(1.08) brightness(1)"
-              : "blur(6px) saturate(0.7) brightness(0.92)",
+              ? "saturate(1.08) brightness(1)"
+              : "saturate(0.7) brightness(0.92)",
           }}
           transition={{
             ...panelMotion.image,
@@ -111,10 +111,10 @@ export function EnvironmentPanel({
               opacity: isExpanded ? 0 : isCompressed ? 0.7 : 1,
               scale: isExpanded ? 1.04 : isCompressed ? 1.02 : 1,
               filter: isExpanded
-                ? "blur(8px) saturate(0.6) brightness(0.88)"
+                ? "saturate(0.6) brightness(0.88)"
                 : isCompressed
-                  ? "blur(1.5px) saturate(0.9) brightness(0.95)"
-                  : "blur(0px) saturate(1) brightness(1.02)",
+                  ? "saturate(0.9) brightness(0.95)"
+                  : "saturate(1) brightness(1.02)",
             }}
             transition={panelMotion.image}
             style={{ willChange: "transform, filter, opacity" }}
@@ -137,10 +137,10 @@ export function EnvironmentPanel({
             className="absolute inset-0"
             animate={{
               filter: isExpanded
-                ? "blur(0px) saturate(1.08) brightness(1)"
+                ? "saturate(1.08) brightness(1)"
                 : isCompressed
-                  ? "blur(5px) saturate(0.85) brightness(0.92)"
-                  : "blur(2px) saturate(0.95) brightness(0.98)",
+                  ? "saturate(0.85) brightness(0.92)"
+                  : "saturate(0.95) brightness(0.98)",
               scale: isExpanded ? 1 : isCompressed ? 1.06 : 1.03,
               opacity: isExpanded ? 1 : isCompressed ? 0.75 : 0.95,
             }}
@@ -246,7 +246,7 @@ export function EnvironmentPanel({
         <div className="flex shrink-0 items-center gap-3.5 px-5 py-4 sm:px-6">
           {/* Icon badge */}
           <motion.span
-            className="flex size-9 shrink-0 items-center justify-center rounded-xl border"
+            className="flex size-11 shrink-0 items-center justify-center rounded-xl border"
             animate={{
               borderColor: isExpanded
                 ? "rgba(255,255,255,0.25)"
@@ -261,16 +261,16 @@ export function EnvironmentPanel({
             }}
             transition={panelMotion.image}
           >
-            <Icon className="size-[1.0625rem]" strokeWidth={1.75} />
+            <Icon className="size-5" strokeWidth={1.75} />
           </motion.span>
 
           {/* Environment name */}
           <motion.h3
-            className="font-heading text-[clamp(0.9375rem,0.88rem+0.3vw,1.0625rem)] font-semibold"
+            className="font-heading text-[clamp(1.3rem,1.15rem+0.6vw,1.6rem)] font-semibold tracking-[-0.01em]"
             animate={{
               color: isExpanded ? "rgba(255,255,255,1)" : "rgba(10,10,10,1)",
               textShadow: isExpanded
-                ? "0 1px 8px rgba(0,0,0,0.4)"
+                ? "0 2px 10px rgba(0,0,0,0.45)"
                 : "none",
             }}
             transition={panelMotion.image}
@@ -286,7 +286,7 @@ export function EnvironmentPanel({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="ml-auto font-mono text-[0.65rem] font-medium tabular-nums text-[#0A0A0A]/50"
+                className="ml-auto font-mono text-[0.875rem] font-semibold tracking-wider tabular-nums text-[#0A0A0A]/40"
               >
                 {String(index + 1).padStart(2, "0")}
               </motion.span>
@@ -311,7 +311,7 @@ export function EnvironmentPanel({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 6 }}
                 transition={{ ...panelMotion.image, delay: 0.05 }}
-                className="max-w-md text-[0.875rem] leading-relaxed text-white/80 sm:text-[0.9375rem]"
+                className="max-w-xl text-[clamp(1.05rem,1rem+0.25vw,1.25rem)] leading-relaxed text-white/90"
               >
                 {environment.description}
               </motion.p>
@@ -332,36 +332,12 @@ export function EnvironmentPanel({
                   {environmentContent.cta}
                   <ArrowRight className="size-3.5" />
                 </Button>
-
-                {/* Subtle "learn more" text link */}
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ delay: 0.18, duration: 0.3 }}
-                  className="text-[0.75rem] font-medium text-white/45"
-                >
-                  View case studies →
-                </motion.span>
               </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Collapsed state: subtle description preview */}
-        <AnimatePresence>
-          {!isExpanded && !isCompressed && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="px-5 pb-3 text-[0.75rem] font-medium leading-snug text-[#0A0A0A]/70 sm:px-6"
-            >
-              {environment.description}
-            </motion.p>
-          )}
-        </AnimatePresence>
+
       </div>
 
       {/* Hover glow edge — premium interaction cue */}

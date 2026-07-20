@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 
 import { Reveal } from "@/components/motion/Reveal";
 import { technologyContent } from "@/features/technology/content";
@@ -17,12 +17,8 @@ export function TechnologySection() {
   const prefersReducedMotion = useReducedMotion();
   const reducedMotion = Boolean(prefersReducedMotion);
 
-  const { eyebrow, heading, supporting, layers, badge, outcome, closing } =
+  const { eyebrow, heading, supporting, layers } =
     technologyContent;
-
-  const BLUE = "oklch(0.55 0.12 248)";
-  const TEAL = "rgba(120,210,185,1)";
-  const GREEN = "rgba(58,125,42,1)";
 
   return (
     <>
@@ -62,25 +58,21 @@ export function TechnologySection() {
 
         <div className="relative px-5 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)]">
           {/* ── Header ── */}
-          <header className="mx-auto max-w-5xl text-left">
+          <header className="mx-auto max-w-5xl text-center">
             <Reveal delay={0} distance={20}>
-              <p
-                className="uppercase text-blue-600"
-                style={{
-                  fontFamily: "var(--font-plus-jakarta)",
-                  fontWeight: 700,
-                  fontSize: "10pt",
-                  letterSpacing: "0.1em",
-                }}
-              >
-                {eyebrow}
-              </p>
+              <div className="mb-4 flex items-center justify-center gap-3">
+                <span className="h-px w-10 bg-brand-green/35" />
+                <span className="text-eyebrow font-semibold tracking-[0.15em] text-brand-green">
+                  {eyebrow}
+                </span>
+                <span className="h-px w-10 bg-brand-green/35" />
+              </div>
             </Reveal>
 
             <Reveal delay={0.1} distance={28}>
               <h2
                 id="technology-heading"
-                className="mt-3 font-serif text-3xl font-bold tracking-tight text-foreground sm:mt-4 sm:text-4xl lg:text-5xl"
+                className="mt-3 font-heading text-[clamp(1.75rem,1.4rem+2vw,3rem)] font-bold leading-[1.1] tracking-[-0.022em] text-[#0A0A0A] sm:mt-4"
               >
                 {heading}
               </h2>
@@ -88,7 +80,7 @@ export function TechnologySection() {
 
             <Reveal delay={0.18} distance={20}>
               <p
-                className="mt-4 max-w-3xl text-base text-muted-foreground sm:text-lg sm:leading-relaxed"
+                className="mx-auto mt-4 max-w-3xl text-base text-muted-foreground sm:text-lg sm:leading-relaxed"
                 style={{ fontFamily: "var(--font-plus-jakarta)", fontWeight: 400 }}
               >
                 {supporting}
@@ -107,80 +99,6 @@ export function TechnologySection() {
               />
             ))}
           </div>
-
-          {/* ── Slim convergence bar ── */}
-          <Reveal delay={0.1} distance={16} amount={0.4}>
-            <div className="mx-auto mt-7 flex max-w-sm flex-col items-center gap-3">
-              {/* Animated rail */}
-              <div
-                className="relative h-px w-full overflow-hidden rounded-full"
-                style={{
-                  background: `linear-gradient(to right, ${BLUE}44, ${TEAL}55, ${GREEN}44)`,
-                }}
-              >
-                {!reducedMotion && (
-                  <motion.span
-                    aria-hidden
-                    className="absolute top-0 h-full w-16 rounded-full"
-                    style={{
-                      background: `linear-gradient(to right, transparent, ${TEAL}, transparent)`,
-                      filter: "blur(1px)",
-                    }}
-                    animate={{ left: ["-15%", "110%"] }}
-                    transition={{
-                      duration: 2.6,
-                      repeat: Infinity,
-                      ease: "linear",
-                      delay: 0.6,
-                    }}
-                  />
-                )}
-              </div>
-
-              {/* Badge + outcome on one line */}
-              <div
-                className="inline-flex items-center gap-3 rounded-full border px-5 py-2"
-                style={{
-                  fontFamily: "var(--font-plus-jakarta)",
-                  background:
-                    "linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.05) 100%)",
-                  borderColor: `${BLUE}44`,
-                  boxShadow: `0 0 0 1px ${BLUE}1a, 0 4px 16px -4px ${BLUE}28`,
-                }}
-              >
-                {/* <svg
-                  aria-hidden
-                  viewBox="0 0 24 24"
-                  className="size-3.5 shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                  strokeLinecap="round"
-                  style={{ color: BLUE }}
-                >
-                  <path d="M5 6l7 6-7 6M19 6l-7 6 7 6" opacity={0.8} />
-                  <circle cx="12" cy="12" r="1.8" fill="currentColor" stroke="none" />
-                </svg> */}
-                <span
-                  className="text-sm font-semibold text-foreground"
-                  style={{ letterSpacing: "-0.01em" }}
-                >
-                  {badge}
-                </span>
-                <span
-                  className="rounded-full px-2 py-0.5 text-[9pt] font-semibold uppercase"
-                  style={{
-                    background: `${GREEN}12`,
-                    color: GREEN,
-                    letterSpacing: "0.07em",
-                    border: `1px solid ${GREEN}33`,
-                  }}
-                >
-                  {outcome}
-                </span>
-              </div>
-            </div>
-          </Reveal>
 
           {/* ── Closing copy ── */}
           <Reveal delay={0.15} distance={18} amount={0.5}>

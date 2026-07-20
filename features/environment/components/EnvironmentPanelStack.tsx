@@ -16,16 +16,60 @@ import { usePanelHeights } from "@/features/environment/hooks/usePanelHeights";
 export function EnvironmentPanelStack() {
   const useHover = useFinePointer();
   const panelHeights = usePanelHeights();
-  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(environments[0]?.id ?? null);
   // Track if user has interacted — don't override with default after that
   const hasInteracted = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const expandedIdRef = useRef(expandedId);
 
-  // Once fine pointer is detected on client, expand the first panel by default
+  // Keep the ref of the active ID updated for the scroll handler
   useEffect(() => {
-    if (useHover && !hasInteracted.current) {
-      setExpandedId(environments[0]?.id ?? null);
-    }
-  }, [useHover]);
+    expandedIdRef.current = expandedId;
+  }, [expandedId]);
+
+  // Scroll listener to automatically expand the card closest to the screen center
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const isVisible = containerRect.top < window.innerHeight && containerRect.bottom > 0;
+      if (!isVisible) return;
+
+      const totalRange = containerRect.height;
+      if (totalRange <= 0) return;
+
+      // Calculate progress of container scrolling through viewport center
+      const focusPoint = window.innerHeight / 2;
+      const progress = (focusPoint - containerRect.top) / totalRange;
+      const clampedProgress = Math.max(0, Math.min(0.999, progress));
+      const index = Math.floor(clampedProgress * environments.length);
+      const closestId = environments[index]?.id ?? null;
+
+      if (closestId && closestId !== expandedIdRef.current) {
+        setExpandedId(closestId);
+      }
+    };
+
+    let isScrolling = false;
+    const onScroll = () => {
+      if (!isScrolling) {
+        isScrolling = true;
+        requestAnimationFrame(() => {
+          handleScroll();
+          isScrolling = false;
+        });
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // Initial calculation on mount
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   const handleExpand = useCallback(
     (id: string) => {
@@ -61,6 +105,7 @@ export function EnvironmentPanelStack() {
 
   return (
     <div
+      ref={containerRef}
       className="flex w-full flex-col"
       style={{ gap: panelHeights.gap }}
       role="list"

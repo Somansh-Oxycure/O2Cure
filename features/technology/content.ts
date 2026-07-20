@@ -13,7 +13,7 @@ import type { TriCureLayer } from "@/features/technology/types";
  * enterprise buyers to verify claims without reading a whitepaper.
  */
 export const technologyContent = {
-  eyebrow: "OUR TECHNOLOGY",
+  eyebrow: "Our Technology",
   heading: "Powered by TriCure™ Technology",
   supporting:
     "Indoor air pollution isn't one thing. It's three — each invisible, each harmful, each requiring a distinct scientific response. TriCure™ is the only integrated system engineered to address all three simultaneously.",

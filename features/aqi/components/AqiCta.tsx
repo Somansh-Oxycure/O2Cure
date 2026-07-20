@@ -61,7 +61,6 @@ export function AqiCta({ href = "#technology" }: AqiCtaProps) {
             fontSize: "0.62rem",
             fontWeight: 700,
             letterSpacing: "0.16em",
-            textTransform: "uppercase",
             color: "oklch(0.35 0.14 152 / 0.9)",
           }}
         >

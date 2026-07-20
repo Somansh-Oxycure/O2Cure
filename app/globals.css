@@ -97,7 +97,7 @@
   --text-eyebrow--line-height: 1.5;
   --text-eyebrow--letter-spacing: 0.1em;
   --text-eyebrow--font-weight: 600;
-  --text-eyebrow--text-transform: uppercase;
+  --text-eyebrow--text-transform: none;
 
   /* Spacing rhythm — generous inside sections, tighter between them so
      each chapter hands off before the page feels "finished". Section tops
@@ -285,6 +285,7 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "cv11", "ss01";
+    overflow-x: hidden;
   }
 
   ::selection {

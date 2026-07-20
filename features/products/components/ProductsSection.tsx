@@ -28,9 +28,13 @@ export function ProductsSection() {
         {/* Header — compact, structured */}
         <header className="mx-auto max-w-3xl text-center">
           <Reveal delay={0} distance={16}>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-blue">
-              {productsContent.eyebrow}
-            </p>
+            <div className="mb-4 flex items-center justify-center gap-3">
+              <span className="h-px w-10 bg-brand-green/35" />
+              <span className="text-eyebrow font-semibold tracking-[0.15em] text-brand-green">
+                {productsContent.eyebrow}
+              </span>
+              <span className="h-px w-10 bg-brand-green/35" />
+            </div>
           </Reveal>
 
           <Reveal delay={0.1} distance={20}>

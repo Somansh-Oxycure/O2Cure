@@ -100,7 +100,7 @@ export function ThreatPanel({ layer, reducedMotion }: ThreatPanelProps) {
 
             <div>
               <p
-                className="text-[10px] font-semibold uppercase tracking-[0.1em] text-muted-foreground"
+                className="text-[10px] font-semibold tracking-[0.1em] text-muted-foreground"
                 style={{ fontFamily: "var(--font-plus-jakarta)" }}
               >
                 Layer {layer.number}
@@ -166,7 +166,7 @@ export function ThreatPanel({ layer, reducedMotion }: ThreatPanelProps) {
                 initial={{ opacity: 0, y: reducedMotion ? 0 : 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: reducedMotion ? 0 : 0.08 + i * 0.06, duration: 0.2 }}
-                className="inline-flex items-center rounded-md px-2 py-0.5 text-[9pt] font-semibold uppercase"
+                className="inline-flex items-center rounded-md px-2 py-0.5 text-[9pt] font-semibold"
                 style={{
                   fontFamily: "var(--font-plus-jakarta)",
                   letterSpacing: "0.05em",

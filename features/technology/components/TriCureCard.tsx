@@ -182,7 +182,6 @@ export function TriCureCard({
               fontWeight: 600,
               fontSize: "9pt",
               letterSpacing: "0.05em",
-              textTransform: "uppercase" as const,
               background: isActive ? p.badgeBg : "rgba(0,0,0,0.04)",
               borderWidth: 1,
               borderStyle: "solid",

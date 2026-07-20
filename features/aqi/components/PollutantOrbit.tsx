@@ -82,7 +82,7 @@ function PollutantLabel({
         ))}
       </div>
 
-      <p className="text-eyebrow uppercase tracking-widest text-muted-foreground/80">
+      <p className="text-eyebrow tracking-widest text-muted-foreground/80">
         {pollutant.name}
       </p>
 

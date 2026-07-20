@@ -16,15 +16,15 @@ export function CertificationsSection() {
         <div>
           <Reveal delay={0.06} distance={14} amount={0.3}>
             <div className="mx-auto max-w-3xl">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent to-border/50" />
+              <div className="mb-8 flex items-center justify-center gap-3">
+                <span className="h-px w-10 bg-brand-green/35" />
                 <p
                   id="certifications-heading"
-                  className="text-eyebrow font-semibold uppercase tracking-widest text-muted-foreground text-xs"
+                  className="text-eyebrow font-semibold tracking-[0.15em] text-brand-green"
                 >
-                  Certiffied &amp; Compliant
+                  Our Certificates
                 </p>
-                <div className="h-px flex-1 bg-gradient-to-l from-transparent to-border/50" />
+                <span className="h-px w-10 bg-brand-green/35" />
               </div>
               <CertificationBadges certifications={certifications} />
             </div>

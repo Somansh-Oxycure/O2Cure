@@ -90,7 +90,7 @@ export function ProductCard({
             {product.environment.map((env) => (
               <span
                 key={env}
-                className="inline-flex items-center rounded-full bg-brand-blue/8 border border-brand-blue/15 px-2 py-0.5 text-[9px] font-medium uppercase tracking-widest text-brand-blue/80"
+                className="inline-flex items-center rounded-full bg-brand-blue/8 border border-brand-blue/15 px-2 py-0.5 text-[9px] font-medium tracking-widest text-brand-blue/80"
               >
                 {env}
               </span>

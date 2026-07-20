@@ -22,13 +22,13 @@ function CertificationBadge({ certification }: { certification: Certification })
           alt={certification.badge.alt}
           width={certification.badge.width ?? 72}
           height={certification.badge.height ?? 72}
-          className="h-16 w-auto max-w-[8rem] object-contain transition-transform duration-300 hover:scale-105 sm:h-20 sm:max-w-[10rem]"
+          className="h-12 w-auto max-w-[6rem] object-contain transition-transform duration-300 hover:scale-105 sm:h-16 sm:max-w-[8rem] lg:h-20 lg:max-w-[10rem]"
         />
       ) : (
         <span
           className={cn(
             "inline-flex min-w-[3.25rem] items-center justify-center rounded-md border border-border/60 px-3 py-1.5",
-            "text-eyebrow font-medium uppercase tracking-[0.16em] text-muted-foreground",
+            "text-eyebrow font-medium tracking-[0.16em] text-muted-foreground",
             "transition-colors duration-500 ease-premium hover:text-foreground",
           )}
         >
@@ -46,7 +46,7 @@ export function CertificationBadges({ certifications }: CertificationBadgesProps
   return (
     <Reveal delay={0.1} distance={16} amount={0.3}>
       <ul
-        className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-8 sm:gap-10 lg:gap-12"
+        className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-5 sm:gap-8 lg:gap-12"
         aria-label="Certifications"
       >
         {certifications.map((certification) => (

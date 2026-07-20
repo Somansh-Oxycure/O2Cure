@@ -8,7 +8,7 @@ export function ProcessTimeline() {
   return (
     <div className="mt-12 sm:mt-16">
       <Reveal delay={0.5} distance={20}>
-        <h3 className="mb-6 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+        <h3 className="mb-6 text-sm font-semibold tracking-wider text-muted-foreground">
           What happens next?
         </h3>
       </Reveal>

@@ -29,7 +29,7 @@ export function AqiAnchor({
         {isLocating ? "Locating…" : reading.city}
       </p>
 
-      <p className="mt-1.5 text-eyebrow uppercase tracking-widest text-muted-foreground">
+      <p className="mt-1.5 text-eyebrow tracking-widest text-muted-foreground">
         AQI
       </p>
 

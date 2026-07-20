@@ -1,21 +1,28 @@
-/**
- * Hero copy — shaped like future Sanity content, not hardcoded in JSX.
- */
 export const heroContent = {
-  left: {
-    eyebrow: "",
+  // Mobile Hero Content (New)
+  eyebrow: "",
+  heading: "India's Most Advanced\nAir Purification",
+  supporting:
+    "Trusted across 700+ offices, data centres, hospitals, and homes. Powered by TriCure™ Technology.",
+  cta: "Explore Solutions",
+  trustItems: ["15+ Years", "700+ Projects", "NABL Certified"],
+
+  // Desktop Hero Content (Original)
+  desktopLeft: {
+    eyebrow: "The Future of Indoor Air",
     headingLine1: "Clean Air",
-    headingLine2: "",
+    centerTagline: "",
     cta: "Explore Solutions",
   },
-  right: {
-    eyebrow: ".",
+  desktopRight: {
+    eyebrow: "The Reality Outside",
     heading: "Impure Air.",
     description:
       "",
     cta: "See the Difference",
   },
-  centerTagline: "",
+
+  // Shared assets
   product: {
     src: "/Hulk_Front_Angle-removebg.png",
     alt: "O2Cure Hulk air purifier",

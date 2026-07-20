@@ -10,7 +10,7 @@ import type {
  * Replace arrays here (or wire to Sanity) without touching layout components.
  */
 export const trustContent = {
-  eyebrow: "TRUSTED BY",
+  eyebrow: "Trusted by",
   heading: "Trusted Where Air Quality Matters Most",
   supporting:
     "O₂Cure solutions protect homes, businesses and critical environments across India.",

@@ -94,9 +94,9 @@ interface StatItem {
 
 const statItems: StatItem[] = [
   { id: "metric-years", value: 15, suffix: "+ Yrs", label: "Years of Excellence", Icon: IconYears },
-  { id: "metric-projects", value: 300, suffix: "+", label: "Projects Completed", Icon: IconProjects },
+  { id: "metric-projects", value: 700, suffix: "+", label: "Projects Completed", Icon: IconProjects },
   { id: "metric-homes", value: 2500, suffix: "+", label: "Homes Breathing Clean Air", Icon: IconHomes },
-  { id: "metric-sqft", value: 10, suffix: " Mn sq. ft.", label: "Area Air Purified", Icon: IconArea },
+  { id: "metric-sqft", value: 10, suffix: "M sq. ft.", label: "Area Air Purified", Icon: IconArea },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -106,20 +106,25 @@ function StatCard({ item }: { item: StatItem }) {
   const { ref, displayValue } = useAnimatedCount(item.value);
 
   return (
-    <div className="group relative flex flex-col justify-between gap-5 p-5 sm:p-6 bg-white border-r border-gray-100 last:border-r-0 transition-colors duration-300 hover:bg-[#f7fdf9]">
+    <div className="group relative flex flex-col justify-between gap-4 p-4 sm:p-5 lg:p-6 bg-white transition-colors duration-300 hover:bg-[#f7fdf9]">
       {/* Icon + label row */}
       <div className="flex items-center gap-2.5 text-brand-green/70 group-hover:text-brand-green transition-colors duration-300">
         <item.Icon />
-        <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-gray-400 group-hover:text-gray-500 transition-colors duration-300">
+        <span className="text-[10px] sm:text-[11px] font-semibold tracking-widest text-gray-400 group-hover:text-gray-500 transition-colors duration-300">
           {item.label}
         </span>
       </div>
 
       {/* Big number */}
-      <p className="font-heading font-black leading-none tracking-tight text-[2.25rem] sm:text-[2.75rem] text-gray-900">
+      <p className="font-heading font-black leading-none tracking-tight text-[1.75rem] sm:text-[2.25rem] lg:text-[2.75rem] text-gray-900 tabular-nums">
         {item.prefix}
         <span ref={ref}>{displayValue.toLocaleString("en-IN")}</span>
-        <span className="text-brand-green">{item.suffix}</span>
+        <span className={`text-brand-green ${item.id === "metric-sqft"
+          ? "text-lg sm:text-xl lg:text-3xl font-bold tracking-normal inline-block ml-1"
+          : ""
+          }`}>
+          {item.suffix}
+        </span>
       </p>
     </div>
   );
@@ -133,25 +138,28 @@ function LiveCounterStrip() {
   const formatted = litres.toLocaleString("en-IN");
 
   const [flash, setFlash] = useState(false);
-  const prevRef = useRef(litres);
+  const currentThreshold = Math.floor(litres / 100);
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
-    if (litres !== prevRef.current) {
-      prevRef.current = litres;
-      setFlash(true);
-      const t = setTimeout(() => setFlash(false), 300);
-      return () => clearTimeout(t);
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
     }
-  }, [litres]);
+    setFlash(true);
+    const t = setTimeout(() => setFlash(false), 300);
+    return () => clearTimeout(t);
+  }, [currentThreshold]);
 
   return (
-    <div className="relative flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6 px-5 sm:px-6 py-4 bg-[#f4fbf6] border-t border-emerald-100 overflow-hidden">
+    <div className="relative flex flex-col items-start gap-2 px-4 sm:px-5 lg:px-6 py-3 sm:py-4 bg-[#f4fbf6] border-t border-emerald-100 overflow-hidden sm:flex-row sm:items-center sm:justify-between sm:gap-6">
       {/* Shimmer */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full animate-[shimmer_3s_linear_infinite]" />
 
       {/* Left: icon + label */}
-      <div className="flex items-center gap-2.5 text-brand-green shrink-0">
+      <div className="flex items-center gap-2 text-brand-green shrink-0">
         <IconAir />
-        <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-gray-400">
+        <span className="text-[10px] sm:text-[11px] font-semibold tracking-widest text-gray-400">
           Litres of Air Purified — Live Counter
         </span>
         {/* Pulsing live dot */}
@@ -162,12 +170,10 @@ function LiveCounterStrip() {
       </div>
 
       {/* Right: big live number */}
-      <p
-        className={`font-heading font-black leading-none tracking-tight text-[2rem] sm:text-[2.6rem] transition-colors duration-300 ${flash ? "text-brand-green" : "text-gray-900"
-          }`}
-      >
+      <p className={`font-heading font-black leading-none tracking-tight text-[1.5rem] sm:text-[2rem] lg:text-[2.6rem] transition-colors duration-300 tabular-nums ${flash ? "text-brand-green" : "text-gray-900"
+        }`}>
         {formatted}
-        <span className="ml-2 text-base font-semibold text-brand-green/70">L</span>
+        <span className="ml-1.5 text-sm sm:text-base font-semibold text-brand-green/70">L</span>
       </p>
     </div>
   );
@@ -183,26 +189,43 @@ export function MetricsSection() {
       aria-labelledby="metrics-heading"
       className="relative bg-[#f5f5f4] pt-4 pb-20"
     >
-      <div className="mx-auto max-w-7xl mt-10 sm:mt-14 lg:mt-16 px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="mx-auto max-w-7xl mt-6 sm:mt-10 lg:mt-16 px-4 sm:px-6 lg:px-8 relative z-10">
         <Reveal delay={0} distance={18} amount={0.3}>
 
           {/* Header */}
-          <div className="text-center mb-14">
-            <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">
-              Our Impact
-            </p>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">
-              {/* Trusted by industries, corporates and home */}
+          <div className="text-center mb-8 sm:mb-14">
+            <span className="text-eyebrow font-semibold tracking-[0.15em] text-brand-green">
+              At Scale
+            </span>
+            <h2 className="font-heading text-[clamp(1.75rem,1.4rem+2vw,3rem)] font-bold leading-[1.1] tracking-[-0.022em] text-[#0A0A0A]">
+              One Breath at a Time
             </h2>
           </div>
 
           {/* Card container */}
           <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-[0_2px_24px_-4px_rgba(0,0,0,0.06)]">
 
-            {/* Top row: 4 stat cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-gray-100">
-              {statItems.map((item) => (
-                <StatCard key={item.id} item={item} />
+            {/* Stat cards — single column on mobile, 2-col on sm, 4-col on lg */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+              {statItems.map((item, i) => (
+                <div
+                  key={item.id}
+                  className={`${
+                    /* Mobile: bottom border except last */
+                    i < statItems.length - 1 ? "border-b sm:border-b-0" : ""
+                    } ${
+                    /* sm+: right border except last in row */
+                    "sm:[&:nth-child(odd)]:border-r"
+                    } ${
+                    /* sm 2-col: bottom border for top row */
+                    i < 2 ? "sm:border-b lg:border-b-0" : ""
+                    } ${
+                    /* lg 4-col: right border except last */
+                    i < statItems.length - 1 ? "lg:border-r" : ""
+                    } border-gray-100`}
+                >
+                  <StatCard item={item} />
+                </div>
               ))}
             </div>
 

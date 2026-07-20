@@ -12,7 +12,7 @@ import type {
  * Replace values here (or wire to Sanity) without touching layout components.
  */
 export const contactContent = {
-  eyebrow: "GET IN TOUCH",
+  eyebrow: "Get in touch",
   eyebrowMagic: "Feel the magic in the air",
   heading: "Get in touch",
   supporting:

@@ -24,11 +24,11 @@ export function LogoWall({ logos }: LogoWallProps) {
         {/* Left + right fade masks */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent sm:w-32"
+          className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent sm:w-24 lg:w-32"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent sm:w-32"
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent sm:w-24 lg:w-32"
         />
 
         {/* Row 1 — scrolls left */}
@@ -67,7 +67,7 @@ function MarqueeRow({ logos, direction, speed }: MarqueeRowProps) {
         }}
       >
         {doubled.map((logo, i) => (
-          <li key={`${logo.id}-${i}`} className="mx-4 flex w-32 shrink-0 items-center justify-center sm:mx-6 sm:w-40 lg:mx-8 lg:w-48">
+          <li key={`${logo.id}-${i}`} className="mx-3 flex w-24 shrink-0 items-center justify-center sm:mx-5 sm:w-36 lg:mx-8 lg:w-48">
             <LogoItem logo={logo} />
           </li>
         ))}
@@ -83,7 +83,7 @@ function MarqueeRow({ logos, direction, speed }: MarqueeRowProps) {
         }}
       >
         {doubled.map((logo, i) => (
-          <li key={`${logo.id}-dup-${i}`} className="mx-4 flex w-32 shrink-0 items-center justify-center sm:mx-6 sm:w-40 lg:mx-8 lg:w-48">
+          <li key={`${logo.id}-dup-${i}`} className="mx-3 flex w-24 shrink-0 items-center justify-center sm:mx-5 sm:w-36 lg:mx-8 lg:w-48">
             <LogoItem logo={logo} />
           </li>
         ))}

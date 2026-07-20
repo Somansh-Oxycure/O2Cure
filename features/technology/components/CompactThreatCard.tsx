@@ -56,7 +56,6 @@ function useScrollCountUp(
 
 export function CompactThreatCard({ layer, index, reducedMotion }: CompactCardProps) {
   const p = getAccentPalette(layer.accentColor);
-  const { Icon } = layer;
 
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.4 });
@@ -81,6 +80,7 @@ export function CompactThreatCard({ layer, index, reducedMotion }: CompactCardPr
       }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
+      onClick={() => setHovered(!hovered)}
       style={{
         borderColor: hovered ? p.border : p.borderIdle,
         boxShadow: hovered
@@ -89,7 +89,7 @@ export function CompactThreatCard({ layer, index, reducedMotion }: CompactCardPr
         transition:
           "border-color 500ms cubic-bezier(0.16,1,0.3,1), box-shadow 500ms cubic-bezier(0.16,1,0.3,1)",
       }}
-      className="relative flex flex-col overflow-hidden rounded-2xl border bg-white/70 p-5 backdrop-blur-sm sm:p-6"
+      className="relative flex flex-col overflow-hidden rounded-2xl border bg-white/70 p-4 backdrop-blur-sm sm:p-5 lg:p-6"
     >
       {/* Accent glow wash — slides in on hover */}
       <div
@@ -110,31 +110,18 @@ export function CompactThreatCard({ layer, index, reducedMotion }: CompactCardPr
         }}
       />
 
-      {/* ── Top row: number + icon ── */}
-      <div className="relative flex items-center justify-between">
+      {/* ── Top row: number on top right ── */}
+      <div className="relative flex items-center justify-end">
         <span
-          className="font-heading tabular-nums leading-none"
-          style={{
-            fontFamily: "var(--font-plus-jakarta)",
-            fontWeight: 700,
-            fontSize: "0.7rem",
-            letterSpacing: "0.1em",
-            color: p.iconColor,
-            opacity: 0.7,
-          }}
-        >
-          {layer.number}
-        </span>
-        <span
-          className="flex size-9 shrink-0 items-center justify-center rounded-xl border"
+          className="font-heading tabular-nums leading-none flex size-9 shrink-0 items-center justify-center rounded-full border text-[11px] font-bold"
           style={{
             background: hovered ? p.iconBg : "rgba(0,0,0,0.03)",
             borderColor: hovered ? p.iconBorder : "rgba(0,0,0,0.08)",
-            color: hovered ? p.iconColor : "rgba(28,28,28,0.35)",
+            color: hovered ? p.iconColor : "rgba(28,28,28,0.45)",
             transition: "all 500ms cubic-bezier(0.16,1,0.3,1)",
           }}
         >
-          <Icon className="size-4" />
+          {String(index + 1).padStart(2, "0")}
         </span>
       </div>
 
@@ -159,7 +146,7 @@ export function CompactThreatCard({ layer, index, reducedMotion }: CompactCardPr
           style={{
             fontFamily: "var(--font-plus-jakarta)",
             fontWeight: 700,
-            fontSize: "2.5rem",
+            fontSize: "clamp(2rem, 5vw, 2.5rem)",
             color: p.iconColor,
           }}
         >

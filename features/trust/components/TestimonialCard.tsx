@@ -83,7 +83,7 @@ export function TestimonialCard({ testimonial, className }: TestimonialCardProps
   return (
     <figure
       className={cn(
-        "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border/40 bg-white px-7 py-8 shadow-soft transition-shadow duration-500 ease-premium hover:shadow-elevated sm:px-8 sm:py-9",
+        "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border/40 bg-white px-5 py-6 shadow-soft transition-shadow duration-500 ease-premium hover:shadow-elevated sm:px-7 sm:py-8",
         className,
       )}
     >

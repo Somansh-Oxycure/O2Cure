@@ -78,7 +78,6 @@ export function AqiPollutantStrip({
                 fontSize: "0.56rem",
                 fontWeight: 600,
                 letterSpacing: "0.1em",
-                textTransform: "uppercase",
                 color: "oklch(0.40 0.04 50 / 0.6)",
               }}
             >

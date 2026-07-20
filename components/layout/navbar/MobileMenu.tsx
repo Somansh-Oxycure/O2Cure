@@ -98,7 +98,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             className="absolute inset-y-0 right-0 flex w-[min(100%,22rem)] flex-col border-l border-border/60 bg-background/92 px-6 py-8 shadow-elevated backdrop-blur-2xl backdrop-saturate-150 focus:outline-none"
           >
             <div className="mb-10 flex items-center justify-between">
-              <p className="text-xs font-medium tracking-[0.14em] text-muted-foreground uppercase">
+              <p className="text-xs font-medium tracking-[0.14em] text-muted-foreground">
                 Menu
               </p>
               <button

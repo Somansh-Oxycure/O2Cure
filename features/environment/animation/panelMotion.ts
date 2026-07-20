@@ -2,8 +2,8 @@ import { easings } from "@/components/motion/easings";
 
 /** Panel selector motion tokens — cinematic, premium feel. */
 export const panelMotion = {
-  collapsedHeight: 108,
-  compressedHeight: 92,
+  collapsedHeight: 88,
+  compressedHeight: 76,
   expandedHeight: 400,
   gap: 10,
   expand: {

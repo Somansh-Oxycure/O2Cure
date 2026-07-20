@@ -46,8 +46,8 @@ export const environments: Environment[] = [
   },
   {
     id: "commertial",
-    name: "Commertial",
-    description: "30% of offices worldwide have Sick building syndrome ",
+    name: "Commercial",
+    description: "30% of offices worldwide have Sick Building Syndrome",
     icon: Building2,
     image: {
       src: "/enviroment/commertial.png",
@@ -69,7 +69,7 @@ export const environments: Environment[] = [
   {
     id: "healthcare",
     name: "Healthcare",
-    description: "Healthcare professionals face upto 3x higher risk of infection.",
+    description: "Healthcare professionals face up to 3x higher risk of infection.",
     icon: HeartPulse,
     image: {
       src: "/enviroment/hospital.png",
@@ -80,7 +80,7 @@ export const environments: Environment[] = [
   {
     id: "education",
     name: "Education",
-    description: " Asthma is one the leading cause of school absenteeism accounting for 13 millionn school days annually.",
+    description: "Asthma is one of the leading causes of school absenteeism, accounting for 13 million school days annually.",
     icon: GraduationCap,
     image: {
       src: "/enviroment/education.png",
@@ -91,7 +91,7 @@ export const environments: Environment[] = [
   {
     id: "Datacenter",
     name: "Data Centers",
-    description: "Corrosive gases cause 55% of server downtime. 1 hour of server downtime can cause USD 300,000.",
+    description: "Corrosive gases cause 55% of server downtime. One hour of downtime can cost $300,000.",
     icon: Landmark,
     image: {
       src: "/enviroment/datacenters.png",
@@ -99,5 +99,4 @@ export const environments: Environment[] = [
       collapsedSrc: "/enviroment/datacenters.png",
     },
   },
-
 ];

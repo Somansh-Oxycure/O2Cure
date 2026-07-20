@@ -82,7 +82,7 @@ export function TestimonialsPreview({ testimonials }: TestimonialsPreviewProps) 
       {/* <Reveal delay={0} distance={16}>
         <div className="mb-10 flex items-center gap-4 sm:mb-12">
           <div className="h-px flex-1 bg-gradient-to-r from-transparent to-border/50" />
-          <p className="text-eyebrow font-semibold uppercase tracking-widest text-brand-blue/70 text-xs">
+          <p className="text-eyebrow font-semibold tracking-widest text-brand-blue/70 text-xs">
             What Our Clients Say
           </p>
           <div className="h-px flex-1 bg-gradient-to-l from-transparent to-border/50" />

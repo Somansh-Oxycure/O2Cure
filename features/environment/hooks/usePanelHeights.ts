@@ -26,13 +26,13 @@ export function usePanelHeights(): PanelHeights {
     const update = () => {
       const available = window.innerHeight - 220;
       const collapsed = Math.min(
-        120,
-        Math.max(96, Math.floor((available - 6 * basePanelMotion.gap) / 7)),
+        100,
+        Math.max(80, Math.floor((available - 5 * basePanelMotion.gap) / 6)),
       );
 
       setHeights({
         collapsedHeight: collapsed,
-        compressedHeight: Math.max(88, collapsed - 12),
+        compressedHeight: Math.max(72, collapsed - 12),
         expandedHeight: basePanelMotion.expandedHeight,
         gap: basePanelMotion.gap,
       });

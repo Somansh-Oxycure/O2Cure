@@ -142,7 +142,7 @@ export function AqiScrollContainer({
           style={{ opacity: scrollHintOpacity }}
         >
           <span
-            className="text-eyebrow uppercase tracking-[0.2em]"
+            className="text-eyebrow tracking-[0.2em]"
             style={{ color: "oklch(0.42 0.06 50 / 0.6)", fontSize: "0.6rem" }}
           >
             Scroll to purify
@@ -243,7 +243,6 @@ function StatusBadge({ progress }: { progress: number }) {
             fontSize: "0.6rem",
             fontWeight: 600,
             letterSpacing: "0.12em",
-            textTransform: "uppercase",
             color: "oklch(0.38 0.16 38)",
           }}
         >
@@ -275,7 +274,6 @@ function StatusBadge({ progress }: { progress: number }) {
             fontSize: "0.6rem",
             fontWeight: 600,
             letterSpacing: "0.12em",
-            textTransform: "uppercase",
             color: "oklch(0.30 0.14 152)",
           }}
         >
