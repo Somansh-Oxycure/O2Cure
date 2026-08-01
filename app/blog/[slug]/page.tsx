@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 import {
   BlogPostBody,
@@ -161,7 +162,7 @@ export default async function BlogPostPage({
 
         {/* ── Back to blog link ── */}
         <div className="mx-auto max-w-7xl w-full px-5 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)] pb-12">
-          <a
+          <Link
             href="/blog"
             id="back-to-blog"
             className={[
@@ -180,7 +181,7 @@ export default async function BlogPostPage({
               />
             </svg>
             Back to Intelligence Archive
-          </a>
+          </Link>
         </div>
 
         {/* Footer */}

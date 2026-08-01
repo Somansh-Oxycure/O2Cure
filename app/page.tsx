@@ -3,7 +3,7 @@ import { ContactSection } from "@/features/contact";
 import { ChapterExperience } from "@/features/environment";
 import { FooterSection } from "@/features/footer";
 import { Hero } from "@/features/hero";
-import { ProductsSection } from "@/features/products";
+
 import { TechnologySection } from "@/features/technology";
 import { MetricsSection, ClienteleSection, TestimonialsSection, CertificationsSection } from "@/features/trust";
 
