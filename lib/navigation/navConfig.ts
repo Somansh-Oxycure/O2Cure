@@ -28,39 +28,24 @@ export type NavDropdownItem = {
 export type NavItem = NavLinkItem | NavDropdownItem;
 
 export const SOLUTIONS_LINKS: NavDropdownLink[] = [
-  { label: "Residential", href: "/solutions/residential", isPlaceholder: true },
-  { label: "Corporate", href: "/solutions/corporate", isPlaceholder: true },
-  { label: "Industrial", href: "/solutions/industrial", isPlaceholder: true },
-  { label: "Healthcare", href: "/solutions/healthcare", isPlaceholder: true },
-  { label: "Education", href: "/solutions/education", isPlaceholder: true },
-  { label: "Government", href: "/solutions/government", isPlaceholder: true },
-  {
-    label: "Airports & Transit",
-    href: "/solutions/airports-transit",
-    isPlaceholder: true,
-  },
+  { label: "Corporate & Office", href: "/solutions?env=corporate" },
+  { label: "Healthcare & Clinical", href: "/solutions?env=healthcare" },
+  { label: "Residential", href: "/solutions?env=residential" },
+  { label: "Industrial & Manufacturing", href: "/solutions?env=industrial" },
+  { label: "Education", href: "/solutions?env=education" },
+  { label: "Data Centres", href: "/solutions?env=datacenter" },
 ];
 
 export const NAV_ITEMS: NavItem[] = [
-  { type: "dropdown", label: "Solutions", items: SOLUTIONS_LINKS },
+  { type: "dropdown", label: "Solutions", href: "/solutions", items: SOLUTIONS_LINKS },
   {
     type: "dropdown",
     label: "Technology",
     items: [{ label: "Overview", href: "/#technology" }],
   },
-  {
-    type: "dropdown",
-    label: "Products",
-    items: [{ label: "Overview", href: "/#products" }],
-  },
   { type: "link", label: "AQI", href: "/#aqi-effect" },
-  {
-    type: "link",
-    label: "Case Studies",
-    href: "/case-studies",
-  },
-  { type: "dropdown", label: "Resources", items: [] },
   { type: "link", label: "About Us", href: "/about" },
+  { type: "link", label: "FAQ", href: "/faq" },
 ];
 
 export const NAV_CTA = {

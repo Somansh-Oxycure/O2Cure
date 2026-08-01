@@ -81,25 +81,55 @@ export const NavDropdown = memo(function NavDropdown({
       onKeyDown={handleKeyDown}
       onBlur={handleBlur}
     >
-      <button
-        type="button"
-        id={`${menuId}-trigger`}
-        aria-haspopup="menu"
-        aria-expanded={isOpen}
-        aria-controls={`${menuId}-menu`}
-        onClick={() => setIsOpen((open) => !open)}
-        className={triggerClasses}
-      >
-        {item.label}
-        <ChevronDown
-          className={cn(
-            "size-3.5 opacity-60 transition-transform duration-300 ease-premium",
-            isOpen && "rotate-180 opacity-90",
-          )}
-          aria-hidden
-        />
-        {underline}
-      </button>
+      {item.href ? (
+        <Link
+          id={`${menuId}-trigger`}
+          href={item.href}
+          aria-haspopup="menu"
+          aria-expanded={isOpen}
+          aria-controls={`${menuId}-menu`}
+          className={triggerClasses}
+          onClick={() => {
+            setIsOpen(false);
+            onNavigate?.();
+          }}
+        >
+          {item.label}
+          <ChevronDown
+            className={cn(
+              "size-3.5 opacity-60 transition-transform duration-300 ease-premium",
+              isOpen && "rotate-180 opacity-90",
+            )}
+            aria-hidden
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsOpen((open) => !open);
+            }}
+          />
+          {underline}
+        </Link>
+      ) : (
+        <button
+          type="button"
+          id={`${menuId}-trigger`}
+          aria-haspopup="menu"
+          aria-expanded={isOpen}
+          aria-controls={`${menuId}-menu`}
+          onClick={() => setIsOpen((open) => !open)}
+          className={triggerClasses}
+        >
+          {item.label}
+          <ChevronDown
+            className={cn(
+              "size-3.5 opacity-60 transition-transform duration-300 ease-premium",
+              isOpen && "rotate-180 opacity-90",
+            )}
+            aria-hidden
+          />
+          {underline}
+        </button>
+      )}
 
       <AnimatePresence>
         {isOpen && (

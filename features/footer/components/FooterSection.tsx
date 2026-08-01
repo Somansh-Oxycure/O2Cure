@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { AnimatedGradientDivider } from "@/features/footer/components/AnimatedGradientDivider";
 import { FooterBottomBar } from "@/features/footer/components/FooterBottomBar";
 import { FooterNavigation } from "@/features/footer/components/FooterNavigation";
@@ -57,11 +58,26 @@ export function FooterSection({ content = footerContent }: FooterSectionProps) {
 
         <div className="relative px-5 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)]">
           <div className="mx-auto max-w-7xl">
-            <div>
-              <FooterNavigation groups={content.navigation} />
+            <div className="flex flex-col gap-10 lg:flex-row lg:justify-between lg:gap-16">
+              <div className="flex max-w-xs flex-col items-start">
+                <Image
+                  src="/O2cure-final-logo.png"
+                  alt="O2Cure"
+                  width={160}
+                  height={160}
+                  priority
+                  className="h-12 w-auto object-contain sm:h-14 lg:h-16"
+                />
+                <p className="mt-5 text-sm leading-relaxed text-muted-foreground/80 font-medium">
+                  {content.hero.supporting}
+                </p>
+              </div>
+              <div className="flex-1 lg:max-w-4xl">
+                <FooterNavigation groups={content.navigation} />
+              </div>
             </div>
 
-            <AnimatedGradientDivider className="mx-auto mt-[clamp(2.5rem,5vw,4rem)] max-w-5xl" />
+            <AnimatedGradientDivider className="mx-auto mt-[clamp(2.5rem,5vw,4rem)] max-w-7xl" />
 
             <div className="mt-6 sm:mt-8">
               <FooterBottomBar
