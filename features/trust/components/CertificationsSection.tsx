@@ -26,6 +26,8 @@ export function CertificationsSection() {
                 </p>
                 <span className="h-px w-10 bg-brand-green/35" />
               </div>
+            </div>
+            <div className="-mx-5 sm:-mx-8 lg:-mx-[clamp(2rem,5vw,4rem)]">
               <CertificationBadges certifications={certifications} />
             </div>
           </Reveal>

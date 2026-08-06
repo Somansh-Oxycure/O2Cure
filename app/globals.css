@@ -306,3 +306,21 @@
     }
   }
 }
+
+@layer utilities {
+  /* Hide scrollbar while preserving scroll behaviour — used by horizontal
+     tab strips that must scroll on mobile without visible chrome. */
+  .no-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
+  }
+
+  /* Shorthand for the brand's premium cubic-bezier easing */
+  .ease-premium {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}

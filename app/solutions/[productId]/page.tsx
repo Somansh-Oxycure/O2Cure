@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { products } from "@/features/solutions/data/productCatalog";
 import { getProductDetail } from "@/features/solutions/data/productDetailData";
 import { ProductDetailPage } from "@/features/solutions/components/ProductDetailPage";
-
+import { FooterSection } from "@/features/footer";
 // ─── Static params — pre-renders all 26 product pages at build time ───────────
 
 export function generateStaticParams() {
@@ -127,6 +127,7 @@ export default async function ProductPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <ProductDetailPage detail={detail} entry={entry} />
+      <FooterSection />
     </>
   );
 }

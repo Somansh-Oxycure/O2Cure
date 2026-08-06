@@ -33,14 +33,14 @@ export const contactDetails: ContactDetail[] = [
   {
     id: "contact-phone",
     label: "Phone",
-    value: "+91 11 4567 8900",
-    href: "tel:+911145678900",
+    value: "+91 80101 11177",
+    href: "tel:+918010111177",
   },
   {
     id: "contact-email",
     label: "Email",
-    value: "hello@o2cure.com",
-    href: "mailto:hello@o2cure.com",
+    value: "info@o2cure.in",
+    href: "mailto:info@o2cure.in",
   },
 ];
 

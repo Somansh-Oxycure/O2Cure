@@ -7,17 +7,16 @@ import type {
   FooterSocialLink,
 } from "@/features/footer/types";
 import { cn } from "@/lib/utils";
+import { formatBrandText } from "@/lib/brand";
 
 interface FooterBottomBarProps {
   legal: FooterLegalContent;
-  socialLinks: FooterSocialLink[];
   revealDelay?: number;
   className?: string;
 }
 
 export function FooterBottomBar({
   legal,
-  socialLinks,
   revealDelay = 0.68,
   className,
 }: FooterBottomBarProps) {
@@ -29,27 +28,11 @@ export function FooterBottomBar({
           className,
         )}
       >
-        <p className="order-1 md:order-none">{legal.copyright}</p>
+        <p className="order-1 md:order-none">{formatBrandText(legal.copyright)}</p>
 
         <p className="order-2 max-w-xs md:order-none md:max-w-none md:text-center">
-          {legal.tagline}
+          {formatBrandText(legal.tagline)}
         </p>
-
-        <ul className="order-3 flex items-center gap-5 md:order-none">
-          {socialLinks.map((link) => (
-            <li key={link.id}>
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.label}
-                className="text-muted-foreground transition-colors duration-300 ease-premium hover:text-brand-blue"
-              >
-                <SocialIcon platform={link.platform} />
-              </a>
-            </li>
-          ))}
-        </ul>
       </div>
     </Reveal>
   );

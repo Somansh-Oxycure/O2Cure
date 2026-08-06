@@ -2,12 +2,14 @@
 
 import { Reveal } from "@/components/motion/Reveal";
 import { LogoWall } from "@/features/trust/components/LogoWall";
+import { formatBrandText } from "@/lib/brand";
 import {
   clientLogos,
   trustContent,
 } from "@/features/trust/content";
 
 export function ClienteleSection() {
+
   return (
     <>
       {/* Story bridge — stage fades, lighting softens, particles dissolve */}
@@ -61,13 +63,13 @@ export function ClienteleSection() {
                 id="clientele-heading"
                 className="font-heading text-[clamp(1.75rem,1.4rem+2vw,3rem)] font-bold leading-[1.1] tracking-[-0.022em] text-[#0A0A0A]"
               >
-                {trustContent.heading}
+                {formatBrandText(trustContent.heading)}
               </h2>
             </Reveal>
 
             <Reveal delay={0.26} distance={20}>
               <p className="mx-auto mt-4 max-w-2xl text-body-lg text-muted-foreground sm:mt-5">
-                {trustContent.supporting}
+                {formatBrandText(trustContent.supporting)}
               </p>
             </Reveal>
           </header>

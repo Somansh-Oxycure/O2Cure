@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: "O2Cure",
     images: [
       {
-        url: "/About us/About_01_Who-We-Are.jpg",
+        url: "/About us/About_01_Who-We-Are.jpeg",
         width: 1200,
         height: 630,
         alt: "O₂Cure — advancing cleaner indoor air across India",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "About O₂Cure | Air Purification Technology | O2Cure",
     description:
       "Advancing indoor air quality through state-of-the-art purification technologies. Trusted by thousands of homes and enterprises across India.",
-    images: ["/About us/About_01_Who-We-Are.jpg"],
+    images: ["/About us/About_01_Who-We-Are.jpeg"],
   },
 };
 

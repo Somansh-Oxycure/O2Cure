@@ -5,8 +5,10 @@ import { AnimatedGradientDivider } from "@/features/footer/components/AnimatedGr
 import { FooterBottomBar } from "@/features/footer/components/FooterBottomBar";
 import { FooterNavigation } from "@/features/footer/components/FooterNavigation";
 import { FooterParticles } from "@/features/footer/components/FooterParticles";
+import { SocialIcon } from "@/features/footer/components/SocialIcon";
 import { footerContent } from "@/features/footer/content";
 import type { FooterContent } from "@/features/footer/types";
+import { formatBrandText } from "@/lib/brand";
 
 interface FooterSectionProps {
   content?: FooterContent;
@@ -42,6 +44,7 @@ export function FooterSection({ content = footerContent }: FooterSectionProps) {
       </div>
 
       <footer
+        id="site-footer"
         aria-label="Footer"
         className="relative bg-background pb-[clamp(2.5rem,5vw,4.5rem)] pt-[clamp(2rem,4vw,3.5rem)]"
       >
@@ -69,8 +72,22 @@ export function FooterSection({ content = footerContent }: FooterSectionProps) {
                   className="h-12 w-auto object-contain sm:h-14 lg:h-16"
                 />
                 <p className="mt-5 text-sm leading-relaxed text-muted-foreground/80 font-medium">
-                  {content.hero.supporting}
+                  {formatBrandText(content.hero.supporting)}
                 </p>
+                <div className="mt-8 flex items-center gap-5">
+                  {content.socialLinks.map((link) => (
+                    <a
+                      key={link.id}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={link.label}
+                      className="text-brand-green/80 transition-colors duration-300 hover:text-brand-green"
+                    >
+                      <SocialIcon platform={link.platform} className="size-5" />
+                    </a>
+                  ))}
+                </div>
               </div>
               <div className="flex-1 lg:max-w-4xl">
                 <FooterNavigation groups={content.navigation} />
@@ -82,7 +99,6 @@ export function FooterSection({ content = footerContent }: FooterSectionProps) {
             <div className="mt-6 sm:mt-8">
               <FooterBottomBar
                 legal={content.legal}
-                socialLinks={content.socialLinks}
               />
             </div>
           </div>

@@ -14,6 +14,7 @@ type NavLinkProps = {
   isCompact?: boolean;
   onNavigate?: () => void;
   className?: string;
+  isNavLight?: boolean;
 };
 
 export const NavLink = memo(function NavLink({
@@ -24,6 +25,7 @@ export const NavLink = memo(function NavLink({
   isCompact = false,
   onNavigate,
   className,
+  isNavLight,
 }: NavLinkProps) {
   const isActive = isNavHrefActive(href, pathname, hash);
 
@@ -33,8 +35,10 @@ export const NavLink = memo(function NavLink({
       onClick={onNavigate}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "group relative inline-flex items-center rounded-sm text-sm text-foreground/80 transition-colors duration-300 ease-premium hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green/40",
-        isActive ? "font-semibold text-foreground" : "font-medium",
+        "group relative inline-flex items-center rounded-sm text-sm transition-colors duration-300 ease-premium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green/40",
+        isActive
+          ? (isNavLight ? "font-semibold text-white" : "font-semibold text-foreground")
+          : (isNavLight ? "font-medium text-white/90 hover:text-white" : "font-medium text-foreground/80 hover:text-foreground"),
         isCompact ? "py-3 text-base" : "py-1",
         className,
       )}

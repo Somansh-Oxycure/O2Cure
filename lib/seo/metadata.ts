@@ -6,10 +6,10 @@ import type { Metadata } from "next";
  * until the final domain is confirmed.
  */
 export const siteConfig = {
-  name: "O2Cure",
+  name: "O₂Cure",
   tagline: "Take a Deep Breath",
   description:
-    "O2Cure designs premium indoor air purification technology built around the environments people actually breathe in.",
+    "O₂Cure designs premium indoor air purification technology built around the environments people actually breathe in.",
   /** Placeholder — replace with the confirmed production domain before launch. */
   url: "https://www.o2cure.com",
   logo: "/O2cure-final-logo.png",
@@ -24,7 +24,7 @@ export const defaultMetadata: Metadata = {
   description: siteConfig.description,
   applicationName: siteConfig.name,
   keywords: [
-    "O2Cure",
+    "O₂Cure",
     "air purifier",
     "indoor air quality",
     "air purification technology",

@@ -160,7 +160,7 @@ function LiveCounterStrip() {
       <div className="flex items-center gap-2 text-brand-green shrink-0">
         <IconAir />
         <span className="text-[10px] sm:text-[11px] font-semibold tracking-widest text-gray-400">
-          Litres of Air Purified — Live Counter
+          Volume of Air Purified — Live Counter
         </span>
         {/* Pulsing live dot */}
         <span className="relative flex h-1.5 w-1.5 ml-1">
@@ -187,7 +187,7 @@ export function MetricsSection() {
     <section
       id="metrics"
       aria-labelledby="metrics-heading"
-      className="relative bg-[#f5f5f4] pt-4 pb-20"
+      className="relative bg-[#f5f5f4] pt-4 pb-8 sm:pb-12 lg:pb-20"
     >
       <div className="mx-auto max-w-7xl mt-6 sm:mt-10 lg:mt-16 px-4 sm:px-6 lg:px-8 relative z-10">
         <Reveal delay={0} distance={18} amount={0.3}>
@@ -205,20 +205,17 @@ export function MetricsSection() {
           {/* Card container */}
           <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-[0_2px_24px_-4px_rgba(0,0,0,0.06)]">
 
-            {/* Stat cards — single column on mobile, 2-col on sm, 4-col on lg */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Stat cards — 2-col on mobile/sm, 4-col on lg */}
+            <div className="grid grid-cols-2 lg:grid-cols-4">
               {statItems.map((item, i) => (
                 <div
                   key={item.id}
                   className={`${
-                    /* Mobile: bottom border except last */
-                    i < statItems.length - 1 ? "border-b sm:border-b-0" : ""
+                    /* 2-col: right border for odd items (index 0, 2) */
+                    i % 2 === 0 ? "border-r" : ""
                     } ${
-                    /* sm+: right border except last in row */
-                    "sm:[&:nth-child(odd)]:border-r"
-                    } ${
-                    /* sm 2-col: bottom border for top row */
-                    i < 2 ? "sm:border-b lg:border-b-0" : ""
+                    /* 2-col: bottom border for top row (index 0, 1) */
+                    i < 2 ? "border-b lg:border-b-0" : ""
                     } ${
                     /* lg 4-col: right border except last */
                     i < statItems.length - 1 ? "lg:border-r" : ""

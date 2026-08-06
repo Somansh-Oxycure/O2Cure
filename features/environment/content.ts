@@ -30,6 +30,7 @@ export type Environment = {
     /** Optional alternate image displayed in the collapsed/peek state */
     collapsedSrc?: string;
   };
+  solutionsEnv: string;
 };
 
 export const environments: Environment[] = [
@@ -43,6 +44,7 @@ export const environments: Environment[] = [
       alt: "Sunlit modern living room with clean architectural lines",
       collapsedSrc: "/enviroment/residential.png",
     },
+    solutionsEnv: "residential",
   },
   {
     id: "commertial",
@@ -54,6 +56,7 @@ export const environments: Environment[] = [
       alt: "Premium open-plan office with natural light",
       collapsedSrc: "/enviroment/commertial.png",
     },
+    solutionsEnv: "corporate",
   },
   {
     id: "industrial",
@@ -65,6 +68,7 @@ export const environments: Environment[] = [
       alt: "Modern industrial facility with controlled environment",
       collapsedSrc: "/enviroment/industrial.png",
     },
+    solutionsEnv: "industrial",
   },
   {
     id: "healthcare",
@@ -76,6 +80,7 @@ export const environments: Environment[] = [
       alt: "Bright, minimal hospital corridor",
       collapsedSrc: "/enviroment/hospital.png",
     },
+    solutionsEnv: "healthcare",
   },
   {
     id: "education",
@@ -87,6 +92,7 @@ export const environments: Environment[] = [
       alt: "Contemporary university campus interior",
       collapsedSrc: "/enviroment/education.png",
     },
+    solutionsEnv: "education",
   },
   {
     id: "Datacenter",
@@ -98,5 +104,6 @@ export const environments: Environment[] = [
       alt: "Modern civic building with glass facade",
       collapsedSrc: "/enviroment/datacenters.png",
     },
+    solutionsEnv: "datacenter",
   },
 ];

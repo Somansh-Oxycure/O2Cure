@@ -15,9 +15,9 @@ export const solutionsPageMeta = {
   heading: "Custom Solutions",
   subheading:
     "Select your environment. We'll engineer the exact system your space requires.",
-  seoTitle: "Custom Air Purification Solutions | O2Cure",
+  seoTitle: "Custom Air Purification Solutions | O₂Cure",
   seoDescription:
-    "O2Cure engineers custom air purification systems for corporate, healthcare, residential, and mobility environments. NABL-certified. Zero-obligation diagnostic available.",
+    "O₂Cure engineers custom air purification systems for corporate, healthcare, residential, and mobility environments. NABL-certified. Zero-obligation diagnostic available.",
 } as const;
 
 // ─── Environment sector tabs (blueprint §1.2) ──────────────────────────────
@@ -61,7 +61,7 @@ export const solutions: Solution[] = [
     integrationType: "In-Duct Central HVAC",
     capacityMaxSqFt: 6500,
     badges: ["Advanced Oxidation Plasma", "Dual Ionizers", "NABL Tested", "Zero Ozone"],
-    image: { src: "/product/plug-play.jpg", alt: "REME HALO In-Duct purifier by O2Cure" },
+    image: { src: "/product/plug-play.jpg", alt: "REME HALO In-Duct purifier by O₂Cure" },
     ctaText: "Request Engineering Consultation",
     issueRelevance: {
       odor: 0.9,
@@ -92,7 +92,7 @@ export const solutions: Solution[] = [
     integrationType: "Ductless / Standalone",
     capacityMaxSqFt: 2500,
     badges: ["PHI-Cell® Technology", "Zero Installation", "NABL Tested"],
-    image: { src: "/product/plug-play.jpg", alt: "O2Cure Plug & Play MAX standalone purifier" },
+    image: { src: "/product/plug-play.jpg", alt: "O₂Cure Plug & Play MAX standalone purifier" },
     ctaText: "Speak with an Air Expert",
     issueRelevance: {
       odor: 0.85,
@@ -114,14 +114,14 @@ export const solutions: Solution[] = [
   },
   {
     id: "max-cure-03",
-    systemName: "O2Cure Max Cure",
+    systemName: "O₂Cure Max Cure",
     tagline: "Multi-filtration fresh air unit — pressurizes indoor spaces against outdoor pollutants.",
     environmentTarget: ["corporate"],
     filterTags: ["in-duct", "server-rooms", "large-open-plan"],
     integrationType: "Fresh Air Filtration Unit",
     capacityMaxSqFt: 15000,
     badges: ["Positive Pressurization", "Multi-Stage Filtration", "NABL Tested"],
-    image: { src: "/product/Hybrid-Air-Purifier.jpg", alt: "O2Cure Max Cure fresh air filtration unit" },
+    image: { src: "/product/Hybrid-Air-Purifier.jpg", alt: "O₂Cure Max Cure fresh air filtration unit" },
     ctaText: "Request Engineering Consultation",
     issueRelevance: {
       odor: 0.7,
@@ -151,7 +151,7 @@ export const solutions: Solution[] = [
     integrationType: "Custom AHU Integration",
     capacityMaxSqFt: 5000,
     badges: ["ISO Class 5–8", "99.97% Pathogen Neutralization", "HEPA H14", "NABL Tested"],
-    image: { src: "/product/Hybrid-Air-Purifier.jpg", alt: "O2Cure clinical-grade air purification system" },
+    image: { src: "/product/Hybrid-Air-Purifier.jpg", alt: "O₂Cure clinical-grade air purification system" },
     ctaText: "Request Engineering Consultation",
     issueRelevance: {
       odor: 0.8,
@@ -173,14 +173,14 @@ export const solutions: Solution[] = [
   // ── Residential ───────────────────────────────────────────────────────
   {
     id: "hulk-res-01",
-    systemName: "O2Cure Hulk",
+    systemName: "O₂Cure Hulk",
     tagline: "Seven-stage smart purification with integrated humidifier for whole-home protection.",
     environmentTarget: ["residential"],
     filterTags: ["whole-home", "bedroom", "kitchen"],
     integrationType: "Standalone Unit",
     capacityMaxSqFt: 850,
     badges: ["7-Stage Filtration", "Integrated Humidifier", "NABL Tested"],
-    image: { src: "/Hulk_Front_Angle-removebg.png", alt: "O2Cure Hulk air purifier and humidifier" },
+    image: { src: "/Hulk_Front_Angle-removebg.png", alt: "O₂Cure Hulk air purifier and humidifier" },
     ctaText: "Speak with an Air Expert",
     issueRelevance: {
       odor: 0.85,
@@ -202,14 +202,14 @@ export const solutions: Solution[] = [
   },
   {
     id: "elixir-res-02",
-    systemName: "O2Cure Elixir",
+    systemName: "O₂Cure Elixir",
     tagline: "Odor-sensing six-stage filtration for bedrooms, nurseries, and compact living spaces.",
     environmentTarget: ["residential"],
     filterTags: ["bedroom", "kitchen"],
     integrationType: "Standalone Unit",
     capacityMaxSqFt: 450,
     badges: ["Odor Sensing", "6-Stage Filtration", "NABL Tested"],
-    image: { src: "/product/elixer.png", alt: "O2Cure Elixir air purifier" },
+    image: { src: "/product/elixer.png", alt: "O₂Cure Elixir air purifier" },
     ctaText: "Speak with an Air Expert",
     issueRelevance: {
       odor: 0.95,
@@ -231,14 +231,14 @@ export const solutions: Solution[] = [
   // ── Mobility ──────────────────────────────────────────────────────────
   {
     id: "car-purifier-01",
-    systemName: "O2Cure Car Purifier",
+    systemName: "O₂Cure Car Purifier",
     tagline: "USB-powered HEPA + UV-LED protection against pathogens and pollutants in-cabin.",
     environmentTarget: ["mobility"],
     filterTags: ["car"],
     integrationType: "Portable / In-Vehicle",
     capacityMaxSqFt: 120,
     badges: ["HEPA + UV-LED", "Portable", "Zero Ozone"],
-    image: { src: "/product/car-air.png", alt: "O2Cure car air purifier" },
+    image: { src: "/product/car-air.png", alt: "O₂Cure car air purifier" },
     ctaText: "Speak with an Air Expert",
     issueRelevance: {
       odor: 0.9,

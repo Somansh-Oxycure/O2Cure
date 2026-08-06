@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ProductShowcaseExplorer } from "@/features/solutions";
-
+import { FooterSection } from "@/features/footer";
 // ─── SEO metadata ─────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
   title: "Air Safety Engineering Solutions | O2Cure",
@@ -81,6 +81,7 @@ export default function SolutionsPage() {
             <ProductShowcaseExplorer />
           </Suspense>
         </section>
+        <FooterSection />
       </main>
     </>
   );

@@ -1,7 +1,7 @@
 import type { BlogPost } from "@/features/blog/types";
 
 /**
- * Blog content — sourced verbatim from O2Cure_Blog_Archive.md (captured 30 July 2026).
+ * Blog content — sourced verbatim from O₂Cure_Blog_Archive.md (captured 30 July 2026).
  * All word counts, link counts, publish dates, audit calls and titles are
  * derived directly from the audit table in Section 1.9 of that document.
  *

@@ -2,7 +2,7 @@ import type { AwardItem, PillarItem } from "@/features/about/types";
 
 /**
  * About page copy and data — shaped like future Sanity CMS documents.
- * All body copy sourced verbatim from O2Cure_About_Page.md (captured 30 July 2026).
+ * All body copy sourced verbatim from O₂Cure_About_Page.md (captured 30 July 2026).
  * Headlines refined for cinematic brand voice per 05_AI_AGENT_INSTRUCTIONS.md.
  * Do NOT invent technical claims or figures not present in the source document.
  */
@@ -15,8 +15,8 @@ export const aboutHeroContent = {
   headline: "We Breathe 23,000 Times a Day.",
   headlineAccent: "Make Every Breath Count.",
   subline: "O₂Cure by Oxycure Pvt. Ltd.",
-  /** Hero image from public/About us/ */
-  imageSrc: "/About us/About_01_Who-We-Are.jpg",
+  /** Beautiful nature stock image for hero */
+  imageSrc: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop",
   imageAlt:
     "O₂Cure — advancing cleaner, healthier indoor air for environments across India",
 } as const;
@@ -36,8 +36,8 @@ export const whoWeAreContent = {
     "Backed by extensive research, our technologies are trusted globally for their performance and reliability. We take pride in leading the way in air purification, setting the standard for healthier, cleaner living spaces.",
     "Our solutions are ideal, tested, proven and backed by test results and testimonials for homes, offices, buildings, schools and other places.",
   ],
-  buildingImageSrc: "/About us/About_07_About-Us-Building.jpg",
-  buildingImageAlt: "O₂Cure headquarters — a commitment to cleaner environments",
+  buildingImageSrc: "/About us/About_01_Who-We-Are.jpeg",
+  buildingImageAlt: "O₂Cure — advancing cleaner environments",
   lifestyleImageSrc: "/About us/About_08_Inhaling-Fresh-Air.jpg",
   lifestyleImageAlt: "Person breathing fresh, purified air",
   wavePatternSrc: "/About us/About_09_Wave-Pattern.png",
@@ -140,14 +140,14 @@ export const pillars: PillarItem[] = [
     id: "pillar-uniqueness",
     title: "Uniqueness",
     description:
-      "O₂Cure air purifiers are made for advanced solutions for bacteria, virus and other contaminants. We believe in thinking outside the box. Technologies that we offer are state of the art, patented, proven and used by thousands of families across the world.",
+      "O₂Cure leverages state-of-the-art TriCure Technology, backed by our dedicated R&D efforts, to deliver advanced solutions against bacteria, viruses, and other contaminants. We believe in thinking outside the box, offering patented and proven technologies used by thousands of families globally.",
     index: 3,
   },
   {
-    id: "pillar-solutions",
-    title: "Solutions",
+    id: "pillar-innovation",
+    title: "Innovation",
     description:
-      "We provide complete solutions with personalised experience, offering a diverse range of customisable air purifiers and monitors. We consult, design and deploy solutions for respiratory health issues like asthma, pollen and dust allergies.",
+      "We are driven by continuous innovation to create products that not only purify the air but seamlessly integrate into modern lifestyles. Our forward-thinking approach ensures we stay ahead in providing effective and personalized respiratory health solutions.",
     index: 4,
   },
 ];

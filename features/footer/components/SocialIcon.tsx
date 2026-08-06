@@ -57,5 +57,32 @@ export function SocialIcon({ platform, className }: SocialIconProps) {
           <path d="m10 9.5 5 3-5 3v-6Z" fill="currentColor" stroke="none" />
         </svg>
       );
+    case "facebook":
+      return (
+        <svg
+          aria-hidden
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className={shared}
+        >
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+        </svg>
+      );
+    case "x":
+      return (
+        <svg
+          aria-hidden
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className={shared}
+        >
+          <path d="M4 4l11.733 16h4.267l-11.733-16z" />
+          <path d="M4 20l6.768-6.768m2.46-2.46L20 4" />
+        </svg>
+      );
   }
 }

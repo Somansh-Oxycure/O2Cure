@@ -76,6 +76,11 @@ interface FilterSidebarProps extends FilterState {
   onSetCustomerType: (id: CustomerTypeId | null) => void;
   onClearAll: () => void;
   resultCount: number;
+  /**
+   * When true, only the first filter section starts expanded.
+   * Used inside the mobile bottom-sheet drawer to reduce initial scroll depth.
+   */
+  compactMode?: boolean;
 }
 
 export function FilterSidebar({
@@ -89,6 +94,7 @@ export function FilterSidebar({
   onSetCustomerType,
   onClearAll,
   resultCount,
+  compactMode = false,
 }: FilterSidebarProps) {
   const totalActive =
     activeChallenges.length +
@@ -137,8 +143,8 @@ export function FilterSidebar({
         </AnimatePresence>
       </div>
 
-      {/* ── What's the problem? ──────────────────────────────────── */}
-      <FilterSection title="What's your air problem?">
+      {/* ── What's the problem? ── (always open, primary filter) ── */}
+      <FilterSection title="What's your air problem?" defaultOpen={true}>
         <div className="grid grid-cols-2 gap-2" role="group" aria-label="Air problems">
           {airChallenges.map((c) => {
             const Icon = CHALLENGE_ICONS[c.id];
@@ -151,7 +157,7 @@ export function FilterSidebar({
                 aria-checked={active}
                 onClick={() => onToggleChallenge(c.id)}
                 className={cn(
-                  "group flex flex-col items-center justify-center gap-2 rounded-xl p-3 text-center",
+                  "group flex min-h-[64px] flex-col items-center justify-center gap-2 rounded-xl p-3 text-center",
                   "border transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3A7D2A]/40",
                   active
@@ -186,8 +192,8 @@ export function FilterSidebar({
 
       <SectionDivider />
 
-      {/* ── How does it install? ─────────────────────────────────── */}
-      <FilterSection title="How does it install?">
+      {/* ── How does it install? ── collapsed on mobile by default ── */}
+      <FilterSection title="How does it install?" defaultOpen={!compactMode}>
         <div className="grid grid-cols-2 gap-2" role="group" aria-label="Installation type">
           {integrationTypes.map((t) => {
             const Icon = INTEGRATION_ICONS[t.id];
@@ -200,7 +206,7 @@ export function FilterSidebar({
                 aria-checked={active}
                 onClick={() => onToggleIntegration(t.id)}
                 className={cn(
-                  "group flex flex-col items-center justify-center gap-2 rounded-xl p-3 text-center",
+                  "group flex min-h-[64px] flex-col items-center justify-center gap-2 rounded-xl p-3 text-center",
                   "transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3A7D2A]/40 border",
                   active
@@ -235,8 +241,8 @@ export function FilterSidebar({
 
       <SectionDivider />
 
-      {/* ── Room size ─────────────────────────────────────────────── */}
-      <FilterSection title="Room size">
+      {/* ── Room size ── collapsed on mobile by default ───────────── */}
+      <FilterSection title="Room size" defaultOpen={!compactMode}>
         <div className="grid grid-cols-2 gap-1.5" role="radiogroup" aria-label="Room size">
           {areaSegments.map((seg) => {
             const active = activeAreaSegment === seg.id;
@@ -248,7 +254,7 @@ export function FilterSidebar({
                 aria-checked={active}
                 onClick={() => onSetAreaSegment(active ? null : seg.id)}
                 className={cn(
-                  "flex flex-col items-start rounded-xl border px-2.5 py-2",
+                  "flex min-h-[52px] flex-col items-start justify-center rounded-xl border px-2.5 py-2",
                   "transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3A7D2A]/40",
                   active
@@ -283,16 +289,18 @@ export function FilterSidebar({
 function FilterSection({
   title,
   children,
+  defaultOpen = true,
 }: {
   title: string;
   children: React.ReactNode;
+  defaultOpen?: boolean;
 }) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(defaultOpen);
   return (
     <section>
       <button
         onClick={() => setOpen((o) => !o)}
-        className="mb-2.5 flex w-full items-center justify-between group"
+        className="mb-2.5 flex w-full min-h-[44px] items-center justify-between group"
         aria-expanded={open}
       >
         <p className="text-[0.62rem] font-bold uppercase tracking-[0.12em] text-[#6B7280]
@@ -301,7 +309,7 @@ function FilterSection({
         </p>
         <ChevronDown
           className={cn(
-            "h-3 w-3 text-[#9CA3AF] transition-transform duration-200",
+            "h-3.5 w-3.5 text-[#9CA3AF] transition-transform duration-200",
             open ? "rotate-0" : "-rotate-90"
           )}
         />
@@ -355,47 +363,54 @@ export function MobileFilterDrawer({
             aria-hidden
           />
 
-          {/* Sheet */}
+          {/* Bottom sheet — 70dvh max; scrollable body; sticky CTA footer */}
           <motion.div
             key="sheet"
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-0 left-0 right-0 z-50 rounded-t-2xl bg-white px-6 pb-8 pt-5 md:hidden"
-            style={{ maxHeight: "88dvh", overflowY: "auto" }}
+            transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed bottom-0 left-0 right-0 z-50 flex flex-col rounded-t-2xl bg-white md:hidden"
+            style={{ maxHeight: "70dvh" }}
             role="dialog"
             aria-modal
             aria-label="Solution filters"
           >
-            {/* Handle */}
-            <div className="mx-auto mb-5 h-1 w-10 rounded-full bg-[#E5E7EB]" aria-hidden />
-
-            {/* Header */}
-            <div className="mb-5 flex items-center justify-between">
-              <p className="text-[0.9rem] font-bold tracking-[-0.02em] text-[#1C1C1C]">
-                Filters
-              </p>
-              <button
-                onClick={onClose}
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-[#F5F5F4] text-[#6B7280]
-                  transition-colors hover:bg-[#E5E7EB]"
-                aria-label="Close filters"
-              >
-                <X className="h-4 w-4" />
-              </button>
+            {/* Handle bar */}
+            <div className="flex shrink-0 flex-col px-6 pt-4 pb-0">
+              <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-[#E5E7EB]" aria-hidden />
+              {/* Header row */}
+              <div className="mb-4 flex items-center justify-between">
+                <p className="text-[0.9rem] font-bold tracking-[-0.02em] text-[#1C1C1C]">
+                  Filters
+                </p>
+                <button
+                  onClick={onClose}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-[#F5F5F4] text-[#6B7280] transition-colors hover:bg-[#E5E7EB]"
+                  aria-label="Close filters"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
             </div>
 
-            <FilterSidebar {...filterProps} />
+            {/* Scrollable filter body */}
+            <div className="flex-1 overflow-y-auto px-6 pb-2">
+              <FilterSidebar {...filterProps} compactMode />
+            </div>
 
-            {/* Apply */}
-            <button
-              onClick={onClose}
-              className="mt-6 w-full rounded-xl bg-[#1C1C1C] py-3.5 text-[0.85rem] font-semibold text-white
-                transition-all duration-300 hover:bg-[#3A7D2A] active:scale-[0.98]"
+            {/* Sticky CTA — always visible without scrolling */}
+            <div
+              className="shrink-0 border-t border-[#F5F5F4] bg-white px-6 py-4"
+              style={{ paddingBottom: 'max(16px, env(safe-area-inset-bottom))' }}
             >
-              View {filterProps.resultCount} Solution{filterProps.resultCount !== 1 ? "s" : ""}
-            </button>
+              <button
+                onClick={onClose}
+                className="w-full rounded-xl bg-[#1C1C1C] py-3.5 text-[0.85rem] font-bold text-white transition-all duration-300 hover:bg-[#3A7D2A] active:scale-[0.98]"
+              >
+                View {filterProps.resultCount} Solution{filterProps.resultCount !== 1 ? "s" : ""}
+              </button>
+            </div>
           </motion.div>
         </>
       )}

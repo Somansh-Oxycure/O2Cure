@@ -20,6 +20,7 @@ type NavDropdownProps = {
   hash: string;
   isCompact?: boolean;
   onNavigate?: () => void;
+  isNavLight?: boolean;
 };
 
 export const NavDropdown = memo(function NavDropdown({
@@ -28,6 +29,7 @@ export const NavDropdown = memo(function NavDropdown({
   hash,
   isCompact = false,
   onNavigate,
+  isNavLight,
 }: NavDropdownProps) {
   const menuId = useId();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,8 +53,10 @@ export const NavDropdown = memo(function NavDropdown({
   };
 
   const triggerClasses = cn(
-    "group relative inline-flex items-center gap-1 rounded-sm text-sm text-foreground/80 transition-colors duration-300 ease-premium hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green/40",
-    isActive ? "font-semibold text-foreground" : "font-medium",
+    "group relative inline-flex items-center gap-1 rounded-sm text-sm transition-colors duration-300 ease-premium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green/40",
+    isActive
+      ? (isNavLight ? "font-semibold text-white" : "font-semibold text-foreground")
+      : (isNavLight ? "font-medium text-white/90 hover:text-white" : "font-medium text-foreground/80 hover:text-foreground"),
     isCompact ? "w-full justify-between py-3 text-base" : "py-1",
   );
 

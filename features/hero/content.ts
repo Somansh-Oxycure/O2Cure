@@ -25,7 +25,7 @@ export const heroContent = {
   // Shared assets
   product: {
     src: "/Hulk_Front_Angle-removebg.png",
-    alt: "O2Cure Hulk air purifier",
+    alt: "O₂Cure Hulk air purifier",
     width: 480,
     height: 720,
   },

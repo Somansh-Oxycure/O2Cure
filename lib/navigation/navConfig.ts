@@ -38,19 +38,21 @@ export const SOLUTIONS_LINKS: NavDropdownLink[] = [
 
 export const NAV_ITEMS: NavItem[] = [
   { type: "dropdown", label: "Solutions", href: "/solutions", items: SOLUTIONS_LINKS },
-  {
-    type: "dropdown",
-    label: "Technology",
-    items: [{ label: "Overview", href: "/#technology" }],
-  },
+  // {
+  //   type: "dropdown",
+  //   label: "Technology",
+  //   items: [{ label: "Overview", href: "/#technology" }],
+  // },
   { type: "link", label: "AQI", href: "/#aqi-effect" },
+  { type: "link", label: "Clientele", href: "/clientele" },
   { type: "link", label: "About Us", href: "/about" },
   { type: "link", label: "FAQ", href: "/faq" },
+  { type: "link", label: "Blog", href: "/blog" },
 ];
 
 export const NAV_CTA = {
   label: "Get in Touch",
-  href: "/#contact",
+  href: "/contact",
 } as const;
 
 /** Returns true when `href` matches the current route (path + optional hash). */

@@ -26,12 +26,12 @@ export const products: Product[] = [
   },
   {
     id: "max-cure",
-    name: "O2Cure Max Cure – Fresh Air Filtration Unit",
+    name: "O₂Cure Max Cure – Fresh Air Filtration Unit",
     purpose: "A state-of-the-art multi-filtration unit designed to filter harmful outdoor pollutants and pressurize indoor spaces up to 2,500 sq ft.",
     environment: ["Corporate", "Industrial"],
     image: {
       src: "/product/Hybrid-Air-Purifier.jpg",
-      alt: "O2Cure Max Cure – Fresh Air Filtration Unit",
+      alt: "O₂Cure Max Cure – Fresh Air Filtration Unit",
     },
     renderVariant: "console",
   },
@@ -70,12 +70,12 @@ export const products: Product[] = [
   },
   {
     id: "plug-play-max",
-    name: "O2Cure Plug n Play (MAX) – Advanced Air Purifier with PHI & Bipolar Ionization Technology",
+    name: "O₂Cure Plug n Play (MAX) – Advanced Air Purifier with PHI & Bipolar Ionization Technology",
     purpose: "A zero-maintenance, in-duct HVAC purifier utilizing a hybrid of Photohydroionization (PHI) and Bipolar Ionization to actively eliminate pathogens and VOCs without mechanical filters.",
     environment: ["Corporate", "Industrial"],
     image: {
       src: "/product/plug-play.jpg",
-      alt: "O2Cure Plug n Play (MAX) – Advanced Air Purifier with PHI & Bipolar Ionization Technology",
+      alt: "O₂Cure Plug n Play (MAX) – Advanced Air Purifier with PHI & Bipolar Ionization Technology",
     },
     renderVariant: "compact",
   },

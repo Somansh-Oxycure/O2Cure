@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { BlogGrid, BlogHero, BlogNewsletter, liveBlogPosts } from "@/features/blog";
+import { BlogGrid, BlogHero, liveBlogPosts } from "@/features/blog";
 import { FooterSection } from "@/features/footer";
 
 // ─── SEO metadata ──────────────────────────────────────────────────────────────
@@ -96,8 +96,7 @@ export default function BlogIndexPage() {
         {/* Section 2 & 3 — Category filter + post grid */}
         <BlogGrid posts={liveBlogPosts} />
 
-        {/* Section 4 — Newsletter CTA */}
-        <BlogNewsletter />
+
 
         {/* Footer */}
         <FooterSection />

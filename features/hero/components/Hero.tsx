@@ -18,6 +18,7 @@ import {
 import { ParticleField } from "@/features/hero/components/ParticleField";
 import { PollutantBubbles } from "@/features/hero/components/PollutantBubbles";
 import { SplitWorldBackground } from "@/features/hero/components/SplitWorldBackground";
+import { formatBrandText } from "@/lib/brand";
 import { heroContent } from "@/features/hero/content";
 
 /* ── Shared fade-up variant factory ─────────────────────────────────────── */
@@ -143,7 +144,7 @@ function MobileHero() {
             className="mt-5 max-w-lg text-[clamp(0.9375rem,0.88rem+0.3vw,1.0625rem)] leading-relaxed text-[#6B7280]"
             variants={fadeUp(heroTimeline.supportingText, reduced)}
           >
-            {heroContent.supporting}
+            {formatBrandText(heroContent.supporting)}
           </motion.p>
 
           {/* CTA */}
@@ -288,7 +289,7 @@ function DesktopHero() {
               className="mt-4 max-w-md text-[clamp(0.9375rem,0.88rem+0.3vw,1.125rem)] leading-relaxed text-[#1C1C1C]/60 sm:mt-5"
               variants={fadeUp(heroTimeline.supportingText, reduced)}
             >
-              {heroContent.desktopRight.description}
+              {formatBrandText(heroContent.desktopRight.description)}
             </motion.p>
 
             <motion.div
@@ -319,7 +320,7 @@ function DesktopHero() {
           ease: easings.premium,
         }}
       >
-        {heroContent.desktopLeft.centerTagline}
+        {formatBrandText(heroContent.desktopLeft.centerTagline)}
       </motion.p>
 
       {/* Top center badge */}
@@ -335,7 +336,7 @@ function DesktopHero() {
           }}
         >
           <span className="font-heading text-eyebrow font-semibold tracking-[0.2em] text-[#1C1C1C]/45">
-            India's Best Air Purification Brand
+            India's Best Air Purification Solutions
           </span>
           <div className="h-[1px] w-6 bg-[#1C1C1C]/15" />
         </motion.div>

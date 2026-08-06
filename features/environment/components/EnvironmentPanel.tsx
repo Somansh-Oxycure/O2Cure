@@ -4,7 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 import { panelMotion } from "@/features/environment/animation/panelMotion";
@@ -324,14 +326,16 @@ export function EnvironmentPanel({
                 transition={{ ...panelMotion.cta, delay: 0.1 }}
                 className="mt-4 flex items-center gap-4"
               >
-                <Button
-                  type="button"
-                  size="sm"
-                  className="rounded-full border border-white/25 bg-white/10 px-5 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
+                <Link
+                  href={`/solutions?env=${environment.solutionsEnv}`}
+                  className={cn(
+                    buttonVariants({ size: "sm" }),
+                    "rounded-full border border-white/25 bg-white/10 px-5 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white flex items-center gap-1.5 whitespace-nowrap"
+                  )}
                 >
                   {environmentContent.cta}
                   <ArrowRight className="size-3.5" />
-                </Button>
+                </Link>
               </motion.div>
             </motion.div>
           )}

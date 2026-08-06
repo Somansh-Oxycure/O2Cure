@@ -19,7 +19,7 @@ export interface FooterSocialLink {
   id: string;
   label: string;
   href: string;
-  platform: "linkedin" | "instagram" | "youtube";
+  platform: "linkedin" | "instagram" | "youtube" | "facebook" | "x";
 }
 
 /** Newsletter copy and labels — maps to a Sanity `footerNewsletter` object. */

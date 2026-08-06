@@ -75,7 +75,9 @@ export function EnvironmentSection() {
           >
             Every space needs its own solution
             <br />
-            <span className="text-brand-green">breathe better with O₂Cure</span>.
+            <span className="text-brand-green">
+              breathe better with <span className="whitespace-nowrap"><span className="text-[1.15em] leading-none">O</span><sub className="align-baseline text-[0.6em] relative -bottom-[0.1em] font-bold">2Cure</sub></span>
+            </span>.
           </motion.h2>
 
           {/* Supporting copy */}

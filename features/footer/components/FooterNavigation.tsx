@@ -10,6 +10,7 @@ import { easings } from "@/components/motion/easings";
 import type { FooterLink, FooterNavGroup } from "@/features/footer/types";
 import { useFinePointer } from "@/lib/hooks/useFinePointer";
 import { cn } from "@/lib/utils";
+import { formatBrandText } from "@/lib/brand";
 
 interface FooterNavigationProps {
   groups: FooterNavGroup[];
@@ -26,7 +27,7 @@ function FooterNavLink({ link }: { link: FooterLink }) {
         className="text-sm text-muted-foreground/80"
         aria-disabled="true"
       >
-        {link.label}
+        {formatBrandText(link.label)}
       </span>
     );
   }
@@ -39,7 +40,7 @@ function FooterNavLink({ link }: { link: FooterLink }) {
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}
     >
-      {link.label}
+      {formatBrandText(link.label)}
     </a>
   );
 }
@@ -55,7 +56,7 @@ function FooterNavColumn({
     <Reveal delay={delay} distance={18} amount={0.2}>
       <nav aria-label={group.title}>
         <h3 className="text-eyebrow text-foreground/70">
-          {group.title}
+          {formatBrandText(group.title)}
         </h3>
         <ul className="mt-3 space-y-2.5">
           {group.links.map((link) => (
@@ -89,7 +90,7 @@ function FooterNavAccordionItem({
         className="flex w-full items-center justify-between py-3.5 text-left"
       >
         <span className="text-eyebrow text-foreground/70">
-          {group.title}
+          {formatBrandText(group.title)}
         </span>
         <ChevronDown
           aria-hidden

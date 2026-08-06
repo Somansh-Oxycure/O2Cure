@@ -24,6 +24,11 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
+  // Certain pages have dark hero sections. For these, the navbar should have
+  // light text at the top before it becomes scrolled (which gives it a white background).
+  const isDarkHero = pathname === "/about" || pathname.startsWith("/blog");
+  const isNavLight = isDarkHero && !isScrolled;
+
   const transition = prefersReducedMotion
     ? { duration: 0 }
     : { duration: NAVBAR_TRANSITION, ease: easings.premium };
@@ -91,6 +96,7 @@ export function Navbar() {
                     href={item.href}
                     pathname={pathname}
                     hash={hash}
+                    isNavLight={isNavLight}
                   />
                 ) : (
                   <NavDropdown
@@ -98,6 +104,7 @@ export function Navbar() {
                     item={item}
                     pathname={pathname}
                     hash={hash}
+                    isNavLight={isNavLight}
                   />
                 ),
               )}

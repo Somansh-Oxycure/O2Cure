@@ -11,9 +11,9 @@ import type {
  */
 export const trustContent = {
   eyebrow: "Trusted by",
-  heading: "Trusted Where Air Quality Matters Most",
+  heading: "O₂Cure solutions protect homes, businesses and critical environments across India",
   supporting:
-    "O₂Cure solutions protect homes, businesses and critical environments across India.",
+    "",
 } as const;
 
 export const clientLogos: ClientLogo[] = [
@@ -229,6 +229,11 @@ export const testimonials: Testimonial[] = [
 
 export const certifications: Certification[] = [
   {
+    id: "cert-california",
+    name: "California",
+    badge: { src: "/certificate/California-Picsart-AiImageEnhancer.webp", alt: "California certification badge" },
+  },
+  {
     id: "cert-ccmb",
     name: "CCMB",
     badge: { src: "/certificate/Ccmb_emblem.png", alt: "CCMB certification badge" },
@@ -239,9 +244,24 @@ export const certifications: Certification[] = [
     badge: { src: "/certificate/Bioanalisis.png", alt: "Bioanalisis certification badge" },
   },
   {
+    id: "cert-epa",
+    name: "EPA",
+    badge: { src: "/certificate/EPA.png", alt: "EPA certification badge" },
+  },
+  {
     id: "cert-ecolab",
     name: "Ecolab",
     badge: { src: "/certificate/Ecolab.svg", alt: "Ecolab certification badge" },
+  },
+  {
+    id: "cert-iit",
+    name: "IIT",
+    badge: { src: "/certificate/IIT.webp", alt: "IIT certification badge" },
+  },
+  {
+    id: "cert-iso",
+    name: "ISO",
+    badge: { src: "/certificate/ISO.webp", alt: "ISO certification badge" },
   },
   {
     id: "cert-kansas",
@@ -254,6 +274,11 @@ export const certifications: Certification[] = [
     badge: { src: "/certificate/NABL.png", alt: "NABL certification badge" },
   },
   {
+    id: "cert-rohs",
+    name: "ROHS",
+    badge: { src: "/certificate/ROHS.webp", alt: "ROHS certification badge" },
+  },
+  {
     id: "cert-sandia",
     name: "Sandia National Laboratories",
     badge: { src: "/certificate/Sandia_National_Laboratories_logo.svg", alt: "Sandia National Laboratories certification badge" },
@@ -262,5 +287,15 @@ export const certifications: Certification[] = [
     id: "cert-steris",
     name: "Steris",
     badge: { src: "/certificate/Steris_logo.svg", alt: "Steris certification badge" },
+  },
+  {
+    id: "cert-tuv",
+    name: "TUV",
+    badge: { src: "/certificate/TUV.jpeg", alt: "TUV certification badge" },
+  },
+  {
+    id: "cert-ul867",
+    name: "UL867",
+    badge: { src: "/certificate/UL867.png", alt: "UL867 certification badge" },
   },
 ];

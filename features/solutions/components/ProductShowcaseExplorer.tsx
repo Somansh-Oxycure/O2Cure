@@ -3,7 +3,7 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, SlidersHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   products,
@@ -19,7 +19,6 @@ import { EnvironmentSelectorRow } from "./EnvironmentSelectorRow";
 import {
   FilterSidebar,
   MobileFilterDrawer,
-  MobileFilterTrigger,
 } from "./EngineeringFilterSidebar";
 import { SolutionCard } from "./PremiumSolutionCard";
 
@@ -187,24 +186,8 @@ export function ProductShowcaseExplorer() {
         onChange={handleEnvironmentChange}
       />
 
-      {/* ── Mobile: sticky context bar ───────────────────────── */}
-      <div className="sticky top-16 z-30 flex items-center justify-between border-b border-[#E5E7EB] bg-white/95 px-4 py-3 backdrop-blur-sm md:hidden">
-        <div>
-          <p className="text-[0.6rem] font-semibold uppercase tracking-[0.12em] text-[#9CA3AF]">
-            Solutions for
-          </p>
-          <p className="text-[0.85rem] font-bold tracking-[-0.02em] text-[#1C1C1C]">
-            {activeEnvLabel}
-          </p>
-        </div>
-        <MobileFilterTrigger
-          onOpen={() => setFilterOpen(true)}
-          activeChallenges={activeChallenges}
-          activeAreaSegment={activeAreaSegment}
-          activeIntegrations={activeIntegrations}
-          activeCustomerType={activeCustomerType}
-        />
-      </div>
+
+      {/* Mobile sticky context bar REMOVED — filter now lives in bottom action bar */}
 
       {/* ── Main body ─────────────────────────────────────────── */}
       <div className="flex flex-1 gap-0 bg-[#F5F5F4] relative items-stretch min-h-[calc(100vh-80px)]">
@@ -216,8 +199,8 @@ export function ProductShowcaseExplorer() {
           </div>
         </div>
 
-        {/* Grid column */}
-        <div className="flex min-w-0 flex-1 flex-col p-4 md:p-6 lg:p-8">
+        {/* Grid column — extra bottom padding on mobile so cards aren't hidden behind bottom bar */}
+        <div className="flex min-w-0 flex-1 flex-col p-3 pb-28 md:p-6 md:pb-6 lg:p-8 lg:pb-8">
           {/* Desktop context header */}
           <div className="mb-5 hidden items-center justify-between md:flex">
             <div>
@@ -252,8 +235,8 @@ export function ProductShowcaseExplorer() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                // 4-col desktop, 2-col tablet/mobile
-                className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                // Mobile: single-col landscape cards; Tablet+: 2-col; Desktop: 3/4-col
+                className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
               >
                 {pageProducts.map((product, i) => (
                   <SolutionCard key={product.id} product={product} index={i} />
@@ -276,6 +259,19 @@ export function ProductShowcaseExplorer() {
           )}
         </div>
       </div>
+
+      {/* ── Mobile sticky bottom action bar ────────────────── */}
+      <MobileBottomBar
+        activeEnvLabel={activeEnvLabel}
+        resultCount={filteredProducts.length}
+        filterCount={
+          activeChallenges.length +
+          (activeAreaSegment ? 1 : 0) +
+          activeIntegrations.length +
+          (activeCustomerType ? 1 : 0)
+        }
+        onOpenFilter={() => setFilterOpen(true)}
+      />
 
       {/* ── Mobile filter drawer ──────────────────────────── */}
       <MobileFilterDrawer
@@ -403,5 +399,82 @@ function EmptyState({ onReset }: { onReset: () => void }) {
         Reset filters
       </button>
     </motion.div>
+  );
+}
+
+// ─── Mobile Bottom Action Bar ─────────────────────────────────────────────────
+// Thumb-zone: keeps environment context + result count + filter trigger
+// permanently accessible at the bottom of the screen — only on mobile.
+
+interface MobileBottomBarProps {
+  activeEnvLabel: string;
+  resultCount: number;
+  filterCount: number;
+  onOpenFilter: () => void;
+}
+
+function MobileBottomBar({
+  activeEnvLabel,
+  resultCount,
+  filterCount,
+  onOpenFilter,
+}: MobileBottomBarProps) {
+  return (
+    <div
+      className="fixed bottom-0 left-0 right-0 z-30 md:hidden"
+      style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
+    >
+      <div className="mx-3 mb-3 flex items-center gap-2 rounded-2xl border border-[#E5E7EB] bg-white/95 p-2 shadow-[0_-4px_24px_rgba(0,0,0,0.1),0_2px_8px_rgba(0,0,0,0.04)] backdrop-blur-md">
+        {/* Left: active environment label */}
+        <div className="min-w-0 flex-1 pl-2">
+          <p className="text-[0.55rem] font-semibold uppercase tracking-[0.1em] text-[#9CA3AF]">
+            Showing for
+          </p>
+          <p className="truncate text-[0.82rem] font-bold tracking-[-0.01em] text-[#1C1C1C]">
+            {activeEnvLabel}
+          </p>
+        </div>
+
+        {/* Center: animated result count badge */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={resultCount}
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.85 }}
+            transition={{ duration: 0.2 }}
+            className="shrink-0 rounded-full bg-[#F5F5F4] px-3 py-1.5"
+            aria-live="polite"
+          >
+            <p className="text-[0.7rem] font-semibold text-[#6B7280]">
+              {resultCount} system{resultCount !== 1 ? "s" : ""}
+            </p>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Right: filter button — in thumb zone */}
+        <button
+          id="mobile-filter-btn"
+          onClick={onOpenFilter}
+          aria-label={`Open filters${filterCount > 0 ? `, ${filterCount} active` : ""}`}
+          className="flex min-h-[44px] shrink-0 items-center gap-2 rounded-xl bg-[#1C1C1C] px-4 py-2.5
+            text-[0.78rem] font-semibold text-white
+            transition-all duration-200 active:scale-[0.96] hover:bg-[#374151]"
+        >
+          <SlidersHorizontal className="h-3.5 w-3.5" />
+          Filter
+          {filterCount > 0 && (
+            <motion.span
+              key={filterCount}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="flex h-4 w-4 items-center justify-center rounded-full bg-[#3A7D2A] text-[0.55rem] font-bold text-white"
+            >
+              {filterCount}
+            </motion.span>
+          )}
+        </button>
+      </div>
+    </div>
   );
 }

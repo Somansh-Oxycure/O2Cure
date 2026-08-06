@@ -68,12 +68,12 @@ export const footerContent: FooterContent = {
           href: "/about",
           isActive: true,
         },
-        {
-          id: "co-technology",
-          label: "Technology",
-          href: "/#technology",
-          isActive: true,
-        },
+        // {
+        //   id: "co-technology",
+        //   label: "Technology",
+        //   href: "/#technology",
+        //   isActive: true,
+        // },
         {
           id: "co-aqi",
           label: "AQI",
@@ -89,7 +89,7 @@ export const footerContent: FooterContent = {
         {
           id: "sup-contact",
           label: "Contact",
-          href: "/#contact",
+          href: "/contact",
           isActive: true,
         },
         {
@@ -113,31 +113,13 @@ export const footerContent: FooterContent = {
         {
           id: "con-phone",
           label: "Phone",
-          href: "tel:+911145678900",
+          href: "tel:+918010111177",
           isActive: true,
         },
         {
           id: "con-email",
           label: "Email",
-          href: "mailto:hello@o2cure.com",
-          isActive: true,
-        },
-        {
-          id: "con-linkedin",
-          label: "LinkedIn",
-          href: "https://linkedin.com/company/o2cure",
-          isActive: true,
-        },
-        {
-          id: "con-instagram",
-          label: "Instagram",
-          href: "https://instagram.com/o2cure",
-          isActive: true,
-        },
-        {
-          id: "con-youtube",
-          label: "YouTube",
-          href: "https://youtube.com/@o2cure",
+          href: "mailto:info@o2cure.in",
           isActive: true,
         },
       ],
@@ -158,22 +140,34 @@ export const footerContent: FooterContent = {
   },
   socialLinks: [
     {
-      id: "social-linkedin",
-      label: "LinkedIn",
-      href: "https://linkedin.com/company/o2cure",
-      platform: "linkedin",
+      id: "social-facebook",
+      label: "Facebook",
+      href: "https://www.facebook.com/o2cure",
+      platform: "facebook",
+    },
+    {
+      id: "social-x",
+      label: "X (Twitter)",
+      href: "https://x.com/cure_o2",
+      platform: "x",
     },
     {
       id: "social-instagram",
       label: "Instagram",
-      href: "https://instagram.com/o2cure",
+      href: "https://www.instagram.com/o2_cure/",
       platform: "instagram",
     },
     {
       id: "social-youtube",
       label: "YouTube",
-      href: "https://youtube.com/@o2cure",
+      href: "https://www.youtube.com/channel/UC8vNYiYmzdapnOIflSIELtA",
       platform: "youtube",
+    },
+    {
+      id: "social-linkedin",
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/company/o2cure",
+      platform: "linkedin",
     },
   ],
 };

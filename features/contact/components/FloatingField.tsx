@@ -56,7 +56,7 @@ export function FloatingField({
             isFloating
               ? "top-0 text-xs tracking-wide"
               : "top-4 text-base sm:top-5",
-            isFocused && "text-brand-blue",
+            isFocused && "text-brand-green",
             error && "text-destructive",
           )}
           animate={{
@@ -81,7 +81,7 @@ export function FloatingField({
 
         <motion.span
           aria-hidden
-          className="absolute inset-x-0 bottom-0 h-[1px] bg-white/20 origin-left"
+          className="absolute inset-x-0 bottom-0 h-[1px] bg-border origin-left"
           initial={false}
           animate={{
             scaleX: 1,
@@ -111,7 +111,7 @@ export function FloatingField({
 }
 
 const fieldClassName =
-  "w-full border-0 bg-transparent pt-6 pb-2 text-base text-white outline-none transition-colors duration-300 ease-premium placeholder:text-transparent sm:pt-7 sm:text-[1.0625rem]";
+  "w-full border-0 bg-transparent pt-6 pb-2 text-base text-foreground outline-none transition-colors duration-300 ease-premium placeholder:text-transparent sm:pt-7 sm:text-[1.0625rem]";
 
 type FloatingInputProps = Omit<
   ComponentPropsWithoutRef<"input">,
