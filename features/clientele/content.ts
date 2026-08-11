@@ -43,7 +43,7 @@ export const clients: ClientEntry[] = [
   // ── Featured Partners (Top Tier & Variety) ────────────────────────────────
   { id: "google",          name: "Google",                      scale:1.35, src: "/client_logos/Google.png",                     category: "corporate",  sector: "Technology" },
   { id: "microsoft",       name: "Microsoft",                 scale:1.35,   src: "/client_logos/Microsoft.jpg",                  category: "corporate",  sector: "Technology" },
-  { id: "amazon",          name: "Amazon",                     scale:1.35,  src: "/client_logos/Amazon.jpg",                     category: "corporate",  sector: "Technology" },
+  { id: "amazon",          name: "Amazon",                     scale:1.35,  src: "/client_logos/amazon.jpg",                     category: "corporate",  sector: "Technology" },
   { id: "aiims",           name: "AIIMS",                    scale:1.5,    src: "/client_logos/AIIMS.jpg",                      category: "healthcare", sector: "Public Hospital" },
   { id: "hdfc",            name: "HDFC Bank",                  scale:1.5,  src: "/client_logos/HDFC.jpg",                       category: "finance", sector: "Private Bank" },
   { id: "taj-hotels",      name: "Taj Hotels",                 scale:1.25,  src: "/client_logos/Taj_Hotels.png",                 category: "hospitality", sector: "Luxury Hotels" },
@@ -72,10 +72,10 @@ export const clients: ClientEntry[] = [
   { id: "birlasoft",       name: "Birlasoft",                  scale:1.5,  src: "/client_logos/Birlasoft.png",                  category: "corporate",  sector: "IT Services" },
   { id: "cadence",         name: "Cadence",                      scale:1.5,src: "/client_logos/Cadence.png",                    category: "corporate",  sector: "EDA" },
   { id: "adobe",           name: "Adobe",                        scale:1.5,src: "/client_logos/Adobe.png",                      category: "corporate",  sector: "Software" },
-  { id: "sony",            name: "Sony",                         src: "/client_logos/Sony.jpg",                       category: "corporate",  sector: "Electronics" },
+  { id: "sony",            name: "Sony",                         src: "/client_logos/sony.jpg",                       category: "corporate",  sector: "Electronics" },
   { id: "renault",         name: "Renault",                      src: "/client_logos/Renault.png",                    category: "corporate",  sector: "Automotive" },
   { id: "tata-motors",     name: "Tata Motors",                 scale:1.5, src: "/client_logos/Tata_Motors.png",               category: "corporate",  sector: "Automotive" },
-  { id: "jcb",             name: "JCB",                        scale:1.25,  src: "/client_logos/JCB.jpg",                        category: "corporate",  sector: "Industrial Equipment" },
+  { id: "jcb",             name: "JCB",                        scale:1.25,  src: "/client_logos/jcb.jpg",                        category: "corporate",  sector: "Industrial Equipment" },
   { id: "sattva",          name: "Sattva Group",               scale:1.5,  src: "/client_logos/Sattva_Group.jpg",               category: "corporate",  sector: "Business Group" },
 
   // ── Healthcare ────────────────────────────────────────────────────────────
@@ -95,7 +95,7 @@ export const clients: ClientEntry[] = [
   // ── Hospitality & Retail ─────────────────────────────────────────────────
   { id: "itc-hotels",      name: "ITC Hotels",          scale:1.5,         src: "/client_logos/ITC_Hotels.png",                 category: "hospitality", sector: "Luxury Hotels" },
   { id: "pvr",             name: "PVR Cinemas",            scale:1.25,      src: "/client_logos/PVR.png",                        category: "hospitality", sector: "Entertainment" },
-  { id: "carrefour",       name: "Carrefour",                 scale:1.5,   src: "/client_logos/Carrefour.jpg",                  category: "hospitality", sector: "Retail" },
+  { id: "carrefour",       name: "Carrefour",                 scale:1.5,   src: "/client_logos/carrefour.jpg",                  category: "hospitality", sector: "Retail" },
   { id: "india-habitat",   name: "India Habitat Centre",         src: "/client_logos/India_Habitat_Center.png",       category: "hospitality", sector: "Convention Centre" },
   { id: "nsci",            name: "NSCI",                         src: "/client_logos/NSCI.png",                       category: "hospitality", sector: "Sports Complex" },
   { id: "fabindia",        name: "Fabindia",                  scale:1.5,   src: "/client_logos/Fabindia.png",                   category: "hospitality", sector: "Retail" },
@@ -109,7 +109,7 @@ export const clients: ClientEntry[] = [
   { id: "abp-news",        name: "ABP News",                   scale:1.25,  src: "/client_logos/ABP_News.png",                   category: "media", sector: "Broadcasting" },
   { id: "network18",       name: "Network18",                    src: "/client_logos/Network18.png",                  category: "media", sector: "Media Group" },
   { id: "jagran",          name: "Dainik Jagran",                src: "/client_logos/Jagran.png",                     category: "media", sector: "Print Media" },
-  { id: "zee",             name: "Zee Media",                    src: "/client_logos/Zee.png",                        category: "media", sector: "Broadcasting" },
+  { id: "zee",             name: "Zee Media",                    src: "/client_logos/zee.png",                        category: "media", sector: "Broadcasting" },
   { id: "times-group",     name: "Times Group",                  src: "/client_logos/Times_Group.png",                category: "media", sector: "Media Group" },
   { id: "times-now",       name: "Times Now",                    src: "/client_logos/Times_Now.png",                  category: "media", sector: "News Channel" },
   { id: "tv-today",        name: "TV Today",                     src: "/client_logos/TV_Today.jpg",                   category: "media", sector: "Broadcasting" },
