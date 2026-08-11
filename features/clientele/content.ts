@@ -9,17 +9,17 @@
 // ─────────────────────────────────────────────────────────────────────────────
 export const CATEGORIES = [
   { id: "all",           label: "All Partners",         count: 253 },
-  { id: "government",   label: "Government & Defence",  count: 8  },
+  { id: "residences",   label: "Residences",            count: 49   },
   { id: "corporate",    label: "Corporate & IT",        count: 74  },
+  { id: "industrial",   label: "Industrial",            count: 8   },
   { id: "healthcare",   label: "Healthcare",            count: 23  },
   { id: "hospitality",  label: "Hospitality & Retail",  count: 17  },
-  { id: "media",        label: "Media & Broadcasting",  count: 22  },
   { id: "finance",      label: "Finance & Banking",     count: 10   },
   { id: "education",    label: "Education",             count: 14   },
   { id: "real-estate",  label: "Real Estate",           count: 18   },
-  { id: "industrial",   label: "Industrial",            count: 8   },
+  { id: "government",   label: "Government & Defence",  count: 8  },
   { id: "airports",     label: "Airports & Transit",    count: 10   },
-  { id: "residences",   label: "Residences",            count: 49   },
+  { id: "media",        label: "Media & Broadcasting",  count: 22  },
 ] as const;
 
 export type CategoryId = typeof CATEGORIES[number]["id"];

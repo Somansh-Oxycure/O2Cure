@@ -343,7 +343,38 @@ function ClientGrid() {
   const [activeCategory, setActiveCategory] = useState<CategoryId>("all");
 
   const filtered = useMemo(() => {
-    if (activeCategory === "all") return clients;
+    if (activeCategory === "all") {
+      // Prioritize impressive brands and top residences at the top
+      const featuredIds = [
+        "google", "microsoft", "amazon", "reliance", "hdfc", "tcs", "aiims", 
+        "taj-hotels", "gmr", "spg", "antalia", "shiv-nadar-res", "kunal-bahl", 
+        "dlf-camelias", "haldiram", "itc-hotels"
+      ];
+      
+      const topTier: typeof clients = [];
+      const others: typeof clients = [];
+      
+      clients.forEach((c) => {
+        if (featuredIds.includes(c.id)) {
+          topTier.push(c);
+        } else {
+          others.push(c);
+        }
+      });
+      
+      // Sort topTier exactly as defined in featuredIds
+      topTier.sort((a, b) => featuredIds.indexOf(a.id) - featuredIds.indexOf(b.id));
+
+      // Deterministically mix the rest so they don't look grouped by category
+      // Using a simple char-code hash so it is stable across renders (no hydration errors)
+      const mixedOthers = [...others].sort((a, b) => {
+        const hashA = a.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+        const hashB = b.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+        return (hashA % 13) - (hashB % 13) || a.id.localeCompare(b.id);
+      });
+      
+      return [...topTier, ...mixedOthers];
+    }
     return clients.filter((c) => c.category === activeCategory);
   }, [activeCategory]);
 
