@@ -33,7 +33,8 @@ export const environmentSectors: EnvironmentSector[] = [
     label: "All Products",
     descriptor: "Complete range of air purification solutions",
     stat: "Explore our full engineering catalogue",
-    image: "/Website%20Assets/modern-office-building-with-glass-facade-transparent-background%202.svg",
+    image:
+      "/Website%20Assets/modern-office-building-with-glass-facade-transparent-background%202.svg",
     alt: "All solutions",
   },
   {
@@ -41,7 +42,8 @@ export const environmentSectors: EnvironmentSector[] = [
     label: "Corporate & Office",
     descriptor: "Open-plan workspaces, boardrooms & server facilities",
     stat: "30% of offices have Sick Building Syndrome",
-    image: "/Website%20Assets/modern-office-building-with-glass-facade-transparent-background%202.svg",
+    image:
+      "/Website%20Assets/modern-office-building-with-glass-facade-transparent-background%202.svg",
     alt: "Premium open-plan corporate office",
   },
   {
@@ -170,10 +172,26 @@ export interface IntegrationType {
 }
 
 export const integrationTypes: IntegrationType[] = [
-  { id: "in-duct", label: "In-Duct / HVAC", shortDesc: "Installs inside your AC/HVAC duct" },
-  { id: "standalone", label: "Standalone Unit", shortDesc: "Placed in a room, plug & operate" },
-  { id: "portable", label: "Portable / In-Vehicle", shortDesc: "USB-powered, carry anywhere" },
-  { id: "fresh-air", label: "Fresh Air Supply", shortDesc: "Pulls clean outdoor air in" },
+  {
+    id: "in-duct",
+    label: "In-Duct / HVAC",
+    shortDesc: "Installs inside your AC/HVAC duct",
+  },
+  {
+    id: "standalone",
+    label: "Standalone Unit",
+    shortDesc: "Placed in a room, plug & operate",
+  },
+  {
+    id: "portable",
+    label: "Portable / In-Vehicle",
+    shortDesc: "USB-powered, carry anywhere",
+  },
+  {
+    id: "fresh-air",
+    label: "Fresh Air Supply",
+    shortDesc: "Pulls clean outdoor air in",
+  },
 ];
 
 // ─── Customer Type Filters ───────────────────────────────────────────────────
@@ -187,8 +205,16 @@ export interface CustomerType {
 }
 
 export const customerTypes: CustomerType[] = [
-  { id: "b2b", label: "Business / Institutional", shortDesc: "For offices, hospitals, factories" },
-  { id: "b2c", label: "Home / Personal", shortDesc: "For residences and personal use" },
+  {
+    id: "b2b",
+    label: "Business / Institutional",
+    shortDesc: "For offices, hospitals, factories",
+  },
+  {
+    id: "b2c",
+    label: "Home / Personal",
+    shortDesc: "For residences and personal use",
+  },
   { id: "both", label: "Both", shortDesc: "Flexible for any setting" },
 ];
 
@@ -226,7 +252,8 @@ export const products: ProductEntry[] = [
   {
     id: "air-pollution-control-device-apcd",
     systemName: "Air Pollution Control Device (APCD)",
-    tagline: "Smart outdoor air purification hub for public & institutional spaces",
+    tagline:
+      "Smart outdoor air purification hub for public & institutional spaces",
     integrationType: "standalone",
     customerType: "b2b",
     capacityMaxSqFt: 50000,
@@ -236,16 +263,23 @@ export const products: ProductEntry[] = [
     specs: [
       { key: "Purification", value: "Up to 136,000 m³/day" },
       { key: "PM Reduction", value: "200 → 50 in 60 min" },
-      { key: "Application", value: "B2B / Outdoor — Smart city, campuses, factories" },
+      {
+        key: "Application",
+        value: "B2B / Outdoor — Smart city, campuses, factories",
+      },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/01_Air-Pollution-Control-Device.png", alt: "Air Pollution Control Device (APCD)" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/01_Air-Pollution-Control-Device.png",
+      alt: "Air Pollution Control Device (APCD)",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.95, "odor-gases": 0.7, pathogens: 0.7 },
   },
   {
     id: "bipolar-fc-3-air-ionizer",
-    systemName: "Bipolar FC-3 Air Ionizer",
-    tagline: "NPBI ionizer for fan coils & mini-splits — zero ozone, 7-year lifespan",
+    systemName: "Cassette/Split AC purifier",
+    tagline:
+      "NPBI ionizer for fan coils & mini-splits — zero ozone, 7-year lifespan",
     integrationType: "in-duct",
     customerType: "b2b",
     capacityMaxSqFt: 3500,
@@ -255,16 +289,23 @@ export const products: ProductEntry[] = [
     specs: [
       { key: "Ion Output", value: ">350 million ions/cc" },
       { key: "Capacity", value: "Up to 3,200 CFM / 8 tons" },
-      { key: "Application", value: "B2B / HVAC — Fan coils, mini-splits, air handlers" },
+      {
+        key: "Application",
+        value: "B2B / HVAC — Fan coils, mini-splits, air handlers",
+      },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/02_Bipolar-FC-3-Air-Ionizer.png", alt: "Bipolar FC-3 Air Ionizer" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/02_Bipolar-FC-3-Air-Ionizer.png",
+      alt: "Bipolar FC-3 Air Ionizer",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.75, "odor-gases": 0.8, pathogens: 0.9 },
   },
   {
     id: "car-air-purifier-with-advanced-hepa-filter-uv-led-technology",
     systemName: "Car Air Purifier — HEPA + UV LED",
-    tagline: "USB-powered cabin purifier with HEPA + UV LED — 99.9% sterilisation in 30 seconds",
+    tagline:
+      "USB-powered cabin purifier with HEPA + UV LED — 99.9% sterilisation in 30 seconds",
     integrationType: "portable",
     customerType: "b2c",
     capacityMaxSqFt: 100,
@@ -276,14 +317,18 @@ export const products: ProductEntry[] = [
       { key: "Sterilisation", value: "99.9% in 30 sec" },
       { key: "Price", value: "₹3,000 — Add to basket" },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/03_Car-Air-Purifier_1.jpg", alt: "Car Air Purifier with HEPA + UV LED" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/03_Car-Air-Purifier_1.jpg",
+      alt: "Car Air Purifier with HEPA + UV LED",
+    },
     primaryCta: "Add to Basket",
     challengeScores: { particulate: 0.7, "odor-gases": 0.65, pathogens: 0.95 },
   },
   {
     id: "ci-2-air-ionizer-advanced-bipolar-ionization-for-hvac-air-purification",
-    systemName: "CI-2 Air Ionizer",
-    tagline: "Self-cleaning NPBI ionizer for fan coils & mini-splits up to 2,400 CFM",
+    systemName: "Cassette/Split AC purifier",
+    tagline:
+      "Self-cleaning NPBI ionizer for fan coils & mini-splits up to 2,400 CFM",
     integrationType: "in-duct",
     customerType: "b2b",
     capacityMaxSqFt: 2500,
@@ -293,54 +338,85 @@ export const products: ProductEntry[] = [
     specs: [
       { key: "Ion Output", value: ">160 million ions/cc" },
       { key: "Capacity", value: "Up to 2,400 CFM / 6 tons" },
-      { key: "Application", value: "B2B / HVAC — Fan coils, mini-splits, ductless ACs" },
+      {
+        key: "Application",
+        value: "B2B / HVAC — Fan coils, mini-splits, ductless ACs",
+      },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/04_CI-2-Air-Ionizer.png", alt: "CI-2 Air Ionizer" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/04_CI-2-Air-Ionizer.png",
+      alt: "CI-2 Air Ionizer",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.7, "odor-gases": 0.75, pathogens: 0.9 },
   },
   {
     id: "dm-48-duct-mounted-npbi-air-purifier",
-    systemName: "DM-48 Duct Mounted NPBI™",
-    tagline: "Heavy-duty duct ioniser for 4,800 CFM systems — 8–10 year lifespan, zero maintenance",
+    systemName: "Induct bipolar air purifier",
+    tagline:
+      "Heavy-duty duct ioniser for 4,800 CFM systems — 8–10 year lifespan, zero maintenance",
     integrationType: "in-duct",
     customerType: "b2b",
     capacityMaxSqFt: 8000,
-    environments: ["corporate", "industrial", "healthcare", "education", "residential"],
+    environments: [
+      "corporate",
+      "industrial",
+      "healthcare",
+      "education",
+      "residential",
+    ],
     challenges: ["particulate", "odor-gases", "pathogens"],
     badges: ["UL 2998 Zero Ozone", "Self-Cleaning", "8–10 Yr Lifespan"],
     specs: [
       { key: "Capacity", value: "Up to 4,800 CFM / 12 tons" },
       { key: "Voltage", value: "24V–240V multi-voltage" },
-      { key: "Application", value: "B2B / HVAC — Duct-mounted, commercial & industrial" },
+      {
+        key: "Application",
+        value: "B2B / HVAC — Duct-mounted, commercial & industrial",
+      },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/05_DM-48-Duct-Mounted-NPBI.png", alt: "DM-48 Duct Mounted NPBI™ Air Purifier" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/05_DM-48-Duct-Mounted-NPBI.png",
+      alt: "DM-48 Duct Mounted NPBI™ Air Purifier",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.85, "odor-gases": 0.75, pathogens: 0.9 },
   },
   {
     id: "ductable-electronic-air-cleaner-deac-high-efficiency-pm2-5-air-purifier-for-hvac-ducts",
-    systemName: "DEAC Ductable Electronic Air Cleaner",
-    tagline: "Electrostatic duct purifier — >90% efficiency, 10-year life, no filter replacements",
+    systemName: "Air purifier for Ductable ACs",
+    tagline:
+      "Electrostatic duct purifier — >90% efficiency, 10-year life, no filter replacements",
     integrationType: "in-duct",
     customerType: "b2b",
     capacityMaxSqFt: 5000,
     environments: ["corporate", "healthcare", "education", "residential"],
     challenges: ["particulate", "pathogens"],
-    badges: [">90% PM2.5 Efficiency", "No Filter Replacement", "BMS Compatible"],
+    badges: [
+      ">90% PM2.5 Efficiency",
+      "No Filter Replacement",
+      "BMS Compatible",
+    ],
     specs: [
       { key: "Filtration", value: ">90% at 0.01μm (PM2.5)" },
       { key: "Power", value: "≤39W" },
-      { key: "Application", value: "B2B / HVAC — Commercial & residential ducts" },
+      {
+        key: "Application",
+        value: "B2B / HVAC — Commercial & residential ducts",
+      },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/06_Ductable-Electronic-Air-Cleaner.png", alt: "DEAC Ductable Electronic Air Cleaner" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/06_Ductable-Electronic-Air-Cleaner.png",
+      alt: "DEAC Ductable Electronic Air Cleaner",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.95, pathogens: 0.85 },
   },
   {
     id: "electronic-air-cleaner-eac-advanced-air-purification-for-hvac-systems",
-    systemName: "EAC Electronic Air Cleaner",
-    tagline: "MERV-14 equivalent AHU/FCU cleaner — retrofit-friendly, washable, zero filter waste",
+    systemName: "Air purifier for commercial ACs",
+    tagline:
+      "MERV-14 equivalent AHU/FCU cleaner — retrofit-friendly, washable, zero filter waste",
     integrationType: "in-duct",
     customerType: "b2b",
     capacityMaxSqFt: 6000,
@@ -352,33 +428,18 @@ export const products: ProductEntry[] = [
       { key: "Capacity", value: "1,000–4,000 CMH" },
       { key: "Application", value: "B2B / HVAC — AHU & FCU, retrofit" },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/07_Electronic-Air-Cleaner.png", alt: "EAC Electronic Air Cleaner" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/07_Electronic-Air-Cleaner.png",
+      alt: "EAC Electronic Air Cleaner",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.95, pathogens: 0.85 },
   },
   {
-    id: "fine-filter-eu5-f5-high-efficiency-air-filter-for-clean-rooms-hvac",
-    systemName: "Fine Filter EU5/F5",
-    tagline: "MERV-10 synthetic panel filter — 99% at 5μm, for clean rooms, pharma & HVAC",
-    integrationType: "in-duct",
-    customerType: "b2b",
-    capacityMaxSqFt: 3000,
-    environments: ["industrial", "healthcare", "datacenter"],
-    challenges: ["particulate"],
-    badges: ["MERV-10 Equivalent", "ASHRAE 52.2", "Custom Sizes"],
-    specs: [
-      { key: "Efficiency", value: "Up to 99% at 5μm" },
-      { key: "Airflow", value: "500–2,000 CFM range" },
-      { key: "Application", value: "B2B / Industrial — Clean rooms, pharma, food" },
-    ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/08_Fine-Filter-EU5-F5.png", alt: "Fine Filter EU5/F5" },
-    primaryCta: "Enquire for Price",
-    challengeScores: { particulate: 0.9 },
-  },
-  {
     id: "fresh-air-energy-recovery-ventilator",
-    systemName: "Fresh Air Energy Recovery Ventilator",
-    tagline: "ERV with 6-stage filtration & 80% heat recovery — combats CO₂ and stale air",
+    systemName: "6 layer Fresh air purifier",
+    tagline:
+      "ERV with 6-stage filtration & 80% heat recovery — combats CO₂ and stale air",
     integrationType: "fresh-air",
     customerType: "b2b",
     capacityMaxSqFt: 4000,
@@ -388,16 +449,28 @@ export const products: ProductEntry[] = [
     specs: [
       { key: "PM2.5 Removal", value: "99% (6-stage filter)" },
       { key: "Energy Saving", value: "40% vs. conventional" },
-      { key: "Application", value: "B2B / HVAC — Fresh air supply, all spaces" },
+      {
+        key: "Application",
+        value: "B2B / HVAC — Fresh air supply, all spaces",
+      },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/09_Fresh-Air-ERV.png", alt: "Fresh Air Energy Recovery Ventilator" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/09_Fresh-Air-ERV.png",
+      alt: "Fresh Air Energy Recovery Ventilator",
+    },
     primaryCta: "Enquire for Price",
-    challengeScores: { particulate: 0.9, "odor-gases": 0.8, "high-co2": 0.95, pathogens: 0.8 },
+    challengeScores: {
+      particulate: 0.9,
+      "odor-gases": 0.8,
+      "high-co2": 0.95,
+      pathogens: 0.8,
+    },
   },
   {
     id: "guardian-air-in-duct-air-purification",
-    systemName: "Guardian Air+ In-Duct",
-    tagline: "PHI + Bipolar ionization — eliminates 99% of airborne germs within 3 feet of source",
+    systemName: "guardian air + active purifier",
+    tagline:
+      "PHI + Bipolar ionization — eliminates 99% of airborne germs within 3 feet of source",
     integrationType: "in-duct",
     customerType: "b2b",
     capacityMaxSqFt: 8000,
@@ -409,14 +482,18 @@ export const products: ProductEntry[] = [
       { key: "Capacity", value: "Up to 26,000 CFM (AIR+ 9')" },
       { key: "Application", value: "B2B / HVAC — Residential to healthcare" },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/10_Guardian-Air-Plus.png", alt: "Guardian Air+ In-Duct Air Purification" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/10_Guardian-Air-Plus.png",
+      alt: "Guardian Air+ In-Duct Air Purification",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.8, "odor-gases": 0.85, pathogens: 0.99 },
   },
   {
     id: "meac-electronic-air-cleaner-gxmeac-series",
-    systemName: "MEAC GxMEAC Air Cleaner",
-    tagline: "Micro-electrostatic AHU purifier — reusable collector, zero filter costs, SARS-CoV-2 tested",
+    systemName: "Air purifier for Ductable ACs",
+    tagline:
+      "Micro-electrostatic AHU purifier — reusable collector, zero filter costs, SARS-CoV-2 tested",
     integrationType: "in-duct",
     customerType: "b2b",
     capacityMaxSqFt: 15000,
@@ -428,14 +505,18 @@ export const products: ProductEntry[] = [
       { key: "Maintenance", value: "Zero filter replacements" },
       { key: "Application", value: "B2B / HVAC — Large AHU, hospitals, malls" },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/11_MEAC.png", alt: "MEAC GxMEAC Electronic Air Cleaner" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/11_MEAC.png",
+      alt: "MEAC GxMEAC Electronic Air Cleaner",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.9, pathogens: 0.92 },
   },
   {
     id: "o2-cure-elixir-air-purifier-with-odor-sensing-system-humidifier",
-    systemName: "O2 Cure Elixir — Purifier + Humidifier",
-    tagline: "Odor-sensing home purifier with built-in humidifier — up to 450 sq ft",
+    systemName: "6 layer purifier with humidifier",
+    tagline:
+      "Odor-sensing home purifier with built-in humidifier — up to 450 sq ft",
     integrationType: "standalone",
     customerType: "b2c",
     capacityMaxSqFt: 450,
@@ -447,14 +528,18 @@ export const products: ProductEntry[] = [
       { key: "Special Feature", value: "Integrated odor sensing" },
       { key: "Application", value: "B2C / Residential — Bedroom, living room" },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/12_Elixir-Air-Purifier_1.jpg", alt: "O2 Cure Elixir Air Purifier" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/12_Elixir-Air-Purifier_1.jpg",
+      alt: "O2 Cure Elixir Air Purifier",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.85, "odor-gases": 0.9, pathogens: 0.8 },
   },
   {
     id: "o2-cure-hulk-air-purifier-humidifier",
-    systemName: "O2 Cure Hulk — Purifier + Humidifier",
-    tagline: "High-output standalone purifier with humidifier for large rooms up to 850 sq ft",
+    systemName: "6 layer purifier with humidifier",
+    tagline:
+      "High-output standalone purifier with humidifier for large rooms up to 850 sq ft",
     integrationType: "standalone",
     customerType: "both",
     capacityMaxSqFt: 850,
@@ -464,16 +549,23 @@ export const products: ProductEntry[] = [
     specs: [
       { key: "Coverage", value: "550–850 sq ft" },
       { key: "Type", value: "Standalone floor unit" },
-      { key: "Application", value: "B2C + B2B / Halls, showrooms, large rooms" },
+      {
+        key: "Application",
+        value: "B2C + B2B / Halls, showrooms, large rooms",
+      },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/13_Hulk-Air-Purifier_1.jpg", alt: "O2 Cure Hulk Air Purifier" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/13_Hulk-Air-Purifier_1.jpg",
+      alt: "O2 Cure Hulk Air Purifier",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.85, "odor-gases": 0.8, pathogens: 0.8 },
   },
   {
     id: "o2-cure-hybrid-air-purifier",
     systemName: "O2 Cure Hybrid Air Purifier",
-    tagline: "Customisable floor-standing hybrid purifier — adapts to home or commercial use",
+    tagline:
+      "Customisable floor-standing hybrid purifier — adapts to home or commercial use",
     integrationType: "standalone",
     customerType: "both",
     capacityMaxSqFt: 2000,
@@ -485,14 +577,18 @@ export const products: ProductEntry[] = [
       { key: "Flexibility", value: "Customisable tech stack" },
       { key: "Application", value: "B2C + B2B / Home, offices, schools" },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/14_Hybrid-Air-Purifier.jpg", alt: "O2 Cure Hybrid Air Purifier" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/14_Hybrid-Air-Purifier.jpg",
+      alt: "O2 Cure Hybrid Air Purifier",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.85, "odor-gases": 0.8, pathogens: 0.85 },
   },
   {
     id: "o2-cure-reme-led-portable-air-purifier",
-    systemName: "O2 Cure REME LED Portable",
-    tagline: "Compact REME LED purifier for nurseries, cabins & cars — active at the source",
+    systemName: "Travel buddy purifier",
+    tagline:
+      "Compact REME LED purifier for nurseries, cabins & cars — active at the source",
     integrationType: "portable",
     customerType: "b2c",
     capacityMaxSqFt: 200,
@@ -504,33 +600,18 @@ export const products: ProductEntry[] = [
       { key: "Use Case", value: "Nurseries, cabins, vehicles" },
       { key: "Application", value: "B2C / Portable — Personal spaces" },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/15_REME-LED-Portable_1.jpg", alt: "O2 Cure REME LED Portable Air Purifier" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/15_REME-LED-Portable_1.jpg",
+      alt: "O2 Cure REME LED Portable Air Purifier",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.7, "odor-gases": 0.8, pathogens: 0.9 },
   },
   {
-    id: "o2cure-eu4-pre-filters-merv-7-8-efficiency-for-superior-air-quality",
-    systemName: "O₂Cure EU4 Pre-Filters — MERV 7-8",
-    tagline: "Synthetic MERV 7-8 pre-filter panels for HVAC — extends main filter life across any scale",
-    integrationType: "in-duct",
-    customerType: "b2b",
-    capacityMaxSqFt: 8000,
-    environments: ["corporate", "industrial", "datacenter", "healthcare"],
-    challenges: ["particulate"],
-    badges: ["MERV 7-8", "ASHRAE 52.2", "Custom Sizes"],
-    specs: [
-      { key: "Efficiency", value: "MERV 7-8 (Synthetic)" },
-      { key: "Standard", value: "ASHRAE 52.2 / EN 779" },
-      { key: "Application", value: "B2B / HVAC pre-filtration, residential to industrial" },
-    ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/16_EU4-Pre-Filter.jpg", alt: "O₂Cure EU4 Pre-Filters" },
-    primaryCta: "Enquire for Price",
-    challengeScores: { particulate: 0.8 },
-  },
-  {
     id: "o2cure-kitchen-exhaust-dry-scrubber",
     systemName: "O₂Cure Kitchen Exhaust Dry Scrubber",
-    tagline: "Commercial kitchen exhaust scrubber — removes grease, smoke, and cooking fumes at source",
+    tagline:
+      "Commercial kitchen exhaust scrubber — removes grease, smoke, and cooking fumes at source",
     integrationType: "standalone",
     customerType: "b2b",
     capacityMaxSqFt: 3000,
@@ -542,14 +623,18 @@ export const products: ProductEntry[] = [
       { key: "Targets", value: "Grease, smoke, cooking fumes" },
       { key: "Application", value: "B2B / Commercial kitchens & industrial" },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/17_Kitchen-Exhaust-Dry-Scrubber.png", alt: "O₂Cure Kitchen Exhaust Dry Scrubber" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/17_Kitchen-Exhaust-Dry-Scrubber.png",
+      alt: "O₂Cure Kitchen Exhaust Dry Scrubber",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.85, "odor-gases": 0.95 },
   },
   {
     id: "o2cure-max-cure-fresh-air-filtration-unit",
     systemName: "O₂Cure Max Cure Fresh Air Unit",
-    tagline: "Positive-pressure fresh air filtration — purified outdoor air for homes & offices up to 2,500 sq ft",
+    tagline:
+      "Positive-pressure fresh air filtration — purified outdoor air for homes & offices up to 2,500 sq ft",
     integrationType: "fresh-air",
     customerType: "both",
     capacityMaxSqFt: 2500,
@@ -561,33 +646,48 @@ export const products: ProductEntry[] = [
       { key: "Method", value: "Positive pressure fresh air supply" },
       { key: "Application", value: "B2B + B2C / Fresh air — Homes & offices" },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/18_Max-Cure.jpg", alt: "O₂Cure Max Cure Fresh Air Filtration Unit" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/18_Max-Cure.jpg",
+      alt: "O₂Cure Max Cure Fresh Air Filtration Unit",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.9, "high-co2": 0.9, pathogens: 0.8 },
   },
   {
     id: "o2cure-molecular-filtration-unit",
     systemName: "O₂Cure Molecular Filtration Unit",
-    tagline: "Gas-phase molecular filtration for data centres, labs & control rooms — eliminates corrosive gases",
+    tagline:
+      "Gas-phase molecular filtration for data centres, labs & control rooms — eliminates corrosive gases",
     integrationType: "standalone",
     customerType: "b2b",
     capacityMaxSqFt: 5000,
     environments: ["datacenter", "industrial", "corporate"],
     challenges: ["odor-gases", "particulate"],
-    badges: ["Molecular Filtration", "Corrosive Gas Removal", "Mission-Critical"],
+    badges: [
+      "Molecular Filtration",
+      "Corrosive Gas Removal",
+      "Mission-Critical",
+    ],
     specs: [
       { key: "Technology", value: "Gas-phase molecular filtration" },
       { key: "Target Gases", value: "Corrosive, reactive, odorous gases" },
-      { key: "Application", value: "B2B / Data centres, control rooms, microelectronics" },
+      {
+        key: "Application",
+        value: "B2B / Data centres, control rooms, microelectronics",
+      },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/19_Molecular-Filtration-Unit.png", alt: "O₂Cure Molecular Filtration Unit" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/19_Molecular-Filtration-Unit.png",
+      alt: "O₂Cure Molecular Filtration Unit",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { "odor-gases": 0.98, particulate: 0.75 },
   },
   {
     id: "o2cure-plug-play-air-purifier",
     systemName: "O₂Cure Plug & Play Air Purifier",
-    tagline: "Best-rated plug-in purifier — active PHI technology, no filters, just plug and breathe",
+    tagline:
+      "Best-rated plug-in purifier — active PHI technology, no filters, just plug and breathe",
     integrationType: "standalone",
     customerType: "both",
     capacityMaxSqFt: 1000,
@@ -599,14 +699,18 @@ export const products: ProductEntry[] = [
       { key: "Coverage", value: "Up to 1,000 sq ft" },
       { key: "Application", value: "B2C + B2B / Plug-in, homes & offices" },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/20_Plug-and-Play-Air-Purifier_1.jpg", alt: "O₂Cure Plug & Play Air Purifier" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/20_Plug-and-Play-Air-Purifier_1.jpg",
+      alt: "O₂Cure Plug & Play Air Purifier",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.8, "odor-gases": 0.85, pathogens: 0.9 },
   },
   {
     id: "o2cure-plug-n-play-max-advanced-air-purifier-with-phi-bipolar-ionization-technology",
     systemName: "O₂Cure Plug N Play MAX — PHI + Bipolar",
-    tagline: "In-duct commercial purifier with dual PHI + Bipolar Ionization — for luxury homes to offices",
+    tagline:
+      "In-duct commercial purifier with dual PHI + Bipolar Ionization — for luxury homes to offices",
     integrationType: "in-duct",
     customerType: "both",
     capacityMaxSqFt: 3000,
@@ -615,17 +719,24 @@ export const products: ProductEntry[] = [
     badges: ["PHI + Bipolar", "Dual Technology", "In-Duct"],
     specs: [
       { key: "Technology", value: "PHI + Bipolar Ionization" },
-      { key: "Application", value: "B2B / HVAC — In-duct, commercial to luxury residential" },
+      {
+        key: "Application",
+        value: "B2B / HVAC — In-duct, commercial to luxury residential",
+      },
       { key: "Flexibility", value: "Commercial to luxury residential" },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/21_Plug-n-Play-MAX_1.jpg", alt: "O₂Cure Plug N Play MAX" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/21_Plug-n-Play-MAX_1.jpg",
+      alt: "O₂Cure Plug N Play MAX",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.8, "odor-gases": 0.85, pathogens: 0.95 },
   },
   {
     id: "o2cure-self-charging-air-filter",
-    systemName: "O₂Cure Self-Charging Air Filter",
-    tagline: "Passive electrostatic HVAC pre-filter — no power needed, green buildings certified",
+    systemName: "MERV 10 pre filter",
+    tagline:
+      "Passive electrostatic HVAC pre-filter — no power needed, green buildings certified",
     integrationType: "in-duct",
     customerType: "b2b",
     capacityMaxSqFt: 5000,
@@ -635,16 +746,23 @@ export const products: ProductEntry[] = [
     specs: [
       { key: "Technology", value: "Passive electrostatic" },
       { key: "Power", value: "Zero — self-charging" },
-      { key: "Application", value: "B2B / Industrial — HVAC pre-filter, green buildings" },
+      {
+        key: "Application",
+        value: "B2B / Industrial — HVAC pre-filter, green buildings",
+      },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/22_Self-Charging-Air-Filter.png", alt: "O₂Cure Self-Charging Air Filter" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/22_Self-Charging-Air-Filter.png",
+      alt: "O₂Cure Self-Charging Air Filter",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.85 },
   },
   {
     id: "o2cure-uvgi-emitters-advanced-uv-air-purification-solutions",
-    systemName: "O₂Cure UVGI Emitters",
-    tagline: "In-duct UV germicidal irradiation — disinfects HVAC coils and airstream 24/7",
+    systemName: "UVGI",
+    tagline:
+      "In-duct UV germicidal irradiation — disinfects HVAC coils and airstream 24/7",
     integrationType: "in-duct",
     customerType: "b2b",
     capacityMaxSqFt: 4000,
@@ -656,14 +774,18 @@ export const products: ProductEntry[] = [
       { key: "Target", value: "Bacteria, viruses, mould on coils" },
       { key: "Application", value: "B2B / HVAC — In-duct germicidal UV" },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/23_UVGI-Emitters.png", alt: "O₂Cure UVGI Emitters" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/23_UVGI-Emitters.png",
+      alt: "O₂Cure UVGI Emitters",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { pathogens: 0.99 },
   },
   {
     id: "reme-halo-by-o2cure-advanced-in-duct-air-purifier-for-homes-commercial-spaces",
-    systemName: "REME HALO by O₂Cure",
-    tagline: "Award-winning REME HALO in-duct purifier — 4 model variants, homes to commercial spaces",
+    systemName: "Induct REME purifier",
+    tagline:
+      "Award-winning REME HALO in-duct purifier — 4 model variants, homes to commercial spaces",
     integrationType: "in-duct",
     customerType: "both",
     capacityMaxSqFt: 3500,
@@ -675,14 +797,18 @@ export const products: ProductEntry[] = [
       { key: "Variants", value: "4 models for different duct sizes" },
       { key: "Application", value: "B2B + Residential / HVAC — In-duct" },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/24_REME-HALO.jpg", alt: "REME HALO by O₂Cure" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/24_REME-HALO.jpg",
+      alt: "REME HALO by O₂Cure",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.85, "odor-gases": 0.85, pathogens: 0.95 },
   },
   {
     id: "reme-halo-led-next-generation-in-duct-active-air-purifier",
-    systemName: "REME HALO LED",
-    tagline: "Next-gen mercury-free LED REME purifier — quieter, greener, longer-lasting than original HALO",
+    systemName: "Induct REME LED purifier",
+    tagline:
+      "Next-gen mercury-free LED REME purifier — quieter, greener, longer-lasting than original HALO",
     integrationType: "in-duct",
     customerType: "both",
     capacityMaxSqFt: 4000,
@@ -692,16 +818,23 @@ export const products: ProductEntry[] = [
     specs: [
       { key: "Technology", value: "REME LED (mercury-free UV)" },
       { key: "Upgrade", value: "Quieter, greener vs. original HALO" },
-      { key: "Application", value: "B2B + Residential / HVAC — Premium in-duct" },
+      {
+        key: "Application",
+        value: "B2B + Residential / HVAC — Premium in-duct",
+      },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/25_REME-HALO-LED.png", alt: "REME HALO LED" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/25_REME-HALO-LED.png",
+      alt: "REME HALO LED",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.85, "odor-gases": 0.85, pathogens: 0.95 },
   },
   {
     id: "replacement-of-phi-cell-plug-play",
     systemName: "PHI-CELL® Replacement — Plug & Play",
-    tagline: "Official PHI-CELL® replacement for the O₂Cure Plug & Play purifier — restores full performance",
+    tagline:
+      "Official PHI-CELL® replacement for the O₂Cure Plug & Play purifier — restores full performance",
     integrationType: "standalone",
     customerType: "b2c",
     capacityMaxSqFt: 1000,
@@ -711,10 +844,100 @@ export const products: ProductEntry[] = [
     specs: [
       { key: "Compatibility", value: "O₂Cure Plug & Play Air Purifier" },
       { key: "Type", value: "PHI-CELL® consumable replacement" },
-      { key: "Application", value: "B2C / Consumable — Performance restoration" },
+      {
+        key: "Application",
+        value: "B2C / Consumable — Performance restoration",
+      },
     ],
-    image: { src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/26_PHI-Cell-Replacement.png", alt: "PHI-CELL® Replacement" },
+    image: {
+      src: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/26_PHI-Cell-Replacement.png",
+      alt: "PHI-CELL® Replacement",
+    },
     primaryCta: "Enquire for Price",
     challengeScores: { particulate: 0.8, "odor-gases": 0.85, pathogens: 0.9 },
+  },
+  {
+    id: "filter-set-hulk",
+    systemName: "Filter set - hulk",
+    tagline: "Replacement filter set for Hulk air purifier",
+    integrationType: "standalone",
+    customerType: "b2c",
+    capacityMaxSqFt: 850,
+    environments: ["residential"],
+    challenges: ["particulate", "odor-gases"],
+    badges: ["Replacement Filter", "Hulk Compatible"],
+    specs: [
+      { key: "Type", value: "Consumable replacement" },
+      { key: "Application", value: "B2C / Residential" },
+    ],
+    image: {
+      src: "https://placehold.co/600x400/png?text=Filter+Set+Hulk",
+      alt: "Filter set - hulk",
+    },
+    primaryCta: "Add to Basket",
+    challengeScores: { particulate: 0.85, "odor-gases": 0.8 },
+  },
+  {
+    id: "filter-set-elixir",
+    systemName: "Filter set - elixir",
+    tagline: "Replacement filter set for Elixir air purifier",
+    integrationType: "standalone",
+    customerType: "b2c",
+    capacityMaxSqFt: 450,
+    environments: ["residential"],
+    challenges: ["particulate", "odor-gases"],
+    badges: ["Replacement Filter", "Elixir Compatible"],
+    specs: [
+      { key: "Type", value: "Consumable replacement" },
+      { key: "Application", value: "B2C / Residential" },
+    ],
+    image: {
+      src: "https://placehold.co/600x400/png?text=Filter+Set+Elixir",
+      alt: "Filter set - elixir",
+    },
+    primaryCta: "Add to Basket",
+    challengeScores: { particulate: 0.85, "odor-gases": 0.9 },
+  },
+  {
+    id: "filter-set-max-cure",
+    systemName: "Filter set- max cure",
+    tagline: "Replacement filter set for Max Cure air purifier",
+    integrationType: "fresh-air",
+    customerType: "both",
+    capacityMaxSqFt: 2500,
+    environments: ["residential", "corporate"],
+    challenges: ["particulate", "high-co2"],
+    badges: ["Replacement Filter", "Max Cure Compatible"],
+    specs: [
+      { key: "Type", value: "Consumable replacement" },
+      { key: "Application", value: "B2B + B2C / Fresh air" },
+    ],
+    image: {
+      src: "https://placehold.co/600x400/png?text=Filter+Set+Max+Cure",
+      alt: "Filter set- max cure",
+    },
+    primaryCta: "Add to Basket",
+    challengeScores: { particulate: 0.9, "high-co2": 0.9 },
+  },
+  {
+    id: "filter-set-hybrid",
+    systemName: "Filter set - hybrid",
+    tagline: "Replacement filter set for Hybrid air purifier",
+    integrationType: "standalone",
+    customerType: "both",
+    capacityMaxSqFt: 2000,
+    environments: ["residential", "corporate", "education"],
+    challenges: ["particulate", "odor-gases"],
+    badges: ["Replacement Filter", "Hybrid Compatible"],
+    specs: [
+      { key: "Type", value: "Consumable replacement" },
+      { key: "Application", value: "B2C + B2B" },
+    ],
+    image: {
+      src: "https://placehold.co/600x400/png?text=Filter+Set+Hybrid",
+      alt: "Filter set - hybrid",
+    },
+    primaryCta: "Add to Basket",
+    challengeScores: { particulate: 0.85, "odor-gases": 0.8 },
   },
 ];

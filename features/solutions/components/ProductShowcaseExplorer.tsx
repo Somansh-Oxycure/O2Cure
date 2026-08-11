@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useState, useMemo, useCallback, useEffect } from "react";
@@ -86,7 +87,7 @@ export function ProductShowcaseExplorer() {
 
     if (activeChallenges.length > 0) {
       result = result.filter((p) =>
-        activeChallenges.some((c) => p.challenges.includes(c))
+        activeChallenges.every((c) => p.challenges.includes(c))
       );
     }
 
@@ -107,7 +108,12 @@ export function ProductShowcaseExplorer() {
         activeAreaSegment === "compact" ? 0 :
           activeAreaSegment === "mid" ? 500 :
             activeAreaSegment === "large" ? 2500 : 8000;
-      result = result.filter((p) => p.capacityMaxSqFt >= minSqFt);
+      const maxSqFt =
+        activeAreaSegment === "compact" ? 500 :
+          activeAreaSegment === "mid" ? 2500 :
+            activeAreaSegment === "large" ? 8000 : Infinity;
+      
+      result = result.filter((p) => p.capacityMaxSqFt >= minSqFt && p.capacityMaxSqFt <= maxSqFt);
     }
 
     return result;

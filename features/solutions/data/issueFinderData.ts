@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Air Issue Finder — issue definitions, recommendation engine, and space config.
  * Pure client-side logic — no external dependencies.

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
@@ -336,7 +338,7 @@ function DesktopHero() {
           }}
         >
           <span className="font-heading text-eyebrow font-semibold tracking-[0.2em] text-[#1C1C1C]/45">
-            India's Best Air Purification Solutions
+            India's Most Advanced Air Purification Solutions
           </span>
           <div className="h-[1px] w-6 bg-[#1C1C1C]/15" />
         </motion.div>

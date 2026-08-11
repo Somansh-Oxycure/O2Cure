@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Sourcing Assistant</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --brand: #3b82f6;
+            --brand-hover: #2563eb;
+            --border: #334155;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 240px;
+        }
+
+        .logo-container {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: 50%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .company-name {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+
+        .search-btn {
+            background: var(--brand);
+            border: none;
+            color: #fff;
+            padding: 0.6rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            width: 100%;
+            text-decoration: none;
+            display: inline-block;
+            box-sizing: border-box;
+            transition: background 0.2s;
+        }
+
+        .search-btn:hover {
+            background: var(--brand-hover);
+        }
+        
+        .wiki-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            width: 100%;
+            text-decoration: none;
+            display: inline-block;
+            box-sizing: border-box;
+            margin-top: 0.5rem;
+            transition: background 0.2s, color 0.2s;
+        }
+        
+        .wiki-btn:hover {
+            background: var(--border);
+            color: var(--text);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>O₂Cure Logo Sourcing Assistant</h1>
+            <p>Click "Search Google Images" to instantly find high-resolution, transparent PNG or SVG logos. Save the image you like and drop it into <code>public/Clients/</code>.</p>
+        </header>
+
+        <div class="grid" id="logoGrid"></div>
+    </div>
+
+    <script>
+        // Alphabetized list of companies
+        const companies = {
+            "Adani airports": "adaniports.com",
+            "Adani infra": "adani.com",
+            "Agartala airport": "adani.com",
+            "Ajanta pharma": "ajantapharma.com",
+            "Apple": "apple.com",
+            "Army hospitals": "indianarmy.nic.in",
+            "Ashoka university": "ashoka.edu.in",
+            "BARC": "barc.gov.in",
+            "BECIL": "becil.com",
+            "Best tech": "besttech.com",
+            "Bita goa": "bits-pilani.ac.in",
+            "Bits pilani": "bits-pilani.ac.in",
+            "Cipla": "cipla.com",
+            "Coca cola": "coca-cola.com",
+            "Cognizant": "cognizant.com",
+            "Cult fitness": "cult.fit",
+            "Decathlong": "decathlon.in",
+            "Delhi airport": "newdelhiairport.in",
+            "Divis lab": "divislabs.com",
+            "Dlf": "dlf.in",
+            "Dlf camelias": "dlf.in",
+            "Drive fit": "drivefit.com",
+            "Embassy business park": "embassyofficeparks.com",
+            "Facebook": "facebook.com",
+            "Gail": "gailonline.com",
+            "Gd goenka school": "gdgoenka.com",
+            "Goa airport": "mihan.in",
+            "Goa shipyard": "goashipyard.in",
+            "Godrej": "godrej.com",
+            "Gold gym": "goldsgym.in",
+            "Honda": "honda2wheelersindia.com",
+            "Hyatt": "hyatt.com",
+            "Hyundai": "hyundai.com",
+            "IIM": "iimb.ac.in",
+            "ILBS delhi": "ilbs.in",
+            "IOCL": "iocl.com",
+            "ISB": "isb.edu",
+            "ISRO": "isro.gov.in",
+            "India tv": "indiatvnews.com",
+            "Indian express": "indianexpress.com",
+            "Indigo": "goindigo.in",
+            "Inox": "inoxmovies.com",
+            "JMD": "jmdgroup.in",
+            "Jagran tv": "jagrantv.com",
+            "Jaipur airport": "jaipurairport.com",
+            "Jio": "jio.com",
+            "Jubilant": "jubilantfoodworks.com",
+            "Kmpg": "kpmg.com",
+            "LODHA GROUP": "lodhagroup.in",
+            "Lemon tree": "lemontreehotels.com",
+            "M3m": "m3mindia.com",
+            "MUMBAI POLICE": "mumbaipolice.gov.in",
+            "Maharaja agrasen hospital": "mashospital.org",
+            "Marriot": "marriott.com",
+            "Maruti": "marutisuzuki.com",
+            "Max infra": "maxinfra.com",
+            "Max realty": "maxgroup.ae",
+            "Max square": "maxsquare.in",
+            "Mercedes": "mercedes-benz.co.in",
+            "Mumbai airport": "csmia.adaniairports.com",
+            "Mylan": "mylan.com",
+            "Nanavati": "nanavatihospital.org",
+            "Ndtv": "ndtv.com",
+            "Oberoi": "oberoihotels.com",
+            "Oxygen business park": "oxygenbusinesspark.com",
+            "PTI": "ptinews.com",
+            "Pathways school": "pathways.in",
+            "Pepsi co": "pepsico.com",
+            "Prestige": "prestigeconstructions.com",
+            "RMZ": "rmzcorp.com",
+            "RR hospital": "indianarmy.nic.in",
+            "Radisson": "radissonhotels.com",
+            "Raheja": "raheja.com",
+            "Reddys": "drreddys.com",
+            "Reliance infra": "rinfra.com",
+            "Reliance vantara": "reliancefoundation.org",
+            "Saint marks school": "saintmarksschool.in",
+            "Satara hospital": "satarahospital.com",
+            "Shapoorji palonji": "shapoorjipallonji.com",
+            "Sharda university": "sharda.ac.in",
+            "Shereton": "sheraton.marriott.com",
+            "Smartworks": "smartworksoffice.com",
+            "Starsports": "startv.com",
+            "Stateman": "thestatesman.com",
+            "Stpi": "stpi.in",
+            "Symbiosis hospital": "suhrc.siu.edu.in",
+            "Tata hospital": "tmc.gov.in",
+            "Tata steel": "tatasteel.com",
+            "The lodhi": "thelodhi.com",
+            "Udaipur airport": "adani.com",
+            "Vatika": "vatikagroup.com",
+            "Venkatesh hospital": "venkateshwarhospital.com",
+            "Westin hotels": "westin.marriott.com",
+            "Wework": "wework.com"
+        };
+
+        const grid = document.getElementById('logoGrid');
+
+        Object.entries(companies).forEach(([name, domain]) => {
+            // Keep the favicon just for a visual cue of brand colors
+            const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+            
+            // Build smart Google Images query
+            const searchQuery = encodeURIComponent(`${name} official logo high resolution transparent (png OR svg)`);
+            const googleImagesUrl = `https://www.google.com/search?q=${searchQuery}&tbm=isch`;
+            
+            const wikiQuery = encodeURIComponent(`${name} logo svg`);
+            const vectorLogoUrl = `https://www.google.com/search?q=${wikiQuery}+site:wikimedia.org+OR+site:vectorlogo.zone&tbm=isch`;
+
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+        <div class="logo-container">
+          <img src="${faviconUrl}" alt="${name} icon" onerror="this.src='https://placehold.co/80x80?text=${encodeURIComponent(name.charAt(0))}'">
+        </div>
+        <div class="company-name" title="${name}">${name}</div>
+        <div style="width: 100%;">
+            <a class="search-btn" href="${googleImagesUrl}" target="_blank">Search Google Images</a>
+            <a class="wiki-btn" href="${vectorLogoUrl}" target="_blank">Search Vector SVGs</a>
+        </div>
+      `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+
+</html>

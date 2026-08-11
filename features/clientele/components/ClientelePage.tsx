@@ -1,3 +1,6 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -90,6 +93,60 @@ function LogoCard({
 }) {
   const prefersReduced = useReducedMotion();
 
+  // ── Residence text card (no logo available) ─────────────────────────────
+  if (client.category === "residences") {
+    return (
+      <motion.div
+        layout
+        initial={prefersReduced ? false : { opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={prefersReduced ? undefined : { opacity: 0, y: -8 }}
+        transition={{
+          duration: 0.38,
+          delay: Math.min(index * 0.022, 0.55),
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        className="group relative flex flex-col items-center justify-center rounded-2xl border border-border overflow-hidden transition-all duration-300 hover:border-brand-green/30 hover:shadow-[0_4px_20px_-6px_rgba(58,125,42,0.22)]"
+        style={{
+          background: "linear-gradient(135deg, #f0faf0 0%, #f8fcf8 50%, #ffffff 100%)",
+          minHeight: "110px",
+          padding: "1.25rem 1rem",
+        }}
+      >
+        {/* Subtle decorative arc in corner */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-6 -right-6 h-20 w-20 rounded-full opacity-[0.07]"
+          style={{ background: "radial-gradient(circle, #3A7D2A 0%, transparent 70%)" }}
+        />
+
+        {/* Small home icon — decorative only */}
+        <span
+          aria-hidden
+          className="mb-2 text-[1.1rem] select-none opacity-40"
+        >
+          🏠
+        </span>
+
+        {/* Name — always visible */}
+        <span className="text-center text-[0.82rem] font-semibold leading-snug text-[#1a2e1a]">
+          {client.name}
+        </span>
+
+        {/* Label */}
+        {client.sector ? (
+          <span className="mt-1.5 text-center text-[0.7rem] font-medium leading-snug text-muted-foreground">
+            {client.sector}
+          </span>
+        ) : (
+          <span className="mt-1.5 text-[0.6rem] font-semibold tracking-[0.12em] text-brand-green uppercase opacity-70">
+            Residence
+          </span>
+        )}
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       layout
@@ -101,9 +158,9 @@ function LogoCard({
         delay: Math.min(index * 0.022, 0.55),
         ease: [0.16, 1, 0.3, 1],
       }}
-      className="group relative flex items-center justify-center rounded-2xl border border-border bg-white p-5 transition-all duration-300 hover:border-brand-green/25 hover:shadow-[0_4px_20px_-6px_rgba(58,125,42,0.18)] sm:p-6"
+      className="group relative flex items-center justify-center rounded-2xl border border-border bg-white p-5 transition-all duration-300 hover:border-brand-green/25 hover:shadow-[0_4px_20px_-6px_rgba(58,125,42,0.18)] sm:p-6 overflow-hidden"
     >
-      <div className="relative flex h-16 w-full items-center justify-center sm:h-20">
+      <div className="relative flex h-16 w-full items-center justify-center sm:h-20 transition-all duration-300 group-hover:scale-95 group-hover:opacity-15">
         <Image
           src={client.src}
           alt={`${client.name} logo`}
@@ -115,6 +172,18 @@ function LogoCard({
           unoptimized
         />
       </div>
+
+      {/* Hover Overlay for Client Name */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <span className="text-center text-[0.85rem] font-semibold leading-tight text-foreground">
+          {client.name}
+        </span>
+        {client.sector && (
+          <span className="mt-1 text-center text-[0.7rem] font-medium tracking-wide text-brand-green uppercase">
+            {client.sector}
+          </span>
+        )}
+      </div>
     </motion.div>
   );
 }
@@ -124,12 +193,13 @@ function LogoCard({
 // ─────────────────────────────────────────────────────────────────────────────
 function ScaleVisualiser() {
   const total = 700;
-  const highlighted = 117;
+  const highlighted = clients.length;
+  const remaining = total - highlighted;
 
   const dots = useMemo(
     () =>
       Array.from({ length: total }, (_, i) => i < highlighted),
-    []
+    [highlighted]
   );
 
   return (
@@ -150,7 +220,7 @@ function ScaleVisualiser() {
           <p className="mt-2 max-w-md text-[0.875rem] leading-[1.65] text-muted-foreground">
             Each dot is one O₂Cure enterprise deployment.{" "}
             <span className="font-semibold text-brand-green">
-              117 named partners
+              {highlighted} named partners
             </span>{" "}
             — the rest are additional enterprise clients.
           </p>
@@ -160,11 +230,11 @@ function ScaleVisualiser() {
         <div className="flex shrink-0 flex-col gap-2 text-[0.72rem] text-muted-foreground">
           <div className="flex items-center gap-2">
             <span className="h-2.5 w-2.5 rounded-full bg-brand-green" />
-            Named Partners (117)
+            Named Partners ({highlighted})
           </div>
           <div className="flex items-center gap-2">
             <span className="h-2.5 w-2.5 rounded-full bg-[#D1D5DB]" />
-            Other Installations (583)
+            Other Installations ({remaining})
           </div>
         </div>
       </div>

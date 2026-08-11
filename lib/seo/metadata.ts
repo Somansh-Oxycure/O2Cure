@@ -64,6 +64,9 @@ export const defaultMetadata: Metadata = {
     },
   },
   icons: {
-    icon: siteConfig.logo,
+    icon: "/favicon.png",
+  },
+  verification: {
+    google: "82_-Rm4gd5nhNf9ei-8CxX1GobSzH7M4AyUw20b8dyU",
   },
 };

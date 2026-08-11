@@ -39,7 +39,7 @@ export function SolutionCard({ product, index }: SolutionCardProps) {
   return (
     <Link
       href={`/solutions/${product.id}`}
-      className="block"
+      className="block h-full"
       aria-label={`View ${product.systemName} details`}
     >
       <motion.article
@@ -52,7 +52,7 @@ export function SolutionCard({ product, index }: SolutionCardProps) {
           ease: [0.16, 1, 0.3, 1],
         }}
         className={cn(
-          "group relative overflow-hidden rounded-xl border border-[#E5E7EB] bg-white cursor-pointer",
+          "group relative overflow-hidden rounded-xl border border-[#E5E7EB] bg-white cursor-pointer h-full",
           "shadow-[0_1px_3px_rgba(0,0,0,0.04)] transition-all duration-300",
           "hover:border-[#3A7D2A]/40 hover:shadow-[0_4px_16px_rgba(58,125,42,0.08)]",
           // Mobile: horizontal landscape; Desktop: vertical stack

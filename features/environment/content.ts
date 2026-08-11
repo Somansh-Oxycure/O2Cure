@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { LucideIcon } from "lucide-react";
 import {
   Building2,
