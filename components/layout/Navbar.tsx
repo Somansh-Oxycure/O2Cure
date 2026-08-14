@@ -26,7 +26,7 @@ export function Navbar() {
 
   // Certain pages have dark hero sections. For these, the navbar should have
   // light text at the top before it becomes scrolled (which gives it a white background).
-  const isDarkHero = pathname === "/about" || pathname.startsWith("/blog");
+  const isDarkHero = pathname === "/about" || pathname.startsWith("/blog") || pathname === "/commercial";
   const isNavLight = isDarkHero && !isScrolled;
 
   const transition = prefersReducedMotion
@@ -42,15 +42,15 @@ export function Navbar() {
         transition={transition}
       >
         <motion.div
-          className={cn("w-full border-border/50", isScrolled && "border-b")}
+          className={cn("w-full transition-colors duration-300", isScrolled ? "border-b border-border/50" : (isDarkHero ? "border-b-0" : "border-b border-white/20"))}
           initial={false}
           animate={{
             backgroundColor: isScrolled
-              ? "rgba(255, 255, 255, 0.86)"
-              : "rgba(255, 255, 255, 0.04)",
+              ? "rgba(255, 255, 255, 0.95)"
+              : (isDarkHero ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.35)"),
             backdropFilter: isScrolled
               ? "blur(20px) saturate(180%)"
-              : "blur(8px) saturate(120%)",
+              : (isDarkHero ? "blur(8px) saturate(120%)" : "blur(12px) saturate(140%)"),
             boxShadow: isScrolled ? "var(--shadow-soft)" : "0 0 0 transparent",
             paddingTop: isScrolled ? 12 : 20,
             paddingBottom: isScrolled ? 12 : 20,
@@ -78,6 +78,7 @@ export function Navbar() {
                   height={160}
                   priority
                   className="h-14 w-auto lg:h-16"
+                  style={{ filter: isNavLight ? "drop-shadow(0 0 12px rgba(255,255,255,0.8))" : "none" }}
                 />
               </motion.div>
             </Link>

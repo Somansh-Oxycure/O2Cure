@@ -126,7 +126,7 @@ export function BlogPostSidebar({ relatedPosts }: BlogPostSidebarProps) {
           system for your space.
         </p>
         <Link
-          href="/solutions"
+          href="/products"
           id="sidebar-solutions-cta"
           className={[
             "inline-flex items-center gap-2 rounded-xl bg-brand-green px-5 py-2.5",

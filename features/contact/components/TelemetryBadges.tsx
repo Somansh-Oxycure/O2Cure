@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { motion } from "framer-motion";
+import { formatBrandText } from "@/lib/brand";
+import { cn } from "@/lib/utils";
 import { Shield, Zap } from "lucide-react";
 
 import { Reveal } from "@/components/motion/Reveal";
@@ -98,7 +99,7 @@ export function TelemetryImpactBadges() {
                 Response Guarantee
               </p>
               <p className="mt-0.5 text-[0.66rem] leading-snug text-muted-foreground">
-                An O₂Cure specialist will reach out within 2 business hours
+                {formatBrandText("An O2Cure specialist will reach out within 24 hours")}
               </p>
             </div>
           </div>

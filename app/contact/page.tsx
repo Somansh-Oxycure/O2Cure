@@ -14,7 +14,7 @@ import { FooterSection } from "@/features/footer";
 export const metadata: Metadata = {
   title: "Get in Touch | Air Quality Engineering Consultation | O₂Cure",
   description:
-    "Request a free engineering consultation with O₂Cure's certified air quality specialists. Serving offices, hospitals, hotels, schools, homes and industrial facilities across India. Response guaranteed within 2 business hours.",
+    "Request a free engineering consultation with O₂Cure's certified air quality specialists. Serving offices, hospitals, hotels, schools, homes and industrial facilities across India. Response guaranteed within 24 hours.",
   keywords: [
     "O2Cure contact",
     "air quality consultation India",

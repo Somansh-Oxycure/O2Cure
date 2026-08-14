@@ -295,7 +295,7 @@ function StickyCtaBar() {
               Ready to breathe cleaner air?
             </p>
             <a
-              href="/solutions"
+              href="/products"
               id="pillars-sticky-cta"
               className="inline-flex min-h-[44px] items-center gap-2 rounded-full bg-brand-green px-5 py-2 text-sm font-semibold text-white shadow-[0_4px_16px_-4px_rgba(58,125,42,0.5)] transition-all duration-200 active:scale-[0.97]"
             >
@@ -375,7 +375,7 @@ export function PillarsSection() {
                 Ready to breathe cleaner air? Explore our complete range of solutions.
               </p>
               <a
-                href="/solutions"
+                href="/products"
                 id="pillars-cta-solutions"
                 className="inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-2.5 text-sm font-semibold text-white shadow-[0_4px_16px_-4px_rgba(58,125,42,0.45)] transition-all duration-300 hover:bg-brand-green-hover hover:shadow-[0_6px_24px_-4px_rgba(58,125,42,0.55)] hover:-translate-y-px"
               >

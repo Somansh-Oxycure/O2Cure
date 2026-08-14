@@ -6,6 +6,7 @@ import { CheckCircle2, Clock, Mail, MapPin, Phone } from "lucide-react";
 
 import { Reveal } from "@/components/motion/Reveal";
 import { easings } from "@/components/motion/easings";
+import { formatBrandText } from "@/lib/brand";
 import { AdvancedEnquiryForm } from "@/features/contact/components/AdvancedEnquiryForm";
 
 /**
@@ -18,8 +19,8 @@ const CONTACT_DETAILS = [
     id: "hq-phone",
     icon: Phone,
     label: "Direct Line",
-    value: "+91 80101 11177",
-    href: "tel:+918010111177",
+    value: "918010111177",
+    href: "tel:918010111177",
     sub: "WhatsApp available — Mon–Sat, 9 AM–7 PM IST",
   },
   {
@@ -28,7 +29,7 @@ const CONTACT_DETAILS = [
     label: "Email",
     value: "info@o2cure.in",
     href: "mailto:info@o2cure.in",
-    sub: "Responses within 2 business hours",
+    sub: "Responses within 24 hours",
   },
   {
     id: "hq-address",
@@ -124,10 +125,10 @@ export function ContactFormSection() {
                 </div>
                 <div>
                   <p className="text-[0.78rem] font-semibold text-foreground">
-                    2-Business-Hour Response Guarantee
+                    24-Hour Response Guarantee
                   </p>
                   <p className="text-[0.67rem] text-muted-foreground mt-0.5">
-                    An O₂Cure Air Quality Specialist will reach out personally
+                    {formatBrandText("An O2Cure Air Quality Specialist will reach out personally")}
                   </p>
                 </div>
               </div>

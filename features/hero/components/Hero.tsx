@@ -3,6 +3,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
 import { useCallback, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -154,13 +155,15 @@ function MobileHero() {
             className="mt-8"
             variants={fadeUp(heroTimeline.buttons, reduced)}
           >
-            <Button
-              type="button"
-              size="lg"
-              className="min-w-[12rem] rounded-full border border-brand-green bg-brand-green px-7 text-white hover:bg-brand-green/90 hover:text-white"
-            >
-              {heroContent.cta}
-            </Button>
+            <Link href="/products">
+              <Button
+                type="button"
+                size="lg"
+                className="min-w-[12rem] rounded-full border border-brand-green bg-brand-green px-7 text-white hover:bg-brand-green/90 hover:text-white"
+              >
+                {heroContent.cta}
+              </Button>
+            </Link>
           </motion.div>
 
           {/* Trust strip */}
@@ -251,13 +254,15 @@ function DesktopHero() {
             </motion.h1>
 
             <motion.div variants={fadeUp(heroTimeline.buttons, reduced)}>
-              <Button
-                type="button"
-                size="lg"
-                className="mt-6 min-w-[10rem] rounded-full border border-brand-green bg-brand-green px-6 text-white hover:bg-brand-green/90 hover:text-white sm:mt-10 sm:min-w-[11rem] sm:px-7"
-              >
-                {heroContent.desktopLeft.cta}
-              </Button>
+              <Link href="/products">
+                <Button
+                  type="button"
+                  size="lg"
+                  className="mt-6 min-w-[10rem] rounded-full border border-brand-green bg-brand-green px-6 text-white hover:bg-brand-green/90 hover:text-white sm:mt-10 sm:min-w-[11rem] sm:px-7"
+                >
+                  {heroContent.desktopLeft.cta}
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
@@ -302,6 +307,12 @@ function DesktopHero() {
                 type="button"
                 size="lg"
                 variant="outline"
+                onClick={() => {
+                  document.getElementById("aqi-effect")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }}
                 className="mt-6 min-w-[10rem] rounded-full border border-[#9A6020]/35 bg-transparent px-6 text-[#7A4C18] hover:bg-[#9A6020]/8 hover:text-[#7A4C18] sm:mt-10 sm:min-w-[11rem] sm:px-7"
               >
                 {heroContent.desktopRight.cta}

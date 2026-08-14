@@ -1934,7 +1934,7 @@ Rated 4.91 out of 5 based on 11 customer ratings (11 customer reviews).
 | **BREADCRUMB** | Home » O2Cure Plug n Play (MAX) – Advanced Air Purifier with PHI & Bipolar Ionization Technology |
 | **PAGE TITLE (SEO)** | Buy O2Cure Plug n Play Max |
 | **SEGMENT** | B2B / HVAC — In-duct, commercial to luxury residential |
-| **PRICE ON PAGE** | No price listed and no "Enquire for Price" button. Instead the page closes with a plain-text contact line: "Need a custom configuration or more information about Plug & Play (MAX). Contact us at info@o2cure.in or call \+91 8010111177". |
+| **PRICE ON PAGE** | No price listed and no "Enquire for Price" button. Instead the page closes with a plain-text contact line: "Need a custom configuration or more information about Plug & Play (MAX). Contact us at info@o2cure.in or call 918010111177". |
 | **SOURCE URL** | [https://o2cure.in/product/plug-n-play-max/](https://o2cure.in/product/plug-n-play-max/) |
 
 ## **1\. Product Overview**
@@ -1979,7 +1979,7 @@ The product is named inconsistently within a single page: the H1 reads "Plug N P
 
 ## **6\. Call to Action**
 
-| No CTA button — plain-text contact details only Unlike the other B2B products, this page has no "Enquire for Price" button. It closes with: "Need a custom configuration or more information about Plug & Play (MAX). Contact us at info@o2cure.in or call \+91 8010111177". Adding the standard CTA button here would bring it in line with the rest of the B2B range and make the enquiry trackable. |
+| No CTA button — plain-text contact details only Unlike the other B2B products, this page has no "Enquire for Price" button. It closes with: "Need a custom configuration or more information about Plug & Play (MAX). Contact us at info@o2cure.in or call 918010111177". Adding the standard CTA button here would bring it in line with the rest of the B2B range and make the enquiry trackable. |
 | :---- |
 
 ## **7\. Product Reviews**

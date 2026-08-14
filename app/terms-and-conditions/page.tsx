@@ -157,7 +157,7 @@ const sections = [
     ],
     list: [
       "Email: info@o2cure.in",
-      "Phone: +91 8010 1111 77",
+      "Phone: 918010111177",
       "Website: https://o2cure.in",
     ],
   },

@@ -33,8 +33,8 @@ export const contactDetails: ContactDetail[] = [
   {
     id: "contact-phone",
     label: "Phone",
-    value: "+91 80101 11177",
-    href: "tel:+918010111177",
+    value: "918010111177",
+    href: "tel:918010111177",
   },
   {
     id: "contact-email",

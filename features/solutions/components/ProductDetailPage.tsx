@@ -72,6 +72,7 @@ export function ProductDetailPage({ detail, entry }: ProductDetailPageProps) {
 function PDPHero({ detail, entry }: { detail: ProductDetail; entry: ProductEntry }) {
   const metric = detail.performanceMetrics[0];
   const metric2 = detail.performanceMetrics[1];
+  const { cta } = detail;
 
   return (
     <section
@@ -87,7 +88,7 @@ function PDPHero({ detail, entry }: { detail: ProductDetail; entry: ProductEntry
       {/* Back link */}
       <div className="absolute top-24 left-4 md:left-8 z-30">
         <Link
-          href="/solutions"
+          href="/products"
           className="flex items-center gap-1.5 text-xs font-medium text-[#1C1C1C]/50 hover:text-[#1C1C1C] transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
@@ -180,6 +181,39 @@ function PDPHero({ detail, entry }: { detail: ProductDetail; entry: ProductEntry
           <p className="mt-1 text-sm text-[#1C1C1C]/60 leading-relaxed max-w-[320px]">
             {detail.heroHeadline}
           </p>
+
+          {/* Hero CTAs */}
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            {cta.type === "priced" && cta.productPageUrl ? (
+              <a
+                href={cta.productPageUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex justify-center items-center rounded-full bg-[#3A7D2A] text-white
+                  font-semibold px-5 py-2.5 text-sm hover:bg-[#2A5C1D] transition-colors"
+              >
+                {cta.primaryLabel}
+              </a>
+            ) : (
+              <a
+                href="mailto:info@o2cure.in"
+                className="inline-flex justify-center items-center rounded-full bg-[#3A7D2A] text-white
+                  font-semibold px-5 py-2.5 text-sm hover:bg-[#2A5C1D] transition-colors"
+              >
+                {cta.primaryLabel}
+              </a>
+            )}
+            <a
+              href="https://wa.me/918010111177"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex justify-center items-center gap-2 rounded-full border border-[#1C1C1C]/20
+                text-[#1C1C1C] font-medium px-5 py-2.5 text-sm hover:border-[#3A7D2A]/60 hover:text-[#3A7D2A] transition-colors"
+            >
+              <MessageCircle className="w-4 h-4" />
+              {cta.type === "priced" ? "Ask on WhatsApp" : "Speak to an Expert"}
+            </a>
+          </div>
         </motion.div>
 
         {/* Certification badges */}
@@ -530,7 +564,7 @@ function PDPCTA({ detail, entry }: { detail: ProductDetail; entry: ProductEntry 
             <img
               src={entry.image.src}
               alt={entry.image.alt}
-              className="absolute inset-0 w-full h-full object-contain p-10 mix-blend-luminosity opacity-90"
+              className="absolute inset-0 w-full h-full object-contain p-10 opacity-90"
             />
           </div>
 
@@ -647,7 +681,7 @@ function PDPCTA({ detail, entry }: { detail: ProductDetail; entry: ProductEntry 
           className="mt-10 flex justify-center"
         >
           <Link
-            href="/solutions"
+            href="/products"
             className="flex items-center gap-2 text-sm font-medium text-[#6B7280] hover:text-[#1C1C1C] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />

@@ -18,42 +18,42 @@ export const footerContent: FooterContent = {
   navigation: [
     {
       id: "nav-solutions",
-      title: "Solutions",
+      title: "Products",
       links: [
         {
           id: "sol-corporate",
           label: "Corporate & Office",
-          href: "/solutions?env=corporate",
+          href: "/products?env=corporate",
           isActive: true,
         },
         {
           id: "sol-healthcare",
           label: "Healthcare & Clinical",
-          href: "/solutions?env=healthcare",
+          href: "/products?env=healthcare",
           isActive: true,
         },
         {
           id: "sol-residential",
           label: "Residential",
-          href: "/solutions?env=residential",
+          href: "/products?env=residential",
           isActive: true,
         },
         {
           id: "sol-industrial",
           label: "Industrial & Manufacturing",
-          href: "/solutions?env=industrial",
+          href: "/products?env=industrial",
           isActive: true,
         },
         {
           id: "sol-education",
           label: "Education",
-          href: "/solutions?env=education",
+          href: "/products?env=education",
           isActive: true,
         },
         {
           id: "sol-datacenter",
           label: "Data Centres",
-          href: "/solutions?env=datacenter",
+          href: "/products?env=datacenter",
           isActive: true,
         },
       ],
@@ -113,7 +113,7 @@ export const footerContent: FooterContent = {
         {
           id: "con-phone",
           label: "Phone",
-          href: "tel:+918010111177",
+          href: "tel:918010111177",
           isActive: true,
         },
         {

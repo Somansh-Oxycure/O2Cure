@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description:
       "Precision-engineered air purification systems for corporate, healthcare, residential, industrial, education, and data centre environments.",
     type: "website",
-    url: "https://o2cure.in/solutions",
+    url: "https://o2cure.in/products",
     siteName: "O2Cure",
   },
   twitter: {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description:
       "Precision-engineered air purification systems for every environment. NABL-certified.",
   },
-  alternates: { canonical: "https://o2cure.in/solutions" },
+  alternates: { canonical: "https://o2cure.in/products" },
 };
 
 // ─── JSON-LD structured data ───────────────────────────────────────────────────
@@ -31,7 +31,7 @@ const pageJsonLd = {
   name: "O2Cure Air Safety Engineering Solutions",
   description:
     "NABL-certified air purification systems engineered for corporate, healthcare, residential, industrial, education, and data centre environments.",
-  url: "https://o2cure.in/solutions",
+  url: "https://o2cure.in/products",
   provider: {
     "@type": "Organization",
     name: "O2Cure",

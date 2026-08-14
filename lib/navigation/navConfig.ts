@@ -28,16 +28,24 @@ export type NavDropdownItem = {
 export type NavItem = NavLinkItem | NavDropdownItem;
 
 export const SOLUTIONS_LINKS: NavDropdownLink[] = [
-  { label: "Corporate & Office", href: "/solutions?env=corporate" },
-  { label: "Healthcare & Clinical", href: "/solutions?env=healthcare" },
-  { label: "Residential", href: "/solutions?env=residential" },
-  { label: "Industrial & Manufacturing", href: "/solutions?env=industrial" },
-  { label: "Education", href: "/solutions?env=education" },
-  { label: "Data Centres", href: "/solutions?env=datacenter" },
+  { label: "Corporate & Office", href: "/products?env=corporate" },
+  { label: "Healthcare & Clinical", href: "/products?env=healthcare" },
+  { label: "Residential", href: "/products?env=residential" },
+  { label: "Industrial & Manufacturing", href: "/products?env=industrial" },
+  { label: "Education", href: "/products?env=education" },
+  { label: "Data Centres", href: "/products?env=datacenter" },
 ];
 
 export const NAV_ITEMS: NavItem[] = [
-  { type: "dropdown", label: "Solutions", href: "/solutions", items: SOLUTIONS_LINKS },
+  { type: "dropdown", label: "Products", href: "/products", items: SOLUTIONS_LINKS },
+  {
+    type: "dropdown",
+    label: "Solutions",
+    items: [
+      { label: "Residential", href: "/residential" },
+      { label: "Commercial", href: "/commercial" },
+    ],
+  },
   // {
   //   type: "dropdown",
   //   label: "Technology",

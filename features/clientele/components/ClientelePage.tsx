@@ -485,7 +485,7 @@ function ClienteleCTA() {
                 Request a Consultation
               </a>
               <a
-                href="/solutions"
+                href="/products"
                 className="inline-flex h-12 items-center justify-center rounded-full border border-border px-8 text-[0.875rem] font-semibold text-foreground transition-all duration-300 hover:border-brand-green/40 hover:text-brand-green"
               >
                 Explore Solutions

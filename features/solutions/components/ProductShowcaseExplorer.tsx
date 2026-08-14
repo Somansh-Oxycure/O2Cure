@@ -63,6 +63,7 @@ export function ProductShowcaseExplorer() {
   const [activeAreaSegment, setActiveAreaSegment] = useState<AreaSegmentId | null>(null);
   const [activeIntegrations, setActiveIntegrations] = useState<IntegrationTypeId[]>([]);
   const [activeCustomerType, setActiveCustomerType] = useState<CustomerTypeId | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(0);
   const [filterOpen, setFilterOpen] = useState(false);
 
@@ -116,8 +117,18 @@ export function ProductShowcaseExplorer() {
       result = result.filter((p) => p.capacityMaxSqFt >= minSqFt && p.capacityMaxSqFt <= maxSqFt);
     }
 
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase().trim();
+      result = result.filter(
+        (p) =>
+          p.systemName.toLowerCase().includes(q) ||
+          p.tagline.toLowerCase().includes(q) ||
+          p.badges.some((b) => b.toLowerCase().includes(q))
+      );
+    }
+
     return result;
-  }, [activeEnvironment, activeChallenges, activeAreaSegment, activeIntegrations, activeCustomerType]);
+  }, [activeEnvironment, activeChallenges, activeAreaSegment, activeIntegrations, activeCustomerType, searchQuery]);
 
   const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages - 1);
@@ -165,7 +176,16 @@ export function ProductShowcaseExplorer() {
     setActiveAreaSegment(null);
     setActiveIntegrations([]);
     setActiveCustomerType(null);
+    setSearchQuery("");
     setPage(0);
+  }, []);
+
+  const handlePageChange = useCallback((newPage: number) => {
+    setPage(newPage);
+    document.getElementById("solutions-main")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   }, []);
 
   const activeEnvLabel =
@@ -207,36 +227,79 @@ export function ProductShowcaseExplorer() {
 
         {/* Grid column — extra bottom padding on mobile so cards aren't hidden behind bottom bar */}
         <div className="flex min-w-0 flex-1 flex-col p-3 pb-28 md:p-6 md:pb-6 lg:p-8 lg:pb-8">
-          {/* Desktop context header */}
-          <div className="mb-5 hidden items-center justify-between md:flex">
-            <div>
-              <p className="text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-[#9CA3AF]">
-                Solutions for
-              </p>
-              <h2 className="text-[0.95rem] font-bold tracking-[-0.02em] text-[#1C1C1C]">
-                {activeEnvLabel}
-              </h2>
+          {/* Search Bar / Filter / Context Header Row */}
+          <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex-1 max-w-md">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search solutions by name, technology, features..."
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setPage(0);
+                  }}
+                  className="w-full rounded-xl border border-[#E5E7EB] bg-white px-4 py-2 pl-10 text-[0.82rem] text-[#1C1C1C] placeholder-[#9CA3AF] shadow-sm outline-none transition-all focus:border-[#3A7D2A]/40 focus:ring-2 focus:ring-[#3A7D2A]/10"
+                />
+                <svg
+                  className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#9CA3AF]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+                {searchQuery && (
+                  <button
+                    onClick={() => {
+                      setSearchQuery("");
+                      setPage(0);
+                    }}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-[#9CA3AF] hover:bg-[#F3F4F6] hover:text-[#1C1C1C]"
+                  >
+                    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
+              </div>
             </div>
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={filteredProducts.length}
-                initial={{ opacity: 0, y: -4 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="rounded-full border border-[#E5E7EB] bg-white px-3 py-1 text-[0.72rem] font-semibold text-[#6B7280] shadow-sm"
-                aria-live="polite"
-              >
-                {filteredProducts.length} system{filteredProducts.length !== 1 ? "s" : ""}
-              </motion.span>
-            </AnimatePresence>
+
+            <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
+              <div className="hidden sm:block">
+                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-[#9CA3AF] text-right">
+                  Solutions for
+                </p>
+                <h2 className="text-[0.85rem] font-bold tracking-[-0.02em] text-[#1C1C1C] text-right">
+                  {activeEnvLabel}
+                </h2>
+              </div>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={filteredProducts.length}
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="rounded-full border border-[#E5E7EB] bg-white px-3 py-1 text-[0.72rem] font-semibold text-[#6B7280] shadow-sm"
+                  aria-live="polite"
+                >
+                  {filteredProducts.length} system{filteredProducts.length !== 1 ? "s" : ""}
+                </motion.span>
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* ── Product grid ────────────────────────────────── */}
           <AnimatePresence mode="wait">
             {pageProducts.length > 0 ? (
               <motion.div
-                key={`${activeEnvironment}-${currentPage}-${activeChallenges.join()}-${activeAreaSegment}-${activeIntegrations.join()}-${activeCustomerType}`}
+                key={`${activeEnvironment}-${currentPage}-${activeChallenges.join()}-${activeAreaSegment}-${activeIntegrations.join()}-${activeCustomerType}-${searchQuery}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -258,9 +321,9 @@ export function ProductShowcaseExplorer() {
             <PaginationBar
               current={currentPage}
               total={totalPages}
-              onPrev={() => setPage((p) => Math.max(0, p - 1))}
-              onNext={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
-              onPage={(p) => setPage(p)}
+              onPrev={() => handlePageChange(Math.max(0, currentPage - 1))}
+              onNext={() => handlePageChange(Math.min(totalPages - 1, currentPage + 1))}
+              onPage={(p) => handlePageChange(p)}
             />
           )}
         </div>

@@ -25,6 +25,7 @@ import type {
   EnquiryFormField,
   EnquirySubmissionAdapter,
 } from "@/features/contact/types";
+import { formatBrandText } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -294,7 +295,7 @@ export function AdvancedEnquiryForm({
           <FormSuccess
             key="success"
             heading="We're on it."
-            message="An O₂Cure Air Quality Specialist will contact you within 2 business hours."
+            message={formatBrandText("An O2Cure Air Quality Specialist will contact you within 24 hours.")}
           />
         ) : (
           <motion.form
@@ -316,7 +317,7 @@ export function AdvancedEnquiryForm({
               </h2>
               <p className="mt-1.5 text-[0.8rem] text-muted-foreground leading-relaxed">
                 {clientType === "b2b"
-                  ? "A certified air quality engineer will respond within 2 business hours."
+                  ? "A certified air quality engineer will respond within 24 hours."
                   : "Tell us about your home — we'll design the right purification solution."}
               </p>
             </div>
@@ -411,7 +412,7 @@ export function AdvancedEnquiryForm({
 
             {/* Privacy note */}
             <p className="mt-4 text-[0.66rem] text-muted-foreground text-center leading-relaxed">
-              Your information is secure and never shared. Response guaranteed within 2 business hours.
+              Your information is secure and never shared. Response guaranteed within 24 hours.
             </p>
 
             {/* Submit */}

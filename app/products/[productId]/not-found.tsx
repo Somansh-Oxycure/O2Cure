@@ -13,7 +13,7 @@ export default function ProductNotFound() {
         We couldn&apos;t find that product. Browse our full catalogue to find the right air purification solution.
       </p>
       <Link
-        href="/solutions"
+        href="/products"
         className="inline-flex items-center gap-2 rounded-full bg-[#1C1C1C] text-white font-semibold px-7 py-3.5 hover:bg-[#3A7D2A] transition-colors"
       >
         View all solutions

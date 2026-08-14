@@ -12,10 +12,10 @@ import type {
 // ─── Page meta ─────────────────────────────────────────────────────────────
 export const solutionsPageMeta = {
   eyebrow: "Tailored Engineering",
-  heading: "Custom Solutions",
+  heading: "Products",
   subheading:
     "Select your environment. We'll engineer the exact system your space requires.",
-  seoTitle: "Custom Air Purification Solutions | O₂Cure",
+  seoTitle: "Custom Air Purification Products | O₂Cure",
   seoDescription:
     "O₂Cure engineers custom air purification systems for corporate, healthcare, residential, and mobility environments. NABL-certified. Zero-obligation diagnostic available.",
 } as const;

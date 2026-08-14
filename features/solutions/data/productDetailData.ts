@@ -3,7 +3,7 @@
  *
  * Single source of truth for all 26 product pages.
  * Extracted verbatim from O2Cure_Product_Master.md and structured
- * for the dynamic route at /solutions/[productId].
+ * for the dynamic route at /products/[productId].
  *
  * Swap individual entries with Sanity CMS fetches without touching
  * component logic — the interface is the contract.

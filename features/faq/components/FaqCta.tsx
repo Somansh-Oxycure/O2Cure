@@ -108,7 +108,7 @@ export function FaqCta() {
 
           {/* Secondary */}
           <Link
-            href="/solutions"
+            href="/products"
             className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-white/60 px-7 py-3.5 text-sm font-semibold text-foreground backdrop-blur-sm transition-all duration-200 hover:border-brand-green/40 hover:bg-white hover:text-brand-green"
           >
             Explore Solutions

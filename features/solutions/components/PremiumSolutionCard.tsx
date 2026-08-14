@@ -38,7 +38,7 @@ interface SolutionCardProps {
 export function SolutionCard({ product, index }: SolutionCardProps) {
   return (
     <Link
-      href={`/solutions/${product.id}`}
+      href={`/products/${product.id}`}
       className="block h-full"
       aria-label={`View ${product.systemName} details`}
     >

@@ -43,7 +43,7 @@ export async function generateMetadata({
       title,
       description,
       type: "website",
-      url: `https://o2cure.in/solutions/${productId}`,
+      url: `https://o2cure.in/products/${productId}`,
       siteName: "O2Cure",
       images: [
         {
@@ -61,7 +61,7 @@ export async function generateMetadata({
       images: [imageUrl],
     },
     alternates: {
-      canonical: `https://o2cure.in/solutions/${productId}`,
+      canonical: `https://o2cure.in/products/${productId}`,
     },
   };
 }

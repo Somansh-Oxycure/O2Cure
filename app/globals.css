@@ -64,7 +64,13 @@
   /* Fonts */
   --font-sans: var(--font-plus-jakarta);
   --font-mono: var(--font-inter);
-  --font-heading: var(--font-plus-jakarta);
+  --font-heading: var(--font-playfair);
+
+  /* Premium Accents */
+  --color-gold-accent: #C5A059;
+  --color-gold-accent-hover: #A88746;
+  --color-premium-dark: #1A1C19;
+  --color-premium-sand: #F7F5F0;
 
   --animate-hero-beam-pulse: hero-beam-pulse 4s ease-in-out infinite;
 

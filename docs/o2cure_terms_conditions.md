@@ -87,5 +87,5 @@ We reserve the right, at our sole discretion, to update, change or replace any p
 ## SECTION 20 - CONTACT INFORMATION
 Questions about the Terms of Service should be sent to us at:
 * **Email:** info@o2cure.in
-* **Phone:** +91 8010 1111 77
+* **Phone:** 918010111177
 * **Website:** https://o2cure.in
