@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Heart, Moon, ShieldCheck, Leaf } from "lucide-react";
+import { Heart, Moon, ShieldCheck, Leaf, Wind, Smartphone } from "lucide-react";
 
 const BENEFITS = [
   {
@@ -12,8 +12,8 @@ const BENEFITS = [
   },
   {
     id: "sleep",
-    name: "Deeper, Restorative Sleep",
-    description: "Experience the calming effect of perfectly pure air. Reduced allergens and optimized oxygen levels promote uninterrupted, deeper sleep cycles.",
+    name: "Better Sleep",
+    description: "Experience the calming effect of fresh air and ventilation. Reduced allergens and optimized oxygen levels promote uninterrupted, deeper sleep cycles.",
     icon: Moon,
   },
   {
@@ -27,6 +27,18 @@ const BENEFITS = [
     name: "Pristine, Odor-Free Living",
     description: "Enjoy a home that always smells naturally fresh. Advanced carbon matrices effortlessly remove cooking odors, pet smells, and urban smog.",
     icon: Leaf,
+  },
+  {
+    id: "pm-levels",
+    name: "PM & Pollutant Reduction",
+    description: "Significantly reduce PM2.5, PM10, and other harmful indoor pollutants. Ensure your family breathes air free from harmful microscopic particles.",
+    icon: Wind,
+  },
+  {
+    id: "monitoring",
+    name: "Real-Time Air Monitoring",
+    description: "Keep track of your indoor air quality with real-time data. Stay continuously informed about the exact purity levels of the air your family breathes directly from your smartphone.",
+    icon: Smartphone,
   },
 ];
 
@@ -68,7 +80,7 @@ export function ResidentialBenefitsSection() {
           </motion.p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 justify-center">
           {BENEFITS.map((benefit, i) => (
             <motion.div
               key={benefit.id}

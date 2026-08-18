@@ -6,7 +6,7 @@ import { Zap, Shield, Wind, Activity } from "lucide-react";
 const TECHNOLOGIES = [
   {
     id: "phi",
-    name: "PHI-Cell® Technology",
+    name: "REME-PHI-Cell® Technology",
     description: "Proprietary Photohydroionization actively neutralizes airborne and surface pathogens by creating advanced hydro-peroxides.",
     icon: Zap,
   },
@@ -17,15 +17,15 @@ const TECHNOLOGIES = [
     icon: Activity,
   },
   {
-    id: "hepa",
-    name: "Medical-Grade HEPA",
-    description: "H13/H14 HEPA filtration captures 99.97% of particles down to 0.3 microns, ensuring compliance with strict healthcare standards.",
+    id: "gas_filtration",
+    name: "Gas Filtration",
+    description: "Advanced gas filtration systems that effectively neutralize toxic airborne gases, ensuring a safe breathing environment that can save lives in critical situations.",
     icon: Shield,
   },
   {
-    id: "voc",
-    name: "Activated Carbon VOC Filters",
-    description: "Deep-bed carbon matrices absorb chemical off-gassing, formaldehyde, and industrial odors commonly found in new commercial builds.",
+    id: "active_air",
+    name: "Active Air Purification",
+    description: "Proactive active air purification technology that continuously seeks out and neutralizes indoor air pollutants throughout your entire commercial space.",
     icon: Wind,
   },
 ];

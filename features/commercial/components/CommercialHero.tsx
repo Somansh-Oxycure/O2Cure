@@ -1,37 +1,65 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+
+const BACKGROUND_IMAGES = [
+  "/Commercial/Hero1.png",
+  "/Commercial/Hero3.png",
+  "/Commercial/Hero2.png",
+  "/Commercial/Hero4.png",
+  "/Commercial/Hero5.png",
+  "/Commercial/Hero6.png",
+];
 
 interface CommercialHeroProps {
   onBeginDiagnostic: () => void;
 }
 
 export function CommercialHero({ onBeginDiagnostic }: CommercialHeroProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % BACKGROUND_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       id="commercial-hero"
       className="relative min-h-[92vh] w-full overflow-hidden flex items-end justify-start pb-16 md:pb-24"
       aria-label="Commercial Air Purification Hero"
     >
-      {/* Premium Background Image with Slow Pan */}
-      <motion.div
-        className="absolute inset-0 z-0"
-        initial={{ scale: 1.05 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 10, ease: "easeOut" }}
-      >
-        <Image
-          src="/residential/HERO.png" // User requested specific image
-          alt="Luxurious, healthy commercial interior — O2Cure enterprise air purification"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
+      {/* Premium Background Image Carousel */}
+      <div className="absolute inset-0 z-0 bg-black">
+        <AnimatePresence mode="popLayout" initial={false}>
+          <motion.div
+            key={currentImageIndex}
+            className="absolute inset-0"
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              opacity: { duration: 1.5, ease: "easeInOut" },
+              scale: { duration: 10, ease: "easeOut" }
+            }}
+          >
+            <Image
+              src={BACKGROUND_IMAGES[currentImageIndex]}
+              alt="Luxurious, healthy commercial interior — O2Cure enterprise air purification"
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+          </motion.div>
+        </AnimatePresence>
         {/* Cinematic Gradient Overlay - Localized strictly to left/bottom for text readability */}
-        <div className="absolute left-0 bottom-0 top-0 w-full md:w-[65%] lg:w-[55%] bg-gradient-to-t from-black/90 via-black/50 to-transparent md:bg-gradient-to-r md:from-black/90 md:via-black/50 md:to-transparent" />
-      </motion.div>
+        <div className="absolute z-10 left-0 bottom-0 top-0 w-full md:w-[65%] lg:w-[55%] bg-gradient-to-t from-black/90 via-black/50 to-transparent md:bg-gradient-to-r md:from-black/90 md:via-black/50 md:to-transparent pointer-events-none" />
+      </div>
 
       {/* Content bottom left, text shadow for readability */}
       <div className="relative z-10 w-full max-w-2xl px-6 md:px-12 text-left">
