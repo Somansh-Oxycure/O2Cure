@@ -12,7 +12,7 @@ export async function generateMetadata({
 
   let canonical = "https://o2cure.in/products";
   let title = "Air Safety Engineering Solutions | O2Cure";
-  let description =
+  const description =
     "Browse O2Cure's precision-engineered air safety systems. Filter by environment sector, air challenge, spatial capacity, and integration architecture. NABL-certified. Zero-obligation consultation.";
 
   if (env) {
