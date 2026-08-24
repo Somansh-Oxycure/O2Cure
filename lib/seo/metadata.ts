@@ -11,7 +11,7 @@ export const siteConfig = {
   description:
     "O₂Cure designs premium indoor air purification technology built around the environments people actually breathe in.",
   /** Placeholder — replace with the confirmed production domain before launch. */
-  url: "https://www.o2cure.com",
+  url: "https://o2cure.in",
   logo: "/O2cure-final-logo.png",
 } as const;
 
