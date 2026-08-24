@@ -58,12 +58,12 @@ export function BlogPostSidebar({ relatedPosts }: BlogPostSidebarProps) {
           transition={{ duration: 0.65, delay: 0.1, ease: easings.premium }}
         >
           {/* Section eyebrow */}
-          <div className="mb-5 flex items-center gap-3">
+          <h2 className="mb-5 flex items-center gap-3">
             <span className="h-px w-6 bg-brand-green/60" aria-hidden />
             <span className="text-[0.7rem] font-semibold tracking-[0.14em] uppercase text-brand-green">
               Related Articles
             </span>
-          </div>
+          </h2>
 
           <nav aria-label="Related articles">
             <ul className="flex flex-col gap-4">
@@ -112,12 +112,12 @@ export function BlogPostSidebar({ relatedPosts }: BlogPostSidebarProps) {
         viewport={{ once: true }}
         transition={{ duration: 0.65, delay: 0.2, ease: easings.premium }}
       >
-        <div className="mb-4 flex items-center gap-3">
+        <h2 className="mb-4 flex items-center gap-3">
           <span className="h-px w-6 bg-brand-green/60" aria-hidden />
           <span className="text-[0.7rem] font-semibold tracking-[0.14em] uppercase text-brand-green">
             Ready to Act?
           </span>
-        </div>
+        </h2>
         <p className="text-base font-semibold text-white leading-snug mb-2">
           Find the right O₂Cure solution for your environment.
         </p>

@@ -85,7 +85,7 @@ export function ContactFormSection() {
 
             {/* Heading */}
             <Reveal delay={0.08} distance={22}>
-              <h2
+              <h1
                 id="contact-form-heading"
                 className="font-heading text-[clamp(1.9rem,4vw,3rem)] leading-[1.06] tracking-[-0.03em] text-foreground"
               >
@@ -93,7 +93,7 @@ export function ContactFormSection() {
                 <span className="text-brand-green">air quality</span>
                 <br />
                 engineer today.
-              </h2>
+              </h1>
             </Reveal>
 
             {/* Supporting text */}

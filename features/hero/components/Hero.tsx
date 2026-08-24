@@ -245,13 +245,13 @@ function DesktopHero() {
               {heroContent.desktopLeft.eyebrow}
             </motion.p>
 
-            <motion.h1
+            <motion.h2
               className="mt-3 font-heading text-[clamp(2.25rem,1.6rem+4vw,5rem)] font-bold leading-[1.05] tracking-[-0.03em] text-[#111111] sm:mt-4"
               variants={fadeUp(heroTimeline.headline, reduced)}
             >
               {heroContent.desktopLeft.headingLine1}
               <span className="text-brand-green">.</span>
-            </motion.h1>
+            </motion.h2>
 
             <motion.div variants={fadeUp(heroTimeline.buttons, reduced)}>
               <Link href="/products">

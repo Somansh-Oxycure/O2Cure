@@ -28,12 +28,12 @@ export type NavDropdownItem = {
 export type NavItem = NavLinkItem | NavDropdownItem;
 
 export const SOLUTIONS_LINKS: NavDropdownLink[] = [
-  { label: "Corporate & Office", href: "/products?env=corporate" },
-  { label: "Healthcare & Clinical", href: "/products?env=healthcare" },
-  { label: "Residential", href: "/products?env=residential" },
-  { label: "Industrial & Manufacturing", href: "/products?env=industrial" },
-  { label: "Education", href: "/products?env=education" },
-  { label: "Data Centres", href: "/products?env=datacenter" },
+  { label: "Corporate & Office", href: "/products/corporate-air-purifier" },
+  { label: "Healthcare & Clinical", href: "/products/healthcare-air-purifier" },
+  { label: "Residential", href: "/residential-air-purifier" },
+  { label: "Industrial & Manufacturing", href: "/products/industrial-air-purifier" },
+  { label: "Education", href: "/products/education-air-purifier" },
+  { label: "Data Centres", href: "/products/datacenter-air-purifier" },
 ];
 
 export const NAV_ITEMS: NavItem[] = [
@@ -43,7 +43,7 @@ export const NAV_ITEMS: NavItem[] = [
     label: "Solutions",
     items: [
       { label: "Residential", href: "/residential" },
-      { label: "Commercial", href: "/commercial" },
+      { label: "Commercial", href: "/commercial-air-purifier" },
     ],
   },
   // {
@@ -51,7 +51,7 @@ export const NAV_ITEMS: NavItem[] = [
   //   label: "Technology",
   //   items: [{ label: "Overview", href: "/#technology" }],
   // },
-  { type: "link", label: "AQI", href: "/#aqi-effect" },
+  { type: "link", label: "AQI", href: "/aqi-effect/" },
   { type: "link", label: "Clientele", href: "/clientele" },
   { type: "link", label: "About Us", href: "/about" },
   { type: "link", label: "FAQ", href: "/faq" },

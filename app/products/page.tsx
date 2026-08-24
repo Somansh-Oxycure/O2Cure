@@ -3,26 +3,47 @@ import { Suspense } from "react";
 import { ProductShowcaseExplorer } from "@/features/solutions";
 import { FooterSection } from "@/features/footer";
 // ─── SEO metadata ─────────────────────────────────────────────────────────────
-export const metadata: Metadata = {
-  title: "Air Safety Engineering Solutions | O2Cure",
-  description:
-    "Browse O2Cure's precision-engineered air safety systems. Filter by environment sector, air challenge, spatial capacity, and integration architecture. NABL-certified. Zero-obligation consultation.",
-  openGraph: {
-    title: "Air Safety Engineering Solutions | O2Cure",
-    description:
-      "Precision-engineered air purification systems for corporate, healthcare, residential, industrial, education, and data centre environments.",
-    type: "website",
-    url: "https://o2cure.in/products",
-    siteName: "O2Cure",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Air Safety Engineering Solutions | O2Cure",
-    description:
-      "Precision-engineered air purification systems for every environment. NABL-certified.",
-  },
-  alternates: { canonical: "https://o2cure.in/products" },
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ env?: string }>;
+}): Promise<Metadata> {
+  const { env } = await searchParams;
+
+  let canonical = "https://o2cure.in/products";
+  let title = "Air Safety Engineering Solutions | O2Cure";
+  let description =
+    "Browse O2Cure's precision-engineered air safety systems. Filter by environment sector, air challenge, spatial capacity, and integration architecture. NABL-certified. Zero-obligation consultation.";
+
+  if (env) {
+    if (env === "residential") {
+      canonical = "https://o2cure.in/residential-air-purifier";
+      title = "Residential Air Purifiers & Purification Systems | O2Cure";
+    } else {
+      canonical = `https://o2cure.in/products/${env}-air-purifier`;
+      const formattedEnv = env.charAt(0).toUpperCase() + env.slice(1);
+      title = `${formattedEnv} Air Purifier & Purification Systems | O2Cure`;
+    }
+  }
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: canonical,
+      siteName: "O2Cure",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+    alternates: { canonical },
+  };
+}
 
 // ─── JSON-LD structured data ───────────────────────────────────────────────────
 const pageJsonLd = {
@@ -34,6 +55,7 @@ const pageJsonLd = {
   url: "https://o2cure.in/products",
   provider: {
     "@type": "Organization",
+    "@id": "https://o2cure.in/#organization",
     name: "O2Cure",
     url: "https://o2cure.in",
   },
@@ -56,9 +78,9 @@ export default function SolutionsPage() {
         <div className="border-b border-[#E5E7EB] bg-white px-5 py-5 md:px-10 md:py-6">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
             <div>
-              <p className="mb-1 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[#9CA3AF]">
+              <h2 className="mb-1 text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-[#9CA3AF]">
                 Air Safety Engineering
-              </p>
+              </h2>
               <h1 className="text-[clamp(1.25rem,1.1rem+1vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-[#1C1C1C]">
                 Solutions Catalogue
               </h1>

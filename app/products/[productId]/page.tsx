@@ -102,6 +102,7 @@ export default async function ProductPage({
             availability: "https://schema.org/InStock",
             seller: {
               "@type": "Organization",
+              "@id": "https://o2cure.in/#organization",
               name: "O2Cure",
               url: "https://o2cure.in",
             },
@@ -113,6 +114,7 @@ export default async function ProductPage({
             availability: "https://schema.org/InStoreOnly",
             seller: {
               "@type": "Organization",
+              "@id": "https://o2cure.in/#organization",
               name: "O2Cure",
               url: "https://o2cure.in",
             },

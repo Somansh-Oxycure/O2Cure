@@ -58,6 +58,7 @@ const blogIndexJsonLd = {
   url: "https://o2cure.in/blog",
   publisher: {
     "@type": "Organization",
+    "@id": "https://o2cure.in/#organization",
     name: "O2Cure",
     url: "https://o2cure.in",
     logo: {

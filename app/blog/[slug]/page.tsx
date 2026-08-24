@@ -104,11 +104,13 @@ export default async function BlogPostPage({
     dateModified: post.publishedAt,
     author: {
       "@type": "Organization",
+      "@id": "https://o2cure.in/#organization",
       name: "O₂Cure",
       url: "https://o2cure.in",
     },
     publisher: {
       "@type": "Organization",
+      "@id": "https://o2cure.in/#organization",
       name: "O2Cure",
       url: "https://o2cure.in",
       logo: {

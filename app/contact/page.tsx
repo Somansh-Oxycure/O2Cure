@@ -65,6 +65,7 @@ const contactPageJsonLd = {
   url: "https://o2cure.in/contact",
   publisher: {
     "@type": "Organization",
+    "@id": "https://o2cure.in/#organization",
     name: "O₂Cure",
     url: "https://o2cure.in",
     logo: {

@@ -327,7 +327,11 @@ export function EnvironmentPanel({
                 className="mt-4 flex items-center gap-4"
               >
                 <Link
-                  href={`/products?env=${environment.solutionsEnv}`}
+                  href={
+                    environment.solutionsEnv === "residential"
+                      ? "/residential-air-purifier"
+                      : `/products/${environment.solutionsEnv}-air-purifier`
+                  }
                   className={cn(
                     buttonVariants({ size: "sm" }),
                     "rounded-full border border-white/25 bg-white/10 px-5 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white flex items-center gap-1.5 whitespace-nowrap"

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description:
       "Enterprise-grade air purity for every commercial space — open offices, hospitals, lobbies, and full AHU integration.",
     type: "website",
-    url: "https://o2cure.in/commercial",
+    url: "https://o2cure.in/commercial-air-purifier",
     images: [
       {
         url: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://o2cure.in/commercial",
+    canonical: "https://o2cure.in/commercial-air-purifier",
   },
 };
 
@@ -58,6 +58,7 @@ function CommercialJsonLd() {
       "Custom enterprise air purification systems engineered for commercial spaces — offices, hospitals, and central HVAC integration.",
     provider: {
       "@type": "Organization",
+      "@id": "https://o2cure.in/#organization",
       name: "O2Cure",
       url: "https://o2cure.in",
     },

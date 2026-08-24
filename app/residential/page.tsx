@@ -58,6 +58,7 @@ function ResidentialJsonLd() {
       "Custom spatial air purification systems engineered for residential homes — villas, apartments, and HVAC integration.",
     provider: {
       "@type": "Organization",
+      "@id": "https://o2cure.in/#organization",
       name: "O2Cure",
       url: "https://o2cure.in",
     },
