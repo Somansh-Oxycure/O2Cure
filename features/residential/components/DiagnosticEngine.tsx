@@ -8,38 +8,36 @@ import {
   type ResidentialRecommendation,
 } from "../data/mock";
 import { ThreatVectorStep } from "./ThreatVectorStep";
-import { SpatialLayoutStep } from "./SpatialLayoutStep";
 import { OccupancySliderStep } from "./OccupancySliderStep";
 import { DiagnosticResultSection } from "./DiagnosticResultSection";
+import { DynamicVisualizer } from "@/features/shared/components/DynamicVisualizer";
+import { LeadCaptureForm } from "./LeadCaptureForm";
 
 const STEPS = [
   {
-    id: "threats",
+    id: "scale",
     number: "01",
+    label: "Space & Occupancy",
+    description: "Define your environment",
+  },
+  {
+    id: "threats",
+    number: "02",
     label: "Threat Vectors",
     description: "What are you experiencing?",
-  },
-  {
-    id: "layout",
-    number: "02",
-    label: "Spatial Blueprint",
-    description: "Where is this occurring?",
-  },
-  {
-    id: "scale",
-    number: "03",
-    label: "Occupancy & Scale",
-    description: "Area and resident count",
   },
 ];
 
 export function DiagnosticEngine() {
   const [activeStep, setActiveStep] = useState(0);
-  const [state, setState] = useState<DiagnosticState>({
+  // We infer layout from areaSqFt for the visualizer, or add a quick selector. 
+  // Let's use standard state from before but simplified
+  const [state, setState] = useState<DiagnosticState & { bedrooms: number }>({
     threats: [],
-    layout: "",
+    layout: "apartment", // Default for visualizer
     areaSqFt: 800,
     occupancy: 3,
+    bedrooms: 1,
   });
   const [recommendation, setRecommendation] =
     useState<ResidentialRecommendation | null>(null);
@@ -47,13 +45,13 @@ export function DiagnosticEngine() {
   const resultRef = useRef<HTMLDivElement>(null);
 
   const canAdvance = useCallback(() => {
-    if (activeStep === 0) return state.threats.length > 0;
-    if (activeStep === 1) return state.layout !== "";
+    if (activeStep === 0) return true; // Area/Occupancy always valid
+    if (activeStep === 1) return state.threats.length > 0;
     return true;
   }, [activeStep, state]);
 
   const handleAdvance = () => {
-    if (activeStep < 2) {
+    if (activeStep < 1) {
       setActiveStep((s) => s + 1);
     } else {
       // Generate recommendation
@@ -73,150 +71,101 @@ export function DiagnosticEngine() {
   const handleReset = () => {
     setRecommendation(null);
     setActiveStep(0);
-    setState({ threats: [], layout: "", areaSqFt: 800, occupancy: 3 });
+    setState({ threats: [], layout: "apartment", areaSqFt: 800, occupancy: 3, bedrooms: 1 });
   };
 
   const isComplete = recommendation !== null;
 
+  // Infer layout type from area for the visualizer
+  let layoutType = state.layout;
+  if (state.areaSqFt < 400) layoutType = "personal";
+  else if (state.areaSqFt < 1200) layoutType = "apartment";
+  else layoutType = "villa";
+
   return (
     <section
       id="diagnostic-engine"
-      className="bg-[#F7FAFD] py-20 md:py-28"
+      className="bg-[#F7FAFD] py-10 md:py-16"
       aria-label="Home Air Diagnostic Engine"
     >
-      <div className="mx-auto max-w-6xl px-6 md:px-10">
+      <div className="mx-auto max-w-7xl px-6 md:px-10">
         {/* Section header */}
-        <div className="mb-12 max-w-xl">
-          <p className="mb-3 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#C5A059]">
-            3-Step Diagnostic
-          </p>
-          <h2 className="text-[clamp(1.75rem,1.3rem+2vw,2.75rem)] font-bold tracking-[-0.03em] text-[#1C1C1C]">
-            Your Home Air Diagnosis
-          </h2>
-          <p className="mt-3 text-[0.9rem] leading-[1.65] text-[#6B7280]">
-            Answer three spatial questions. We&apos;ll engineer a precise air
-            purification recommendation around your home.
-          </p>
-        </div>
+        {!isComplete ? (
+          <div className="mb-12 text-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
+              className="mb-4 flex items-center justify-center gap-3"
+            >
+              <div className="h-[1px] w-8 bg-[#C5A059]" />
+              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[#C5A059]">
+                Interactive Diagnostic
+              </p>
+              <div className="h-[1px] w-8 bg-[#C5A059]" />
+            </motion.div>
+            <h2 className="text-[clamp(1.75rem,1.3rem+2vw,2.75rem)] font-bold tracking-[-0.03em] text-[#1C1C1C]">
+              Engineer Your Air
+            </h2>
+            <p className="mt-3 text-[0.9rem] leading-[1.65] text-[#6B7280] max-w-lg mx-auto">
+              Watch your space transform as you build your custom purification profile.
+            </p>
+          </div>
+        ) : (
+          <div className="mb-12 text-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
+              className="mb-4 flex items-center justify-center gap-3"
+            >
+              <div className="h-[1px] w-8 bg-[#C5A059]" />
+              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[#C5A059]">
+                Personalised Recommendation
+              </p>
+              <div className="h-[1px] w-8 bg-[#C5A059]" />
+            </motion.div>
+            
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.18 }}
+              className="text-[clamp(1.8rem,1.5rem+2vw,2.75rem)] font-semibold tracking-[-0.02em] text-[#1A1C19]"
+            >
+              Your Home Air Architecture
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.26 }}
+              className="mt-4 text-[0.95rem] font-light text-gray-500 max-w-lg mx-auto"
+            >
+              Based on your spatial parameters, we recommend the following bespoke system configuration.
+            </motion.p>
+          </div>
+        )}
 
-        {!isComplete && (
-          <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
-            {/* ── Step navigator (sidebar) ── */}
-            <aside aria-label="Diagnostic steps" className="hidden lg:block">
-              <div className="sticky top-28 space-y-2">
-                {STEPS.map((step, idx) => {
-                  const status =
-                    idx < activeStep
-                      ? "done"
-                      : idx === activeStep
-                      ? "active"
-                      : "idle";
-                  return (
-                    <button
-                      key={step.id}
-                      type="button"
-                      id={`step-nav-${step.id}`}
-                      onClick={() => {
-                        // Only allow going back, or forward if steps are valid
-                        if (idx < activeStep) setActiveStep(idx);
-                      }}
-                      disabled={idx > activeStep}
-                      className={`group flex w-full items-start gap-4 rounded-2xl p-4 text-left transition-all duration-300 ${
-                        status === "active"
-                          ? "bg-white shadow-sm border border-[#C5A059]/20"
-                          : status === "done"
-                          ? "hover:bg-white/60 cursor-pointer"
-                          : "opacity-40 cursor-default"
-                      }`}
-                      aria-current={status === "active" ? "step" : undefined}
-                    >
-                      {/* Step number / checkmark */}
-                      <div
-                        className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full text-[0.75rem] font-bold transition-colors duration-300 ${
-                          status === "done"
-                            ? "bg-[#C5A059] text-white"
-                            : status === "active"
-                            ? "bg-[#C5A059] text-white"
-                            : "border-2 border-gray-200 text-gray-400"
-                        }`}
-                      >
-                        {status === "done" ? (
-                          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                          </svg>
-                        ) : (
-                          step.number
-                        )}
-                      </div>
-
-                      <div>
-                        <p
-                          className={`text-[0.82rem] font-semibold ${
-                            status === "active"
-                              ? "text-[#C5A059]"
-                              : status === "done"
-                              ? "text-[#1A1C19]"
-                              : "text-gray-400"
-                          }`}
-                        >
-                          {step.label}
-                        </p>
-                        <p className="mt-0.5 text-[0.72rem] text-[#6B7280]">
-                          {step.description}
-                        </p>
-                      </div>
-                    </button>
-                  );
-                })}
-
-                {/* Progress */}
-                <div className="mt-6 rounded-xl bg-white border border-gray-100 px-4 py-3">
-                  <div className="mb-2 flex justify-between text-[0.68rem] font-medium text-gray-400">
-                    <span>Progress</span>
-                    <span>{Math.round(((activeStep) / 3) * 100)}%</span>
-                  </div>
-                  <div className="h-1 rounded-full bg-[#F7F5F0]">
-                    <motion.div
-                      className="h-full rounded-full bg-gradient-to-r from-[#C5A059] to-[#D4B370]"
-                      animate={{ width: `${(activeStep / 3) * 100}%` }}
-                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </aside>
-
-            {/* ── Step content panel ── */}
-            <div>
-              {/* Mobile step indicator */}
-              <div className="mb-6 flex items-center gap-3 lg:hidden">
-                {STEPS.map((step, idx) => (
-                  <div
-                    key={step.id}
-                    className={`h-1 flex-1 rounded-full transition-all duration-500 ${
-                      idx <= activeStep
-                        ? idx < activeStep
-                          ? "bg-[#C5A059]"
-                          : "bg-[#C5A059]"
-                        : "bg-gray-200"
-                    }`}
-                    aria-hidden="true"
-                  />
-                ))}
-              </div>
-
+        <div className="grid gap-8 lg:grid-cols-2 items-start">
+          
+          {/* Left Column: Form Controls */}
+          <div className="flex flex-col gap-6 order-2 lg:order-1">
+            {!isComplete ? (
               <div className="rounded-3xl border border-[#E5E7EB] bg-white p-6 shadow-sm md:p-8">
                 {/* Step header */}
-                <div className="mb-6">
-                  <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#9CA3AF]">
-                    Step {STEPS[activeStep].number} of 03
-                  </p>
-                  <h3 className="text-[1.1rem] font-bold tracking-[-0.02em] text-[#1C1C1C]">
-                    {STEPS[activeStep].label}
-                  </h3>
-                  <p className="mt-0.5 text-[0.8rem] text-[#6B7280]">
-                    {STEPS[activeStep].description}
-                  </p>
+                <div className="mb-8 flex items-center justify-between border-b border-gray-100 pb-4">
+                  <div>
+                    <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#9CA3AF]">
+                      Step {STEPS[activeStep].number} of 02
+                    </p>
+                    <h3 className="text-[1.1rem] font-bold tracking-[-0.02em] text-[#1C1C1C]">
+                      {STEPS[activeStep].label}
+                    </h3>
+                  </div>
+                  <div className="flex gap-2">
+                    {STEPS.map((_, i) => (
+                      <div key={i} className={`w-2 h-2 rounded-full transition-colors ${i === activeStep ? 'bg-[#C5A059]' : i < activeStep ? 'bg-[#D4B370]' : 'bg-gray-200'}`} />
+                    ))}
+                  </div>
                 </div>
 
                 {/* Step content */}
@@ -229,30 +178,29 @@ export function DiagnosticEngine() {
                     transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   >
                     {activeStep === 0 && (
-                      <ThreatVectorStep
-                        selected={state.threats}
-                        onChange={(threats) =>
-                          setState((s) => ({ ...s, threats }))
+                      <OccupancySliderStep
+                        areaSqFt={state.areaSqFt}
+                        occupancy={state.occupancy}
+                        bedrooms={state.bedrooms}
+                        onAreaChange={(areaSqFt) =>
+                          setState((s) => {
+                            const maxRooms = Math.max(1, Math.min(9, Math.floor(areaSqFt / 150)));
+                            return { ...s, areaSqFt, layout: areaSqFt > 2000 ? "villa" : "apartment", bedrooms: Math.min(s.bedrooms, maxRooms) };
+                          })
+                        }
+                        onBedroomsChange={(bedrooms) =>
+                          setState((s) => ({ ...s, bedrooms }))
+                        }
+                        onOccupancyChange={(occupancy) =>
+                          setState((s) => ({ ...s, occupancy }))
                         }
                       />
                     )}
                     {activeStep === 1 && (
-                      <SpatialLayoutStep
-                        selected={state.layout}
-                        onChange={(layout) =>
-                          setState((s) => ({ ...s, layout }))
-                        }
-                      />
-                    )}
-                    {activeStep === 2 && (
-                      <OccupancySliderStep
-                        areaSqFt={state.areaSqFt}
-                        occupancy={state.occupancy}
-                        onAreaChange={(areaSqFt) =>
-                          setState((s) => ({ ...s, areaSqFt }))
-                        }
-                        onOccupancyChange={(occupancy) =>
-                          setState((s) => ({ ...s, occupancy }))
+                      <ThreatVectorStep
+                        selected={state.threats}
+                        onChange={(threats) =>
+                          setState((s) => ({ ...s, threats }))
                         }
                       />
                     )}
@@ -263,59 +211,95 @@ export function DiagnosticEngine() {
                 <div className="mt-8 flex items-center justify-between border-t border-[#F3F4F6] pt-6">
                   <button
                     type="button"
-                    id="diagnostic-back"
                     onClick={handleBack}
-                    disabled={activeStep === 0}
-                    className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-[0.82rem] font-medium text-[#6B7280] transition-colors hover:text-[#1C1C1C] disabled:pointer-events-none disabled:opacity-0"
+                    className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-[0.82rem] font-medium text-[#6B7280] transition-colors hover:text-[#1C1C1C] ${activeStep === 0 ? 'opacity-0 pointer-events-none' : ''}`}
                   >
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                    </svg>
                     Back
                   </button>
 
                   <button
                     type="button"
-                    id="diagnostic-next"
                     onClick={handleAdvance}
                     disabled={!canAdvance()}
-                    className="group inline-flex items-center gap-2.5 rounded-xl bg-[#C5A059] px-6 py-3 text-[0.88rem] font-medium text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#A88746] hover:shadow-md hover:shadow-[#C5A059]/25 disabled:cursor-not-allowed disabled:opacity-40"
-                    aria-label={
-                      activeStep === 2
-                        ? "Generate your air diagnosis"
-                        : "Advance to next step"
-                    }
+                    className="group inline-flex items-center gap-2.5 rounded-xl bg-[#C5A059] px-6 py-3 text-[0.88rem] font-medium text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#A88746] disabled:cursor-not-allowed disabled:opacity-40"
                   >
-                    {activeStep === 2 ? "Generate My Diagnosis" : "Continue"}
-                    <svg
-                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      aria-hidden="true"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                    {activeStep === 1 ? "Generate Solution" : "Continue"}
                   </button>
                 </div>
               </div>
-            </div>
-          </div>
-        )}
-
-        {/* ── Result Section ── */}
-        <div ref={resultRef}>
-          <AnimatePresence>
-            {recommendation && (
-              <DiagnosticResultSection
-                recommendation={recommendation}
-                onReset={handleReset}
-              />
+            ) : (
+              <div ref={resultRef}>
+                <DiagnosticResultSection
+                  recommendation={recommendation}
+                  onReset={handleReset}
+                />
+              </div>
             )}
-          </AnimatePresence>
+          </div>
+
+          {/* Right Column: Dynamic Visualizer (Sticky) */}
+          <div className="order-1 lg:order-2 lg:sticky lg:top-28 flex flex-col">
+            <DynamicVisualizer 
+              layoutType={layoutType}
+              bedrooms={state.bedrooms}
+              occupancy={state.occupancy}
+              threats={state.threats}
+              isComplete={isComplete}
+              productImage={recommendation?.imageUrl}
+              productId={recommendation?.productId}
+            />
+            
+            {/* CTA and Lead Form below visualizer */}
+            <AnimatePresence>
+              {isComplete && recommendation && (
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="mt-8 flex flex-col"
+                >
+                  <LeadCaptureForm systemName={recommendation.systemName} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
         </div>
       </div>
+
+      {/* WhatsApp Floating Popup */}
+      <AnimatePresence>
+        {isComplete && recommendation && (
+          <motion.a
+            href={`https://wa.me/918010111177?text=${encodeURIComponent(
+              `Hello, I just used the O2Cure Air Diagnostic tool and got recommended the ${recommendation.systemName}. Can we discuss this?`
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 15, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 15, scale: 0.95 }}
+            transition={{ delay: 1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed bottom-[5.5rem] right-6 z-50 flex w-[260px] flex-col gap-2 rounded-2xl border border-gray-100 bg-white p-4 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-colors hover:border-[#25D366]/30 group"
+          >
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#25D366]/10 text-[#25D366]">
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 6.46 17.5 2 12.04 2ZM12.04 20.15C10.55 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15.01 3.8 13.49 3.8 11.91C3.8 7.37 7.49 3.68 12.04 3.68C16.58 3.68 20.27 7.38 20.27 11.92C20.27 16.46 16.58 20.15 12.04 20.15Z" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-[0.8rem] font-semibold text-[#1A1C19]">Get in touch directly</p>
+                <p className="mt-0.5 text-[0.75rem] leading-[1.4] text-gray-500">
+                  Discuss your <strong>{recommendation.systemName}</strong> solution on WhatsApp.
+                </p>
+              </div>
+            </div>
+            {/* Triangle pointer */}
+            <div className="absolute -bottom-2 right-5 h-4 w-4 rotate-45 border-b border-r border-gray-100 bg-white" />
+          </motion.a>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -35,7 +35,7 @@ export function LeadCaptureForm({ systemName, onSubmit }: LeadCaptureFormProps) 
   };
 
   const inputBase =
-    "w-full rounded-xl border border-gray-200 bg-[#FDFBF7] px-4 py-3.5 text-[0.9rem] text-[#1A1C19] placeholder-gray-400 outline-none transition-all duration-400 focus:border-[#C5A059] focus:bg-white focus:ring-4 focus:ring-[#C5A059]/10 hover:border-[#C5A059]/40";
+    "w-full rounded-xl border border-gray-200 bg-[#FDFBF7] px-4 py-2.5 text-[0.85rem] text-[#1A1C19] placeholder-gray-400 outline-none transition-all duration-400 focus:border-[#C5A059] focus:bg-white focus:ring-4 focus:ring-[#C5A059]/10 hover:border-[#C5A059]/40";
 
   if (submitted) {
     return (
@@ -73,74 +73,75 @@ export function LeadCaptureForm({ systemName, onSubmit }: LeadCaptureFormProps) 
   }
 
   return (
-    <div className="rounded-3xl border border-gray-100 bg-white p-8 shadow-xl shadow-black/5 md:p-10">
+    <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-xl shadow-black/5 md:p-8">
       {/* Header */}
-      <div className="mb-8">
-        <div className="mb-4 flex items-center gap-3">
+      <div className="mb-6">
+        <div className="mb-3 flex items-center gap-3">
           <div className="h-[1px] w-6 bg-[#C5A059]" />
           <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[#C5A059]">
             Consultation
           </p>
         </div>
-        <h3 className="text-[1.5rem] font-medium tracking-tight text-[#1A1C19]">
+        <h3 className="text-[1.4rem] font-medium tracking-tight text-[#1A1C19]">
           Request Your Architectural Plan
         </h3>
-        <p className="mt-2 text-[0.85rem] leading-[1.6] text-gray-500 font-light">
+        <p className="mt-1 text-[0.8rem] leading-[1.6] text-gray-500 font-light">
           Speak with our specialists to review your parameters and finalise the system layout.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} noValidate className="space-y-5">
-        {/* Name */}
-        <div>
-          <label
-            htmlFor={nameId}
-            className="mb-2 block text-[0.75rem] font-medium uppercase tracking-[0.05em] text-[#8B7C62]"
-          >
-            Full Name
-          </label>
-          <input
-            id={nameId}
-            type="text"
-            required
-            autoComplete="name"
-            placeholder="E.g., Rohan Mehta"
-            value={form.name}
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className={inputBase}
-          />
-        </div>
-
-        {/* Phone / WhatsApp */}
-        <div>
-          <label
-            htmlFor={phoneId}
-            className="mb-2 block text-[0.75rem] font-medium uppercase tracking-[0.05em] text-[#8B7C62]"
-          >
-            Phone / WhatsApp
-          </label>
-          <div className="relative">
-            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[0.85rem] font-medium text-gray-400">
-              +91
-            </span>
+      <form onSubmit={handleSubmit} noValidate className="space-y-4">
+        {/* Row 1: Name and Phone */}
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label
+              htmlFor={nameId}
+              className="mb-1.5 block text-[0.7rem] font-medium uppercase tracking-[0.05em] text-[#8B7C62]"
+            >
+              Full Name
+            </label>
             <input
-              id={phoneId}
-              type="tel"
+              id={nameId}
+              type="text"
               required
-              autoComplete="tel"
-              placeholder="98765 43210"
-              value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              className={`${inputBase} pl-12`}
+              autoComplete="name"
+              placeholder="E.g., Rohan Mehta"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              className={inputBase}
             />
+          </div>
+
+          <div>
+            <label
+              htmlFor={phoneId}
+              className="mb-1.5 block text-[0.7rem] font-medium uppercase tracking-[0.05em] text-[#8B7C62]"
+            >
+              Phone / WhatsApp
+            </label>
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[0.8rem] font-medium text-gray-400">
+                +91
+              </span>
+              <input
+                id={phoneId}
+                type="tel"
+                required
+                autoComplete="tel"
+                placeholder="98765 43210"
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                className={`${inputBase} pl-10`}
+              />
+            </div>
           </div>
         </div>
 
-        {/* City */}
+        {/* Row 2: City */}
         <div>
           <label
             htmlFor={cityId}
-            className="mb-2 block text-[0.75rem] font-medium uppercase tracking-[0.05em] text-[#8B7C62]"
+            className="mb-1.5 block text-[0.7rem] font-medium uppercase tracking-[0.05em] text-[#8B7C62]"
           >
             City / Area
           </label>
@@ -172,7 +173,7 @@ export function LeadCaptureForm({ systemName, onSubmit }: LeadCaptureFormProps) 
           type="submit"
           id="lead-form-submit"
           disabled={loading || !form.name || !form.phone || !form.city}
-          className="group mt-6 relative w-full overflow-hidden rounded-xl bg-[#C5A059] py-4 text-[0.95rem] font-medium text-white shadow-lg shadow-[#C5A059]/20 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[#A88746] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#C5A059]/30 disabled:cursor-not-allowed disabled:opacity-60"
+          className="group mt-4 relative w-full overflow-hidden rounded-xl bg-[#C5A059] py-3.5 text-[0.9rem] font-medium text-white shadow-lg shadow-[#C5A059]/20 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[#A88746] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#C5A059]/30 disabled:cursor-not-allowed disabled:opacity-60"
           aria-label="Submit consultation request"
         >
           <span className="relative z-10 flex items-center justify-center gap-3">

@@ -5,8 +5,10 @@ import { useId } from "react";
 interface OccupancySliderStepProps {
   areaSqFt: number;
   occupancy: number;
+  bedrooms: number;
   onAreaChange: (v: number) => void;
   onOccupancyChange: (v: number) => void;
+  onBedroomsChange: (v: number) => void;
 }
 
 interface SliderProps {
@@ -38,8 +40,8 @@ function PremiumSlider({
   const display = format ? format(value) : value.toString();
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#C5A059]/30">
-      <div className="mb-6 flex items-end justify-between gap-3">
+    <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#C5A059]/30">
+      <div className="mb-4 flex items-end justify-between gap-3">
         <div>
           <label
             htmlFor={id}
@@ -104,14 +106,19 @@ function PremiumSlider({
 export function OccupancySliderStep({
   areaSqFt,
   occupancy,
+  bedrooms,
   onAreaChange,
   onOccupancyChange,
+  onBedroomsChange,
 }: OccupancySliderStepProps) {
   const areaId = useId();
   const occupancyId = useId();
+  const roomsId = useId();
+
+  const maxRooms = Math.max(1, Math.min(9, Math.floor(areaSqFt / 150)));
 
   return (
-    <div className="space-y-5 pt-2">
+    <div className="space-y-3 pt-1">
       <PremiumSlider
         id={areaId}
         label="Carpet Area"
@@ -123,6 +130,17 @@ export function OccupancySliderStep({
         unit="sq ft"
         format={(v) => v.toLocaleString("en-IN")}
         onChange={onAreaChange}
+      />
+      <PremiumSlider
+        id={roomsId}
+        label="Number of Bedrooms"
+        sublabel={`Based on your selected area (Max ${maxRooms})`}
+        value={Math.min(bedrooms, maxRooms)}
+        min={1}
+        max={Math.max(1, maxRooms)}
+        step={1}
+        unit="bedrooms"
+        onChange={onBedroomsChange}
       />
       <PremiumSlider
         id={occupancyId}
@@ -137,7 +155,7 @@ export function OccupancySliderStep({
       />
 
       {/* Live CFM estimate */}
-      <div className="flex items-start gap-4 rounded-xl border border-[#C5A059]/20 bg-[#FDFBF7] px-5 py-4">
+      <div className="flex items-start gap-4 rounded-xl border border-[#C5A059]/20 bg-[#FDFBF7] px-4 py-3">
         <svg
           className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#C5A059]"
           fill="none"

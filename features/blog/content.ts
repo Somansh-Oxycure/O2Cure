@@ -29,7 +29,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "Human Metapneumovirus belongs to the Paramyxoviridae family and can lead to severe complications in vulnerable groups — learn how advanced air purification reduces airborne viral load.",
-    featuredImage: "/blog/Blog_01_feat.jpg",
+    featuredImage: "/blog-new/Blog_01_feat.webp",
     featuredImageAlt: "Child with respiratory illness — HMPV awareness",
     category: "Health & Wellbeing",
     readingTimeMin: 3,
@@ -62,7 +62,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "A comprehensive guide to ultrasonic, evaporative and steam humidifiers — how they work, their health benefits and how they complement air purifiers in improving indoor air quality.",
-    featuredImage: "/blog/Blog_02_feat.png",
+    featuredImage: "/blog-new/Blog_02_feat.webp",
     featuredImageAlt: "Home humidifier improving indoor air quality",
     category: "Health & Wellbeing",
     readingTimeMin: 7,
@@ -94,7 +94,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "Air pollution inside your car can be as damaging as outdoor exposure. This guide explains how HEPA-based car air purifiers remove PM2.5, allergens and VOCs for a healthier commute.",
-    featuredImage: "/blog/Blog_03_feat.png",
+    featuredImage: "/blog-new/Blog_03_feat.webp",
     featuredImageAlt:
       "Car air purifier improving in-cabin air quality during travel",
     category: "Air Quality",
@@ -125,7 +125,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "rewrite",
     excerpt:
       "Delhi's seasonal pollution peaks demand purpose-built air purification. This guide evaluates the O₂Cure line-up against the specific particulate and gaseous load of North Indian winters.",
-    featuredImage: "/blog/Blog_04_feat.jpg",
+    featuredImage: "/blog-new/Blog_04_feat.webp",
     featuredImageAlt: "Delhi skyline under heavy smog — air purifier guide",
     category: "Air Quality",
     readingTimeMin: 7,
@@ -155,7 +155,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "Not every air purifier addresses allergens equally. These four criteria — filtration grade, CADR, sealed system design, and maintenance cycle — determine whether a purifier genuinely helps allergy sufferers.",
-    featuredImage: "/blog/Blog_05_feat.jpg",
+    featuredImage: "/blog-new/Blog_05_feat.webp",
     featuredImageAlt: "Person suffering from allergies — indoor air quality guide",
     category: "Health & Wellbeing",
     readingTimeMin: 5,
@@ -186,7 +186,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "Cigarette smoke contains over 7,000 chemicals, many of them harmful. This post explains how activated carbon combined with HEPA filtration is the only scientifically proven combination for effective smoke removal.",
-    featuredImage: "/blog/Blog_06_feat.jpg",
+    featuredImage: "/blog-new/Blog_06_feat.webp",
     featuredImageAlt:
       "Cigarette smoke in an indoor environment — air purification guide",
     category: "Health & Wellbeing",
@@ -218,7 +218,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "Dental procedures generate aerosols that remain airborne for extended periods. This guide covers the filtration specifications, CADR requirements and placement strategies dental practices should follow.",
-    featuredImage: "/blog/Blog_07_feat.jpg",
+    featuredImage: "/blog-new/Blog_07_feat.webp",
     featuredImageAlt: "Air purification in a modern dental office environment",
     category: "B2B Environments",
     readingTimeMin: 5,
@@ -250,7 +250,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "rewrite",
     excerpt:
       "HEPA filtration is the gold standard in air purification — but what exactly does it capture, and what are its limits? A science-first explanation of how HEPA works and where complementary technologies become necessary.",
-    featuredImage: "/blog/Blog_08_feat.jpg",
+    featuredImage: "/blog-new/Blog_08_feat.webp",
     featuredImageAlt: "HEPA filter cross-section — air purification science",
     category: "Science & Technology",
     readingTimeMin: 4,
@@ -280,7 +280,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "merge",
     excerpt:
       "A detailed look at the documented health benefits of HEPA-grade air purification — from reduced allergy symptoms to lower cardiovascular risk from PM2.5 exposure.",
-    featuredImage: "/blog/Blog_09_feat.jpg",
+    featuredImage: "/blog-new/Blog_09_feat.webp",
     featuredImageAlt: "Person breathing clean air — health benefits of HEPA filtration",
     category: "Health & Wellbeing",
     readingTimeMin: 5,
@@ -304,7 +304,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "The economic and human cost of air pollution in India extends far beyond healthcare — it affects productivity, cognition, life expectancy and GDP. A data-led examination of what polluted air is actually costing us.",
-    featuredImage: "/blog/Blog_10_feat.jpg",
+    featuredImage: "/blog-new/Blog_10_feat.webp",
     featuredImageAlt:
       "Data visualization of air pollution cost and health impact",
     category: "Air Quality",
@@ -336,7 +336,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "rewrite",
     excerpt:
       "The definitive O₂Cure guide to selecting an air purifier for Indian conditions — covering CADR sizing, filtration stages, technology differences and the right model for every environment.",
-    featuredImage: "/blog/Blog_11_feat.jpg",
+    featuredImage: "/blog-new/Blog_11_feat.webp",
     featuredImageAlt:
       "O₂Cure air purifier range — choosing the best air purifier in India",
     category: "Science & Technology",
@@ -366,7 +366,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "Odor removal requires activated carbon, not just HEPA. This guide explains why carbon mass matters, which O₂Cure models are best suited for odor-heavy environments, and how to maintain peak performance.",
-    featuredImage: "/blog/Blog_12_feat.jpg",
+    featuredImage: "/blog-new/Blog_12_feat.webp",
     featuredImageAlt: "Indoor space with poor air quality — odor removal guide",
     category: "Health & Wellbeing",
     readingTimeMin: 3,
@@ -395,7 +395,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "merge",
     excerpt:
       "The science behind indoor humidity and airborne pathogen transmission — why maintaining 40–60% relative humidity reduces viral viability and what that means for your home.",
-    featuredImage: "/blog/Blog_13_feat.jpg",
+    featuredImage: "/blog-new/Blog_13_feat.webp",
     featuredImageAlt: "Indoor humidifier in use — humidity and air quality science",
     category: "Science & Technology",
     readingTimeMin: 3,
@@ -419,7 +419,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "Indoor air can be 2–5× more polluted than outdoor air, according to the US Environmental Protection Agency. This post answers the foundational question every prospective buyer asks.",
-    featuredImage: "/blog/Blog_14_feat.png",
+    featuredImage: "/blog-new/Blog_14_feat.webp",
     featuredImageAlt:
       "Family at home — understanding the need for indoor air purification",
     category: "Health & Wellbeing",
@@ -475,7 +475,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "Modern building envelopes are intentionally airtight — a feature that reduces energy consumption but concentrates indoor pollutants. ASHRAE ventilation standards, CO₂ monitoring and the case for mechanical air purification in commercial buildings.",
-    featuredImage: "/blog/Blog_16_feat.jpg",
+    featuredImage: "/blog-new/Blog_16_feat.webp",
     featuredImageAlt:
       "Modern commercial building interior — ventilation and air quality",
     category: "B2B Environments",
@@ -529,7 +529,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2021-07-15",
     auditStatus: "retire",
     excerpt: "",
-    featuredImage: "/blog/Blog_18_feat.jpg",
+    featuredImage: "/blog-new/Blog_18_feat.webp",
     featuredImageAlt: "",
     category: "Health & Wellbeing",
     readingTimeMin: 7,
@@ -554,7 +554,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "Air purifiers and humidifiers address different indoor air quality dimensions — and used together correctly, they are more effective than either alone. This post explains how to combine them without creating new problems.",
-    featuredImage: "/blog/Blog_19_feat.jpg",
+    featuredImage: "/blog-new/Blog_19_feat.webp",
     featuredImageAlt:
       "Air purifier and humidifier in a residential living room",
     category: "Health & Wellbeing",
@@ -584,7 +584,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2021-07-05",
     auditStatus: "retire",
     excerpt: "",
-    featuredImage: "/blog/Blog_20_feat.jpg",
+    featuredImage: "/blog-new/Blog_20_feat.webp",
     featuredImageAlt: "",
     category: "Health & Wellbeing",
     readingTimeMin: 5,
@@ -609,7 +609,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "The link between PM2.5 exposure and cardiovascular disease is one of the most robustly documented relationships in environmental health science. This post examines the biological mechanisms and what they mean for indoor air quality.",
-    featuredImage: "/blog/Blog_21_feat.jpg",
+    featuredImage: "/blog-new/Blog_21_feat.webp",
     featuredImageAlt:
       "Medical illustration of PM2.5 and cardiovascular risk connection",
     category: "Health & Wellbeing",
@@ -639,7 +639,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2021-05-22",
     auditStatus: "retire",
     excerpt: "",
-    featuredImage: "/blog/Blog_22_feat.jpg",
+    featuredImage: "/blog-new/Blog_22_feat.webp",
     featuredImageAlt: "",
     category: "Air Quality",
     readingTimeMin: 3,
@@ -663,7 +663,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2021-05-19",
     auditStatus: "retire",
     excerpt: "",
-    featuredImage: "/blog/Blog_23_feat.png",
+    featuredImage: "/blog-new/Blog_23_feat.webp",
     featuredImageAlt: "",
     category: "Health & Wellbeing",
     readingTimeMin: 3,
@@ -687,7 +687,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2021-04-24",
     auditStatus: "merge",
     excerpt: "",
-    featuredImage: "/blog/Blog_24_feat.jpg",
+    featuredImage: "/blog-new/Blog_24_feat.webp",
     featuredImageAlt: "",
     category: "B2B Environments",
     readingTimeMin: 3,
@@ -711,7 +711,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "Sinusitis sufferers frequently experience relief when indoor allergen and irritant levels are reduced. This post examines the clinical rationale for air purification as a complementary strategy for sinus health.",
-    featuredImage: "/blog/Blog_25_feat.jpg",
+    featuredImage: "/blog-new/Blog_25_feat.webp",
     featuredImageAlt: "Person experiencing sinus relief with clean indoor air",
     category: "Health & Wellbeing",
     readingTimeMin: 4,
@@ -741,7 +741,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "Gyms combine high occupancy, elevated breathing rates and often poor ventilation — creating one of the most demanding indoor air quality environments. CADR sizing, placement and maintenance for fitness facilities.",
-    featuredImage: "/blog/Blog_26_feat.jpg",
+    featuredImage: "/blog-new/Blog_26_feat.webp",
     featuredImageAlt: "Modern gym interior — air purification for fitness facilities",
     category: "B2B Environments",
     readingTimeMin: 4,
@@ -772,7 +772,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "rewrite",
     excerpt:
       "Indoor air quality has become a measurable component of hotel guest satisfaction. This post covers IAQ standards for hospitality, CADR sizing for room categories, and how air purification supports both occupancy rates and regulatory compliance.",
-    featuredImage: "/blog/Blog_27_feat.jpg",
+    featuredImage: "/blog-new/Blog_27_feat.webp",
     featuredImageAlt: "Premium hotel room with clean indoor air environment",
     category: "B2B Environments",
     readingTimeMin: 3,
@@ -802,7 +802,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "rewrite",
     excerpt:
       "Restaurant environments generate complex air quality challenges — cooking smoke, grease aerosols, high occupancy and odor management. A procurement guide for food service operators.",
-    featuredImage: "/blog/Blog_28_feat.jpg",
+    featuredImage: "/blog-new/Blog_28_feat.webp",
     featuredImageAlt:
       "Restaurant dining room — air quality management for food service",
     category: "B2B Environments",
@@ -832,7 +832,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2021-03-17",
     auditStatus: "retire",
     excerpt: "",
-    featuredImage: "/blog/Blog_29_feat.jpg",
+    featuredImage: "/blog-new/Blog_29_feat.webp",
     featuredImageAlt: "",
     category: "Health & Wellbeing",
     readingTimeMin: 3,
@@ -857,7 +857,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "rewrite",
     excerpt:
       "Classroom air quality directly affects student cognitive performance and attendance rates. This guide covers ASHRAE ventilation standards for educational facilities, CADR sizing and the case for systematic air purification in Indian schools.",
-    featuredImage: "/blog/Blog_30_feat.jpg",
+    featuredImage: "/blog-new/Blog_30_feat.webp",
     featuredImageAlt:
       "Modern classroom with clean indoor air — student health and performance",
     category: "B2B Environments",
@@ -887,7 +887,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "India's air quality follows a predictable seasonal pattern driven by meteorology, agricultural burning and temperature inversions. Understanding this pattern is the first step in preparing your home or business before the pollution peak arrives.",
-    featuredImage: "/blog/Blog_31_feat.jpg",
+    featuredImage: "/blog-new/Blog_31_feat.webp",
     featuredImageAlt:
       "Delhi pollution season — seasonal air quality patterns in India",
     category: "Air Quality",
@@ -918,7 +918,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "merge",
     excerpt:
       "A concise checklist for first-time air purifier buyers — the five specifications that matter most and why each one affects real-world performance.",
-    featuredImage: "/blog/Blog_32_feat.jpg",
+    featuredImage: "/blog-new/Blog_32_feat.webp",
     featuredImageAlt: "Air purifier buying guide — key specifications checklist",
     category: "Science & Technology",
     readingTimeMin: 3,
@@ -942,7 +942,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2020-12-07",
     auditStatus: "merge",
     excerpt: "",
-    featuredImage: "/blog/Blog_33_feat.jpg",
+    featuredImage: "/blog-new/Blog_33_feat.webp",
     featuredImageAlt: "",
     category: "Science & Technology",
     readingTimeMin: 3,
@@ -966,7 +966,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2020-12-01",
     auditStatus: "merge",
     excerpt: "",
-    featuredImage: "/blog/Blog_34_feat.png",
+    featuredImage: "/blog-new/Blog_34_feat.webp",
     featuredImageAlt: "",
     category: "Science & Technology",
     readingTimeMin: 3,
@@ -991,7 +991,7 @@ export const blogPosts: BlogPost[] = [
     auditStatus: "refresh",
     excerpt:
       "RGF Environmental Group's REME HALO® and PHI-Cell® technology uses photohydroionization to generate ionized hydrogen peroxide — neutralizing airborne pathogens, VOCs and odors throughout a space, not just at the filter.",
-    featuredImage: "/blog/Blog_35_feat.jpg",
+    featuredImage: "/blog-new/Blog_35_feat.webp",
     featuredImageAlt:
       "REME HALO air purification technology — advanced oxidation science",
     category: "Science & Technology",

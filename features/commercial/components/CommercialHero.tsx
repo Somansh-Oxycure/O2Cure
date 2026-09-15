@@ -5,12 +5,12 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const BACKGROUND_IMAGES = [
-  "/Commercial/Hero1.png",
-  "/Commercial/Hero3.png",
-  "/Commercial/Hero2.png",
-  "/Commercial/Hero4.png",
-  "/Commercial/Hero5.png",
-  "/Commercial/Hero6.png",
+  "/commercial-new/Hero1.webp",
+  "/commercial-new/Hero3.webp",
+  "/commercial-new/Hero2.webp",
+  "/commercial-new/Hero4.webp",
+  "/commercial-new/Hero5.webp",
+  "/commercial-new/Hero6.webp",
 ];
 
 interface CommercialHeroProps {

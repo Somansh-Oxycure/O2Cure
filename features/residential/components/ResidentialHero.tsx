@@ -5,12 +5,12 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const BACKGROUND_IMAGES = [
-  "/residential/HERP_New.png",
-  "/residential/Hero3_residence.png",
-  "/residential/Hero_2_residence.png",
-  "/residential/Hero3_residence.png",
-  "/residential/Hero_5_residence.png",
-  "/residential/HERO4_residence.png"
+  "/residential-new/HERP_New.webp",
+  "/residential-new/Hero3_residence.webp",
+  "/residential-new/Hero_2_residence.webp",
+  "/residential-new/Hero3_residence.webp",
+  "/residential-new/Hero_5_residence.webp",
+  "/residential-new/HERO4_residence.webp"
 ];
 
 interface ResidentialHeroProps {

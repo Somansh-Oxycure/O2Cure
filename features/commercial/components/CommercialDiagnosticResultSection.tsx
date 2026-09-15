@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { CommercialRecommendation } from "../data/mock";
-import { CommercialLeadCaptureForm } from "./CommercialLeadCaptureForm";
 
 interface CommercialDiagnosticResultSectionProps {
   recommendation: CommercialRecommendation;
@@ -41,40 +40,7 @@ export function CommercialDiagnosticResultSection({
       className="scroll-mt-24 pt-8"
       aria-label="Diagnostic Result and Consultation"
     >
-      {/* Section header */}
-      <div className="mb-12 text-center">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
-          className="mb-4 flex items-center justify-center gap-3"
-        >
-          <div className="h-[1px] w-8 bg-[#2563EB]" />
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[#2563EB]">
-            Personalised Recommendation
-          </p>
-          <div className="h-[1px] w-8 bg-[#2563EB]" />
-        </motion.div>
-        
-        <motion.h2
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.18 }}
-          className="text-[clamp(1.8rem,1.5rem+2vw,2.75rem)] font-semibold tracking-[-0.02em] text-[#0F172A]"
-        >
-          Your Commercial Air Architecture
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.26 }}
-          className="mt-4 text-[0.95rem] font-light text-gray-500 max-w-lg mx-auto"
-        >
-          Based on your spatial parameters, we recommend the following bespoke system configuration.
-        </motion.p>
-      </div>
-
-      <div className="grid gap-8 lg:grid-cols-[1fr_420px]">
+      <div className="flex flex-col gap-8">
         {/* ── Recommendation Card ── */}
         <motion.div
           initial={{ opacity: 0, x: -16 }}
@@ -216,15 +182,6 @@ export function CommercialDiagnosticResultSection({
           </div>
         </motion.div>
 
-        {/* ── Lead Form ── */}
-        <motion.div
-          initial={{ opacity: 0, x: 16 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.32, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col"
-        >
-          <CommercialLeadCaptureForm systemName={recommendation.systemName} />
-        </motion.div>
       </div>
     </motion.section>
   );

@@ -82,7 +82,7 @@ export function BlogHero() {
       {/* ── Background featured image ── */}
       <div className="absolute inset-0">
         <Image
-          src="/blog/Blog_09_feat.jpg"
+          src="/blog-new/Blog_09_feat.webp"
           alt="Clean indoor air environment — O₂Cure intelligence archive"
           fill
           priority

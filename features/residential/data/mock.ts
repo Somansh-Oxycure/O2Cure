@@ -162,10 +162,8 @@ const recommendations: ResidentialRecommendation[] = [
     systemTier: "compact",
     systemName: "O2 Cure REME LED Portable",
     tagline: "Compact REME LED purifier for personal spaces",
-    description:
-      "Compact, portable purifier featuring advanced REME LED Technology. Perfect for nurseries, vehicles, and small personal cabins to eliminate pathogens and odours at the source.",
-    imageUrl:
-      "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/15_REME-LED-Portable_1.jpg",
+    description: "Compact, portable purifier featuring advanced REME LED Technology. Perfect for nurseries, vehicles, and small personal cabins to eliminate pathogens and odours at the source.",
+    imageUrl: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/15_REME-LED-Portable_1.jpg",
     imageAlt: "Compact purifier in a modern setting",
     cfmRange: "N/A",
     coverageRange: "Up to 200 sq ft",
@@ -180,17 +178,15 @@ const recommendations: ResidentialRecommendation[] = [
     productId: "o2-cure-elixir-air-purifier-with-odor-sensing-system-humidifier",
     systemTier: "standard",
     systemName: "O2 Cure Elixir Air Purifier",
-    tagline: "Odor-sensing home purifier with built-in humidifier",
-    description:
-      "Designed for single zones like bedrooms and living rooms. Features an integrated odour-sensing system and humidifier to provide clinical-grade air purity and optimal comfort.",
-    imageUrl:
-      "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/12_Elixir-Air-Purifier_1.jpg",
+    tagline: "High-grade HEPA H13 purifier with built-in humidifier",
+    description: "Designed for bedrooms and living rooms. Features a true HEPA H13 filter specifically designed for PM2.5, alongside an integrated odour-sensing system for optimal comfort.",
+    imageUrl: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/12_Elixir-Air-Purifier_1.jpg",
     imageAlt: "Elixir Air Purifier in a bright room",
     cfmRange: "100-250 CFM",
     coverageRange: "Up to 450 sq ft",
     nabl: false,
     tricurePillars: ["Particulate Capture", "VOC Neutralisation"],
-    badges: ["Odor Sensor", "Built-in Humidifier", "Multi-stage Filter"],
+    badges: ["HEPA H13 (PM2.5)", "Built-in Humidifier", "Multi-stage Filter"],
     primaryCta: "Consult an Air Engineer",
     secondaryCta: "View Product Details",
   },
@@ -199,11 +195,9 @@ const recommendations: ResidentialRecommendation[] = [
     productId: "o2cure-max-cure-fresh-air-filtration-unit",
     systemTier: "premium",
     systemName: "O₂Cure Max Cure Fresh Air Unit",
-    tagline: "Positive-pressure fresh air filtration",
-    description:
-      "Brings purified outdoor air indoors using positive pressure. Flushes out CO₂ and stale air while filtering out PM2.5 and pathogens for a truly revitalised home environment.",
-    imageUrl:
-      "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/18_Max-Cure.jpg",
+    tagline: "Positive-pressure fresh air filtration for large homes",
+    description: "Brings purified outdoor air indoors using positive pressure. Flushes out CO₂ and stale air while heavily filtering out PM2.5 and allergens for a truly revitalised home environment.",
+    imageUrl: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/18_Max-Cure.jpg",
     imageAlt: "Max Cure Fresh Air Unit",
     cfmRange: "300-600 CFM",
     coverageRange: "Up to 2,500 sq ft",
@@ -215,42 +209,21 @@ const recommendations: ResidentialRecommendation[] = [
   },
   {
     _type: "residentialRecommendation",
-    productId: "o2cure-plug-n-play-max-advanced-air-purifier-with-phi-bipolar-ionization-technology",
-    systemTier: "enterprise",
-    systemName: "O₂Cure Plug N Play MAX",
-    tagline: "In-duct commercial purifier with dual PHI + Bipolar Ionization",
-    description:
-      "Interfaces directly with your home's central HVAC system. Combines PHI and Bipolar Ionization to actively neutralise viruses, bacteria, and odours throughout every room simultaneously.",
-    imageUrl:
-      "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/21_Plug-n-Play-MAX_1.jpg",
-    imageAlt: "Plug N Play MAX integrated in central air system",
-    cfmRange: "600–3,000+ CFM",
-    coverageRange: "Up to 3,000 sq ft",
+    productId: "o2-cure-hybrid-air-purifier",
+    systemTier: "premium",
+    systemName: "O2 Cure Hybrid Air Purifier",
+    tagline: "Customisable floor-standing hybrid purifier",
+    description: "Adapts to your space. Combines multiple purification technologies to eliminate particulate matter, odours, and pathogens.",
+    imageUrl: "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/14_Hybrid-Air-Purifier.jpg",
+    imageAlt: "O2 Cure Hybrid Air Purifier",
+    cfmRange: "200-400 CFM",
+    coverageRange: "Up to 2,000 sq ft",
     nabl: true,
     tricurePillars: ["Particulate Capture", "VOC Neutralisation", "Microbial Deactivation"],
-    badges: ["PHI + Bipolar", "Dual Technology", "In-Duct HVAC"],
+    badges: ["Customisable", "Multi-Tech", "Floor-Standing"],
     primaryCta: "Consult an Air Engineer",
     secondaryCta: "View Product Details",
-  },
-  {
-    _type: "residentialRecommendation",
-    productId: "guardian-air-in-duct-air-purification",
-    systemTier: "enterprise",
-    systemName: "Guardian Air+ Active Purifier",
-    tagline: "PHI + Bipolar ionization for large estates",
-    description:
-      "Heavy-duty in-duct system designed for large villas and estates. Eliminates 99% of airborne germs within 3 feet of the source, offering unparalleled active protection.",
-    imageUrl:
-      "/O2Cure Product Images-20260728T120253Z-1-001/O2Cure Product Images/10_Guardian-Air-Plus.png",
-    imageAlt: "Guardian Air+ central system",
-    cfmRange: "Up to 26,000 CFM",
-    coverageRange: "8,000+ sq ft",
-    nabl: true,
-    tricurePillars: ["Particulate Capture", "VOC Neutralisation", "Microbial Deactivation"],
-    badges: ["Tested vs SARS-CoV-2", "PHI + BPI", "Central AHU Ready"],
-    primaryCta: "Consult an Air Engineer",
-    secondaryCta: "View Product Details",
-  },
+  }
 ];
 
 export interface DiagnosticState {
@@ -263,30 +236,13 @@ export interface DiagnosticState {
 export function getRecommendation(
   state: DiagnosticState
 ): ResidentialRecommendation {
-  const { layout, areaSqFt, threats } = state;
+  const { threats } = state;
 
-  // Extremely large homes or full HVAC requests
-  if (areaSqFt > 5000 || (layout === "hvac" && areaSqFt > 3000)) {
-    return recommendations[4]; // Guardian Air+
-  }
-
-  // Large homes/villas or HVAC
-  if (layout === "hvac" || layout === "villa" || areaSqFt > 2500) {
-    return recommendations[3]; // Plug N Play MAX
-  }
-
-  // Mid-scale homes, apartments, especially if they have high CO2
-  if (layout === "apartment" || areaSqFt > 800 || threats.includes("high-co2")) {
+  if (threats.includes("high-co2")) {
     return recommendations[2]; // Max Cure Fresh Air
   }
 
-  // Single rooms, dedicated zones
-  if (layout === "zone" || areaSqFt > 200) {
-    return recommendations[1]; // Elixir Air Purifier
-  }
-
-  // Personal space, cars, nurseries
-  return recommendations[0]; // REME LED Portable
+  return recommendations[3]; // Hybrid Air Purifier
 }
 
 // ─── Social Proof ─────────────────────────────────────────────────────────

@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: "O2Cure",
     images: [
       {
-        url: "/blog/Blog_09_feat.jpg",
+        url: "/blog-new/Blog_09_feat.webp",
         width: 1200,
         height: 630,
         alt: "O₂Cure Intelligence Archive — air quality blog",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: "Air Quality Blog & Research | O₂Cure",
     description:
       "Science-led thinking on indoor air quality — 35 verified articles from O₂Cure's technology team.",
-    images: ["/blog/Blog_09_feat.jpg"],
+    images: ["/blog-new/Blog_09_feat.webp"],
   },
 };
 

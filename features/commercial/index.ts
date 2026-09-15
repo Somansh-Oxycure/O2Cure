@@ -6,7 +6,7 @@ export { CommercialHero } from "./components/CommercialHero";
 export { CommercialDiagnosticEngine } from "./components/CommercialDiagnosticEngine";
 export { CommercialThreatVectorStep } from "./components/CommercialThreatVectorStep";
 export { CommercialSpatialLayoutStep } from "./components/CommercialSpatialLayoutStep";
-export { CommercialOccupancySliderStep } from "./components/CommercialOccupancySliderStep";
+
 export { CommercialDiagnosticResultSection } from "./components/CommercialDiagnosticResultSection";
 export { CommercialLeadCaptureForm } from "./components/CommercialLeadCaptureForm";
 export { CommercialSocialProofSection } from "./components/CommercialSocialProofSection";
