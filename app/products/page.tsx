@@ -12,17 +12,45 @@ export async function generateMetadata({
 
   let canonical = "https://o2cure.in/products";
   let title = "Air Safety Engineering Solutions | O2Cure";
-  const description =
+  let description =
     "Browse O2Cure's precision-engineered air safety systems. Filter by environment sector, air challenge, spatial capacity, and integration architecture. NABL-certified. Zero-obligation consultation.";
 
   if (env) {
     if (env === "residential") {
       canonical = "https://o2cure.in/residential-air-purifier";
-      title = "Residential Air Purifiers & Purification Systems | O2Cure";
     } else {
       canonical = `https://o2cure.in/products/${env}-air-purifier`;
-      const formattedEnv = env.charAt(0).toUpperCase() + env.slice(1);
-      title = `${formattedEnv} Air Purifier & Purification Systems | O2Cure`;
+    }
+
+    switch (env) {
+      case "corporate":
+        title = "Corporate Air Purifiers & Air Quality Solutions | O2Cure";
+        description = "Explore O2Cure corporate air purifiers and air quality solutions designed to create cleaner, healthier and safer indoor workplaces.";
+        break;
+      case "healthcare":
+        title = "Healthcare Air Purifiers & Air Quality Solutions | O2Cure";
+        description = "Discover O2Cure healthcare air purifiers and air quality solutions designed to support cleaner, healthier and safer healthcare environments.";
+        break;
+      case "residential":
+        title = "Residential Air Purifiers & Air Quality Solutions | O2Cure";
+        description = "Explore O2Cure residential air purifiers and air quality solutions designed to provide cleaner, healthier and safer indoor air for homes.";
+        break;
+      case "industrial":
+        title = "Industrial Air Purifiers & Air Quality Solutions | O2Cure";
+        description = "Discover O2Cure industrial air purifiers and air quality solutions designed to improve indoor air quality across industrial environments.";
+        break;
+      case "education":
+        title = "Air Purifiers for Schools & Education | O2Cure";
+        description = "Explore O2Cure air purifiers and air quality solutions designed to create cleaner, healthier and safer learning environments.";
+        break;
+      case "datacenter":
+        title = "Data Center Air Purifiers & Air Quality Solutions | O2Cure";
+        description = "Discover O2Cure air purification and air quality solutions designed to support cleaner, controlled environments for data centers.";
+        break;
+      default:
+        const formattedEnv = env.charAt(0).toUpperCase() + env.slice(1);
+        title = `${formattedEnv} Air Purifier & Purification Systems | O2Cure`;
+        break;
     }
   }
 
