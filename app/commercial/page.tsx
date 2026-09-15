@@ -16,13 +16,13 @@ import { FooterSection } from "@/features/footer/components/FooterSection";
 
 // ─── SEO Metadata ──────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: "Commercial Air Purification — Enterprise Grade Air Engineering | O2Cure",
+  title: "Commercial Air Purification Solutions | O2 Cure India",
   description:
-    "Diagnose your facility's air quality challenges in 3 steps. O2Cure engineers custom enterprise air purification systems for offices, hospitals, and large facilities.",
+    "Improve indoor air quality with O2 Cure's commercial air purification solutions. HVAC air filtration systems and office air purifiers for cleaner, healthier workplaces.",
   openGraph: {
-    title: "Commercial Air Purification | O2Cure",
+    title: "Commercial Air Purification Solutions | O2 Cure India",
     description:
-      "Enterprise-grade air purity for every commercial space — open offices, hospitals, lobbies, and full AHU integration.",
+      "Improve indoor air quality with O2 Cure's commercial air purification solutions. HVAC air filtration systems and office air purifiers for cleaner, healthier workplaces.",
     type: "website",
     url: "https://o2cure.in/commercial-air-purifier",
     images: [
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Commercial Air Purification | O2Cure",
+    title: "Commercial Air Purification Solutions | O2 Cure India",
     description:
-      "3-step commercial air diagnostic. Custom system recommendation. Consult an Air Engineer.",
+      "Improve indoor air quality with O2 Cure's commercial air purification solutions. HVAC air filtration systems and office air purifiers for cleaner, healthier workplaces.",
     images: [
       "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
     ],

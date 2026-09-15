@@ -16,13 +16,13 @@ import { FooterSection } from "@/features/footer/components/FooterSection";
 
 // ─── SEO Metadata ──────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: "Residential Air Purification — Pure Air Engineered for Your Home | O2Cure",
+  title: "Home Air Purification Solutions | O2 Cure",
   description:
-    "Diagnose your home's air quality challenges in 3 steps. O2Cure engineers a custom spatial air purification system around your floor plan, occupancy, and specific threat vectors.",
+    "Discover O2 Cure's advanced air purifier for home systems designed to remove airborne pollutants, allergens, bacteria, and odors for healthier indoor living.",
   openGraph: {
-    title: "Residential Air Purification | O2Cure",
+    title: "Home Air Purification Solutions | O2 Cure",
     description:
-      "Architectural-grade air purity for every type of home — villas, apartments, dedicated zones, and full HVAC integration.",
+      "Discover O2 Cure's advanced air purifier for home systems designed to remove airborne pollutants, allergens, bacteria, and odors for healthier indoor living.",
     type: "website",
     url: "https://o2cure.in/residential",
     images: [
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Residential Air Purification | O2Cure",
+    title: "Home Air Purification Solutions | O2 Cure",
     description:
-      "3-step home air diagnostic. Custom system recommendation. Consult an Air Engineer.",
+      "Discover O2 Cure's advanced air purifier for home systems designed to remove airborne pollutants, allergens, bacteria, and odors for healthier indoor living.",
     images: [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
     ],

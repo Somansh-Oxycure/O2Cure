@@ -18,10 +18,10 @@ export const siteConfig = {
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    default: "Buy Air Purifier in India | Air Cleaner & Purification Products | O2Cure",
     template: `%s | ${siteConfig.name}`,
   },
-  description: siteConfig.description,
+  description: "O2Cure offers the best air purifier in India with advanced air cleaner machines and air quality monitoring solutions to reduce indoor air pollution effectively. Buy Now!",
   applicationName: siteConfig.name,
   keywords: [
     "O₂Cure",
@@ -38,8 +38,8 @@ export const defaultMetadata: Metadata = {
     type: "website",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
-    description: siteConfig.description,
+    title: "Buy Air Purifier in India | Air Cleaner & Purification Products | O2Cure",
+    description: "O2Cure offers the best air purifier in India with advanced air cleaner machines and air quality monitoring solutions to reduce indoor air pollution effectively. Buy Now!",
     images: [
       {
         url: siteConfig.logo,
@@ -51,8 +51,8 @@ export const defaultMetadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
-    description: siteConfig.description,
+    title: "Buy Air Purifier in India | Air Cleaner & Purification Products | O2Cure",
+    description: "O2Cure offers the best air purifier in India with advanced air cleaner machines and air quality monitoring solutions to reduce indoor air pollution effectively. Buy Now!",
     images: [siteConfig.logo],
   },
   robots: {
