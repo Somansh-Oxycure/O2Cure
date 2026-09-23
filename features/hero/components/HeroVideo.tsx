@@ -30,7 +30,6 @@ export function HeroVideo() {
       <video
         ref={videoRef}
         src="https://res.cloudinary.com/iofrjtqv/video/upload/v1790162015/website-Video-Draft-BB2_1.webm"
-        poster="/HERO/First%20Frame.webp"
         autoPlay
         loop
         muted

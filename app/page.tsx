@@ -8,11 +8,20 @@ import { TechnologySection } from "@/features/technology";
 import { MetricsSection, ClienteleSection, TestimonialsSection, CertificationsSection } from "@/features/trust";
 
 export default function Home() {
-  const ActiveHero = HERO_MODE === "video" ? HeroVideo : Hero;
-
   return (
     <div className="bg-background">
-      <ChapterExperience hero={<ActiveHero />} />
+      <ChapterExperience
+        hero={
+          <>
+            <div className="hidden md:block">
+              <HeroVideo />
+            </div>
+            <div className="block md:hidden">
+              <Hero />
+            </div>
+          </>
+        }
+      />
       <ClienteleSection />
       <MetricsSection />
       <AqiSection />
