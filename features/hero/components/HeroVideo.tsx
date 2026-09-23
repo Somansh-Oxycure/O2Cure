@@ -4,12 +4,10 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRef, useState } from "react";
 
-import { Button } from "@/components/ui/button";
-
 /* ── HeroVideo ───────────────────────────────────────────────────────────────
  *  Full-screen video hero that sits behind the transparent navbar.
  *  - h-[100svh] fills the viewport height exactly
- *  Video source: /HERO/website Video Draft BB2.mp4
+ *  Video source: Cloudinary CDN
  * ─────────────────────────────────────────────────────────────────────────── */
 
 export function HeroVideo() {
@@ -31,7 +29,7 @@ export function HeroVideo() {
       {/* Background video */}
       <video
         ref={videoRef}
-        src="/HERO/website Video Draft BB2.mp4"
+        src="https://res.cloudinary.com/iofrjtqv/video/upload/v1790153682/website_Video_Ddraft_BB2_compressed.mp4"
         autoPlay
         loop
         muted
@@ -68,13 +66,11 @@ export function HeroVideo() {
           transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="mt-5 pointer-events-auto"
         >
-          <Link href="/contact">
-            <Button
-              type="button"
-              className="rounded-full border border-brand-green bg-brand-green px-6 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-brand-green/90"
-            >
-              Talk To An Air Expert
-            </Button>
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center rounded-full border border-brand-green bg-brand-green px-6 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-brand-green/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green/50"
+          >
+            Talk To An Air Expert
           </Link>
         </motion.div>
       </div>
