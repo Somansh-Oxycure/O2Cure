@@ -29,7 +29,8 @@ export function HeroVideo() {
       {/* Background video */}
       <video
         ref={videoRef}
-        src="https://res.cloudinary.com/iofrjtqv/video/upload/v1790153682/website_Video_Ddraft_BB2_compressed.mp4"
+        src="https://res.cloudinary.com/iofrjtqv/video/upload/v1790162015/website-Video-Draft-BB2_1.webm"
+        poster="/HERO/First%20Frame.webp"
         autoPlay
         loop
         muted
