@@ -26,7 +26,11 @@ export function Navbar() {
 
   // Certain pages have dark hero sections. For these, the navbar should have
   // light text at the top before it becomes scrolled (which gives it a white background).
-  const isDarkHero = pathname === "/about" || pathname.startsWith("/blog") || pathname === "/commercial" || pathname === "/commercial-air-purifier";
+  const isDarkHero =
+    pathname === "/about" ||
+    pathname.startsWith("/blog") ||
+    pathname === "/commercial" ||
+    pathname === "/commercial-air-purifier";
   const isNavLight = isDarkHero && !isScrolled;
 
   const transition = prefersReducedMotion
@@ -47,13 +51,13 @@ export function Navbar() {
           animate={{
             backgroundColor: isScrolled
               ? "rgba(255, 255, 255, 0.95)"
-              : (isDarkHero ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.35)"),
+              : (isDarkHero ? "transparent" : "rgba(255, 255, 255, 0.35)"),
             backdropFilter: isScrolled
               ? "blur(20px) saturate(180%)"
-              : (isDarkHero ? "blur(8px) saturate(120%)" : "blur(12px) saturate(140%)"),
+              : (isDarkHero ? "none" : "blur(12px) saturate(140%)"),
             boxShadow: isScrolled ? "var(--shadow-soft)" : "0 0 0 transparent",
-            paddingTop: isScrolled ? 12 : 20,
-            paddingBottom: isScrolled ? 12 : 20,
+            paddingTop: isScrolled ? 6 : 8,
+            paddingBottom: isScrolled ? 6 : 8,
           }}
           transition={transition}
         >

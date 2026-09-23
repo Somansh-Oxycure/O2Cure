@@ -84,10 +84,10 @@ export function BlogPostCard({
         tabIndex={-1}
         aria-hidden
         className={[
-          "relative overflow-hidden bg-muted",
+          "relative overflow-hidden",
           featured
-            ? "aspect-[16/9] md:aspect-auto md:w-[52%] md:shrink-0"
-            : "aspect-[16/9]",
+            ? "aspect-[16/9] md:aspect-auto md:w-[52%] md:shrink-0 bg-white dark:bg-background/50"
+            : "aspect-[16/9] bg-muted",
         ].join(" ")}
       >
         {post.featuredImage ? (
@@ -101,7 +101,10 @@ export function BlogPostCard({
                 ? "(min-width: 768px) 52vw, 100vw"
                 : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             }
-            className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+            className={[
+              "transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]",
+              featured ? "object-contain object-center p-4 md:p-8" : "object-cover object-center"
+            ].join(" ")}
           />
         ) : (
           // No-image fallback — branded gradient
