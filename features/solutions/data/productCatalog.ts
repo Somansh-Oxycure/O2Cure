@@ -871,7 +871,7 @@ export const products: ProductEntry[] = [
       { key: "Application", value: "B2C / Residential" },
     ],
     image: {
-      src: "https://placehold.co/600x400/png?text=Filter+Set+Hulk",
+      src: "/product/Air-purifier-filtersHulk-filters.jpg",
       alt: "Filter set - hulk",
     },
     primaryCta: "Add to Basket",
@@ -892,7 +892,7 @@ export const products: ProductEntry[] = [
       { key: "Application", value: "B2C / Residential" },
     ],
     image: {
-      src: "https://placehold.co/600x400/png?text=Filter+Set+Elixir",
+      src: "/product/Air-purifier-filtersElixir-filters.jpg",
       alt: "Filter set - elixir",
     },
     primaryCta: "Add to Basket",

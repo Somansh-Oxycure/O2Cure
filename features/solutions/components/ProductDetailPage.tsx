@@ -74,6 +74,10 @@ function PDPHero({ detail, entry }: { detail: ProductDetail; entry: ProductEntry
   const metric2 = detail.performanceMetrics[1];
   const { cta } = detail;
 
+  const whatsappMsg = encodeURIComponent(
+    `Hi! I'm interested in the ${entry.systemName}.\nProduct Link: https://o2cure.in/products/${entry.id}`
+  );
+
   return (
     <section
       className="relative w-full min-h-[100svh] overflow-hidden flex flex-col items-center justify-center pt-20"
@@ -181,37 +185,27 @@ function PDPHero({ detail, entry }: { detail: ProductDetail; entry: ProductEntry
           <p className="mt-1 text-sm text-[#1C1C1C]/60 leading-relaxed max-w-[320px]">
             {detail.heroHeadline}
           </p>
+          {/* Price (if applicable) */}
+          {cta.type === "priced" && cta.price && (
+            <div className="mt-4 flex items-baseline gap-3">
+              <span className="font-bold text-2xl md:text-3xl text-[#1C1C1C]">{cta.price}</span>
+              {cta.mrp && (
+                <span className="text-sm md:text-base font-medium text-[#1C1C1C]/40 line-through">MRP {cta.mrp}</span>
+              )}
+            </div>
+          )}
 
           {/* Hero CTAs */}
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
-            {cta.type === "priced" && cta.productPageUrl ? (
-              <a
-                href={cta.productPageUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex justify-center items-center rounded-full bg-[#3A7D2A] text-white
-                  font-semibold px-5 py-2.5 text-sm hover:bg-[#2A5C1D] transition-colors"
-              >
-                {cta.primaryLabel}
-              </a>
-            ) : (
-              <a
-                href="mailto:info@o2cure.in"
-                className="inline-flex justify-center items-center rounded-full bg-[#3A7D2A] text-white
-                  font-semibold px-5 py-2.5 text-sm hover:bg-[#2A5C1D] transition-colors"
-              >
-                {cta.primaryLabel}
-              </a>
-            )}
             <a
-              href="https://wa.me/918010111177"
+              href={`https://wa.me/918010111177?text=${whatsappMsg}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex justify-center items-center gap-2 rounded-full border border-[#1C1C1C]/20
-                text-[#1C1C1C] font-medium px-5 py-2.5 text-sm hover:border-[#3A7D2A]/60 hover:text-[#3A7D2A] transition-colors"
+              className="inline-flex justify-center items-center gap-2 rounded-full bg-[#3A7D2A] text-white
+                font-semibold px-5 py-2.5 text-sm hover:bg-[#2A5C1D] transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
-              {cta.type === "priced" ? "Ask on WhatsApp" : "Speak to an Expert"}
+              Talk to an Expert
             </a>
           </div>
         </motion.div>
@@ -549,6 +543,10 @@ function PDPCTA({ detail, entry }: { detail: ProductDetail; entry: ProductEntry 
   const isInView = useInView(ref, { once: true, margin: "-40px" });
   const { cta } = detail;
 
+  const whatsappMsg = encodeURIComponent(
+    `Hi! I'm interested in the ${entry.systemName}.\nProduct Link: https://o2cure.in/products/${entry.id}`
+  );
+
   return (
     <section ref={ref} id="buy" className="py-24 md:py-32 bg-[#EAECF0]" aria-labelledby="cta-heading">
       <div className="max-w-7xl mx-auto px-5 md:px-10">
@@ -591,6 +589,9 @@ function PDPCTA({ detail, entry }: { detail: ProductDetail; entry: ProductEntry 
             {cta.type === "priced" && cta.price && (
               <div className="mt-6 flex items-baseline gap-3">
                 <span className="font-semibold text-4xl text-white">{cta.price}</span>
+                {cta.mrp && (
+                  <span className="font-medium text-xl text-white/40 line-through">MRP {cta.mrp}</span>
+                )}
                 <span className="text-white/40 text-sm">incl. taxes</span>
               </div>
             )}
@@ -610,35 +611,15 @@ function PDPCTA({ detail, entry }: { detail: ProductDetail; entry: ProductEntry 
 
             {/* CTAs */}
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              {cta.type === "priced" && cta.productPageUrl ? (
-                <a
-                  href={cta.productPageUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex justify-center items-center rounded-full bg-[#3A7D2A] text-white
-                    font-semibold px-7 py-3.5 hover:bg-[#2A5C1D] transition-colors"
-                >
-                  {cta.primaryLabel}
-                </a>
-              ) : (
-                <a
-                  href="mailto:info@o2cure.in"
-                  className="inline-flex justify-center items-center rounded-full bg-[#3A7D2A] text-white
-                    font-semibold px-7 py-3.5 hover:bg-[#2A5C1D] transition-colors"
-                >
-                  {cta.primaryLabel}
-                </a>
-              )}
-
               <a
-                href="https://wa.me/918010111177"
+                href={`https://wa.me/918010111177?text=${whatsappMsg}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex justify-center items-center gap-2 rounded-full border border-white/20
-                  text-white font-medium px-7 py-3.5 hover:border-[#3A7D2A]/60 hover:text-[#3A7D2A] transition-colors"
+                className="inline-flex justify-center items-center gap-2 rounded-full bg-[#3A7D2A] text-white
+                  font-semibold px-7 py-3.5 hover:bg-[#2A5C1D] transition-colors"
               >
                 <MessageCircle className="w-4 h-4" />
-                {cta.type === "priced" ? "Ask on WhatsApp" : "Speak to an Expert"}
+                Talk to an Expert
               </a>
             </div>
 

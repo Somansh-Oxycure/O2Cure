@@ -38,6 +38,7 @@ export interface ProductReview {
 export interface CTAConfig {
   type: "priced" | "enquiry";
   price?: string;
+  mrp?: string;
   primaryLabel: string;
   /** For B2C products: link to o2cure.in product page */
   productPageUrl?: string;
@@ -1480,6 +1481,98 @@ export const productDetails: ProductDetail[] = [
       productPageUrl: "https://o2cure.in/product/replacement-of-phi-cell-play-and-play/",
     },
   },
+
+  // ── Elixir Filter Stack ─────────────────────────────────────────────────────────────
+  {
+    id: "filter-set-elixir",
+    heroHeadline: "Complete filter replacement stack for Elixir Air Purifier — restores factory-level performance.",
+    overview:
+      "O2Cure’s Elixir Air Purifier Filter Stack is a collection of 4 replaceable filters designed specifically for the Elixir purifier. Each of these filters has an average lifespan of 6 months. Get rid of the stress of checking up on each filter individually and replace them all at once to maintain optimum air purification indoors.",
+    contaminantsCleared: ["PM2.5", "PM10", "Odour", "Dust", "Smoke", "VOCs"],
+    capabilities: [
+      {
+        title: "Complete Stack Replacement",
+        description: "Replaces all 4 essential filter stages in one go, ensuring no weak links in your air purification system.",
+        icon: "layers",
+      },
+      {
+        title: "6-Month Lifespan",
+        description: "Engineered to last for an average of 6 months under normal usage, keeping maintenance predictable and simple.",
+        icon: "activity",
+      },
+      {
+        title: "Factory-Level Purity",
+        description: "Restores your Elixir purifier to its original CADR and filtration efficiency.",
+        icon: "shield",
+      },
+    ],
+    performanceMetrics: [
+      { value: "4", label: "Filters included in stack" },
+      { value: "6 Months", label: "Average lifespan" },
+      { value: "100%", label: "Compatibility with Elixir" },
+    ],
+    specs: [
+      { parameter: "Compatibility", value: "Elixir Air Purifier" },
+      { parameter: "Included Filters", value: "4 distinct filtration layers" },
+      { parameter: "Lifespan", value: "Approximately 6 months" },
+      { parameter: "Maintenance", value: "Single complete stack replacement" },
+    ],
+    applications: ["Residential Homes", "Offices", "Any space using Elixir Purifier"],
+    certifications: ["O2Cure Genuine Part", "Multi-stage Filtration"],
+    cta: {
+      type: "priced",
+      mrp: "₹5,999.00",
+      price: "₹3,999.00",
+      primaryLabel: "Add to Basket",
+      productPageUrl: "https://o2cure.in/product/elixir-air-purifier-filter-stack/",
+    },
+  },
+
+  // ── Hulk Filter Stack ─────────────────────────────────────────────────────────────
+  {
+    id: "filter-set-hulk",
+    heroHeadline: "Complete filter replacement stack for Hulk Air Purifier — restores factory-level performance.",
+    overview:
+      "O2Cure’s Hulk Air Purifier Filter Stack is a collection of 4 replaceable filters designed specifically for the Hulk purifier. Each of these filters has an average lifespan of 6 months. Get rid of the stress of checking up on each filter individually and replace them all at once to maintain optimum air purification indoors.",
+    contaminantsCleared: ["PM2.5", "PM10", "Odour", "Dust", "Smoke", "VOCs"],
+    capabilities: [
+      {
+        title: "Complete Stack Replacement",
+        description: "Replaces all 4 essential filter stages in one go, ensuring no weak links in your air purification system.",
+        icon: "layers",
+      },
+      {
+        title: "6-Month Lifespan",
+        description: "Engineered to last for an average of 6 months under normal usage, keeping maintenance predictable and simple.",
+        icon: "activity",
+      },
+      {
+        title: "Factory-Level Purity",
+        description: "Restores your Hulk purifier to its original CADR and filtration efficiency.",
+        icon: "shield",
+      },
+    ],
+    performanceMetrics: [
+      { value: "4", label: "Filters included in stack" },
+      { value: "6 Months", label: "Average lifespan" },
+      { value: "100%", label: "Compatibility with Hulk" },
+    ],
+    specs: [
+      { parameter: "Compatibility", value: "Hulk Air Purifier" },
+      { parameter: "Included Filters", value: "4 distinct filtration layers" },
+      { parameter: "Lifespan", value: "Approximately 6 months" },
+      { parameter: "Maintenance", value: "Single complete stack replacement" },
+    ],
+    applications: ["Residential Homes", "Offices", "Any space using Hulk Purifier"],
+    certifications: ["O2Cure Genuine Part", "Multi-stage Filtration"],
+    cta: {
+      type: "priced",
+      mrp: "₹9,999.00",
+      price: "₹6,999.00",
+      primaryLabel: "Add to Basket",
+      productPageUrl: "https://o2cure.in/product/hulk-air-purifier-filter-stack/",
+    },
+  }
 ];
 
 // ─── Lookup helper ────────────────────────────────────────────────────────────
