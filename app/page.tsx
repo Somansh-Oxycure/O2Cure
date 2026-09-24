@@ -11,16 +11,7 @@ export default function Home() {
   return (
     <div className="bg-background">
       <ChapterExperience
-        hero={
-          <>
-            <div className="hidden md:block">
-              <HeroVideo />
-            </div>
-            <div className="block md:hidden">
-              <Hero />
-            </div>
-          </>
-        }
+        hero={HERO_MODE === "video" ? <HeroVideo /> : <Hero />}
       />
       <ClienteleSection />
       <MetricsSection />

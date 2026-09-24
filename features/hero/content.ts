@@ -1,4 +1,10 @@
 export const heroContent = {
+  // Video Content
+  video: {
+    desktopUrl: "https://res.cloudinary.com/iofrjtqv/video/upload/v1790162015/website-Video-Draft-BB2_1.webm",
+    mobileUrl: "https://res.cloudinary.com/iofrjtqv/video/upload/v1790248203/720Vertical_02Website_Video.mp4",
+  },
+
   // Mobile Hero Content (New)
   eyebrow: "",
   heading: "India's Most Advanced\nAir Purification",

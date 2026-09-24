@@ -4,21 +4,26 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRef, useState } from "react";
 
+import { heroContent } from "../content";
+
 /* ── HeroVideo ───────────────────────────────────────────────────────────────
  *  Full-screen video hero that sits behind the transparent navbar.
  *  - h-[100svh] fills the viewport height exactly
- *  Video source: Cloudinary CDN
+ *  Video source: Cloudinary CDN & Local assets
  * ─────────────────────────────────────────────────────────────────────────── */
 
 export function HeroVideo() {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const desktopVideoRef = useRef<HTMLVideoElement>(null);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
 
   const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setMuted(videoRef.current.muted);
-    }
+    setMuted((prev) => {
+      const newMuted = !prev;
+      if (desktopVideoRef.current) desktopVideoRef.current.muted = newMuted;
+      if (mobileVideoRef.current) mobileVideoRef.current.muted = newMuted;
+      return newMuted;
+    });
   };
 
   return (
@@ -26,15 +31,28 @@ export function HeroVideo() {
       aria-label="O2Cure hero video"
       className="relative h-[100svh] min-h-[500px] w-full overflow-hidden bg-black"
     >
-      {/* Background video */}
+      {/* Background video - Desktop */}
       <video
-        ref={videoRef}
-        src="https://res.cloudinary.com/iofrjtqv/video/upload/v1790162015/website-Video-Draft-BB2_1.webm"
+        ref={desktopVideoRef}
+        src={heroContent.video.desktopUrl}
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 h-full w-full object-cover"
+        className="hidden md:block absolute inset-0 h-full w-full object-cover"
+        style={{ objectPosition: "50% 20%" }}
+        aria-hidden
+      />
+
+      {/* Background video - Mobile */}
+      <video
+        ref={mobileVideoRef}
+        src={heroContent.video.mobileUrl}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="block md:hidden absolute inset-0 h-full w-full object-cover"
         style={{ objectPosition: "50% 20%" }}
         aria-hidden
       />
