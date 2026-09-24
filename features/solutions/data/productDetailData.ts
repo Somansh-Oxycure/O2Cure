@@ -1522,7 +1522,7 @@ export const productDetails: ProductDetail[] = [
     cta: {
       type: "priced",
       mrp: "₹5,999.00",
-      price: "₹3,999.00",
+      price: "₹4,599.00",
       primaryLabel: "Add to Basket",
       productPageUrl: "https://o2cure.in/product/elixir-air-purifier-filter-stack/",
     },
