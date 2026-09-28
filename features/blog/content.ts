@@ -24,7 +24,7 @@ export const blogPosts: BlogPost[] = [
     title: "How Does an Air Purifier Work? A Complete Guide to Cleaner Indoor Air",
     originalTitle: "How Does an Air Purifier Work? A Complete Guide to Cleaner Indoor Air",
     publishedAt: "2026-09-28",
-    auditStatus: "new",
+    auditStatus: "refresh",
     excerpt: "Understanding the working principles, filtration technologies, and key performance specifications of air purifiers to help you make informed decisions about improving indoor air quality.",
     featuredImage: "/blog-new/Blog_37_feat_v3.jpg",
     featuredImageAlt: "Air purifier working in a clean indoor environment",
