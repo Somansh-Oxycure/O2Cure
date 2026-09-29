@@ -8,8 +8,12 @@ export function middleware(request: NextRequest) {
   const host = request.headers.get('host') || '';
   if (host.startsWith('www.')) {
     const nonWwwHost = host.replace(/^www\./, '');
-    url.host = nonWwwHost;
-    return NextResponse.redirect(url, 308);
+    const protocol = request.headers.get('x-forwarded-proto') || 'https';
+    
+    // Construct the absolute URL manually to avoid inheriting internal ports (like :3000)
+    const redirectUrl = `${protocol}://${nonWwwHost}${url.pathname}${url.search}`;
+    
+    return NextResponse.redirect(redirectUrl, 308);
   }
   
   // 2. Check if it's one of our targeted image paths
