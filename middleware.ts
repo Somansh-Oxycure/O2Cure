@@ -2,9 +2,17 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const url = request.nextUrl;
+  const url = request.nextUrl.clone();
   
-  // Check if it's one of our targeted image paths
+  // 1. Redirect www to non-www
+  const host = request.headers.get('host') || '';
+  if (host.startsWith('www.')) {
+    const nonWwwHost = host.replace(/^www\./, '');
+    url.host = nonWwwHost;
+    return NextResponse.redirect(url, 308);
+  }
+  
+  // 2. Check if it's one of our targeted image paths
   if (
     url.pathname.toLowerCase().startsWith('/client_logos/') || 
     url.pathname.toLowerCase().startsWith('/client-logos/')
@@ -44,7 +52,16 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Intercept these routes
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - public files (images etc that don't need www redirect checks)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    // We explicitly include the client logos path for the image redirect since we excluded images above
     '/client_logos/:path*',
     '/client-logos/:path*'
   ],
