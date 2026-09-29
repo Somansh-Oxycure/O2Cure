@@ -134,7 +134,8 @@ function StatCard({ item }: { item: StatItem }) {
 // Live counter bottom strip
 // ─────────────────────────────────────────────────────────────────────────────
 function LiveCounterStrip() {
-  const litres = useLiveAirCounter();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const litres = useLiveAirCounter(containerRef);
   const formatted = litres.toLocaleString("en-IN");
 
   const [flash, setFlash] = useState(false);
@@ -152,7 +153,7 @@ function LiveCounterStrip() {
   }, [currentThreshold]);
 
   return (
-    <div className="relative flex flex-col items-start gap-2 px-4 sm:px-5 lg:px-6 py-3 sm:py-4 bg-[#f4fbf6] border-t border-emerald-100 overflow-hidden sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+    <div ref={containerRef} className="relative flex flex-col items-start gap-2 px-4 sm:px-5 lg:px-6 py-3 sm:py-4 bg-[#f4fbf6] border-t border-emerald-100 overflow-hidden sm:flex-row sm:items-center sm:justify-between sm:gap-6">
       {/* Shimmer */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full animate-[shimmer_3s_linear_infinite]" />
 

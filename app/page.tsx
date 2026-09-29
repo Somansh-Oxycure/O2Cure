@@ -3,9 +3,13 @@ import { ContactSection } from "@/features/contact";
 import { ChapterExperience } from "@/features/environment";
 import { FooterSection } from "@/features/footer";
 import { Hero, HeroVideo, HERO_MODE } from "@/features/hero";
-
 import { TechnologySection } from "@/features/technology";
-import { MetricsSection, ClienteleSection, TestimonialsSection, CertificationsSection } from "@/features/trust";
+import {
+  MetricsSection,
+  ClienteleSection,
+  TestimonialsSection,
+  CertificationsSection,
+} from "@/features/trust";
 
 export default function Home() {
   return (
@@ -19,7 +23,6 @@ export default function Home() {
       <TechnologySection />
       <CertificationsSection />
       {/* <ProductsSection /> */}
-      {/* Numbers / impact metrics sit right after the environment narrative */}
       <TestimonialsSection />
       <ContactSection />
       <FooterSection />

@@ -48,26 +48,24 @@ export function ClienteleSection() {
         <div className="px-5 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)]">
           {/* ── Header ── */}
           <header className="mx-auto max-w-5xl text-center">
-            <Reveal delay={0} distance={20}>
-              <div className="mb-4 flex items-center justify-center gap-3">
-                <span className="h-px w-10 bg-brand-green/35" />
-                <span className="text-eyebrow font-semibold tracking-[0.15em] text-brand-green">
-                  {trustContent.eyebrow}
-                </span>
-                <span className="h-px w-10 bg-brand-green/35" />
-              </div>
-            </Reveal>
+            {/* Eyebrow — rendered immediately, never animated (critical for LCP) */}
+            <div className="mb-4 flex items-center justify-center gap-3">
+              <span className="h-px w-10 bg-brand-green/35" />
+              <span className="text-eyebrow font-semibold tracking-[0.15em] text-brand-green">
+                {trustContent.eyebrow}
+              </span>
+              <span className="h-px w-10 bg-brand-green/35" />
+            </div>
 
-            <Reveal delay={0.12} distance={24}>
-              <h2
-                id="clientele-heading"
-                className="font-heading text-[clamp(1.75rem,1.4rem+2vw,3rem)] font-bold leading-[1.1] tracking-[-0.022em] text-[#0A0A0A]"
-              >
-                {formatBrandText(trustContent.heading)}
-              </h2>
-            </Reveal>
+            {/* h2 — rendered immediately with no opacity animation (LCP element) */}
+            <h2
+              id="clientele-heading"
+              className="font-heading text-[clamp(1.75rem,1.4rem+2vw,3rem)] font-bold leading-[1.1] tracking-[-0.022em] text-[#0A0A0A]"
+            >
+              {formatBrandText(trustContent.heading)}
+            </h2>
 
-            <Reveal delay={0.26} distance={20}>
+            <Reveal delay={0.1} distance={20}>
               <p className="mx-auto mt-4 max-w-2xl text-body-lg text-muted-foreground sm:mt-5">
                 {formatBrandText(trustContent.supporting)}
               </p>

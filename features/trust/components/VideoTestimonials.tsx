@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 
 const videoTestimonials = [
   {
@@ -172,11 +173,13 @@ export function VideoTestimonials() {
                           }}
                           className="absolute inset-0 h-full w-full"
                         >
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
+                          <Image
                             src={`https://img.youtube.com/vi/${baseVideoId}/hqdefault.jpg`}
                             alt={video.title}
-                            className="h-full w-full object-cover"
+                            fill
+                            loading="lazy"
+                            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
+                            className="object-cover"
                           />
                           <div className="absolute inset-0 flex items-center justify-center bg-black/10 transition-colors duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-black/20">
                             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm transition-transform duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-110">

@@ -101,7 +101,7 @@ export function EnvironmentPanel({
             fill
             sizes="(max-width: 768px) 96vw, 88vw"
             className="object-cover"
-            priority={index < 2}
+            priority={index === 0}
           />
         </motion.div>
 
@@ -128,7 +128,7 @@ export function EnvironmentPanel({
               fill
               sizes="(max-width: 768px) 96vw, 88vw"
               className="object-cover"
-              priority={index < 3}
+              priority={false}
             />
           </motion.div>
         )}
@@ -156,7 +156,7 @@ export function EnvironmentPanel({
               fill
               sizes="(max-width: 768px) 96vw, 88vw"
               className="object-cover"
-              priority={index < 2}
+              priority={false}
             />
           </motion.div>
         )}

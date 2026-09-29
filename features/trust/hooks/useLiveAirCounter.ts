@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
 /**
  * Returns an ever-increasing litre count that ticks up in real-time,
@@ -9,6 +10,8 @@ import { useEffect, useState } from "react";
  * Baseline: ~450 billion litres purified since inception (15 years of ops).
  * Growth rate: ~47 litres/second — derived from ~500 active purifiers,
  * each processing ~100 CFM ≈ 2,830 L/min total → ~47 L/s.
+ *
+ * Performance: only ticks when the element is in view, at 2s intervals.
  */
 const BASELINE_LITRES = 450_000_000_000; // 450 billion litres
 const LITRES_PER_SECOND = 47;
@@ -22,15 +25,19 @@ function getLitreCount(): number {
   return BASELINE_LITRES + elapsedSeconds * LITRES_PER_SECOND;
 }
 
-export function useLiveAirCounter(): number {
+export function useLiveAirCounter(containerRef: React.RefObject<Element | null>): number {
   const [count, setCount] = useState<number>(() => Math.floor(getLitreCount()));
+  const isInView = useInView(containerRef, { amount: 0.1 });
 
   useEffect(() => {
+    if (!isInView) return;
+    // Update every 2 seconds when visible — imperceptibly slow vs 33ms but saves ~59 re-renders/s
     const interval = setInterval(() => {
       setCount(Math.floor(getLitreCount()));
-    }, 33); // Update at ~30 FPS for smooth continuous count
+    }, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isInView]);
 
   return count;
 }
+

@@ -39,6 +39,8 @@ export function HeroVideo() {
         loop
         muted
         playsInline
+        preload="none"
+        poster="/HERO/First Frame.webp"
         className="hidden md:block absolute inset-0 h-full w-full object-cover"
         style={{ objectPosition: "50% 20%" }}
         aria-hidden
@@ -52,6 +54,8 @@ export function HeroVideo() {
         loop
         muted
         playsInline
+        preload="none"
+        poster="/HERO/First Frame.webp"
         className="block md:hidden absolute inset-0 h-full w-full object-cover"
         style={{ objectPosition: "50% 20%" }}
         aria-hidden

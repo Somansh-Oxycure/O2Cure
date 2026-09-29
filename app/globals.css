@@ -329,4 +329,13 @@
   .ease-premium {
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
+
+  /* CSS-based marquee animations (used by LogoWall) */
+  .animate-marquee-left {
+    animation: marquee-left 40s linear infinite;
+  }
+
+  .animate-marquee-right {
+    animation: marquee-right 40s linear infinite;
+  }
 }
