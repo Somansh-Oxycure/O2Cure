@@ -158,10 +158,12 @@ export function AuditBookingForm({
   const [errors, setErrors] = useState<EnquiryFormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const set = (field: keyof EnquiryFormData) => (value: string) => {
     setData((d) => ({ ...d, [field]: value }));
     setErrors((e) => ({ ...e, [field]: undefined }));
+    setSubmitError(null);
   };
 
   const changeSegment = (next: Segment) => {
@@ -213,6 +215,7 @@ export function AuditBookingForm({
 
       const resolvedEnvironment =
         segment === "business" ? data.environment : "residential";
+      setSubmitError(null);
       const result = submissionAdapter
         ? await submissionAdapter.submit({
             ...data,
@@ -262,6 +265,8 @@ export function AuditBookingForm({
           });
         }
         router.push("/thankyou");
+      } else {
+        setSubmitError(result.message || "Unable to submit your details. Please try again.");
       }
     } finally {
       setIsSubmitting(false);
@@ -436,6 +441,15 @@ export function AuditBookingForm({
               <Lock className="size-3" aria-hidden />
               Your information is secured and never shared.
             </p>
+
+            {submitError && (
+              <p
+                role="alert"
+                className="mt-3 rounded-lg bg-destructive/10 px-3 py-2 text-center text-[0.75rem] font-medium text-destructive"
+              >
+                {submitError}
+              </p>
+            )}
 
             <motion.button
               type="submit"
