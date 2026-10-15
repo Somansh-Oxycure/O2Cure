@@ -49,7 +49,7 @@ export function ContactSection() {
 
         <div className="relative w-full px-5 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)]">
           {/* Centered Section Header */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-4 sm:mb-6">
             <Reveal delay={0} distance={20}>
               <div className="mb-4 flex items-center justify-center gap-3">
                 <span className="h-px w-10 bg-[#22C55E]/35" />

@@ -25,7 +25,7 @@ export function TechnologySection() {
       {/* Story bridge */}
       <div
         aria-hidden
-        className="pointer-events-none relative h-[clamp(3.5rem,8vh,5.5rem)] overflow-hidden bg-background"
+        className="pointer-events-none relative h-[clamp(1.75rem,4vh,2.75rem)] overflow-hidden bg-background"
       >
         <div
           className="absolute inset-0"
@@ -89,7 +89,7 @@ export function TechnologySection() {
           </header>
 
           {/* ── 3-column compact card grid ── */}
-          <div className="mx-auto mt-10 grid max-w-5xl grid-cols-1 items-start gap-4 sm:grid-cols-3 sm:gap-5">
+          <div className="mx-auto mt-6 grid max-w-5xl grid-cols-1 items-start gap-4 sm:grid-cols-3 sm:gap-5">
             {layers.map((layer, index) => (
               <CompactThreatCard
                 key={layer.id}
@@ -99,16 +99,6 @@ export function TechnologySection() {
               />
             ))}
           </div>
-
-          {/* ── Closing copy ── */}
-          <Reveal delay={0.15} distance={18} amount={0.5}>
-            <p
-              className="mx-auto mt-8 max-w-2xl text-center text-body-lg text-muted-foreground"
-              style={{ fontFamily: "var(--font-plus-jakarta)", fontWeight: 400 }}
-            >
-              {/* {closing} */}
-            </p>
-          </Reveal>
         </div>
       </section>
     </>

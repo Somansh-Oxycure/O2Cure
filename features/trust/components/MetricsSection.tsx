@@ -11,7 +11,7 @@ import { useLiveAirCounter } from "@/features/trust/hooks/useLiveAirCounter";
 // ─────────────────────────────────────────────────────────────────────────────
 // Animated counter hook
 // ─────────────────────────────────────────────────────────────────────────────
-function useAnimatedCount(value: number) {
+export function useAnimatedCount(value: number) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.4 });
   const prefersReducedMotion = useReducedMotion();
@@ -188,13 +188,13 @@ export function MetricsSection() {
     <section
       id="metrics"
       aria-labelledby="metrics-heading"
-      className="relative bg-[#f5f5f4] pt-4 pb-8 sm:pb-12 lg:pb-20"
+      className="relative bg-[#f5f5f4] pt-2 pb-5 sm:pb-8 lg:pb-12"
     >
-      <div className="mx-auto max-w-7xl mt-6 sm:mt-10 lg:mt-16 px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="mx-auto max-w-7xl mt-3 sm:mt-5 lg:mt-8 px-4 sm:px-6 lg:px-8 relative z-10">
         <Reveal delay={0} distance={18} amount={0.3}>
 
           {/* Header */}
-          <div className="text-center mb-8 sm:mb-14">
+          <div className="text-center mb-4 sm:mb-7">
             <span className="text-eyebrow font-semibold tracking-[0.15em] text-brand-green">
               At Scale
             </span>
@@ -239,7 +239,7 @@ export function MetricsSection() {
       <h2 id="metrics-heading" className="sr-only">Our Impact</h2>
 
       {/* Gradient to blend with the bottom section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-background pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-background pointer-events-none" />
     </section>
   );
 }

@@ -15,7 +15,7 @@ export function ClienteleSection() {
       {/* Story bridge — stage fades, lighting softens, particles dissolve */}
       <div
         aria-hidden
-        className="pointer-events-none relative h-[clamp(3.5rem,8vh,5.5rem)] overflow-hidden bg-background"
+        className="pointer-events-none relative h-[clamp(1.75rem,4vh,2.75rem)] overflow-hidden bg-background"
       >
         <div
           className="absolute inset-0"
@@ -73,7 +73,7 @@ export function ClienteleSection() {
           </header>
 
           {/* ── Logo Marquee ── */}
-          <div className="mt-10 sm:mt-14 lg:mt-20">
+          <div className="mt-5 sm:mt-8 lg:mt-10">
             <LogoWall logos={clientLogos} />
           </div>
         </div>

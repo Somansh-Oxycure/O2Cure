@@ -9,14 +9,14 @@ export function CertificationsSection() {
     <section
       id="certifications"
       aria-labelledby="certifications-heading"
-      className="relative bg-background py-4"
+      className="relative bg-background py-2 sm:py-3"
     >
       <div className="px-5 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)]">
         {/* ── Certifications ── */}
         <div>
           <Reveal delay={0.06} distance={14} amount={0.3}>
             <div className="mx-auto max-w-3xl">
-              <div className="mb-8 flex items-center justify-center gap-3">
+              <div className="mb-4 sm:mb-5 flex items-center justify-center gap-3">
                 <span className="h-px w-10 bg-brand-green/35" />
                 <p
                   id="certifications-heading"

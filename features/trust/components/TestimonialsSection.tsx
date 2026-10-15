@@ -10,9 +10,9 @@ export function TestimonialsSection() {
     <section
       id="testimonials"
       aria-labelledby="testimonials-heading"
-      className="relative bg-background py-4"
+      className="relative bg-background py-3 sm:py-4"
     >
-      <div className="px-5 mt-4 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)]">
+      <div className="px-5 mt-1 sm:mt-2 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)]">
         {/* ── Header ── */}
         <header className="mx-auto max-w-5xl text-center">
           <Reveal delay={0} distance={20}>

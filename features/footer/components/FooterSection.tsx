@@ -25,7 +25,7 @@ export function FooterSection({ content = footerContent }: FooterSectionProps) {
       {/* Story bridge — atmosphere brightens as CTA section recedes */}
       <div
         aria-hidden
-        className="pointer-events-none relative h-[clamp(2rem,5vh,3rem)] overflow-hidden bg-background"
+        className="pointer-events-none relative h-[clamp(1rem,2.5vh,1.5rem)] overflow-hidden bg-background"
       >
         <div
           className="absolute inset-0"
@@ -46,7 +46,7 @@ export function FooterSection({ content = footerContent }: FooterSectionProps) {
       <footer
         id="site-footer"
         aria-label="Footer"
-        className="relative bg-background pb-[clamp(2.5rem,5vw,4.5rem)] pt-[clamp(2rem,4vw,3.5rem)]"
+        className="relative bg-background pb-[clamp(1.75rem,3.5vw,3rem)] pt-[clamp(1.25rem,2.5vw,2rem)]"
       >
         <FooterParticles />
 

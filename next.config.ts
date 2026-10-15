@@ -104,6 +104,16 @@ const nextConfig: NextConfig = {
         destination: "/#aqi-effect",
         permanent: true,
       },
+      {
+        source: "/audit",
+        destination: "/airaudit",
+        permanent: true,
+      },
+      {
+        source: "/audit/:path*",
+        destination: "/airaudit",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {

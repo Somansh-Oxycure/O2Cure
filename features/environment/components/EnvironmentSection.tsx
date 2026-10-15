@@ -25,7 +25,7 @@ export function EnvironmentSection() {
       ref={sectionRef}
       id="environments"
       aria-labelledby="environments-heading"
-      className="relative min-h-dvh bg-[#F5F5F4] py-4"
+      className="relative min-h-0 bg-[#F5F5F4] py-6 sm:py-10"
     >
       {/* Ambient section background */}
       <div
@@ -33,7 +33,7 @@ export function EnvironmentSection() {
         className="pointer-events-none absolute inset-0 overflow-hidden"
       >
         {/* Top gradient bridge from bridge section */}
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#F5F5F4] to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-[#F5F5F4] to-transparent" />
         {/* Subtle radial glow at bottom center */}
         <div
           className="absolute bottom-0 left-1/2 h-[400px] w-[800px] -translate-x-1/2"
@@ -46,7 +46,7 @@ export function EnvironmentSection() {
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)]">
         {/* Section header */}
-        <header className="mb-12 text-center sm:mb-14">
+        <header className="mb-6 text-center sm:mb-8">
           {/* Eyebrow */}
           <motion.div
             className="mb-4 flex items-center justify-center gap-3"

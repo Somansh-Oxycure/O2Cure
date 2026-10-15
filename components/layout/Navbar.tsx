@@ -37,6 +37,17 @@ export function Navbar() {
     ? { duration: 0 }
     : { duration: NAVBAR_TRANSITION, ease: easings.premium };
 
+  // Standalone landing and conversion pages render without the site navigation.
+  if (
+    pathname === "/audit" ||
+    pathname === "/airaudit" ||
+    pathname.startsWith("/airaudit/") ||
+    pathname === "/thankyou" ||
+    pathname.startsWith("/thankyou/")
+  ) {
+    return null;
+  }
+
   return (
     <>
       <motion.header
