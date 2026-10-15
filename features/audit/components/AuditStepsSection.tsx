@@ -1,10 +1,3 @@
-import {
-  ClipboardList,
-  Headset,
-  ScanSearch,
-  Wind,
-  type LucideIcon,
-} from "lucide-react";
 import Image from "next/image";
 import type { CSSProperties } from "react";
 
@@ -23,83 +16,65 @@ interface Step {
   id: string;
   title: string;
   description: string;
-  iconSrc?: string;
-  Icon?: LucideIcon;
+  iconSrc: string;
 }
 
-const ASSET_DIR = "/Landing Page Assets/airauditsteps";
+const ASSET_DIR = "/Landing Page Assets";
 
 const STEPS: readonly Step[] = [
   {
     id: "book",
     title: "Book your audit",
     description: "Share your space type and contact details.",
-    iconSrc: `${ASSET_DIR}/Mask group.svg`,
+    iconSrc: `${ASSET_DIR}/document.svg`,
   },
   {
     id: "talk",
     title: "Talk to an air expert",
     description: "A one-on-one call to understand your space.",
-    Icon: Headset,
+    iconSrc: `${ASSET_DIR}/customer-care.svg`,
   },
   {
     id: "draft",
     title: "First air draft",
     description: "Your air solution, mapped before we visit.",
-    Icon: Wind,
+    iconSrc: `${ASSET_DIR}/wind.svg`,
   },
   {
     id: "inspect",
     title: "On-site inspection",
     description: "Our engineers visit and measure your air.",
-    Icon: ScanSearch,
+    iconSrc: `${ASSET_DIR}/inspection.svg`,
   },
   {
     id: "report",
     title: "Detailed air report",
     description: "What's in your air, where it comes from, and what to do about it.",
-    Icon: ClipboardList,
+    iconSrc: `${ASSET_DIR}/report.svg`,
   },
 ];
 
-/**
- * ring.svg is border.svg trimmed to just the gradient ring (the original
- * includes a large opaque halo disc). The soft shadow is applied in CSS.
- */
+/** Blue→green gradient ring with a white disc, drawn in CSS. */
 function StepRing({ step }: { step: Step }) {
   return (
     <div
-      className="relative z-10 mx-auto"
-      style={{ width: "var(--r)", height: "var(--r)" }}
+      className="relative z-10 mx-auto rounded-full p-[5px] shadow-[0_10px_16px_rgba(20,60,50,0.22)]"
+      style={{
+        width: "var(--r)",
+        height: "var(--r)",
+        background: "linear-gradient(135deg, #1B6CB0 0%, #2A8FA0 50%, #3FA55A 100%)",
+      }}
     >
-      <Image
-        src={`${ASSET_DIR}/ring.svg`}
-        alt=""
-        aria-hidden
-        unoptimized
-        width={187}
-        height={187}
-        className="pointer-events-none absolute inset-0 h-full w-full select-none drop-shadow-[0_10px_16px_rgba(20,60,50,0.22)]"
-      />
-      <div className="absolute inset-0 flex items-center justify-center">
-        {step.iconSrc ? (
-          <Image
-            src={step.iconSrc}
-            alt=""
-            aria-hidden
-            unoptimized
-            width={86}
-            height={86}
-            style={{ width: "calc(var(--r) * 0.5)", height: "calc(var(--r) * 0.5)" }}
-          />
-        ) : step.Icon ? (
-          <step.Icon
-            aria-hidden
-            strokeWidth={1.3}
-            className="text-[#6A6A6A]"
-            style={{ width: "calc(var(--r) * 0.46)", height: "calc(var(--r) * 0.46)" }}
-          />
-        ) : null}
+      <div className="flex h-full w-full items-center justify-center rounded-full bg-white">
+        <Image
+          src={step.iconSrc}
+          alt=""
+          aria-hidden
+          unoptimized
+          width={86}
+          height={86}
+          style={{ width: "calc(var(--r) * 0.48)", height: "calc(var(--r) * 0.48)" }}
+        />
       </div>
     </div>
   );

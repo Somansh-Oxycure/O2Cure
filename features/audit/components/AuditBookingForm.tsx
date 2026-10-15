@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { durations } from "@/components/motion/durations";
 import { easings } from "@/components/motion/easings";
 import { FormSuccess } from "@/features/contact/components/FormSuccess";
-import { simulatedEnquirySubmission } from "@/features/contact/lib/submission";
+import { submitZohoLead } from "@/features/audit/lib/zohoLead";
 import {
   hasEnquiryErrors,
   validateEnquiryForm,
@@ -21,6 +21,7 @@ import type {
 } from "@/features/contact/types";
 import { formatBrandText } from "@/lib/brand";
 import { cn } from "@/lib/utils";
+import { CitySelectDropdown } from "./CitySelectDropdown";
 
 /**
  * AuditBookingForm — "Book A Free Air Audit" card.
@@ -53,14 +54,6 @@ const RESIDENTIAL_CONFIGS = [
   { value: "other", label: "Other / Custom Layout" },
 ] as const;
 
-const CITIES = [
-  "Delhi / NCR",
-  "Gurugram",
-  "Noida",
-  "Ghaziabad",
-  "Faridabad",
-  "Other",
-] as const;
 
 const fieldBase =
   "h-11 w-full rounded-full border border-transparent bg-[#F1F1F3] px-5 text-[0.85rem] text-foreground outline-none transition-all duration-300 placeholder:text-muted-foreground/60 focus:border-brand-green/40 focus:bg-white focus:shadow-[0_0_0_4px_rgba(58,125,42,0.10)]";
@@ -143,7 +136,7 @@ interface AuditBookingFormProps {
 }
 
 export function AuditBookingForm({
-  submissionAdapter = simulatedEnquirySubmission,
+  submissionAdapter,
   className,
 }: AuditBookingFormProps) {
   const uid = useId();
@@ -218,11 +211,21 @@ export function AuditBookingForm({
         city ? `City: ${city}` : null,
       ].filter(Boolean);
 
-      const result = await submissionAdapter.submit({
-        ...data,
-        environment: segment === "business" ? data.environment : "residential",
-        message: messageParts.join(" — "),
-      });
+      const resolvedEnvironment =
+        segment === "business" ? data.environment : "residential";
+      const result = submissionAdapter
+        ? await submissionAdapter.submit({
+            ...data,
+            environment: resolvedEnvironment,
+            message: messageParts.join(" — "),
+          })
+        : await submitZohoLead({
+            fullName: data.name,
+            phone: data.phone,
+            email: data.email,
+            environment: resolvedEnvironment,
+            city,
+          });
       if (result.success) {
         setSubmitted(true);
         if (typeof window !== "undefined") {
@@ -390,11 +393,11 @@ export function AuditBookingForm({
                   </Field>
                 )}
                 <Field label="City / Area" htmlFor={`${uid}-city`}>
-                  <SelectField
+                  <CitySelectDropdown
                     id={`${uid}-city`}
                     value={city}
                     onChange={setCity}
-                    options={CITIES.map((c) => ({ value: c, label: c }))}
+                    placeholder="Select city / area"
                   />
                 </Field>
               </div>

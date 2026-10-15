@@ -70,15 +70,25 @@ export function SpaceCardsSection() {
           </h2>
         </Reveal>
 
-        <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-5">
+        {/* Swipe hint — mobile / tablet only */}
+        <p
+          aria-hidden
+          className="mt-5 flex items-center justify-center gap-2 text-xs font-medium text-brand-green lg:hidden"
+        >
+          Swipe to explore
+          <ArrowRight className="size-3.5 animate-[nudge_1.2s_ease-in-out_infinite]" />
+        </p>
+
+        <div className="relative mt-4 lg:mt-14">
+        <ul className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth px-4 pb-4 [scrollbar-color:#3A7D2A55_transparent] [scrollbar-width:thin] sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0">
           {SPACES.map((space, i) => (
-            <li key={space.id}>
+            <li key={space.id} className="w-[42%] max-w-[190px] shrink-0 snap-start sm:w-[30%] sm:max-w-[220px] lg:w-auto lg:max-w-none">
               <Reveal delay={0.08 * i} distance={20} amount={0.2}>
                 <Link
                   id={`audit-space-${space.id}`}
                   href={space.href}
                   aria-label={`Explore ${space.label}`}
-                  className="group relative block aspect-[4/5] overflow-hidden rounded-2xl sm:aspect-[3/3.4]"
+                  className="group relative block aspect-[3/4] overflow-hidden rounded-xl lg:aspect-[3/3.4] lg:rounded-2xl"
                 >
                   {space.image ? (
                     <Image
@@ -104,10 +114,10 @@ export function SpaceCardsSection() {
                     className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent"
                   />
 
-                  <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-5">
-                    <span className="text-base font-semibold text-white">{space.label}</span>
-                    <span className="flex size-9 items-center justify-center rounded-full border border-white/80 text-white backdrop-blur-sm transition-all duration-500 group-hover:bg-white group-hover:text-brand-green">
-                      <ArrowRight className="size-4 transition-transform duration-500 group-hover:translate-x-0.5" />
+                  <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-3 lg:p-5">
+                    <span className="text-sm font-semibold text-white lg:text-base">{space.label}</span>
+                    <span className="flex size-7 items-center justify-center rounded-full border border-white/80 text-white backdrop-blur-sm transition-all duration-500 group-hover:bg-white group-hover:text-brand-green lg:size-9">
+                      <ArrowRight className="size-3.5 transition-transform duration-500 group-hover:translate-x-0.5 lg:size-4" />
                     </span>
                   </div>
                 </Link>
@@ -115,6 +125,12 @@ export function SpaceCardsSection() {
             </li>
           ))}
         </ul>
+        {/* Right-edge fade signals more cards */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 right-0 -mr-4 w-12 bg-gradient-to-l from-[#F2F5F1] to-transparent sm:-mr-6 lg:hidden"
+        />
+        </div>
       </div>
     </section>
   );

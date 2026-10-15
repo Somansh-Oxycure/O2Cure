@@ -7,3 +7,4 @@ export { TrustedBySection } from "./components/TrustedBySection";
 export { AuditFaqSection } from "./components/AuditFaqSection";
 export { AuditFooter } from "./components/AuditFooter";
 export { ThankYouView } from "./components/ThankYouView";
+export { CitySelectDropdown } from "./components/CitySelectDropdown";
