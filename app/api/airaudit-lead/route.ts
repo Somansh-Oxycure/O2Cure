@@ -13,7 +13,19 @@ const ZOHO_KEYS = {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { fullName, phone, email, spaceType, city, gclid } = body;
+    const {
+      fullName,
+      phone,
+      email,
+      spaceType,
+      city,
+      spaceStage,
+      stakeholderRole,
+      primaryAirConcern,
+      purchaseTimeline,
+      preferredCallSlot,
+      gclid,
+    } = body;
 
     if (!fullName || !phone) {
       return NextResponse.json(
@@ -38,11 +50,33 @@ export async function POST(request: Request) {
     if (email) formParams.set("Email", String(email).trim());
     if (spaceType) formParams.set("LEADCF9", String(spaceType).trim());
     if (city) formParams.set("Address - City", String(city).trim());
+
+    // Map audit survey dropdown fields to Zoho CRM Web-to-Lead fields
+    if (spaceStage) formParams.set("Space Stage", String(spaceStage).trim());
+    if (stakeholderRole) formParams.set("Stakeholder Role", String(stakeholderRole).trim());
+    if (primaryAirConcern) formParams.set("Primary Air Concern", String(primaryAirConcern).trim());
+    if (purchaseTimeline) formParams.set("Purchase Timeline", String(purchaseTimeline).trim());
+    if (preferredCallSlot) formParams.set("Preferred Call Slot", String(preferredCallSlot).trim());
+
+    // Formatted Description note for sales and engineering team in Zoho CRM
+    const descriptionLines = [
+      `[Air Audit Consultation Request]`,
+      spaceType ? `Space Type: ${spaceType}` : null,
+      city ? `City / Area: ${city}` : null,
+      spaceStage ? `Space Stage: ${spaceStage}` : null,
+      stakeholderRole ? `Stakeholder Role: ${stakeholderRole}` : null,
+      primaryAirConcern ? `Primary Air Concern: ${primaryAirConcern}` : null,
+      purchaseTimeline ? `Purchase Timeline: ${purchaseTimeline}` : null,
+      preferredCallSlot ? `Preferred Call Slot: ${preferredCallSlot}` : null,
+    ].filter(Boolean);
+
+    formParams.set("Description", descriptionLines.join("\n"));
+
     formParams.set("zc_gad", gclid || "");
     formParams.set("aG9uZXlwb3Q", ""); // Honeypot must be empty
 
     console.log(
-      `[Zoho CRM Submitting] Name: "${trimmedName}", Phone: "${phone}", Email: "${email}", Space: "${spaceType}", City: "${city}"`,
+      `[Zoho CRM Submitting] Name: "${trimmedName}", Phone: "${phone}", Email: "${email}", Space: "${spaceType}", City: "${city}", Stage: "${spaceStage}", Role: "${stakeholderRole}", Concern: "${primaryAirConcern}", Timeline: "${purchaseTimeline}", Slot: "${preferredCallSlot}"`,
     );
 
     const zohoRes = await fetch(ZOHO_ENDPOINT, {

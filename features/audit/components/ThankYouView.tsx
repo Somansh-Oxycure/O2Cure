@@ -34,6 +34,11 @@ interface SubmissionDetails {
   city?: string;
   environment?: string;
   roomsOrArea?: string;
+  spaceStage?: string;
+  stakeholderRole?: string;
+  primaryAirConcern?: string;
+  purchaseTimeline?: string;
+  preferredCallSlot?: string;
   referenceId?: string;
   submittedAt?: string;
 }
@@ -169,6 +174,18 @@ export function ThankYouView() {
                   <div className="flex items-center gap-1.5 rounded-full border border-border bg-[#F5F7F4] px-3.5 py-1.5 text-xs text-muted-foreground">
                     <MapPin className="size-3.5 text-brand-green" />
                     <span>{submission.city}</span>
+                  </div>
+                )}
+                {submission?.spaceStage && (
+                  <div className="flex items-center gap-1.5 rounded-full border border-border bg-[#F5F7F4] px-3.5 py-1.5 text-xs text-muted-foreground">
+                    <Building2 className="size-3.5 text-brand-green" />
+                    <span>{submission.spaceStage}</span>
+                  </div>
+                )}
+                {submission?.primaryAirConcern && (
+                  <div className="flex items-center gap-1.5 rounded-full border border-border bg-[#F5F7F4] px-3.5 py-1.5 text-xs text-muted-foreground">
+                    <Wind className="size-3.5 text-brand-green" />
+                    <span>{submission.primaryAirConcern}</span>
                   </div>
                 )}
                 {submission?.roomsOrArea && (

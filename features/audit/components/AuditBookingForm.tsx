@@ -54,6 +54,101 @@ const RESIDENTIAL_CONFIGS = [
   { value: "other", label: "Other / Custom Layout" },
 ] as const;
 
+const SPACE_STAGE_OPTIONS = [
+  { value: "Under construction", label: "Under construction" },
+  {
+    value: "Under renovation / interior fit-out",
+    label: "Under renovation / interior fit-out",
+  },
+  {
+    value: "Completed & currently occupied / in use",
+    label: "Completed & currently occupied / in use",
+  },
+] as const;
+
+const STAKEHOLDER_ROLE_OPTIONS = [
+  {
+    value: "Property Owner / Primary Decision Maker",
+    label: "Property Owner / Primary Decision Maker",
+  },
+  {
+    value: "Facility / Operations / Administrative Manager",
+    label: "Facility / Operations / Administrative Manager",
+  },
+  {
+    value: "Architect, Interior Designer, or Consultant",
+    label: "Architect, Interior Designer, or Consultant",
+  },
+  {
+    value: "Tenant / Resident / Occupant",
+    label: "Tenant / Resident / Occupant",
+  },
+] as const;
+
+const PRIMARY_AIR_CONCERN_OPTIONS = [
+  {
+    value: "Outdoor smog, dust, and particulate infiltration",
+    label: "Outdoor smog, dust, and particulate infiltration",
+  },
+  {
+    value: "Poor ventilation or stale / stuffy indoor air",
+    label: "Poor ventilation or stale / stuffy indoor air",
+  },
+  {
+    value: "Persistent odours, VOCs, or chemical fumes",
+    label: "Persistent odours, VOCs, or chemical fumes",
+  },
+  {
+    value: "Pathogen and infection control (germs / viruses)",
+    label: "Pathogen and infection control (germs / viruses)",
+  },
+  {
+    value: "Dust accumulation or corrosion affecting equipment",
+    label: "Dust accumulation or corrosion affecting equipment",
+  },
+  {
+    value: "Green building & wellness compliance (IGBC, LEED, WELL, NABH)",
+    label: "Green building & wellness compliance (IGBC, LEED, WELL, NABH)",
+  },
+  {
+    value: "General air quality evaluation & health assessment",
+    label: "General air quality evaluation & health assessment",
+  },
+] as const;
+
+const PURCHASE_TIMELINE_OPTIONS = [
+  {
+    value: "Immediate (within 30 days)",
+    label: "Immediate (within 30 days)",
+  },
+  {
+    value: "Short term (1 to 3 months)",
+    label: "Short term (1 to 3 months)",
+  },
+  {
+    value: "Medium term (3 to 6 months)",
+    label: "Medium term (3 to 6 months)",
+  },
+  {
+    value: "Exploratory / Planning stage",
+    label: "Exploratory / Planning stage",
+  },
+] as const;
+
+const PREFERRED_CALL_SLOT_OPTIONS = [
+  {
+    value: "Morning (10:00 AM – 1:00 PM)",
+    label: "Morning (10:00 AM – 1:00 PM)",
+  },
+  {
+    value: "Afternoon (1:00 PM – 4:00 PM)",
+    label: "Afternoon (1:00 PM – 4:00 PM)",
+  },
+  {
+    value: "Evening (4:00 PM – 7:00 PM)",
+    label: "Evening (4:00 PM – 7:00 PM)",
+  },
+] as const;
 
 const fieldBase =
   "h-11 w-full rounded-full border border-transparent bg-[#F1F1F3] px-5 text-[0.85rem] text-foreground outline-none transition-all duration-300 placeholder:text-muted-foreground/60 focus:border-brand-green/40 focus:bg-white focus:shadow-[0_0_0_4px_rgba(58,125,42,0.10)]";
@@ -64,17 +159,20 @@ function Field({
   error,
   children,
   className,
+  required,
 }: {
   label: string;
   htmlFor: string;
   error?: string;
   children: ReactNode;
   className?: string;
+  required?: boolean;
 }) {
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
-      <label htmlFor={htmlFor} className="text-[0.7rem] font-bold text-foreground">
-        {label}
+      <label htmlFor={htmlFor} className="flex items-center text-[0.7rem] font-bold leading-tight text-foreground">
+        <span>{label}</span>
+        {required && <span className="ml-1 font-bold text-brand-green">*</span>}
       </label>
       {children}
       {error && (
@@ -110,14 +208,14 @@ function SelectField({
         onChange={(e) => onChange(e.target.value)}
         className={cn(
           fieldBase,
-          "cursor-pointer appearance-none pr-10 text-[0.8rem]",
+          "cursor-pointer appearance-none truncate pr-10 text-[0.8rem]",
           !value && "text-muted-foreground/70",
           invalid && "border-destructive/50",
         )}
       >
         <option value="">{placeholder}</option>
         {options.map((o) => (
-          <option key={o.value} value={o.value}>
+          <option key={o.value} value={o.value} className="bg-white text-foreground">
             {o.label}
           </option>
         ))}
@@ -146,6 +244,12 @@ export function AuditBookingForm({
   const [city, setCity] = useState("");
   const [residentialSize, setResidentialSize] = useState("");
   const [customSize, setCustomSize] = useState("");
+  const [spaceStage, setSpaceStage] = useState("");
+  const [stakeholderRole, setStakeholderRole] = useState("");
+  const [primaryAirConcern, setPrimaryAirConcern] = useState("");
+  const [purchaseTimeline, setPurchaseTimeline] = useState("");
+  const [preferredCallSlot, setPreferredCallSlot] = useState("");
+
   const [data, setData] = useState<EnquiryFormData>({
     name: "",
     company: "",
@@ -156,6 +260,11 @@ export function AuditBookingForm({
     problemDescription: "",
   });
   const [errors, setErrors] = useState<EnquiryFormErrors>({});
+  const [extraErrors, setExtraErrors] = useState<{
+    spaceStage?: string;
+    stakeholderRole?: string;
+    primaryAirConcern?: string;
+  }>({});
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -183,8 +292,26 @@ export function AuditBookingForm({
       delete next.environment;
     }
 
+    const newExtraErrors: {
+      spaceStage?: string;
+      stakeholderRole?: string;
+      primaryAirConcern?: string;
+    } = {};
+
+    if (!spaceStage.trim()) {
+      newExtraErrors.spaceStage = "Please select the current status of your space.";
+    }
+    if (!stakeholderRole.trim()) {
+      newExtraErrors.stakeholderRole = "Please select your role regarding this property.";
+    }
+    if (!primaryAirConcern.trim()) {
+      newExtraErrors.primaryAirConcern = "Please select your primary air quality concern.";
+    }
+
     setErrors(next);
-    if (hasEnquiryErrors(next)) return;
+    setExtraErrors(newExtraErrors);
+
+    if (hasEnquiryErrors(next) || Object.keys(newExtraErrors).length > 0) return;
 
     setIsSubmitting(true);
     try {
@@ -211,6 +338,11 @@ export function AuditBookingForm({
           ? `Space: ${residentialInfo}`
           : null,
         city ? `City: ${city}` : null,
+        spaceStage ? `Space Stage: ${spaceStage}` : null,
+        stakeholderRole ? `Role: ${stakeholderRole}` : null,
+        primaryAirConcern ? `Air Concern: ${primaryAirConcern}` : null,
+        purchaseTimeline ? `Action Timeline: ${purchaseTimeline}` : null,
+        preferredCallSlot ? `Preferred Call Slot: ${preferredCallSlot}` : null,
       ].filter(Boolean);
 
       const resolvedEnvironment =
@@ -228,6 +360,11 @@ export function AuditBookingForm({
             email: data.email,
             environment: resolvedEnvironment,
             city,
+            spaceStage,
+            stakeholderRole,
+            primaryAirConcern,
+            purchaseTimeline,
+            preferredCallSlot,
           });
       if (result.success) {
         setSubmitted(true);
@@ -243,6 +380,11 @@ export function AuditBookingForm({
                 environment: environmentResolved,
                 roomsOrArea: residentialInfo,
                 city,
+                spaceStage,
+                stakeholderRole,
+                primaryAirConcern,
+                purchaseTimeline,
+                preferredCallSlot,
                 referenceId:
                   result.referenceId ||
                   `AUD-${Date.now().toString(36).toUpperCase()}`,
@@ -262,6 +404,11 @@ export function AuditBookingForm({
             environment: environmentResolved,
             roomsOrArea: residentialInfo,
             city,
+            spaceStage,
+            stakeholderRole,
+            primaryAirConcern,
+            purchaseTimeline,
+            preferredCallSlot,
           });
         }
         router.push("/thankyou");
@@ -343,11 +490,12 @@ export function AuditBookingForm({
             </div>
 
             <div className="mt-5 flex flex-col gap-4">
-              <Field label="Full Name" htmlFor={`${uid}-name`} error={errors.name}>
+              <Field label="Full Name" htmlFor={`${uid}-name`} error={errors.name} required>
                 <input
                   id={`${uid}-name`}
                   type="text"
                   autoComplete="name"
+                  placeholder="e.g. Rahul Sharma"
                   value={data.name}
                   onChange={(e) => set("name")(e.target.value)}
                   aria-invalid={!!errors.name}
@@ -355,18 +503,35 @@ export function AuditBookingForm({
                 />
               </Field>
 
-              <Field label="Phone Number" htmlFor={`${uid}-phone`} error={errors.phone}>
-                <input
-                  id={`${uid}-phone`}
-                  type="tel"
-                  inputMode="tel"
-                  autoComplete="tel"
-                  value={data.phone}
-                  onChange={(e) => set("phone")(e.target.value)}
-                  aria-invalid={!!errors.phone}
-                  className={cn(fieldBase, errors.phone && "border-destructive/50")}
-                />
-              </Field>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <Field label="Phone Number" htmlFor={`${uid}-phone`} error={errors.phone} required>
+                  <input
+                    id={`${uid}-phone`}
+                    type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    placeholder="e.g. 98765 43210"
+                    value={data.phone}
+                    onChange={(e) => set("phone")(e.target.value)}
+                    aria-invalid={!!errors.phone}
+                    className={cn(fieldBase, errors.phone && "border-destructive/50")}
+                  />
+                </Field>
+
+                <Field label="Email Address" htmlFor={`${uid}-email`} error={errors.email} required>
+                  <input
+                    id={`${uid}-email`}
+                    type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    placeholder="e.g. rahul@example.com"
+                    value={data.email}
+                    onChange={(e) => set("email")(e.target.value)}
+                    aria-invalid={!!errors.email}
+                    className={cn(fieldBase, errors.email && "border-destructive/50")}
+                  />
+                </Field>
+              </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {segment === "business" ? (
@@ -374,18 +539,20 @@ export function AuditBookingForm({
                     label="Environment Type"
                     htmlFor={`${uid}-env`}
                     error={errors.environment}
+                    required
                   >
                     <SelectField
                       id={`${uid}-env`}
                       value={data.environment}
                       onChange={set("environment")}
                       options={BUSINESS_ENVIRONMENTS}
+                      placeholder="Select environment type"
                       invalid={!!errors.environment}
                     />
                   </Field>
                 ) : (
                   <Field
-                    label="Rooms / Carpet Area (Optional)"
+                    label="Property Layout / Carpet Area (Optional)"
                     htmlFor={`${uid}-residential-size`}
                   >
                     <SelectField
@@ -393,7 +560,7 @@ export function AuditBookingForm({
                       value={residentialSize}
                       onChange={setResidentialSize}
                       options={RESIDENTIAL_CONFIGS}
-                      placeholder="Select (Optional)"
+                      placeholder="Select layout (Optional)"
                     />
                   </Field>
                 )}
@@ -423,18 +590,98 @@ export function AuditBookingForm({
                 </Field>
               )}
 
-              <Field label="Email" htmlFor={`${uid}-email`} error={errors.email}>
-                <input
-                  id={`${uid}-email`}
-                  type="email"
-                  inputMode="email"
-                  autoComplete="email"
-                  value={data.email}
-                  onChange={(e) => set("email")(e.target.value)}
-                  aria-invalid={!!errors.email}
-                  className={cn(fieldBase, errors.email && "border-destructive/50")}
+              {/* 7. Space Stage & 8. Stakeholder Role */}
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <Field
+                  label="What is the current status of your space?"
+                  htmlFor={`${uid}-space-stage`}
+                  error={extraErrors.spaceStage}
+                  required
+                >
+                  <SelectField
+                    id={`${uid}-space-stage`}
+                    value={spaceStage}
+                    onChange={(val) => {
+                      setSpaceStage(val);
+                      setExtraErrors((prev) => ({ ...prev, spaceStage: undefined }));
+                      setSubmitError(null);
+                    }}
+                    options={SPACE_STAGE_OPTIONS}
+                    placeholder="Select space status"
+                    invalid={!!extraErrors.spaceStage}
+                  />
+                </Field>
+
+                <Field
+                  label="What is your role regarding this property?"
+                  htmlFor={`${uid}-stakeholder-role`}
+                  error={extraErrors.stakeholderRole}
+                  required
+                >
+                  <SelectField
+                    id={`${uid}-stakeholder-role`}
+                    value={stakeholderRole}
+                    onChange={(val) => {
+                      setStakeholderRole(val);
+                      setExtraErrors((prev) => ({ ...prev, stakeholderRole: undefined }));
+                      setSubmitError(null);
+                    }}
+                    options={STAKEHOLDER_ROLE_OPTIONS}
+                    placeholder="Select your role"
+                    invalid={!!extraErrors.stakeholderRole}
+                  />
+                </Field>
+              </div>
+
+              {/* 9. Primary Air Concern */}
+              <Field
+                label="What is your primary air quality concern or objective?"
+                htmlFor={`${uid}-primary-concern`}
+                error={extraErrors.primaryAirConcern}
+                required
+              >
+                <SelectField
+                  id={`${uid}-primary-concern`}
+                  value={primaryAirConcern}
+                  onChange={(val) => {
+                    setPrimaryAirConcern(val);
+                    setExtraErrors((prev) => ({ ...prev, primaryAirConcern: undefined }));
+                    setSubmitError(null);
+                  }}
+                  options={PRIMARY_AIR_CONCERN_OPTIONS}
+                  placeholder="Select primary concern or objective"
+                  invalid={!!extraErrors.primaryAirConcern}
                 />
               </Field>
+
+              {/* 10. Purchase Timeline & 11. Preferred Call Slot */}
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <Field
+                  label="What is your anticipated timeline for implementation? (Optional)"
+                  htmlFor={`${uid}-purchase-timeline`}
+                >
+                  <SelectField
+                    id={`${uid}-purchase-timeline`}
+                    value={purchaseTimeline}
+                    onChange={setPurchaseTimeline}
+                    options={PURCHASE_TIMELINE_OPTIONS}
+                    placeholder="Select anticipated timeline"
+                  />
+                </Field>
+
+                <Field
+                  label="Preferred time window for a consultation call (Optional)"
+                  htmlFor={`${uid}-call-slot`}
+                >
+                  <SelectField
+                    id={`${uid}-call-slot`}
+                    value={preferredCallSlot}
+                    onChange={setPreferredCallSlot}
+                    options={PREFERRED_CALL_SLOT_OPTIONS}
+                    placeholder="Select preferred time window"
+                  />
+                </Field>
+              </div>
             </div>
 
             <p className="mt-4 flex items-center gap-1.5 text-[0.62rem] text-muted-foreground">

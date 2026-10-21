@@ -7,6 +7,11 @@ export interface ZohoLeadInput {
   /** Raw environment value from the form (e.g. "corporate") or "residential". */
   environment: string;
   city: string;
+  spaceStage?: string;
+  stakeholderRole?: string;
+  primaryAirConcern?: string;
+  purchaseTimeline?: string;
+  preferredCallSlot?: string;
 }
 
 /** Maps the form's environment values onto Zoho's Space Type picklist. */
@@ -42,6 +47,11 @@ export async function submitZohoLead(
         email: input.email,
         spaceType,
         city: input.city,
+        spaceStage: input.spaceStage,
+        stakeholderRole: input.stakeholderRole,
+        primaryAirConcern: input.primaryAirConcern,
+        purchaseTimeline: input.purchaseTimeline,
+        preferredCallSlot: input.preferredCallSlot,
         gclid,
       }),
     });
