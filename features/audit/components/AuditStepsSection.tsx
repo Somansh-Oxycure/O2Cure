@@ -112,6 +112,29 @@ function Connector({ up }: { up: boolean }) {
   );
 }
 
+/** Mobile-only vertical dashed arc to the next ring; alternates bulging right / left. */
+function MobileConnector({ right }: { right: boolean }) {
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      className="pointer-events-none absolute left-0 z-0 w-full overflow-visible sm:hidden"
+      style={{ top: "calc(100% - 3px)", height: "calc(2.5rem + 6px)" }}
+    >
+      <path
+        d={right ? "M 50,0 C 105,12 105,88 50,100" : "M 50,0 C -5,12 -5,88 50,100"}
+        fill="none"
+        stroke="#8A958A"
+        strokeWidth="1.3"
+        strokeDasharray="4 4"
+        strokeLinecap="round"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  );
+}
+
 export function AuditStepsSection() {
   return (
     <section
@@ -131,15 +154,24 @@ export function AuditStepsSection() {
 
         <Reveal delay={0.1} distance={20} amount={0.15}>
           <ol
-            className="mt-10 grid grid-cols-1 gap-12 rounded-[2rem] bg-[#F2F5F1] px-6 py-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-5 lg:gap-0 lg:px-6 lg:py-14"
+            className="mt-6 grid grid-cols-1 gap-10 rounded-[2rem] bg-[#F2F5F1] px-4 py-8 sm:mt-10 sm:gap-12 sm:px-6 sm:py-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-5 lg:gap-0 lg:px-6 lg:py-14"
             style={{ "--r": "clamp(92px, 8.6vw, 128px)" } as CSSProperties}
           >
             {STEPS.map((step, i) => (
               <li
                 key={step.id}
                 id={`audit-step-${step.id}`}
-                className="relative flex flex-col items-center px-2 text-center"
+                className="relative flex flex-col items-center px-2 text-center max-sm:grid max-sm:grid-cols-[1fr_var(--r)_1.5fr] max-sm:items-center max-sm:gap-x-3 max-sm:px-0"
               >
+                {/* Mobile ghost number, left of ring */}
+                <span
+                  aria-hidden
+                  className="select-none text-right font-heading font-bold leading-none text-[#CAD3C9] sm:hidden"
+                  style={{ fontSize: "calc(var(--r) * 0.42)" }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
                 {/* Ghost number, beside the ring */}
                 <span
                   aria-hidden
@@ -154,16 +186,21 @@ export function AuditStepsSection() {
                   {String(i + 1).padStart(2, "0")}
                 </span>
 
-                <StepRing step={step} />
+                <div className="max-sm:relative">
+                  <StepRing step={step} />
+                  {i < STEPS.length - 1 && <MobileConnector right={i % 2 === 0} />}
+                </div>
                 {i < STEPS.length - 1 && <Connector up={i % 2 === 0} />}
 
-                <h3 className="relative z-20 mt-6 text-[0.9rem] font-bold text-[#14172B] lg:mt-[calc(var(--r)*0.14)]">
-                  {step.title}
-                </h3>
-                <span aria-hidden className="mt-2.5 h-px w-24 bg-border" />
-                <p className="mt-2.5 max-w-[11rem] text-[0.7rem] leading-relaxed text-muted-foreground">
-                  {step.description}
-                </p>
+                <div className="flex flex-col items-center max-sm:items-start max-sm:text-left">
+                  <h3 className="relative z-20 mt-6 text-[0.9rem] font-bold text-[#14172B] max-sm:mt-0 lg:mt-[calc(var(--r)*0.14)]">
+                    {step.title}
+                  </h3>
+                  <span aria-hidden className="mt-2.5 h-px w-24 bg-border max-sm:mt-2 max-sm:w-full" />
+                  <p className="mt-2.5 max-w-[11rem] text-[0.7rem] leading-relaxed text-muted-foreground max-sm:mt-2 max-sm:max-w-none">
+                    {step.description}
+                  </p>
+                </div>
               </li>
             ))}
           </ol>

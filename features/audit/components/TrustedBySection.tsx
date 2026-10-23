@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -71,16 +72,17 @@ export function TrustedBySection() {
         <Reveal delay={0.1} distance={20} amount={0.15}>
           <ul
             aria-label="Our clients"
-            className="mt-10 flex flex-col gap-8 rounded-[2.5rem] bg-[#F2F5F1] px-6 py-10 sm:px-10 lg:mt-12 lg:gap-12 lg:px-14 lg:py-14"
+            className="mt-6 flex flex-col gap-5 rounded-[2rem] bg-[#F2F5F1] px-4 py-7 sm:mt-10 sm:gap-8 sm:rounded-[2.5rem] sm:py-10 sm:px-10 lg:mt-12 lg:gap-12 lg:px-14 lg:py-14"
           >
             {ROWS.map((row, r) => (
               <li key={r} className="list-none">
-                <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-7 lg:gap-x-10 xl:flex-nowrap xl:justify-between xl:gap-x-6">
+                <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 sm:gap-x-10 sm:gap-y-7 lg:gap-x-10 xl:flex-nowrap xl:justify-between xl:gap-x-6">
                   {row.map((logo) => (
                     <li
                       key={logo.id}
                       id={`audit-client-${logo.id}`}
-                      className="flex min-w-0 shrink items-center justify-center"
+                      className="flex min-w-0 shrink items-center justify-center max-sm:[&_img]:!h-[calc(var(--h)*0.55)] max-sm:[&_img]:max-w-[6rem]"
+                      style={{ "--h": `${Math.round(logo.h * SCALE)}px` } as CSSProperties}
                     >
                       <Image
                         src={logo.src}

@@ -15,7 +15,7 @@ export function AuditHeroSection() {
     <section
       id="audit-hero"
       aria-labelledby="audit-hero-heading"
-      className="relative flex min-h-screen items-center overflow-hidden bg-[#F2F5F1] py-28 lg:py-20"
+      className="relative flex lg:min-h-screen items-center overflow-hidden bg-[#F2F5F1] pb-10 pt-6 sm:py-28 lg:py-20"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div
@@ -27,7 +27,7 @@ export function AuditHeroSection() {
         />
       </div>
 
-      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-2 lg:gap-[clamp(3rem,8vw,9rem)] lg:px-[clamp(2rem,5vw,4rem)]">
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-6 px-5 lg:gap-14 sm:px-8 lg:grid-cols-2 lg:gap-[clamp(3rem,8vw,9rem)] lg:px-[clamp(2rem,5vw,4rem)]">
         {/* Left column */}
         <div className="flex flex-col">
           <Reveal delay={0} distance={16}>
@@ -37,7 +37,7 @@ export function AuditHeroSection() {
               width={150}
               height={110}
               priority
-              className="mb-14 h-auto w-[110px] sm:w-[130px]"
+              className="mb-6 sm:mb-14 h-auto w-[110px] sm:w-[130px]"
             />
           </Reveal>
 
@@ -66,7 +66,7 @@ export function AuditHeroSection() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.36} distance={14}>
+          <Reveal delay={0.36} distance={14} className="hidden lg:block">
             <div className="mt-14 inline-flex max-w-full items-center gap-3 rounded-full border border-brand-green/20 bg-[#E6F2DF] py-3 pl-4 pr-8">
               <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-green/15">
                 <Clock className="size-4 text-brand-green" aria-hidden />
@@ -88,6 +88,21 @@ export function AuditHeroSection() {
         {/* Right column */}
         <Reveal delay={0.14} distance={24}>
           <AuditBookingForm className="mx-auto max-w-[540px] lg:ml-auto" />
+          <div className="mt-6 flex items-center gap-3 rounded-2xl border border-brand-green/20 bg-[#E6F2DF] px-4 py-3 lg:hidden">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-brand-green/15">
+              <Clock className="size-4 text-brand-green" aria-hidden />
+            </span>
+            <div>
+              <p className="text-[0.78rem] font-semibold text-foreground">
+                24-Hour Response Guarantee
+              </p>
+              <p className="mt-0.5 text-[0.64rem] text-muted-foreground">
+                {formatBrandText(
+                  "An O2Cure Air Quality Specialist will reach out personally",
+                )}
+              </p>
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>
