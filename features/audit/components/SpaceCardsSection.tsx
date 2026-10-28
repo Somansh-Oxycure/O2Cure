@@ -95,7 +95,7 @@ export function SpaceCardsSection() {
                       src={space.image}
                       alt={`O₂Cure clean air solutions for ${space.label}`}
                       fill
-                      sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw"
+                      sizes="(min-width:1024px) 25vw, (min-width:640px) 30vw, 190px"
                       className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
                     />
                   ) : (

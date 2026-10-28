@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
 function SplashCursor({
   SIM_RESOLUTION = 128,
@@ -21,8 +22,27 @@ function SplashCursor({
 }) {
   const canvasRef = useRef(null);
   const animationFrameId = useRef(null);
+  const pathname = usePathname();
+
+  // Standalone landing and conversion funnels run lean without WebGL cursor effects
+  const isExcludedRoute =
+    pathname?.startsWith('/airaudit') ||
+    pathname?.startsWith('/thankyou') ||
+    pathname?.startsWith('/audit');
 
   useEffect(() => {
+    if (isExcludedRoute) return;
+
+    // Skip on touch-only mobile devices where mouse cursors don't exist
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(pointer: coarse)').matches &&
+      !window.matchMedia('(pointer: fine)').matches
+    ) {
+      return;
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -1051,6 +1071,8 @@ function SplashCursor({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (isExcludedRoute) return null;
 
   return (
     <div

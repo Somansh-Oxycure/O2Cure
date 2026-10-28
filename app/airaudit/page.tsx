@@ -1,15 +1,27 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 
 import { LandingGTM } from "@/components/analytics/LandingGTM";
-import {
-  AuditFaqSection,
-  AuditFooter,
-  AuditHeroSection,
-  AuditStatsStrip,
-  AuditStepsSection,
-  SpaceCardsSection,
-  TrustedBySection,
-} from "@/features/audit";
+import { AuditHeroSection } from "@/features/audit/components/AuditHeroSection";
+
+const AuditStatsStrip = dynamic(() =>
+  import("@/features/audit/components/AuditStatsStrip").then((m) => m.AuditStatsStrip)
+);
+const SpaceCardsSection = dynamic(() =>
+  import("@/features/audit/components/SpaceCardsSection").then((m) => m.SpaceCardsSection)
+);
+const AuditStepsSection = dynamic(() =>
+  import("@/features/audit/components/AuditStepsSection").then((m) => m.AuditStepsSection)
+);
+const TrustedBySection = dynamic(() =>
+  import("@/features/audit/components/TrustedBySection").then((m) => m.TrustedBySection)
+);
+const AuditFaqSection = dynamic(() =>
+  import("@/features/audit/components/AuditFaqSection").then((m) => m.AuditFaqSection)
+);
+const AuditFooter = dynamic(() =>
+  import("@/features/audit/components/AuditFooter").then((m) => m.AuditFooter)
+);
 
 export const metadata: Metadata = {
   title: "Free Indoor Air Quality Audit in Delhi NCR | O₂Cure",
