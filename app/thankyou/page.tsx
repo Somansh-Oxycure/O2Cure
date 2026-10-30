@@ -16,6 +16,19 @@ export const metadata: Metadata = {
 export default function ThankYouPage() {
   return (
     <>
+      <script
+        async
+        src="https://www.googletagmanager.com/gtm.js?id=GTM-5FPLF3W6"
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+`,
+        }}
+      />
       <LandingGTM />
       <ThankYouView />
     </>
