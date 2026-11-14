@@ -9,7 +9,7 @@ import { heroContent } from "../content";
 /* ── HeroVideo ───────────────────────────────────────────────────────────────
  *  Full-screen video hero that sits behind the transparent navbar.
  *  - h-[100svh] fills the viewport height exactly
- *  Video source: Cloudinary CDN & Local assets
+ *  Video source: CloudFront CDN & Local assets
  * ─────────────────────────────────────────────────────────────────────────── */
 
 export function HeroVideo() {
