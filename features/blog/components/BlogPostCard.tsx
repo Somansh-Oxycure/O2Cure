@@ -5,36 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { easings } from "@/components/motion/easings";
-import type { AuditStatus, BlogPost } from "@/features/blog/types";
-
-// ─── Audit status badge ────────────────────────────────────────────────────
-const AUDIT_LABELS: Record<AuditStatus, string> = {
-  refresh: "Refresh",
-  rewrite: "Rewrite",
-  merge: "Consolidating",
-  retire: "Retiring",
-};
-
-const AUDIT_COLOURS: Record<AuditStatus, string> = {
-  refresh: "bg-accent text-accent-foreground",
-  rewrite: "bg-brand-blue-light text-brand-blue-dark",
-  merge: "bg-muted text-muted-foreground",
-  retire: "bg-border text-muted-foreground",
-};
-
-function AuditBadge({ status }: { status: AuditStatus }) {
-  return (
-    <span
-      className={[
-        "inline-flex items-center rounded-full px-2 py-0.5 text-[0.6rem] font-semibold tracking-wider uppercase",
-        AUDIT_COLOURS[status],
-      ].join(" ")}
-      title={`Content audit status: ${AUDIT_LABELS[status]}`}
-    >
-      {AUDIT_LABELS[status]}
-    </span>
-  );
-}
+import type { BlogPost } from "@/features/blog/types";
 
 // ─── Reading time ──────────────────────────────────────────────────────────
 function formatDate(iso: string): string {
@@ -122,12 +93,11 @@ export function BlogPostCard({
           featured ? "md:justify-center md:p-10" : "",
         ].join(" ")}
       >
-        {/* Category eyebrow + audit badge */}
+        {/* Category eyebrow */}
         <div className="flex items-center gap-2 flex-wrap">
           <span className="text-[0.72rem] font-semibold tracking-[0.12em] uppercase text-brand-green">
             {post.category}
           </span>
-          <AuditBadge status={post.auditStatus} />
         </div>
 
         {/* Title */}

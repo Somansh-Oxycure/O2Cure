@@ -28,9 +28,9 @@ export function Navbar() {
   // light text at the top before it becomes scrolled (which gives it a white background).
   const isDarkHero =
     pathname === "/about" ||
-    pathname.startsWith("/blog") ||
     pathname === "/commercial" ||
     pathname === "/commercial-air-purifier";
+  const isSolid = isScrolled || pathname.startsWith("/blog");
   const isNavLight = isDarkHero && !isScrolled;
 
   const transition = prefersReducedMotion
@@ -57,16 +57,16 @@ export function Navbar() {
         transition={transition}
       >
         <motion.div
-          className={cn("w-full transition-colors duration-300", isScrolled ? "border-b border-border/50" : (isDarkHero ? "border-b-0" : "border-b border-white/20"))}
+          className={cn("w-full transition-colors duration-300", isSolid ? "border-b border-border/50" : (isDarkHero ? "border-b-0" : "border-b border-white/20"))}
           initial={false}
           animate={{
-            backgroundColor: isScrolled
+            backgroundColor: isSolid
               ? "rgba(255, 255, 255, 0.95)"
               : (isDarkHero ? "transparent" : "rgba(255, 255, 255, 0.35)"),
-            backdropFilter: isScrolled
+            backdropFilter: isSolid
               ? "blur(20px) saturate(180%)"
               : (isDarkHero ? "none" : "blur(12px) saturate(140%)"),
-            boxShadow: isScrolled ? "var(--shadow-soft)" : "0 0 0 transparent",
+            boxShadow: isSolid ? "var(--shadow-soft)" : "0 0 0 transparent",
             paddingTop: isScrolled ? 6 : 8,
             paddingBottom: isScrolled ? 6 : 8,
           }}

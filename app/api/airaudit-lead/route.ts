@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+import { formatZohoPhone } from "@/features/audit/lib/zohoLead";
+
 const ZOHO_ENDPOINT = "https://crm.zoho.in/crm/WebToLeadForm";
 
 const ZOHO_KEYS = {
@@ -27,14 +29,15 @@ export async function POST(request: Request) {
       gclid,
     } = body;
 
-    if (!fullName || !phone) {
+    const trimmedName = fullName ? String(fullName).trim() : "";
+    const formattedPhone = phone ? formatZohoPhone(String(phone)) : "";
+
+    if (!trimmedName || !formattedPhone) {
       return NextResponse.json(
         { success: false, error: "Full Name and Phone are required." },
         { status: 400 },
       );
     }
-
-    const trimmedName = String(fullName).trim();
 
     const formParams = new URLSearchParams();
     formParams.set("xnQsjsdp", ZOHO_KEYS.xnQsjsdp);
@@ -46,7 +49,7 @@ export async function POST(request: Request) {
     formParams.set("Company", trimmedName);
     formParams.set("Last Name", trimmedName);
 
-    if (phone) formParams.set("Phone", String(phone).trim());
+    formParams.set("Phone", formattedPhone);
     if (email) formParams.set("Email", String(email).trim());
     if (spaceType) formParams.set("LEADCF9", String(spaceType).trim());
     if (city) formParams.set("Address - City", String(city).trim());
@@ -76,7 +79,7 @@ export async function POST(request: Request) {
     formParams.set("aG9uZXlwb3Q", ""); // Honeypot must be empty
 
     console.log(
-      `[Zoho CRM Submitting] Name: "${trimmedName}", Phone: "${phone}", Email: "${email}", Space: "${spaceType}", City: "${city}", Stage: "${spaceStage}", Role: "${stakeholderRole}", Concern: "${primaryAirConcern}", Timeline: "${purchaseTimeline}", Slot: "${preferredCallSlot}"`,
+      `[Zoho CRM Submitting] Name: "${trimmedName}", Phone: "${formattedPhone}", Email: "${email}", Space: "${spaceType}", City: "${city}", Stage: "${spaceStage}", Role: "${stakeholderRole}", Concern: "${primaryAirConcern}", Timeline: "${purchaseTimeline}", Slot: "${preferredCallSlot}"`,
     );
 
     const zohoRes = await fetch(ZOHO_ENDPOINT, {

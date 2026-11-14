@@ -25,6 +25,29 @@ const SPACE_TYPE: Record<string, string> = {
   education: "Education",
 };
 
+/** Extracts national digits from a raw Indian phone string, stripping +91/0091/91/0 prefixes. */
+function extractIndianNationalDigits(raw: string): string {
+  const trimmed = String(raw).trim().replace(/^(\+91|0091)[\s.-]*/, "");
+  let digits = trimmed.replace(/\D/g, "");
+  if (digits.length === 12 && digits.startsWith("91")) {
+    digits = digits.slice(2);
+  } else if (digits.length === 11 && digits.startsWith("0")) {
+    digits = digits.slice(1);
+  }
+  return digits;
+}
+
+/** Sanitizes user input/autofill for the phone field to at most 10 national digits. */
+export function sanitizeIndianPhoneInput(raw: string): string {
+  return extractIndianNationalDigits(raw).slice(0, 10);
+}
+
+/** Normalizes any Indian phone number into a consistent +91XXXXXXXXXX format for Zoho CRM. */
+export function formatZohoPhone(raw: string): string {
+  const digits = extractIndianNationalDigits(raw);
+  return digits ? `+91${digits}` : "";
+}
+
 export async function submitZohoLead(
   input: ZohoLeadInput,
 ): Promise<EnquirySubmissionResult> {
@@ -34,6 +57,7 @@ export async function submitZohoLead(
       : "";
 
   const spaceType = SPACE_TYPE[input.environment] || "Residential";
+  const formattedPhone = formatZohoPhone(input.phone);
 
   try {
     const res = await fetch("/api/airaudit-lead", {
@@ -43,7 +67,7 @@ export async function submitZohoLead(
       },
       body: JSON.stringify({
         fullName: input.fullName,
-        phone: input.phone,
+        phone: formattedPhone,
         email: input.email,
         spaceType,
         city: input.city,

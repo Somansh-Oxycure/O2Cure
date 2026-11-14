@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import {
   BlogPostBody,
@@ -149,11 +150,27 @@ export default async function BlogPostPage({
         <section
           id="post-content"
           aria-label="Article content"
-          className="mx-auto max-w-7xl w-full px-5 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)] py-[clamp(3rem,2rem+3vw,5.5rem)]"
+          className="mx-auto max-w-7xl w-full px-5 sm:px-8 lg:px-[clamp(2rem,5vw,4rem)] py-8 sm:py-12"
         >
           <div className="grid gap-12 lg:grid-cols-[1fr_340px]">
-            {/* Body */}
-            <BlogPostBody paragraphs={post.body} />
+            {/* Left column: Featured image + Body */}
+            <div className="min-w-0">
+              {post.featuredImage && (
+                <div className="relative mb-8 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+                  <Image
+                    src={post.featuredImage}
+                    alt={post.featuredImageAlt || post.title}
+                    fill
+                    priority
+                    quality={90}
+                    className="object-cover object-center"
+                    sizes="(min-width: 1024px) 800px, 100vw"
+                  />
+                </div>
+              )}
+
+              <BlogPostBody paragraphs={post.body} />
+            </div>
 
             {/* Sticky sidebar */}
             <div className="lg:sticky lg:top-[5.5rem] lg:self-start">

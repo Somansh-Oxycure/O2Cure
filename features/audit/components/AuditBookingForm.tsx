@@ -8,7 +8,11 @@ import { useRouter } from "next/navigation";
 import { durations } from "@/components/motion/durations";
 import { easings } from "@/components/motion/easings";
 import { FormSuccess } from "@/features/contact/components/FormSuccess";
-import { submitZohoLead } from "@/features/audit/lib/zohoLead";
+import {
+  formatZohoPhone,
+  sanitizeIndianPhoneInput,
+  submitZohoLead,
+} from "@/features/audit/lib/zohoLead";
 import {
   hasEnquiryErrors,
   validateEnquiryForm,
@@ -292,6 +296,11 @@ export function AuditBookingForm({
       delete next.environment;
     }
 
+    const phoneDigits = sanitizeIndianPhoneInput(data.phone);
+    if (!next.phone && phoneDigits.length !== 10) {
+      next.phone = "Please enter a valid 10-digit phone number.";
+    }
+
     const newExtraErrors: {
       spaceStage?: string;
       stakeholderRole?: string;
@@ -347,16 +356,18 @@ export function AuditBookingForm({
 
       const resolvedEnvironment =
         segment === "business" ? data.environment : "residential";
+      const formattedPhone = formatZohoPhone(data.phone);
       setSubmitError(null);
       const result = submissionAdapter
         ? await submissionAdapter.submit({
             ...data,
+            phone: formattedPhone,
             environment: resolvedEnvironment,
             message: messageParts.join(" — "),
           })
         : await submitZohoLead({
             fullName: data.name,
-            phone: data.phone,
+            phone: formattedPhone,
             email: data.email,
             environment: resolvedEnvironment,
             city,
@@ -374,7 +385,7 @@ export function AuditBookingForm({
               "o2cure_audit_submission",
               JSON.stringify({
                 name: data.name,
-                phone: data.phone,
+                phone: formattedPhone,
                 email: data.email,
                 segment,
                 environment: environmentResolved,
@@ -505,17 +516,26 @@ export function AuditBookingForm({
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <Field label="Phone Number" htmlFor={`${uid}-phone`} error={errors.phone} required>
-                  <input
-                    id={`${uid}-phone`}
-                    type="tel"
-                    inputMode="tel"
-                    autoComplete="tel"
-                    placeholder="e.g. 98765 43210"
-                    value={data.phone}
-                    onChange={(e) => set("phone")(e.target.value)}
-                    aria-invalid={!!errors.phone}
-                    className={cn(fieldBase, errors.phone && "border-destructive/50")}
-                  />
+                  <div className="relative">
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute left-4 top-1/2 flex -translate-y-1/2 select-none items-center gap-2 text-[0.82rem] font-semibold text-foreground/75"
+                    >
+                      <span>+91</span>
+                      <span className="h-4 w-px bg-border/80" />
+                    </span>
+                    <input
+                      id={`${uid}-phone`}
+                      type="tel"
+                      inputMode="numeric"
+                      autoComplete="tel-national"
+                      placeholder="98765 43210"
+                      value={data.phone}
+                      onChange={(e) => set("phone")(sanitizeIndianPhoneInput(e.target.value))}
+                      aria-invalid={!!errors.phone}
+                      className={cn(fieldBase, "pl-[3.85rem]", errors.phone && "border-destructive/50")}
+                    />
+                  </div>
                 </Field>
 
                 <Field label="Email Address" htmlFor={`${uid}-email`} error={errors.email} required>
