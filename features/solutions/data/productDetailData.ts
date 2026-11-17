@@ -35,6 +35,12 @@ export interface ProductReview {
   date: string;
 }
 
+export interface ApplicationVisual {
+  label: string;
+  src: string;
+  alt: string;
+}
+
 export interface CTAConfig {
   type: "priced" | "enquiry";
   price?: string;
@@ -63,6 +69,8 @@ export interface ProductDetail {
   specs: TechSpec[];
   /** Where the product is installed/used */
   applications: string[];
+  /** Optional rotating visualization images replacing text pills in "Where it fits" */
+  applicationVisuals?: ApplicationVisual[];
   /** Certifications shown as badge pills */
   certifications: string[];
   cta: CTAConfig;
@@ -830,6 +838,15 @@ export const productDetails: ProductDetail[] = [
       { parameter: "Flexibility", value: "Customisable tech stack" },
     ],
     applications: ["Residences", "Hotels", "Schools", "Offices", "Spas", "Gyms", "Clinics", "Restaurants"],
+    applicationVisuals: [
+      { label: "Gym", src: "/Hybrid_Visulisation/01-GYM.webp", alt: "O2Cure Hybrid Air Purifier visualization in a gym" },
+      { label: "Home", src: "/Hybrid_Visulisation/02-3BHK.webp", alt: "O2Cure Hybrid Air Purifier visualization in a home" },
+      { label: "Bungalows", src: "/Hybrid_Visulisation/03-Bungalows.webp", alt: "O2Cure Hybrid Air Purifier visualization in a bungalow" },
+      { label: "Café", src: "/Hybrid_Visulisation/04-Cafe.webp", alt: "O2Cure Hybrid Air Purifier visualization in a cafe" },
+      { label: "Kids Play Area", src: "/Hybrid_Visulisation/05-Kids-Play-Area.webp", alt: "O2Cure Hybrid Air Purifier visualization in a kids play area" },
+      { label: "Classroom", src: "/Hybrid_Visulisation/06-Classroom.webp", alt: "O2Cure Hybrid Air Purifier visualization in a classroom" },
+      { label: "Retail Store", src: "/Hybrid_Visulisation/07-Retail-Store.webp", alt: "O2Cure Hybrid Air Purifier visualization in a retail store" },
+    ],
     certifications: ["Customisable", "Multi-Tech", "Floor-Standing", "Smart Home Ready"],
     cta: {
       type: "enquiry",

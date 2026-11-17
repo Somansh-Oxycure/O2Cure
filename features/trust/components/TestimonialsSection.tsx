@@ -3,7 +3,6 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { TestimonialsPreview } from "@/features/trust/components/TestimonialsPreview";
 import { testimonials } from "@/features/trust/content";
-import { VideoTestimonials } from "@/features/trust/components/VideoTestimonials";
 
 export function TestimonialsSection() {
   return (
@@ -35,15 +34,12 @@ export function TestimonialsSection() {
           </Reveal>
         </header>
 
-        {/* ── Testimonials ── */}
-        <div>
-          <VideoTestimonials />
-
+        {/* ── Written Testimonials ── */}
+        <div className="mt-8 sm:mt-10">
           <Reveal delay={0.2} distance={24}>
             <TestimonialsPreview testimonials={testimonials} />
           </Reveal>
         </div>
-
       </div>
     </section>
   );

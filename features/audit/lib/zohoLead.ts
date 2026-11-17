@@ -7,6 +7,10 @@ export interface ZohoLeadInput {
   /** Raw environment value from the form (e.g. "corporate") or "residential". */
   environment: string;
   city: string;
+  company?: string;
+  clientType?: "b2b" | "b2c";
+  problemDescription?: string;
+  leadSource?: string;
   spaceStage?: string;
   stakeholderRole?: string;
   primaryAirConcern?: string;
@@ -17,13 +21,25 @@ export interface ZohoLeadInput {
 /** Maps the form's environment values onto Zoho's Space Type picklist. */
 const SPACE_TYPE: Record<string, string> = {
   residential: "Residential",
+  apartment: "Residential",
+  villa: "Residential",
+  studio: "Residential",
+  farmhouse: "Residential",
   corporate: "Commercial",
+  building: "Commercial",
   government: "Commercial",
   "airports-transit": "Commercial",
   industrial: "Industrial",
   healthcare: "Healthcare",
   education: "Education",
 };
+
+export function resolveZohoSpaceType(
+  environment: string,
+  fallback = "Residential",
+): string {
+  return SPACE_TYPE[environment] || fallback;
+}
 
 /** Extracts national digits from a raw Indian phone string, stripping +91/0091/91/0 prefixes. */
 function extractIndianNationalDigits(raw: string): string {
@@ -56,8 +72,10 @@ export async function submitZohoLead(
       ? new URLSearchParams(window.location.search).get("gclid") ?? ""
       : "";
 
-  const spaceType = SPACE_TYPE[input.environment] || "Residential";
+  const spaceType = resolveZohoSpaceType(input.environment);
   const formattedPhone = formatZohoPhone(input.phone);
+  const pagePath =
+    typeof window !== "undefined" ? window.location.pathname : undefined;
 
   try {
     const res = await fetch("/api/airaudit-lead", {
@@ -69,8 +87,14 @@ export async function submitZohoLead(
         fullName: input.fullName,
         phone: formattedPhone,
         email: input.email,
+        company: input.company,
+        environment: input.environment,
         spaceType,
         city: input.city,
+        clientType: input.clientType,
+        problemDescription: input.problemDescription,
+        leadSource: input.leadSource || "Air Audit (/airaudit)",
+        pagePath,
         spaceStage: input.spaceStage,
         stakeholderRole: input.stakeholderRole,
         primaryAirConcern: input.primaryAirConcern,

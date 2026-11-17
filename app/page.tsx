@@ -8,6 +8,7 @@ import {
   MetricsSection,
   ClienteleSection,
   TestimonialsSection,
+  VideoTestimonialsSection,
   CertificationsSection,
 } from "@/features/trust";
 
@@ -19,6 +20,7 @@ export default function Home() {
       />
       <ClienteleSection />
       <MetricsSection />
+      <VideoTestimonialsSection />
       <AqiSection />
       <TechnologySection />
       <CertificationsSection />

@@ -19,8 +19,14 @@ export async function POST(request: Request) {
       fullName,
       phone,
       email,
+      company,
+      environment,
       spaceType,
       city,
+      clientType,
+      problemDescription,
+      leadSource,
+      pagePath,
       spaceStage,
       stakeholderRole,
       primaryAirConcern,
@@ -30,7 +36,11 @@ export async function POST(request: Request) {
     } = body;
 
     const trimmedName = fullName ? String(fullName).trim() : "";
+    const trimmedCompany = company ? String(company).trim() : "";
     const formattedPhone = phone ? formatZohoPhone(String(phone)) : "";
+    const resolvedLeadSource = leadSource
+      ? String(leadSource).trim()
+      : "Air Audit (/airaudit)";
 
     if (!trimmedName || !formattedPhone) {
       return NextResponse.json(
@@ -45,9 +55,10 @@ export async function POST(request: Request) {
     formParams.set("actionType", ZOHO_KEYS.actionType);
     formParams.set("returnURL", ZOHO_KEYS.returnURL);
 
-    // Map full name to both mandatory Zoho fields
-    formParams.set("Company", trimmedName);
+    // Map company (fallback to full name since Company is mandatory in Zoho) and Last Name
+    formParams.set("Company", trimmedCompany || trimmedName);
     formParams.set("Last Name", trimmedName);
+    formParams.set("Lead Source", resolvedLeadSource);
 
     formParams.set("Phone", formattedPhone);
     if (email) formParams.set("Email", String(email).trim());
@@ -63,9 +74,14 @@ export async function POST(request: Request) {
 
     // Formatted Description note for sales and engineering team in Zoho CRM
     const descriptionLines = [
-      `[Air Audit Consultation Request]`,
+      `[${resolvedLeadSource}]`,
+      pagePath ? `Page: ${pagePath}` : null,
+      clientType ? `Client Type: ${clientType === "b2b" ? "Business / Enterprise" : "Residential / Personal"}` : null,
+      trimmedCompany ? `Company: ${trimmedCompany}` : null,
+      environment ? `Environment: ${environment}` : null,
       spaceType ? `Space Type: ${spaceType}` : null,
       city ? `City / Area: ${city}` : null,
+      problemDescription ? `Message / Concern: ${String(problemDescription).trim()}` : null,
       spaceStage ? `Space Stage: ${spaceStage}` : null,
       stakeholderRole ? `Stakeholder Role: ${stakeholderRole}` : null,
       primaryAirConcern ? `Primary Air Concern: ${primaryAirConcern}` : null,
@@ -79,7 +95,7 @@ export async function POST(request: Request) {
     formParams.set("aG9uZXlwb3Q", ""); // Honeypot must be empty
 
     console.log(
-      `[Zoho CRM Submitting] Name: "${trimmedName}", Phone: "${formattedPhone}", Email: "${email}", Space: "${spaceType}", City: "${city}", Stage: "${spaceStage}", Role: "${stakeholderRole}", Concern: "${primaryAirConcern}", Timeline: "${purchaseTimeline}", Slot: "${preferredCallSlot}"`,
+      `[Zoho CRM Submitting] Source: "${resolvedLeadSource}", Name: "${trimmedName}", Company: "${trimmedCompany}", Phone: "${formattedPhone}", Email: "${email}", Space: "${spaceType}", City: "${city}"`,
     );
 
     const zohoRes = await fetch(ZOHO_ENDPOINT, {

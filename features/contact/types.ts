@@ -27,6 +27,8 @@ export interface EnquiryFormData {
   environment: EnvironmentType | "";
   message: string;
   problemDescription: string;
+  city?: string;
+  clientType?: "b2b" | "b2c";
 }
 
 export type EnquiryFormField = keyof EnquiryFormData;

@@ -2,15 +2,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Wind, Shield, Zap, Activity, Droplets, Cpu, Wifi, Wrench,
   Filter, Thermometer, Leaf, Eye, Radio, Layers, Settings,
-  Lock, Sun, RefreshCw, ArrowLeft, CheckCircle, ChevronRight,
+  Lock, Sun, RefreshCw, ArrowLeft, CheckCircle, ChevronLeft, ChevronRight,
   MessageCircle, Download, Star, MapPin,
 } from "lucide-react";
-import { motion, useInView } from "framer-motion";
-import type { ProductDetail } from "@/features/solutions/data/productDetailData";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import type { ApplicationVisual, ProductDetail } from "@/features/solutions/data/productDetailData";
 import type { ProductEntry } from "@/features/solutions/data/productCatalog";
 
 // ─── Icon map ─────────────────────────────────────────────────────────────────
@@ -54,7 +55,10 @@ export function ProductDetailPage({ detail, entry }: ProductDetailPageProps) {
       <PDPSpecs specs={detail.specs} certifications={detail.certifications} />
 
       {/* 6 ── Applications */}
-      <PDPApplications applications={detail.applications} />
+      <PDPApplications
+        applications={detail.applications}
+        applicationVisuals={detail.applicationVisuals}
+      />
 
       {/* 7 ── Reviews (if available) */}
       {detail.reviews && detail.reviews.length > 0 && (
@@ -437,12 +441,218 @@ function PDPSpecs({ specs, certifications }: { specs: { parameter: string; value
 
 // ─── 6. Applications ──────────────────────────────────────────────────────────
 
-function PDPApplications({ applications }: { applications: string[] }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+function PDPVisualRotator({ visuals }: { visuals: ApplicationVisual[] }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const total = visuals.length;
+
+  useEffect(() => {
+    if (prefersReducedMotion || isPaused || total <= 1) return;
+
+    const intervalId = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % total);
+    }, 3800);
+
+    return () => clearInterval(intervalId);
+  }, [prefersReducedMotion, isPaused, total]);
+
+  const goToPrev = () => setActiveIndex((prev) => (prev - 1 + total) % total);
+  const goToNext = () => setActiveIndex((prev) => (prev + 1) % total);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      goToPrev();
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault();
+      goToNext();
+    }
+  };
 
   return (
-    <section ref={ref} className="py-16 md:py-20 bg-[#EAECF0]" aria-labelledby="applications-heading">
+    <div
+      className="relative select-none"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Where it fits visualizations"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={() => setIsPaused(false)}
+    >
+      {/* 3D multi-card stage */}
+      <div className="relative w-full py-2">
+        {/* Invisible sizer matching centered active card dimensions */}
+        <div
+          aria-hidden="true"
+          className="w-[88%] sm:w-[76%] md:w-[68%] lg:w-[64%] max-w-[780px] aspect-[16/10] mx-auto invisible pointer-events-none"
+        />
+
+        {visuals.map((visual, idx) => {
+          let offset = idx - activeIndex;
+          if (offset > total / 2) offset -= total;
+          if (offset < -total / 2) offset += total;
+
+          const isActive = offset === 0;
+          const isPrev = offset === -1;
+          const isNext = offset === 1;
+          const isVisible = isActive || isPrev || isNext;
+
+          const targetX =
+            offset === 0
+              ? "0%"
+              : offset === -1
+                ? "-58%"
+                : offset === 1
+                  ? "58%"
+                  : offset < 0
+                    ? "-95%"
+                    : "95%";
+
+          return (
+            <div
+              key={visual.src}
+              aria-hidden={!isVisible}
+              style={{ zIndex: isActive ? 20 : isVisible ? 10 : 0 }}
+              className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            >
+              <motion.div
+                initial={false}
+                animate={{
+                  x: targetX,
+                  scale: isActive ? 1 : isVisible ? 0.76 : 0.62,
+                  opacity: isActive ? 1 : isVisible ? 0.32 : 0,
+                }}
+                transition={
+                  prefersReducedMotion
+                    ? { duration: 0 }
+                    : { type: "spring", stiffness: 90, damping: 20, mass: 0.85 }
+                }
+                style={{ willChange: "transform, opacity" }}
+                className={`relative w-[88%] sm:w-[76%] md:w-[68%] lg:w-[64%] max-w-[780px] aspect-[16/10]
+                  transform-gpu bg-transparent overflow-hidden
+                  ${isVisible ? "pointer-events-auto" : "pointer-events-none"}`}
+              >
+                <Image
+                  src={visual.src}
+                  alt={visual.alt}
+                  fill
+                  sizes="(max-width: 768px) 90vw, 820px"
+                  priority={idx === 0}
+                  draggable={false}
+                  className="object-contain select-none pointer-events-none"
+                />
+
+                {/* Side peek click target */}
+                {(isPrev || isNext) && (
+                  <button
+                    type="button"
+                    onClick={() => setActiveIndex(idx)}
+                    aria-label={isPrev ? "View previous visualization" : "View next visualization"}
+                    className="absolute inset-0 z-20 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3A7D2A] rounded-3xl"
+                  />
+                )}
+              </motion.div>
+            </div>
+          );
+        })}
+
+        {/* Left / Right navigation arrows */}
+        {total > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={goToPrev}
+              aria-label="Previous visualization"
+              className="absolute left-1 sm:left-3 md:left-6 top-1/2 -translate-y-1/2 z-30
+                w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/90 hover:bg-white text-[#1C1C1C]
+                border border-[#1C1C1C]/10 shadow-lg backdrop-blur-md
+                flex items-center justify-center transition-all hover:scale-105 active:scale-95
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3A7D2A]"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            <button
+              type="button"
+              onClick={goToNext}
+              aria-label="Next visualization"
+              className="absolute right-1 sm:right-3 md:right-6 top-1/2 -translate-y-1/2 z-30
+                w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/90 hover:bg-white text-[#1C1C1C]
+                border border-[#1C1C1C]/10 shadow-lg backdrop-blur-md
+                flex items-center justify-center transition-all hover:scale-105 active:scale-95
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3A7D2A]"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </>
+        )}
+      </div>
+
+      {/* Active environment label */}
+      <div className="mt-4 h-8 flex items-center justify-center overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={visuals[activeIndex]?.label}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.25, ease: "easeOut" }}
+            className="text-base sm:text-lg font-semibold text-[#1C1C1C] tracking-tight"
+          >
+            {visuals[activeIndex]?.label}
+          </motion.p>
+        </AnimatePresence>
+      </div>
+
+      {/* Bottom animated pill/dot indicators */}
+      {total > 1 && (
+        <div className="mt-2 flex items-center justify-center gap-1.5" role="tablist" aria-label="Select visualization">
+          {visuals.map((visual, idx) => {
+            const isSelected = idx === activeIndex;
+            return (
+              <button
+                key={visual.src}
+                type="button"
+                role="tab"
+                aria-selected={isSelected}
+                aria-label={visual.label}
+                title={visual.label}
+                onClick={() => setActiveIndex(idx)}
+                className="p-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3A7D2A] rounded-full"
+              >
+                <span
+                  className={`block h-2 rounded-full transition-all duration-300 ${
+                    isSelected
+                      ? "w-7 bg-[#3A7D2A]"
+                      : "w-2 bg-[#1C1C1C]/20 hover:bg-[#1C1C1C]/40"
+                  }`}
+                />
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function PDPApplications({
+  applications,
+  applicationVisuals,
+}: {
+  applications: string[];
+  applicationVisuals?: ApplicationVisual[];
+}) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const hasVisuals = Boolean(applicationVisuals && applicationVisuals.length > 0);
+
+  return (
+    <section ref={ref} className="py-16 md:py-20 bg-[#EAECF0] overflow-hidden" aria-labelledby="applications-heading">
       <div className="max-w-7xl mx-auto px-5 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -457,23 +667,33 @@ function PDPApplications({ applications }: { applications: string[] }) {
           </h2>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-          className="flex flex-wrap gap-3"
-        >
-          {applications.map((app) => (
-            <span
-              key={app}
-              className="flex items-center gap-1.5 text-sm text-[#1C1C1C] border border-[#1C1C1C]/10
-                rounded-full px-4 py-2 bg-white/80 backdrop-blur-sm"
-            >
-              <MapPin className="w-3.5 h-3.5 text-[#3A7D2A]" />
-              {app}
-            </span>
-          ))}
-        </motion.div>
+        {hasVisuals && applicationVisuals ? (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          >
+            <PDPVisualRotator visuals={applicationVisuals} />
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            className="flex flex-wrap gap-3"
+          >
+            {applications.map((app) => (
+              <span
+                key={app}
+                className="flex items-center gap-1.5 text-sm text-[#1C1C1C] border border-[#1C1C1C]/10
+                  rounded-full px-4 py-2 bg-white/80 backdrop-blur-sm"
+              >
+                <MapPin className="w-3.5 h-3.5 text-[#3A7D2A]" />
+                {app}
+              </span>
+            ))}
+          </motion.div>
+        )}
       </div>
     </section>
   );

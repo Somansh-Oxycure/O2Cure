@@ -19,7 +19,7 @@ import {
   emptyEnquiryForm,
   environmentOptions,
 } from "@/features/contact/content";
-import { simulatedEnquirySubmission } from "@/features/contact/lib/submission";
+import { createZohoEnquirySubmission } from "@/features/contact/lib/submission";
 import {
   hasEnquiryErrors,
   validateEnquiryField,
@@ -161,7 +161,7 @@ function StyledEnvironmentSelect({ value, onChange, onBlur, error }: StyledSelec
 
 /* ─── Main form component ──────────────────────────────────────────────────── */
 export function EnquiryForm({
-  submissionAdapter = simulatedEnquirySubmission,
+  submissionAdapter = createZohoEnquirySubmission({ leadSource: "Homepage - Get in Touch" }),
   className,
 }: EnquiryFormProps) {
   const prefersReducedMotion = useReducedMotion();
@@ -173,6 +173,7 @@ export function EnquiryForm({
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const updateField = useCallback(
     (field: EnquiryFormField, value: string) => {
@@ -220,12 +221,16 @@ export function EnquiryForm({
     }
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
     try {
       const result = await submissionAdapter.submit(formData);
       if (result.success) {
         setIsSuccess(true);
+      } else {
+        setSubmitError(result.message || "Something went wrong. Please try again.");
       }
+
     } finally {
       setIsSubmitting(false);
     }
@@ -343,6 +348,11 @@ export function EnquiryForm({
               We'll get back to you within 24 hours — no spam, ever.
             </p>
 
+            {submitError && (
+              <p className="mt-3 text-center text-xs text-destructive" role="alert">
+                {submitError}
+              </p>
+            )}
             {/* Submit */}
             <div className="pt-3">
               <motion.button

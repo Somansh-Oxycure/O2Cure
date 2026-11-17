@@ -13,7 +13,7 @@ import {
   FloatingTextarea,
 } from "@/features/contact/components/FloatingField";
 import { FormSuccess } from "@/features/contact/components/FormSuccess";
-import { simulatedEnquirySubmission } from "@/features/contact/lib/submission";
+import { createZohoEnquirySubmission } from "@/features/contact/lib/submission";
 import {
   hasEnquiryErrors,
   validateEnquiryField,
@@ -220,7 +220,7 @@ function StyledSelect({ label, value, options, onChange, onBlur, error }: Styled
 // ── Main Form ─────────────────────────────────────────────────────────────────
 
 export function AdvancedEnquiryForm({
-  submissionAdapter = simulatedEnquirySubmission,
+  submissionAdapter = createZohoEnquirySubmission({ leadSource: "Contact Page (/contact)" }),
   className,
 }: AdvancedEnquiryFormProps) {
   const prefersReducedMotion = useReducedMotion();
@@ -240,6 +240,7 @@ export function AdvancedEnquiryForm({
   const [touched, setTouched] = useState<Partial<Record<EnquiryFormField, boolean>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const updateField = useCallback(
     (field: EnquiryFormField, value: string) => {
@@ -273,9 +274,18 @@ export function AdvancedEnquiryForm({
     setTouched({ name: true, email: true, phone: true, environment: true, company: true, problemDescription: true });
     if (hasEnquiryErrors(nextErrors)) return;
     setIsSubmitting(true);
+    setSubmitError(null);
     try {
-      const result = await submissionAdapter.submit(formData);
-      if (result.success) setIsSuccess(true);
+      const result = await submissionAdapter.submit({
+        ...formData,
+        city,
+        clientType,
+      });
+      if (result.success) {
+        setIsSuccess(true);
+      } else {
+        setSubmitError(result.message || "Something went wrong. Please try again.");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -414,6 +424,12 @@ export function AdvancedEnquiryForm({
             <p className="mt-4 text-[0.66rem] text-muted-foreground text-center leading-relaxed">
               Your information is secure and never shared. Response guaranteed within 24 hours.
             </p>
+
+            {submitError && (
+              <p className="mt-3 text-center text-xs text-destructive" role="alert">
+                {submitError}
+              </p>
+            )}
 
             {/* Submit */}
             <div className="pt-3">

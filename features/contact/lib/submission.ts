@@ -1,3 +1,4 @@
+import { submitZohoLead } from "@/features/audit/lib/zohoLead";
 import type {
   EnquiryFormData,
   EnquirySubmissionAdapter,
@@ -50,6 +51,31 @@ export function createApiRouteSubmission(
       }
 
       return (await response.json()) as EnquirySubmissionResult;
+    },
+  };
+}
+
+/**
+ * Zoho CRM submission adapter for enquiry forms, tagged with a distinct leadSource
+ * so leads from the Homepage, /contact, /commercial, /residential, and /airaudit
+ * are clearly distinguishable in Zoho CRM.
+ */
+export function createZohoEnquirySubmission(options: {
+  leadSource: string;
+}): EnquirySubmissionAdapter {
+  return {
+    async submit(data: EnquiryFormData): Promise<EnquirySubmissionResult> {
+      return submitZohoLead({
+        fullName: data.name,
+        phone: data.phone,
+        email: data.email,
+        company: data.company,
+        environment: data.environment,
+        city: data.city ?? "",
+        clientType: data.clientType,
+        problemDescription: data.problemDescription || data.message,
+        leadSource: options.leadSource,
+      });
     },
   };
 }
