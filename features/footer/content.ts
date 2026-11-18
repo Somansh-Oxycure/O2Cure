@@ -80,6 +80,12 @@ export const footerContent: FooterContent = {
           href: "/aqi-effect/",
           isActive: true,
         },
+        {
+          id: "co-air-library",
+          label: "Air Library",
+          href: "/air-library",
+          isActive: true,
+        },
       ],
     },
     {

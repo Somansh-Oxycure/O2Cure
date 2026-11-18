@@ -81,6 +81,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
+    {
+      url: `${siteConfig.url}/air-library`,
+      lastModified: currentDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
   ];
 
   // 2. Clean Solutions URLs (mapped via rewrites)

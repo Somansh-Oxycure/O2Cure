@@ -114,6 +114,11 @@ const nextConfig: NextConfig = {
         destination: "/airaudit",
         permanent: true,
       },
+      {
+        source: "/library",
+        destination: "/air-library",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {

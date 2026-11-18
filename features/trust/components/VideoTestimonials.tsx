@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { Reveal } from "@/components/motion/Reveal";
 
 /**
@@ -360,7 +361,13 @@ export function VideoTestimonialsSection() {
         </div>
 
         <Reveal delay={0.18} distance={16}>
-          <div className="mt-4 flex justify-center pb-4">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-3 pb-4">
+            <Link
+              href="/air-library"
+              className="inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-brand-green-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green"
+            >
+              Explore The Air Library
+            </Link>
             <a
               href="https://www.instagram.com/theairvenger/"
               target="_blank"

@@ -54,6 +54,7 @@ export const NAV_ITEMS: NavItem[] = [
   { type: "link", label: "AQI", href: "/aqi-effect/" },
   { type: "link", label: "Clientele", href: "/clientele" },
   { type: "link", label: "About Us", href: "/about" },
+  { type: "link", label: "Air Library", href: "/air-library" },
   { type: "link", label: "FAQ", href: "/faq" },
   { type: "link", label: "Blog", href: "/blog" },
 ];
